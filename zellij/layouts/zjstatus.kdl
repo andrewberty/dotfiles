@@ -1,0 +1,46 @@
+//ZjStatus
+layout {
+    pane split_direction="vertical" {
+        pane
+    }
+
+    pane size=1 borderless=true {
+        plugin location="file:/home/andrew/.config/zellij/plugins/zjstatus.wasm" {
+            format_left  "{mode} #[fg=#89B4FA,bold]{session} {tabs}"
+            format_right "{datetime}"
+            format_space ""
+
+            hide_frame_for_single_pane "false"
+
+            mode_normal        "#[bg=#89B4FA] {name} "
+            mode_locked        "#[bg=#89B4FA] {name} "
+            mode_resize        "#[bg=#89B4FA] {name} "
+            mode_pane          "#[bg=#89B4FA] {name} "
+            mode_tab           "#[bg=#89B4FA] {name} "
+            mode_scroll        "#[bg=#89B4FA] {name} "
+            mode_enter_search  "#[bg=#89B4FA] {name} "
+            mode_search        "#[bg=#89B4FA] {name} "
+            mode_rename_tab    "#[bg=#89B4FA] {name} "
+            mode_rename_pane   "#[bg=#89B4FA] {name} "
+            mode_session       "#[bg=#89B4FA] {name} "
+            mode_move          "#[bg=#89B4FA] {name} "
+            mode_prompt        "#[bg=#89B4FA] {name} "
+            mode_tmux          "#[bg=#ffc387] {name} "
+
+
+            // formatting for inactive tabs
+            tab_normal              "#[fg=#6C7086] {name} "
+            tab_normal_fullscreen   "#[fg=#6C7086] {name} [] "
+            tab_normal_sync         "#[fg=#6C7086] {name} <> "
+
+            // formatting for the current active tab
+            tab_active              "#[fg=#9399B2,bold,italic] {name} "
+            tab_active_fullscreen   "#[fg=#9399B2,bold,italic] {name} [] "
+            tab_active_sync         "#[fg=#9399B2,bold,italic] {name} <> "
+
+            datetime        "#[fg=#6C7086,bold] {format} "
+            datetime_format "%A, %d %b %Y %H:%M"
+            datetime_timezone "Europe/Berlin"
+        }
+    }
+}

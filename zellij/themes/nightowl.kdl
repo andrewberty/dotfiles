@@ -1,0 +1,15 @@
+themes {
+  night-owl {
+    bg "#011627"
+    fg "#d6deeb"
+    red "#EF5350"
+    green "#22da6e"
+    blue "#82AAFF"
+    yellow "#c5e478"
+    magenta "#C792EA"
+    orange "#fe640b"
+    cyan "#21c7a8"
+    black "#011627"
+    white "#ffffff"
+  }
+}
