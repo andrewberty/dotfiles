@@ -1,0 +1,42 @@
+# import = ["~/.config/alacritty/colors/rose-pine-moon.toml"]
+# import = ["~/.config/alacritty/colors/tokyonight_moon.toml"]
+import = ["~/.config/alacritty/colors/gruvbox_dark.toml"]
+shell = { program = "ubuntu2204.exe" }
+# shell = { program = "pwsh", args = ["-nologo"] }
+working_directory = "C:\\Users\\Andrew"
+
+[window]
+dimensions = { lines = 25, columns = 90 }
+decorations = "none"
+# opacity = 0.99
+
+[font]
+size = 14
+offset = { y = 6 }
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Retina"
+
+[font.bold]
+family = "FiraCode Nerd Font"
+style = "Retina"
+
+[cursor.style]
+shape = "Block"
+blinking = "Always"
+
+[mouse]
+hide_when_typing = true
+
+[keyboard]
+bindings = [
+  # {key,mods,mode,action|chars}
+  { key = "n", mods = "Control | Shift", action = "CreateNewWindow" },
+  { key = "o", mods = "Control | Shift", chars = "alacOLED\r cl\r" },
+  { key = "v", mods = "Control", action = "Paste" },
+  { key = "Enter", mods = "Alt", action = "ToggleFullscreen" },
+]
+
+[colors.primary]
+background = "#0e1010"
