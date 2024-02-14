@@ -21,12 +21,30 @@ local sections = {
   lualine_z = {},
 }
 
+local template = {
+  a = { bg = "none", fg = "#ffffff" },
+  b = { bg = "none", fg = "#ffffff" },
+  c = { bg = "none", fg = "#ffffff" },
+}
+
+local custom_theme = {
+  normal = template,
+  insert = template,
+  visual = template,
+  replace = template,
+  command = template,
+  inactive = {
+    a = { bg = "none", fg = "#555555" },
+    b = { bg = "none", fg = "#555555" },
+    c = { bg = "none", fg = "#555555" },
+  },
+}
 return {
   "nvim-lualine/lualine.nvim",
   event = { "BufReadPost", "BufNewFile", "VeryLazy" },
   opts = {
     options = {
-      theme = "auto",
+      theme = custom_theme,
       icons_enabled = true,
       section_separators = "",
       component_separators = "",

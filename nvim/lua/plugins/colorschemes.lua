@@ -5,8 +5,8 @@ return {
     priority = 1000,
     config = function()
       vim.o.background = "dark"
-      vim.g.gruvbox_material_background = "dark" -- soft, medium, hard
-      vim.g.gruvbox_material_foreground = "original"
+      vim.g.gruvbox_material_background = "hard" -- soft, medium, hard
+      vim.g.gruvbox_material_foreground = "mix"
       vim.g.gruvbox_material_statusline_style = "mix"
       vim.g.gruvbox_material_disable_italic_comment = 1
       vim.g.gruvbox_material_transparent_background = 2 -- 0,1,2
@@ -41,7 +41,6 @@ return {
       },
       highlight_groups = {
         WinSeparator = { fg = "overlay" },
-        -- CursorLine = { bg = "none" },
         TelescopeSelection = { bg = "none" },
         TelescopeSelectionCaret = { bg = "none" },
         --   TelescopeNormal = { bg = 'surface' },
@@ -182,34 +181,6 @@ return {
           indentscope_color = "",
         },
       },
-    },
-  },
-  {
-    "olivercederborg/poimandres.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("poimandres").setup({
-        bold_vert_split = false, -- use bold vertical separators
-        dim_nc_background = false, -- dim 'non-current' window backgrounds
-        disable_background = false, -- disable background
-        disable_float_background = false, -- disable background for floats
-        disable_italics = true, -- disable italics
-      })
-    end,
-  },
-  {
-    "datsfilipe/vesper.nvim",
-    opts = {
-      transparent = true,
-      italics = {
-        comments = false,
-        keywords = false,
-        functions = false,
-        strings = false,
-        variables = false,
-      },
-      overrides = {},
     },
   },
 }

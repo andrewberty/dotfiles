@@ -56,15 +56,15 @@ local keys = {
 			end),
 		}),
 	},
-	{
-		key = ",",
-		mods = "CTRL",
-		action = act.SpawnCommandInNewTab({
-			cwd = os.getenv("WEZTERM_CONFIG_DIR"),
-			set_environment_variables = { TERM = "screen-256color" },
-			args = { "nvim", os.getenv("WEZTERM_CONFIG_FILE") },
-		}),
-	},
+	-- {
+	-- 	key = ",",
+	-- 	mods = "CTRL",
+	-- 	action = act.SpawnCommandInNewTab({
+	-- 		cwd = os.getenv("WEZTERM_CONFIG_DIR"),
+	-- 		set_environment_variables = { TERM = "screen-256color" },
+	-- 		args = { "nvim", os.getenv("WEZTERM_CONFIG_FILE") },
+	-- 	}),
+	-- },
 }
 
 local mouse_bindings = {

@@ -1,26 +1,34 @@
-# import = ["~/.config/alacritty/colors/rose-pine-moon.toml"]
+import = ["~/.config/alacritty/colors/rose-pine-moon.toml"]
 # import = ["~/.config/alacritty/colors/tokyonight_moon.toml"]
-import = ["~/.config/alacritty/colors/gruvbox_dark.toml"]
-shell = { program = "ubuntu2204.exe" }
-# shell = { program = "pwsh", args = ["-nologo"] }
-working_directory = "C:\\Users\\Andrew"
+# import = ["~/.config/alacritty/colors/gruvbox_material.toml"]
+# import = ["~/.config/alacritty/colors/catppuccin.toml"]
+
+shell = "wsl -d Ubuntu-22.04 --cd ~"
+# shell = "pwsh -nologo -wd ~"
 
 [window]
-dimensions = { lines = 25, columns = 90 }
 decorations = "none"
-# opacity = 0.99
+opacity = 0.97
+
+[window.padding]
+x = 10
+y = 10
+
+[window.dimensions]
+lines = 25
+columns = 90
 
 [font]
-size = 14
+size = 15
 offset = { y = 6 }
 
 [font.normal]
-family = "FiraCode Nerd Font"
-style = "Retina"
+family = "Hack Nerd Font"
+style = "Regular"
 
 [font.bold]
-family = "FiraCode Nerd Font"
-style = "Retina"
+family = "Hack Nerd Font"
+style = "Regular"
 
 [cursor.style]
 shape = "Block"
@@ -39,4 +47,3 @@ bindings = [
 ]
 
 [colors.primary]
-background = "#0e1010"

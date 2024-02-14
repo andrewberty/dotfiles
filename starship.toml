@@ -2,19 +2,18 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = false
+command_timeout = 10000
 
-
-# Which is equivalent to
 format = """
-$character\
 $directory\
 $git_branch\
 $git_commit\
 $git_state\
 $git_metrics\
 $git_status\
-$nodejs"""
+$nodejs\
+$character"""
 
 [character]
-success_symbol = '[▲](bold green)'
+# success_symbol = '[▲](bold green)'
 # success_symbol = '[➜](bold green)'

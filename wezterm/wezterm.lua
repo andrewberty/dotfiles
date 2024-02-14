@@ -1,18 +1,20 @@
 local wezterm = require("wezterm")
+require("events")
 
 local colorschemeSetter = require("colorschemes")
 local keysSetter = require("keymaps")
 
 -- wezterm.GLOBAL.Colorscheme = "tokyonight_moon"
-wezterm.GLOBAL.Colorscheme = "GruvboxDarkHard"
--- wezterm.GLOBAL.Colorscheme = "rose-pine-moon"
+-- wezterm.GLOBAL.Colorscheme = "GruvboxDarkHard"
+wezterm.GLOBAL.Colorscheme = "rose-pine-moon"
 
 local config = {
-	default_prog = { "pwsh.exe", "-nologo" },
-	font = wezterm.font("Hack"),
-	font_rules = { { intensity = "Bold", font = wezterm.font("Hack", { weight = "Regular" }) } },
-	font_size = 16,
-	line_height = 1.2,
+	-- default_prog = { "pwsh.exe", "-nologo" },
+	default_domain = "WSL:Ubuntu-22.04",
+	font = wezterm.font("Hack Nerd Font", { weight = 400 }),
+	font_rules = { { intensity = "Bold", font = wezterm.font("Hack Nerd Font", { weight = 400 }) } },
+	font_size = 14.5,
+	line_height = 1.14,
 	window_padding = {
 		top = 8,
 		bottom = 8,

@@ -94,4 +94,4 @@ map("i", "<C-CR>", "<ESC>o", opts)
 map("i", "<A-CR>", "<ESC>O", opts)
 
 -- Select All
-map("n", "<C-A>", "ggVG", opts)
+-- map("n", "<leader>a", "ggVG", opts)
