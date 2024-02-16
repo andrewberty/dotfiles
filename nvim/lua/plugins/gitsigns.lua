@@ -12,39 +12,60 @@ return {
   enabled = true,
   config = function()
     local icons = require("config.icons")
+    local map = require("config.utils").map
+
+    map(
+      { "n", "v" },
+      "<leader>Gk",
+      "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>",
+      { desc = "Prev Hunk" }
+    )
+    map({ "n", "v" }, "<leader>Gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", { desc = "Blame" })
+    map({ "n", "v" }, "<leader>Gp", "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", { desc = "Preview Hunk" })
+    map({ "n", "v" }, "<leader>Gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", { desc = "Reset Hunk" })
+    map({ "n", "v" }, "<leader>GR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", { desc = "Reset Buffer" })
+    map(
+      { "n", "v" },
+      "<leader>Gj",
+      "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>",
+      { desc = "Next Hunk" }
+    )
+    map({ "n", "v" }, "<leader>Gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", { desc = "Stage Hunk" })
+    map({ "n", "v" }, "<leader>Gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", { desc = "Undo Stage Hunk" })
+
     require("gitsigns").setup({
-      -- signs = {
-      --   add = {
-      --     hl = "GitSignsAdd",
-      --     text = icons.ui.BoldLineLeft,
-      --     numhl = "GitSignsAddNr",
-      --     linehl = "GitSignsAddLn",
-      --   },
-      --   change = {
-      --     hl = "GitSignsChange",
-      --     text = icons.ui.BoldLineLeft,
-      --     numhl = "GitSignsChangeNr",
-      --     linehl = "GitSignsChangeLn",
-      --   },
-      --   delete = {
-      --     hl = "GitSignsDelete",
-      --     text = icons.ui.Triangle,
-      --     numhl = "GitSignsDeleteNr",
-      --     linehl = "GitSignsDeleteLn",
-      --   },
-      --   topdelete = {
-      --     hl = "GitSignsDelete",
-      --     text = icons.ui.Triangle,
-      --     numhl = "GitSignsDeleteNr",
-      --     linehl = "GitSignsDeleteLn",
-      --   },
-      --   changedelete = {
-      --     hl = "GitSignsChange",
-      --     text = icons.ui.BoldLineLeft,
-      --     numhl = "GitSignsChangeNr",
-      --     linehl = "GitSignsChangeLn",
-      --   },
-      -- },
+      signs = {
+        add = {
+          hl = "GitSignsAdd",
+          text = icons.ui.BoldLineLeft,
+          numhl = "GitSignsAddNr",
+          linehl = "GitSignsAddLn",
+        },
+        change = {
+          hl = "GitSignsChange",
+          text = icons.ui.BoldLineLeft,
+          numhl = "GitSignsChangeNr",
+          linehl = "GitSignsChangeLn",
+        },
+        delete = {
+          hl = "GitSignsDelete",
+          text = icons.ui.Triangle,
+          numhl = "GitSignsDeleteNr",
+          linehl = "GitSignsDeleteLn",
+        },
+        topdelete = {
+          hl = "GitSignsDelete",
+          text = icons.ui.Triangle,
+          numhl = "GitSignsDeleteNr",
+          linehl = "GitSignsDeleteLn",
+        },
+        changedelete = {
+          hl = "GitSignsChange",
+          text = icons.ui.BoldLineLeft,
+          numhl = "GitSignsChangeNr",
+          linehl = "GitSignsChangeLn",
+        },
+      },
       signcolumn = true,
       numhl = false,
       linehl = false,

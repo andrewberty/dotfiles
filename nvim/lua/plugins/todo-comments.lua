@@ -12,6 +12,11 @@ return {
   cmd = { "TodoTrouble", "TodoTelescope" },
   event = { "BufReadPost", "BufNewFile" },
   config = function()
+    local map = require("config.utils").map
+
+    map({ "n", "v" }, "<leader>td", "<cmd>TodoTelescope<cr>", { desc = "Todo Comments" })
+    --     T = { "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "Todo/Fix/Fixme" },
+
     require("todo-comments").setup({
       keywords = {
         FIX = { icon = " ", color = "error", alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },

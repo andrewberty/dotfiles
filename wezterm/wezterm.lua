@@ -7,19 +7,20 @@ local keysSetter = require("keymaps")
 -- wezterm.GLOBAL.Colorscheme = "tokyonight_moon"
 -- wezterm.GLOBAL.Colorscheme = "GruvboxDarkHard"
 wezterm.GLOBAL.Colorscheme = "rose-pine-moon"
+wezterm.GLOBAL.Font = "Lilex Nerd Font"
 
 local config = {
 	-- default_prog = { "pwsh.exe", "-nologo" },
 	default_domain = "WSL:Ubuntu-22.04",
-	font = wezterm.font("Hack Nerd Font", { weight = 400 }),
-	font_rules = { { intensity = "Bold", font = wezterm.font("Hack Nerd Font", { weight = 400 }) } },
-	font_size = 14.5,
-	line_height = 1.14,
+	font = wezterm.font(wezterm.GLOBAL.Font, { weight = 400 }),
+	font_rules = { { intensity = "Bold", font = wezterm.font(wezterm.GLOBAL.Font, { weight = 400 }) } },
+	font_size = 14,
+	-- line_height = 1.2,
 	window_padding = {
-		top = 8,
-		bottom = 8,
-		left = 8,
-		right = 8,
+		top = 10,
+		bottom = 10,
+		left = 10,
+		right = 10,
 	},
 	window_close_confirmation = "NeverPrompt",
 	enable_tab_bar = false,

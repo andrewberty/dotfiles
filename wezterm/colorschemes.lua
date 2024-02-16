@@ -7,7 +7,7 @@ function Setter(config)
 			-- background = "#11111b", -- catppuccin mocha bg
 			-- background = "#011628", -- tokyonight blue bg
 			-- background = "#101010", -- gruvbox hard bg
-			background = "#090909",
+			background = "#000",
 			split = "#111",
 		}
 
@@ -47,7 +47,7 @@ function Setter(config)
 			brightness = 1,
 		},
 		window_frame = {
-			font = wezterm.font({ family = "FiraCode Nerd Font", weight = 450 }),
+			font = wezterm.font({ family = wezterm.GLOBAL.Font, weight = "Regular" }),
 			font_size = 11.0,
 			active_titlebar_bg = get_theme().background,
 			inactive_titlebar_bg = get_theme().background,

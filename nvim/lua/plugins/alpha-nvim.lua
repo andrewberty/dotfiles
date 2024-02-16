@@ -31,7 +31,6 @@ return {
       dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
       dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
       dashboard.button("c", " " .. " Config", ":cd " .. configDir .. " <BAR> Telescope find_files <CR>"),
-      dashboard.button("s", " " .. " Restore Session", ": lua require('persistence').load() <CR>"),
       dashboard.button("q", " " .. " Quit", ":qa<CR>"),
       dashboard.button("l", " " .. " Lazy", ":Lazy<CR>"),
     }
@@ -49,6 +48,7 @@ return {
     return dashboard
   end,
   config = function(_, dashboard)
+    require("config.utils").map({ "n", "v" }, "<leader>;", "<cmd>Alpha<cr>", { desc = "Dashboard" })
     -- close Lazy and re-open when the dashboard is ready
     if vim.o.filetype == "lazy" then
       vim.cmd.close()

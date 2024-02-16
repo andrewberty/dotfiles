@@ -12,15 +12,6 @@ api.nvim_create_autocmd("BufEnter", {
   command = [[set formatoptions-=cro]],
 })
 
---- Remove all trailing whitespace on save
-local TrimWhiteSpaceGrp = api.nvim_create_augroup("TrimWhiteSpaceGrp", {
-  clear = true,
-})
-api.nvim_create_autocmd("BufWritePre", {
-  command = [[:%s/\s\+$//e]],
-  group = TrimWhiteSpaceGrp,
-})
-
 -- Highlight on yank
 api.nvim_create_autocmd("TextYankPost", {
   callback = function()
@@ -44,67 +35,9 @@ api.nvim_create_autocmd("FileType", {
   command = [[nnoremap <buffer><silent> q :quit<CR>]],
 })
 
--- show cursor line only in active window
--- local cursorGrp = api.nvim_create_augroup("CursorLine", {
---   clear = true,
--- })
--- api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
---   pattern = "*",
---   command = "set cursorline",
---   group = cursorGrp,
--- })
--- api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
---   pattern = "*",
---   command = "set nocursorline",
---   group = cursorGrp,
--- })
-
--- open telescope find files on vim start
--- api.nvim_create_autocmd({ "VimEnter" }, {
--- pattern = "*",
--- callback = function()
---   local ok, _ = require("telescope")
---   if not ok then
---     return
---   end
---   vim.cmd("Telescope find_files")
--- end,
--- })
--- Enable spell checking for certain file types
--- api.nvim_create_autocmd(
---   { "BufRead", "BufNewFile" },
---   -- { pattern = { "*.txt", "*.md", "*.tex" }, command = [[setlocal spell<cr> setlocal spelllang=en,de<cr>]] }
---   {
---     pattern = { "*.txt", "*.md", "*.tex" },
---     callback = function()
---       vim.opt.spell = true
---       vim.opt.spelllang = "en_us"
---     end,
---   }
--- )
-
--- Use LspAttach autocommand to only map the following keys
--- after the language server attaches to the current buffer
--- vim.api.nvim_create_autocmd("LspAttach", {
---   callback = function(ev)
---     local opts = {
---       buffer = ev.buf,
---     }
---     vim.keymap.set("n", "<leader>v", "<cmd>vsplit | lua vim.lsp.buf.definition()<CR>", opts)
---   end,
--- })
-
--- vim.api.nvim_create_autocmd('ColorScheme', {
---   callback = function()
---     -- change the background color of floating windows and borders.
---     vim.cmd('highlight NormalFloat guibg=none guifg=none')
---     vim.cmd('highlight FloatBorder guifg=' .. colors.fg .. ' guibg=none')
---     vim.cmd('highlight NormalNC guibg=none guifg=none')
---   end,
--- })
 -- close some filetypes with <q>
-vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("close_with_q", {
+api.nvim_create_autocmd("FileType", {
+  group = api.nvim_create_augroup("close_with_q", {
     clear = true,
   }),
   pattern = {
@@ -132,48 +65,15 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- resize neovim split when terminal is resized
-vim.api.nvim_command("autocmd VimResized * wincmd =")
+api.nvim_command("autocmd VimResized * wincmd =")
 
--- -- CursorLine gets background
--- local cursorLine = api.nvim_create_augroup("CursorLine", { clear = true })
--- api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
---   pattern = "*",
---   command = "set nocursorline",
---   group = cursorLine,
--- })
--- api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
---   pattern = "*",
---   command = "set nocursorline",
---   group = cursorLine,
--- })
-
--- api.nvim_create_autocmd("ColorScheme", {
---   callback = function()
--- change the background color of floating windows and borders.
--- vim.cmd('highlight NormalFloat guibg=none guifg=none')
--- vim.cmd('highlight FloatBorder guifg=' .. colors.fg .. ' guibg=none')
--- vim.cmd('highlight NormalNC guibg=none guifg=none')
-
--- vim.cmd('highlight TelescopeBorder guifg=' .. colors.fg .. ' guibg=none')
--- vim.cmd('highlight TelescopePromptBorder guifg=' .. colors.fg .. ' guibg=none')
--- vim.cmd('highlight TelescopeResultsBorder guifg=' .. colors.fg .. ' guibg=none')
---
--- vim.cmd('highlight TelescopePromptTitle guifg=' .. colors.fg .. ' guibg=none')
--- vim.cmd('highlight TelescopeResultsTitle guifg=' .. colors.fg .. ' guibg=none')
--- vim.cmd('highlight TelescopePreviewTitle guifg=' .. colors.fg .. ' guibg=none')
---
-
--- change neotree background colors
--- Default: NeoTreeNormal  xxx ctermfg=223 ctermbg=232 guifg=#d4be98 guibg=#141617
--- vim.cmd('highlight NeoTreeNormal guibg=#252e33 guifg=none')
--- vim.cmd('highlight NeoTreeFloatNormal guifg=none guibg=none')
--- vim.cmd('highlight NeoTreeFloatBorder gui=none guifg=' .. colors.fg .. ' guibg=none')
--- vim.cmd('highlight NeoTreeEndOfBuffer guibg=#252e33') -- 1d2021
-
--- vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
--- vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "Normal" })
--- vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
--- vim.cmd("highlight Comment guifg=#475558")
--- vim.cmd("highlight Comment guifg=green")
---   end,
--- })
+-- Open help window in a vertical split to the right.
+api.nvim_create_autocmd("BufWinEnter", {
+  group = vim.api.nvim_create_augroup("help_window_right", {}),
+  pattern = { "*.txt" },
+  callback = function()
+    if vim.o.filetype == "help" then
+      vim.cmd.wincmd("L")
+    end
+  end,
+})

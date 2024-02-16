@@ -1,3 +1,11 @@
+--  ██████╗ ██████╗ ██╗      ██████╗ ██████╗ ███████╗
+-- ██╔════╝██╔═══██╗██║     ██╔═══██╗██╔══██╗██╔════╝
+-- ██║     ██║   ██║██║     ██║   ██║██████╔╝███████╗
+-- ██║     ██║   ██║██║     ██║   ██║██╔══██╗╚════██║
+-- ╚██████╗╚██████╔╝███████╗╚██████╔╝██║  ██║███████║
+--  ╚═════╝ ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝
+--
+
 return {
   {
     "sainnhe/gruvbox-material",
@@ -5,17 +13,23 @@ return {
     priority = 1000,
     config = function()
       vim.o.background = "dark"
-      vim.g.gruvbox_material_background = "hard" -- soft, medium, hard
-      vim.g.gruvbox_material_foreground = "mix"
-      vim.g.gruvbox_material_statusline_style = "mix"
-      vim.g.gruvbox_material_disable_italic_comment = 1
-      vim.g.gruvbox_material_transparent_background = 2 -- 0,1,2
-      vim.g.gruvbox_material_ui_contrast = "high" -- low, high
-      vim.g.gruvbox_material_float_style = "dim" -- bright, dim
-      vim.g.gruvbox_material_cursor = "green" -- auto, red, orange, yellow, green, aqua, blue, purple
-      vim.g.gruvbox_material_visual = "green background" -- [grey,red,green,blue] background, reverse
-      vim.g.gruvbox_material_menu_selection_background = "green" --same colors as cursor
-      -- vim.g.gruvbox_material_colors_override = {}
+      for key, value in pairs({
+        gruvbox_material_background = "hard", -- soft, medium, hard
+        gruvbox_material_foreground = "original",
+        gruvbox_material_statusline_style = "original",
+        gruvbox_material_disable_italic_comment = 1,
+        gruvbox_material_transparent_background = 2, -- 0,1,2
+        gruvbox_material_ui_contrast = "high", -- low, high
+        gruvbox_material_float_style = "dim", -- bright, dim
+        gruvbox_material_cursor = "green", -- auto, red, orange, yellow, green, aqua, blue, purple
+        gruvbox_material_visual = "green background", -- [grey,red,green,blue] background, reverse
+        gruvbox_material_menu_selection_background = "green", --same colors as cursor
+        -- gruvbox_material_colors_override = {}
+      }) do
+        vim.g[key] = value
+      end
+
+      vim.cmd("autocmd ColorScheme * highlight NormalFloat guibg=NONE")
       vim.cmd("autocmd ColorScheme * highlight FloatBorder guibg=NONE")
       vim.cmd("autocmd ColorScheme * highlight TelescopeSelection guibg=NONE")
     end,
@@ -36,21 +50,11 @@ return {
         italic = false,
         transparency = true,
       },
-      groups = {
-        -- border = "base",
-      },
+      groups = {},
       highlight_groups = {
         WinSeparator = { fg = "overlay" },
         TelescopeSelection = { bg = "none" },
         TelescopeSelectionCaret = { bg = "none" },
-        --   TelescopeNormal = { bg = 'surface' },
-        --   TelescopeBorder = { bg = 'surface', fg = 'surface' },
-        --   TelescopePromptNormal = { bg = 'overlay' },
-        --   TelescopePromptBorder = { bg = 'overlay', fg = 'overlay' },
-        --   TelescopePromptTitle = { bg = 'overlay', fg = 'overlay' },
-        --   TelescopePreviewTitle = { bg = 'surface' },
-        --   TelescopeResultsTitle = { bg = 'surface' },
-        --   FloatBorder = { fg = 'surface', bg = 'surface' },
       },
     },
   },
@@ -71,69 +75,8 @@ return {
         floats = "transparent", -- style for floating windows
       },
       on_colors = function(colors)
-        -- local bg = "#011628"
-        -- local bg_dark = "#011423"
-        -- local bg_highlight = "#143652"
-        -- local bg_search = "#0A64AC"
-        -- local bg_visual = "#275378"
-        -- local fg = "#CBE0F0"
-        -- local fg_dark = "#B4D0E9"
-        -- local fg_gutter = "#627E97"
-        -- local border = "#547998"
-
         colors.bg_statusline = colors.none
-        --
-        --   colors.bg = bg
-        --   colors.bg_dark = bg
-        --   colors.bg_float = bg
-        --   colors.bg_highlight = bg_highlight
-        --   colors.bg_popup = bg
-        --   colors.bg_search = bg_search
-        --   colors.bg_sidebar = bg
-        --   colors.bg_visual = bg_visual
-        --   colors.border = bg
-        --
-        --   colors.fg = fg
-        --   colors.fg_dark = fg_dark
-        --   colors.fg_float = fg
-        --   colors.fg_gutter = fg_gutter
-        --   colors.fg_sidebar = fg_dark
       end,
-
-      -- on_highlights = function(hl, c)
-      -- Telescope highlights
-      -- local prompt = "#2d3149"
-      -- hl.TelescopeNormal = {
-      --   bg = c.bg_dark,
-      --   fg = c.fg_dark,
-      -- }
-      -- hl.TelescopeBorder = {
-      --   bg = c.bg_dark,
-      --   fg = c.bg_dark,
-      -- }
-      -- hl.TelescopePromptNormal = {
-      --   bg = prompt,
-      -- }
-      -- hl.TelescopePromptBorder = {
-      --   bg = prompt,
-      --   fg = prompt,
-      -- }
-      -- hl.TelescopePromptTitle = {
-      --   bg = prompt,
-      --   fg = prompt,
-      -- }
-      -- hl.TelescopePreviewTitle = {
-      --   bg = c.bg_dark,
-      --   fg = c.bg_dark,
-      -- }
-      -- hl.TelescopeResultsTitle = {
-      --   bg = c.bg_dark,
-      --   fg = c.bg_dark,
-      -- }
-
-      -- Remove Cursor Line
-      -- hl.CursorLine = { bg = c.none }
-      -- end,
     },
   },
   {
@@ -146,7 +89,7 @@ return {
         light = "latte",
         dark = "mocha",
       },
-      no_italic = true, -- Force no italic
+      no_italic = true,
       no_bold = true,
       no_underline = true,
       transparent_background = true,
@@ -156,12 +99,6 @@ return {
           base = "#11111b",
         },
       },
-      custom_highlights = function(colors)
-        return {
-          -- Comment = {},
-        }
-      end,
-
       integrations = {
         cmp = true,
         mason = true,
@@ -182,5 +119,35 @@ return {
         },
       },
     },
+  },
+  {
+    "bluz71/vim-nightfly-colors",
+    name = "nightfly",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "nightfly",
+        callback = function()
+          vim.cmd("hi clear VertSplit")
+        end,
+        group = custom_highlight,
+      })
+
+      for key, value in pairs({
+        nightflyCursorColor = true,
+        nightflyItalics = false,
+        nightflyNormalFloat = true,
+        nightlflyTerminalColors = true,
+        nightflyTransparent = true,
+        nightflyUnderCurls = true,
+        nightflyUnderlineMatchParen = true,
+        nightflyVirtualTextColor = false,
+        nightflyWinSeparator = 0, -- 0 no separators, 1 block separators (default), 2 line separators
+      }) do
+        vim.g[key] = value
+      end
+    end,
   },
 }

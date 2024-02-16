@@ -14,12 +14,10 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
-    vim.keymap.set(
-      "n",
-      "<leader>e",
-      ":NvimTreeToggle<CR>",
-      { noremap = true, silent = true, desc = "Nvim Tree Toggle" }
-    )
+    local map = require("config.utils").map
+
+    map("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Nvim Tree Toggle" })
+
     require("nvim-tree").setup({
       sync_root_with_cwd = true,
       filters = {

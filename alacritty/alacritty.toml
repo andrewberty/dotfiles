@@ -19,8 +19,8 @@ lines = 25
 columns = 90
 
 [font]
-size = 15
-offset = { y = 6 }
+size = 14
+offset = { y = 8 }
 
 [font.normal]
 family = "Hack Nerd Font"
