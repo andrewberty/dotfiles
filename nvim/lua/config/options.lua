@@ -15,7 +15,7 @@ local options = {
   fileencoding = "utf-8", -- the encoding written to a file
   hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
-  mouse = "a", -- allow the mouse to be used in neovim
+  mouse = "", -- allow the mouse to be used in neovim
   pumheight = 10, -- pop up menu height
   showmode = false, -- we don't need to see things like -- INSERT -- anymore
   showtabline = 0, -- show tabs
@@ -54,6 +54,8 @@ local options = {
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
 vim.opt.whichwrap:append("<>[]hl")
+
+-- vim.opt.shortmess:append("W")
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "

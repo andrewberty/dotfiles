@@ -12,9 +12,9 @@ return {
   cmd = { "TodoTrouble", "TodoTelescope" },
   event = { "BufReadPost", "BufNewFile" },
   config = function()
-    local map = require("config.utils").map
+    local nvmap = require("config.utils").nvmap
 
-    map({ "n", "v" }, "<leader>td", "<cmd>TodoTelescope<cr>", { desc = "Todo Comments" })
+    nvmap("<leader>td", "<cmd>TodoTelescope<cr>", { desc = "Todo Comments" })
     --     T = { "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "Todo/Fix/Fixme" },
 
     require("todo-comments").setup({

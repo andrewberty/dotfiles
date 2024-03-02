@@ -6,36 +6,37 @@
 -- ╚═╝     ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝
 --
 
+local nvmap = require("config.utils").nvmap
 return {
   "norcalli/nvim-colorizer.lua",
   {
     "moll/vim-bbye",
     config = function()
-      require("config.utils").map({ "n", "v" }, "<leader>x", "<cmd>Bdelete<cr>", { desc = "Close Buffer" })
+      nvmap("<leader>x", "<cmd>Bdelete<cr>", { desc = "Close Buffer" })
     end,
   },
   {
     "mbbill/undotree",
     config = function()
-      require("config.utils").map({ "n", "v" }, "<leader>U", "<cmd>UndotreeToggle<cr>", { desc = "Toggle Undotree" })
+      nvmap("<leader>U", "<cmd>UndotreeToggle<cr>", { desc = "Toggle Undotree" })
     end,
   },
   "mg979/vim-visual-multi",
   "folke/neodev.nvim",
   {
     "christoomey/vim-tmux-navigator",
+    lazy = false,
     cmd = {
       "TmuxNavigateLeft",
       "TmuxNavigateDown",
       "TmuxNavigateUp",
       "TmuxNavigateRight",
-      "TmuxNavigatePrevious",
     },
     keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<C-Left>", "<cmd>TmuxNavigateLeft<cr>" },
+      { "<C-Down>", "<cmd>TmuxNavigateDown<cr>" },
+      { "<C-Up>", "<cmd>TmuxNavigateUp<cr>" },
+      { "<C-Right>", "<cmd>TmuxNavigateRight<cr>" },
     },
   },
   {
@@ -75,17 +76,13 @@ return {
   {
     "nvim-pack/nvim-spectre",
     config = function()
-      local map = require("config.utils").map
-      map("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
+      nvmap("<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
         desc = "Toggle Spectre",
       })
-      map("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+      nvmap("<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
         desc = "Search current word",
       })
-      map("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', {
-        desc = "Search current word",
-      })
-      map("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search()<CR>', {
+      nvmap("<leader>sp", '<cmd>lua require("spectre").open_file_search()<CR>', {
         desc = "Search on current file",
       })
     end,

@@ -11,14 +11,14 @@ return {
   main = "ibl",
   event = { "BufReadPost", "BufNewFile" },
   opts = {
-    indent = {
-      -- char = "▏",
-      char = "┊",
-      -- char = "║",
-      -- char = "│",
-    },
+    -- indent = {
+    --   -- char = "▏",
+    --   char = "┊",
+    --   -- char = "║",
+    --   -- char = "│",
+    -- },
     whitespace = {},
-    scope = { enabled = false },
+    scope = { enabled = true },
     exclude = { filetypes = { "help", "alpha", "dashboard", "NvimTree", "Trouble", "lazy" } },
   },
   config = function(_, opts)

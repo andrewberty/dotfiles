@@ -48,7 +48,7 @@ return {
     return dashboard
   end,
   config = function(_, dashboard)
-    require("config.utils").map({ "n", "v" }, "<leader>;", "<cmd>Alpha<cr>", { desc = "Dashboard" })
+    require("config.utils").nvmap("<leader>;", "<cmd>Alpha<cr>", { desc = "Dashboard" })
     -- close Lazy and re-open when the dashboard is ready
     if vim.o.filetype == "lazy" then
       vim.cmd.close()

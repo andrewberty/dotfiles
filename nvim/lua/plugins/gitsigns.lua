@@ -12,26 +12,24 @@ return {
   enabled = true,
   config = function()
     local icons = require("config.icons")
-    local map = require("config.utils").map
+    local nvmap = require("config.utils").nvmap
 
-    map(
-      { "n", "v" },
+    nvmap(
       "<leader>Gk",
       "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>",
       { desc = "Prev Hunk" }
     )
-    map({ "n", "v" }, "<leader>Gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", { desc = "Blame" })
-    map({ "n", "v" }, "<leader>Gp", "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", { desc = "Preview Hunk" })
-    map({ "n", "v" }, "<leader>Gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", { desc = "Reset Hunk" })
-    map({ "n", "v" }, "<leader>GR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", { desc = "Reset Buffer" })
-    map(
-      { "n", "v" },
+    nvmap("<leader>Gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", { desc = "Blame" })
+    nvmap("<leader>Gp", "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", { desc = "Preview Hunk" })
+    nvmap("<leader>Gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", { desc = "Reset Hunk" })
+    nvmap("<leader>GR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", { desc = "Reset Buffer" })
+    nvmap(
       "<leader>Gj",
       "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>",
       { desc = "Next Hunk" }
     )
-    map({ "n", "v" }, "<leader>Gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", { desc = "Stage Hunk" })
-    map({ "n", "v" }, "<leader>Gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", { desc = "Undo Stage Hunk" })
+    nvmap("<leader>Gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", { desc = "Stage Hunk" })
+    nvmap("<leader>Gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", { desc = "Undo Stage Hunk" })
 
     require("gitsigns").setup({
       signs = {

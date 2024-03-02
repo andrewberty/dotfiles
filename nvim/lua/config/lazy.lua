@@ -33,6 +33,9 @@ require("lazy").setup({
     enabled = true,
     notify = false,
   },
+  ui = {
+    border = "rounded",
+  },
   performance = {
     rtp = {
       disabled_plugins = {

@@ -9,7 +9,6 @@
 return {
   {
     "sainnhe/gruvbox-material",
-    enabled = true,
     priority = 1000,
     config = function()
       vim.o.background = "dark"
@@ -21,17 +20,17 @@ return {
         gruvbox_material_transparent_background = 2, -- 0,1,2
         gruvbox_material_ui_contrast = "high", -- low, high
         gruvbox_material_float_style = "dim", -- bright, dim
-        gruvbox_material_cursor = "green", -- auto, red, orange, yellow, green, aqua, blue, purple
+        gruvbox_material_cursor = "orange", -- auto, red, orange, yellow, green, aqua, blue, purple
         gruvbox_material_visual = "green background", -- [grey,red,green,blue] background, reverse
-        gruvbox_material_menu_selection_background = "green", --same colors as cursor
+        gruvbox_material_menu_selection_background = "orange", --same colors as cursor
         -- gruvbox_material_colors_override = {}
       }) do
         vim.g[key] = value
       end
-
       vim.cmd("autocmd ColorScheme * highlight NormalFloat guibg=NONE")
       vim.cmd("autocmd ColorScheme * highlight FloatBorder guibg=NONE")
       vim.cmd("autocmd ColorScheme * highlight TelescopeSelection guibg=NONE")
+      vim.cmd("autocmd ColorScheme * highlight link TelescopePromptPrefix Orange")
     end,
   },
   {
@@ -61,8 +60,6 @@ return {
   {
     "folke/tokyonight.nvim",
     priority = 1000,
-    lazy = false,
-    enabled = true,
     opts = {
       transparent = true,
       styles = {
@@ -77,11 +74,11 @@ return {
       on_colors = function(colors)
         colors.bg_statusline = colors.none
       end,
+      -- on_highlights = function(highlights, colors) end,
     },
   },
   {
     "catppuccin/nvim",
-    enabled = true,
     priority = 1000,
     name = "catppuccin",
     opts = {
@@ -123,7 +120,6 @@ return {
   {
     "bluz71/vim-nightfly-colors",
     name = "nightfly",
-    lazy = false,
     priority = 1000,
     config = function()
       local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})

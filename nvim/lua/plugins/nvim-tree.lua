@@ -14,9 +14,9 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
-    local map = require("config.utils").map
+    local nvmap = require("config.utils").nvmap
 
-    map("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Nvim Tree Toggle" })
+    nvmap("<leader>e", ":NvimTreeToggle<CR>", { desc = "Nvim Tree Toggle" })
 
     require("nvim-tree").setup({
       sync_root_with_cwd = true,

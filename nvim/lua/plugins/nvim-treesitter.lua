@@ -13,7 +13,6 @@ return {
     enabled = true,
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
-    -- enabled = false,
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
@@ -31,30 +30,6 @@ return {
         indent = { enable = true },
         -- context_commentstring = { enable = true, enable_autocmd = false },
         auto_install = true,
-        -- ensure_installed = {
-        -- -- "bash",
-        -- "html",
-        -- "javascript",
-        -- "json",
-        -- "lua",
-        -- "luadoc",
-        -- "luap",
-        -- "markdown",
-        -- "markdown_inline",
-        -- "regex",
-        -- "vim",
-        -- "vimdoc",
-        -- "yaml",
-        -- },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<leader>vv",
-            node_incremental = "+",
-            scope_incremental = false,
-            node_decremental = "_",
-          },
-        },
         textobjects = {
           select = {
             enable = true,
@@ -72,14 +47,6 @@ return {
               ["il"] = { query = "@loop.inner", desc = "inner part of a loop" },
               ["ap"] = { query = "@parameter.outer", desc = "around parameter" },
               ["ip"] = { query = "@parameter.inner", desc = "inside a parameter" },
-            },
-            selection_modes = {
-              ["@parameter.outer"] = "v", -- charwise
-              ["@parameter.inner"] = "v", -- charwise
-              ["@function.outer"] = "v", -- charwise
-              ["@conditional.outer"] = "V", -- linewise
-              ["@loop.outer"] = "V", -- linewise
-              ["@class.outer"] = "<c-v>", -- blockwise
             },
             include_surrounding_whitespace = false,
           },

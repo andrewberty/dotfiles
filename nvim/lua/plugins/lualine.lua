@@ -18,7 +18,12 @@ local sections = {
   },
   lualine_x = {},
   lualine_y = {},
-  lualine_z = {},
+  lualine_z = {
+    {
+      "filename",
+      path = 4,
+    },
+  },
 }
 
 local template = {
