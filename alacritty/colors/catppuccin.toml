@@ -1,8 +1,7 @@
 # Catppuccino theme scheme for Alacritty
 
 [colors.primary]
-background = '#181827'
-# background = '#1E1E2E'
+background = '#1E1E2E'
 foreground = '#D6D6D6'
 
 [colors.cursor]

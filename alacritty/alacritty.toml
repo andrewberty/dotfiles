@@ -1,34 +1,31 @@
-import = ["~/.config/alacritty/colors/rose-pine-moon.toml"]
-# import = ["~/.config/alacritty/colors/tokyonight_moon.toml"]
-# import = ["~/.config/alacritty/colors/gruvbox_material.toml"]
-# import = ["~/.config/alacritty/colors/catppuccin.toml"]
+# Start Alacritty Themes
+import = [
+  "C:\\Users\\Andrew\\AppData\\Roaming\\alacritty\\colors\\base16-tokyo-night-terminal-dark.toml",
+]
+# End Alacritty Themes
 
-shell = "wsl -d Ubuntu-22.04 --cd ~"
+shell = "wsl -d Ubuntu-22.04 --cd ~ tmux"
 # shell = "pwsh -nologo -wd ~"
 
 [window]
 decorations = "none"
-opacity = 0.97
+opacity = 0.99
 
 [window.padding]
-x = 10
-y = 10
+x = 20
+y = 20
 
 [window.dimensions]
-lines = 25
-columns = 90
+lines = 35
+columns = 110
 
 [font]
-size = 14
-offset = { y = 8 }
+size = 13.2
+offset = { y = 6 }
+bold = { style = "Regular" }
 
 [font.normal]
 family = "Hack Nerd Font"
-style = "Regular"
-
-[font.bold]
-family = "Hack Nerd Font"
-style = "Regular"
 
 [cursor.style]
 shape = "Block"
@@ -41,9 +38,15 @@ hide_when_typing = true
 bindings = [
   # {key,mods,mode,action|chars}
   { key = "n", mods = "Control | Shift", action = "CreateNewWindow" },
-  { key = "o", mods = "Control | Shift", chars = "alacOLED\r cl\r" },
+  # { key = "o", mods = "Control | Shift", command = { program = "alacritty", args = [
+  # "-e",
+  # "wsl ~/code/scripts/{somescript}.sh",
+  # ] } },
   { key = "v", mods = "Control", action = "Paste" },
   { key = "Enter", mods = "Alt", action = "ToggleFullscreen" },
 ]
 
 [colors.primary]
+# background = "#000000"
+# background = "#0c0c15"
+background = "#07070a"

@@ -1,8 +1,7 @@
 # Colors (Gruvbox Material Dark Medium)
 
 [colors.primary]
-# background = '#282828'
-background = "#0a0c0c"
+background = '#282828'
 foreground = '#dfbf8e'
 
 [colors.normal]
