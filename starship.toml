@@ -4,39 +4,17 @@
 add_newline = false
 command_timeout = 10000
 
-format = '''$directory$git_branch$git_status$character'''
-right_format = '''$nodejs$battery$time'''
-
-[battery]
-format = "[$symbol$percentage]($style) "
-full_symbol = '󱟢 '
-charging_symbol = '⚡️ '
-discharging_symbol = '󱟤 '
-
-[[battery.display]]
-threshold = 20
-style = "red bold"
-
-[[battery.display]]
-threshold = 99
-style = "blue bold"
-
-[[battery.display]]
-threshold = 100
-style = "green bold"
-
+format = '''$directory$git_branch$git_status$nodejs$character'''
 
 # [character]
 # success_symbol = '[▲](bold green)'
 # success_symbol = '[➜](bold green)'
+
+[directory]
+truncation_length = 1
 
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style) "
 
 [nodejs]
 format = "[$symbol($version )]($style)"
-
-[time]
-disabled = false
-format = " [$time]($style) "
-use_12hr = true

@@ -34,7 +34,8 @@ return {
     icons = {
       breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
       separator = "➜", -- symbol used between a key and it's label
-      group = "+", -- symbol prepended to a group
+      group = "", -- symbol prepended to a group
+      -- group = "+", -- symbol prepended to a group
     },
     popup_mappings = {
       scroll_down = "<c-d>", -- binding to scroll down inside the popup
@@ -72,5 +73,13 @@ return {
   config = function(_, opts)
     local which_key = require("which-key")
     which_key.setup(opts)
+    which_key.register({
+      ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
+      ["<leader>n"] = { name = "[N]o Highlight", _ = "which_key_ignore" },
+      ["<leader>G"] = { name = "[G]it", _ = "which_key_ignore" },
+      ["<leader>t"] = { name = "[T]odo", _ = "which_key_ignore" },
+      ["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
+      ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
+    })
   end,
 }

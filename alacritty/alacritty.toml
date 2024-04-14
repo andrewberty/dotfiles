@@ -1,6 +1,6 @@
 # Start Alacritty Themes
 import = [
-  "C:\\Users\\Andrew\\AppData\\Roaming\\alacritty\\colors\\base16-tokyo-night-terminal-dark.toml",
+  "C:\\Users\\Andrew\\AppData\\Roaming\\alacritty\\colors\\rose-pine-moon.toml",
 ]
 # End Alacritty Themes
 
@@ -9,15 +9,15 @@ shell = "wsl -d Ubuntu-22.04 --cd ~ tmux"
 
 [window]
 decorations = "none"
-opacity = 0.99
+# opacity = 0.99
 
 [window.padding]
 x = 20
 y = 20
 
 [window.dimensions]
-lines = 35
-columns = 110
+lines = 25
+columns = 100
 
 [font]
 size = 13.2
@@ -25,7 +25,9 @@ offset = { y = 6 }
 bold = { style = "Regular" }
 
 [font.normal]
-family = "Hack Nerd Font"
+# family = "Lilex Nerd Font"
+family = "BerkeleyMono Nerd Font"
+# family = "Hack Nerd Font"
 
 [cursor.style]
 shape = "Block"
@@ -47,6 +49,8 @@ bindings = [
 ]
 
 [colors.primary]
+# background = "#111111"
+background = "#011628"
+# background = "#0c0c15" # catppuccin override
+# background = "#07070a" # tokyonight override
 # background = "#000000"
-# background = "#0c0c15"
-background = "#07070a"

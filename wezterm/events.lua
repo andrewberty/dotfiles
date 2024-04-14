@@ -15,10 +15,10 @@ wezterm.on("toggle-padding", function(window)
 	local overrides = window:get_config_overrides() or {}
 	if not overrides.window_padding then
 		overrides.window_padding = {
-			top = 0,
-			bottom = 0,
-			left = 0,
-			right = 0,
+			top = 20,
+			bottom = 20,
+			left = 20,
+			right = 20,
 		}
 	else
 		overrides.window_padding = nil

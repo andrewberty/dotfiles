@@ -8,7 +8,12 @@
 
 local nvmap = require("config.utils").nvmap
 return {
-  "norcalli/nvim-colorizer.lua",
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end,
+  },
   {
     "moll/vim-bbye",
     config = function()
@@ -58,19 +63,20 @@ return {
       require("mini.pairs").setup(opts)
     end,
   },
-  { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
   {
     "echasnovski/mini.comment",
-    event = "VeryLazy",
-    opts = {
-      hooks = {
-        pre = function()
-          require("ts_context_commentstring.internal").update_commentstring({})
-        end,
-      },
+    dependencies = {
+      { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
     },
-    config = function(_, opts)
-      require("mini.comment").setup(opts)
+    event = "VeryLazy",
+    config = function()
+      require("mini.comment").setup({
+        hooks = {
+          pre = function()
+            require("ts_context_commentstring.internal").update_commentstring({})
+          end,
+        },
+      })
     end,
   },
   {

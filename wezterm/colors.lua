@@ -1,11 +1,12 @@
 local wezterm = require("wezterm")
+local global = require("globals")
 
 function Setter(config)
-	local scheme = wezterm.color.get_builtin_schemes()[Colorscheme]
-	scheme.split = "#111111"
+	local scheme = wezterm.color.get_builtin_schemes()[global.colorscheme]
+	-- scheme.split = "#111111"
 
-	if Background then
-		scheme.background = Background
+	if global.background then
+		scheme.background = global.background
 	end
 
 	local bg = wezterm.color.parse(scheme.background)
@@ -23,7 +24,7 @@ function Setter(config)
 			brightness = 1,
 		},
 		window_frame = {
-			font = wezterm.font({ family = Font, weight = "Regular" }),
+			font = wezterm.font({ family = global.font.family, weight = global.font.weight }),
 			font_size = 11.0,
 			active_titlebar_bg = hsla_bg,
 			inactive_titlebar_bg = hsla_bg,

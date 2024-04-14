@@ -8,6 +8,31 @@
 
 return {
   {
+    "RRethy/base16-nvim",
+    enabled = false,
+    config = function()
+      require("base16-colorscheme").with_config({
+        telescope = false,
+        indentblankline = true,
+        notify = true,
+        ts_rainbow = true,
+        cmp = false,
+        illuminate = true,
+        dapui = true,
+      })
+    end,
+  },
+  {
+    "baliestri/aura-theme",
+    enabled = false,
+    lazy = false,
+    priority = 1000,
+    config = function(plugin)
+      vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
+      -- vim.cmd([[colorscheme aura-dark]])
+    end,
+  },
+  {
     "sainnhe/gruvbox-material",
     priority = 1000,
     config = function()
@@ -17,12 +42,12 @@ return {
         gruvbox_material_foreground = "original",
         gruvbox_material_statusline_style = "original",
         gruvbox_material_disable_italic_comment = 1,
-        gruvbox_material_transparent_background = 2, -- 0,1,2
+        -- gruvbox_material_transparent_background = 2, -- 0,1,2
         gruvbox_material_ui_contrast = "high", -- low, high
         gruvbox_material_float_style = "dim", -- bright, dim
-        gruvbox_material_cursor = "orange", -- auto, red, orange, yellow, green, aqua, blue, purple
-        gruvbox_material_visual = "green background", -- [grey,red,green,blue] background, reverse
-        gruvbox_material_menu_selection_background = "orange", --same colors as cursor
+        gruvbox_material_cursor = "red", -- auto, red, orange, yellow, green, aqua, blue, purple
+        gruvbox_material_visual = "red background", -- [grey,red,green,blue] background, reverse
+        gruvbox_material_menu_selection_background = "red", --same colors as cursor
         -- gruvbox_material_colors_override = {}
       }) do
         vim.g[key] = value
@@ -60,22 +85,45 @@ return {
   {
     "folke/tokyonight.nvim",
     priority = 1000,
-    opts = {
-      transparent = true,
-      styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
-        functions = {},
-        variables = {},
-        -- Background styles. Can be "dark", "transparent" or "normal"
-        sidebars = "transparent", -- style for sidebars, see below
-        floats = "transparent", -- style for floating windows
-      },
-      on_colors = function(colors)
-        colors.bg_statusline = colors.none
-      end,
-      -- on_highlights = function(highlights, colors) end,
-    },
+    config = function()
+      local bg = "#011628"
+      local bg_highlight = "#143652"
+      local bg_search = "#0A64AC"
+      local bg_visual = "#275378"
+      local fg = "#CBE0F0"
+      local fg_dark = "#B4D0E9"
+      local fg_gutter = "#627E97"
+      local border = "#547998"
+
+      require("tokyonight").setup({
+        transparent = true,
+        styles = {
+          comments = { italic = false },
+          keywords = { italic = false },
+          functions = {},
+          variables = {},
+          -- Background styles. Can be "dark", "transparent" or "normal"
+          sidebars = "transparent", -- style for sidebars, see below
+          floats = "transparent", -- style for floating windows
+        },
+        -- on_highlights = function(highlights, colors) end,
+
+        on_colors = function(colors)
+          colors.bg_statusline = colors.none
+
+          colors.bg = bg
+          colors.bg_highlight = bg_highlight
+          colors.bg_search = bg_search
+          colors.bg_visual = bg_visual
+          colors.border = border
+          colors.fg = fg
+          colors.fg_dark = fg_dark
+          colors.fg_float = fg
+          colors.fg_gutter = fg_gutter
+          colors.fg_sidebar = fg_dark
+        end,
+      })
+    end,
   },
   {
     "catppuccin/nvim",
@@ -136,7 +184,7 @@ return {
         nightflyItalics = false,
         nightflyNormalFloat = true,
         nightlflyTerminalColors = true,
-        nightflyTransparent = true,
+        -- nightflyTransparent = true,
         nightflyUnderCurls = true,
         nightflyUnderlineMatchParen = true,
         nightflyVirtualTextColor = false,
@@ -145,5 +193,17 @@ return {
         vim.g[key] = value
       end
     end,
+  },
+  {
+    "olivercederborg/poimandres.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      bold_vert_split = false, -- use bold vertical separators
+      dim_nc_background = false, -- dim 'non-current' window backgrounds
+      -- disable_background = true, -- disable background
+      -- disable_float_background = true, -- disable background for floats
+      disable_italics = true, -- disable italics
+    },
   },
 }

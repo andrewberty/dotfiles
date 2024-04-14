@@ -9,6 +9,7 @@
 return {
   {
     "stevearc/conform.nvim",
+    -- enabled = false,
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
@@ -16,20 +17,22 @@ return {
         javascriptreact = { "prettier" },
         typescript = { "prettier" },
         typescriptreact = { "prettier" },
+        graphql = { "prettier" },
         html = { "prettier" },
         css = { "prettier" },
         json = { "prettier" },
-        markdown = { { "stylua", "prettier" } },
+        markdown = { "prettier" },
         toml = { "taplo" },
       },
       format_on_save = {
-        timeout_ms = 500,
+        timeout_ms = 1000,
         lsp_fallback = false,
       },
     },
   },
   {
     "neovim/nvim-lspconfig",
+    -- enabled = false,
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
@@ -63,15 +66,16 @@ return {
         nvmap("<leader>ls", vim.lsp.buf.signature_help, { desc = "Display Signature Information" })
         nvmap("<leader>lf", vim.lsp.buf.format, { desc = "LSP Format" })
         nvmap("<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename", buffer = bufnr })
-        nvmap("gD", vim.lsp.buf.declaration, { desc = "Go to Declaration", buffer = bufnr })
-        nvmap("K", vim.lsp.buf.hover, { desc = "Show Documentation", buffer = bufnr })
         nvmap("<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions", buffer = bufnr })
-        nvmap("gR", "<cmd>Telescope lsp_references<CR>", { desc = "Show LSP references", buffer = bufnr })
+        nvmap("K", vim.lsp.buf.hover, { desc = "Show Documentation", buffer = bufnr })
+        nvmap("gr", "<cmd>Telescope lsp_references<CR>", { desc = "Show LSP references", buffer = bufnr })
         nvmap("gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Show LSP definitions", buffer = bufnr })
+        nvmap("gD", vim.lsp.buf.declaration, { desc = "Go to Declaration", buffer = bufnr })
         nvmap("<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Buffer Diagnostics", buffer = bufnr })
       end
 
-      local capabilities = cmp_nvim_lsp.default_capabilities()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
 
       local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
       for type, icon in pairs(signs) do

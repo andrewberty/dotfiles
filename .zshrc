@@ -28,6 +28,7 @@ alias myfiglet="figlet -f ANSI-SHADOW"
 alias alacrittyconf="cd /mnt/c/Users/Andrew/AppData/Roaming/alacritty && nvim alacritty.toml"
 alias wezconf="cd /mnt/c/Users/Andrew/.config/wezterm && nvim wezterm.lua"
 alias terminalconf="nvim /mnt/c/Users/Andrew/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
+alias hyperconf="nvim /mnt/c/Users/Andrew/AppData/Roaming/Hyper/.hyper.js"
 
 alias zjconf="cd ~/.config/zellij && nvim config.kdl"
 alias zconf="nvim ~/.zshrc"
@@ -35,7 +36,7 @@ alias tmuxconf="cd ~/.config/tmux && nvim tmux.conf"
 alias starshipconf="starship config"
 
 # scripts
-alias weztheme="cd ~/code/scripts && ./weztheme.js"
+alias weztheme="cd ~/code/scripts && node weztheme.js $1"
 alias at="alacritty-themes"
 
 
@@ -47,3 +48,10 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
+
+# if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+#     tmux attach -t new-session || tmux new -s new-session
+# fi
+
+# Shopify Hydrogen alias to local projects
+alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
