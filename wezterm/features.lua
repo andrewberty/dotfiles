@@ -7,7 +7,8 @@ M.theme_switcher = function(window, pane)
 	-- get builtin color schemes
 	local schemes = wezterm.get_builtin_color_schemes()
 	local choices = {}
-	local config_path = "/mnt/c/Users/Andrew/.config/wezterm/globals.lua"
+	local config_path = "C:\\Users\\Andrew\\.config\\wezterm\\wezterm.lua"
+	-- local config_path = "~\\.config\\wezterm\\globals.lua"
 
 	-- populate theme names in choices list
 	for key, _ in pairs(schemes) do
@@ -42,6 +43,17 @@ M.theme_switcher = function(window, pane)
 		}),
 		pane
 	)
+end
+
+-- https://github.com/numToStr/Navigator.nvim/wiki/WezTerm-Integration
+M.conditionalActivatePane = function(window, pane, pane_direction, vim_direction)
+	local isViProcess = pane:get_foreground_process_name():find("n?vim") ~= nil
+
+	if isViProcess then
+		window:perform_action(act.SendKey({ key = vim_direction, mods = "ALT" }), pane)
+	else
+		window:perform_action(act.ActivatePaneDirection(pane_direction), pane)
+	end
 end
 
 return M

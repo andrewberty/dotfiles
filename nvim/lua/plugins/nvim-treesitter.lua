@@ -13,6 +13,7 @@ return {
   build = ":TSUpdate",
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
+    "nushell/tree-sitter-nu",
   },
   opts = {
     highlight = {

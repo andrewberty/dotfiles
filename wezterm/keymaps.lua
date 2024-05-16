@@ -4,31 +4,31 @@ local features = require("features")
 
 local keys = {
 	{ key = "f", mods = "ALT", action = act.EmitEvent("toggle-tabbar") },
-	{ key = "p", mods = "CTRL", action = act.EmitEvent("toggle-padding") },
+	{ key = "p", mods = "ALT", action = act.EmitEvent("toggle-padding") },
 
 	{ key = "C", mods = "CTRL", action = act.CopyTo("ClipboardAndPrimarySelection") },
-	{ key = "v", mods = "CTRL", action = act.PasteFrom("Clipboard") },
+	{ key = "V", mods = "CTRL", action = act.PasteFrom("Clipboard") },
 
 	{ key = "=", mods = "CTRL", action = act.IncreaseFontSize },
 	{ key = "-", mods = "CTRL", action = act.DecreaseFontSize },
 	{ key = "0", mods = "CTRL", action = act.ResetFontSize },
 
-	-- { key = "w", mods = "CTRL", action = act.CloseCurrentPane({ confirm = false }) },
-	-- { key = "t", mods = "CTRL", action = act.SpawnTab("CurrentPaneDomain") },
-	-- { key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
-	--
-	-- { key = "\\", mods = "CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	-- { key = "|", mods = "CTRL|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	--
-	-- { key = "LeftArrow", mods = "CTRL|ALT", action = act.AdjustPaneSize({ "Left", 1 }) },
-	-- { key = "RightArrow", mods = "CTRL|ALT", action = act.AdjustPaneSize({ "Right", 1 }) },
-	-- { key = "UpArrow", mods = "CTRL|ALT", action = act.AdjustPaneSize({ "Up", 1 }) },
-	-- { key = "DownArrow", mods = "CTRL|ALT", action = act.AdjustPaneSize({ "Down", 1 }) },
-	--
-	-- { key = "LeftArrow", mods = "ALT", action = act.ActivatePaneDirection("Left") },
-	-- { key = "RightArrow", mods = "ALT", action = act.ActivatePaneDirection("Right") },
-	-- { key = "UpArrow", mods = "ALT", action = act.ActivatePaneDirection("Up") },
-	-- { key = "DownArrow", mods = "ALT", action = act.ActivatePaneDirection("Down") },
+	{ key = "w", mods = "CTRL", action = act.CloseCurrentPane({ confirm = false }) },
+	{ key = "t", mods = "CTRL", action = act.SpawnTab("CurrentPaneDomain") },
+	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
+
+	{ key = "\\", mods = "CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "|", mods = "CTRL|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+
+	{ key = "LeftArrow", mods = "CTRL|ALT", action = act.AdjustPaneSize({ "Left", 1 }) },
+	{ key = "RightArrow", mods = "CTRL|ALT", action = act.AdjustPaneSize({ "Right", 1 }) },
+	{ key = "UpArrow", mods = "CTRL|ALT", action = act.AdjustPaneSize({ "Up", 1 }) },
+	{ key = "DownArrow", mods = "CTRL|ALT", action = act.AdjustPaneSize({ "Down", 1 }) },
+
+	-- { key = "LeftArrow", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Left") },
+	-- { key = "RightArrow", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Right") },
+	-- { key = "UpArrow", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Up") },
+	-- { key = "DownArrow", mods = "SHIFT|ALT", action = act.ActivatePaneDirection("Down") },
 
 	{ key = "P", mods = "CTRL", action = wezterm.action.ActivateCommandPalette },
 
@@ -38,6 +38,34 @@ local keys = {
 		mods = "CTRL|ALT",
 		action = wezterm.action_callback(function(window, pane)
 			features.theme_switcher(window, pane)
+		end),
+	},
+	{
+		key = "LeftArrow",
+		mods = "ALT",
+		action = wezterm.action_callback(function(window, pane)
+			features.conditionalActivatePane(window, pane, "Left", "LeftArrow")
+		end),
+	},
+	{
+		key = "RightArrow",
+		mods = "ALT",
+		action = wezterm.action_callback(function(window, pane)
+			features.conditionalActivatePane(window, pane, "Right", "RightArrow")
+		end),
+	},
+	{
+		key = "UpArrow",
+		mods = "ALT",
+		action = wezterm.action_callback(function(window, pane)
+			features.conditionalActivatePane(window, pane, "Up", "UpArrow")
+		end),
+	},
+	{
+		key = "DownArrow",
+		mods = "ALT",
+		action = wezterm.action_callback(function(window, pane)
+			features.conditionalActivatePane(window, pane, "Down", "DownArrow")
 		end),
 	},
 	{
@@ -56,8 +84,8 @@ local keys = {
 		key = ",",
 		mods = "CTRL",
 		action = act.SpawnCommandInNewTab({
-			cwd = "/mnt/c/Users/Andrew/.config/wezterm",
-			args = { "nvim", "/mnt/c/Users/Andrew/.config/wezterm/wezterm.lua" },
+			cwd = "C:\\Users\\Andrew\\.config\\wezterm",
+			args = { "nvim", "wezterm.lua" },
 		}),
 	},
 }

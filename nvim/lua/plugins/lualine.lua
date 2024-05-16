@@ -6,6 +6,7 @@
 -- ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝
 --
 --
+
 local sections = {
   lualine_a = {},
   lualine_b = { "branch" },
@@ -21,15 +22,15 @@ local sections = {
   lualine_z = {
     {
       "filename",
-      path = 4,
+      path = 3,
     },
   },
 }
 
 local template = {
-  a = { bg = "none", fg = "#ffffff" },
-  b = { bg = "none", fg = "#ffffff" },
-  c = { bg = "none", fg = "#ffffff" },
+  a = "Normal",
+  b = "Normal",
+  c = "Normal",
 }
 
 local custom_theme = {
@@ -39,42 +40,34 @@ local custom_theme = {
   replace = template,
   command = template,
   inactive = {
-    a = { bg = "none", fg = "#555555" },
-    b = { bg = "none", fg = "#555555" },
-    c = { bg = "none", fg = "#555555" },
+    a = "NonText",
+    b = "NonText",
+    c = "NonText",
   },
 }
+
 return {
   "nvim-lualine/lualine.nvim",
   event = { "BufReadPost", "BufNewFile", "VeryLazy" },
-  opts = {
-    options = {
-      theme = custom_theme,
-      icons_enabled = true,
-      section_separators = "",
-      component_separators = "",
-      disabled_filetypes = {
-        statusline = {
-          "help",
-          "startify",
-          "dashboard",
-          "neo-tree",
-          "NvimTree",
-          "packer",
-          "neogitstatus",
-          "NvimTree",
-          "Trouble",
-          "alpha",
-          "lir",
-          "Outline",
-          "spectre_panel",
-          "toggleterm",
-          "qf",
+  config = function()
+    require("lualine").setup({
+      options = {
+        theme = custom_theme,
+        icons_enabled = true,
+        section_separators = "",
+        component_separators = "",
+        disabled_filetypes = {
+          statusline = {
+            "help",
+            "NvimTree",
+            "NvimTree",
+            "alpha",
+          },
         },
       },
-    },
-    sections = sections,
-    inactive_sections = sections,
-    extensions = { "nvim-tree", "lazy" },
-  },
+      sections = sections,
+      inactive_sections = sections,
+      extensions = { "nvim-tree", "lazy" },
+    })
+  end,
 }

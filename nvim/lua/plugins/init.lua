@@ -9,6 +9,17 @@
 local nvmap = require("config.utils").nvmap
 return {
   {
+    "numToStr/Navigator.nvim",
+    config = function()
+      vim.keymap.set({ "n", "t" }, "<A-Left>", "<CMD>NavigatorLeft<CR>")
+      vim.keymap.set({ "n", "t" }, "<A-Right>", "<CMD>NavigatorRight<CR>")
+      vim.keymap.set({ "n", "t" }, "<A-Up>", "<CMD>NavigatorUp<CR>")
+      vim.keymap.set({ "n", "t" }, "<A-Down>", "<CMD>NavigatorDown<CR>")
+
+      require("Navigator").setup()
+    end,
+  },
+  {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup()
@@ -26,11 +37,18 @@ return {
       nvmap("<leader>U", "<cmd>UndotreeToggle<cr>", { desc = "Toggle Undotree" })
     end,
   },
-  "mg979/vim-visual-multi",
+  {
+    "mg979/vim-visual-multi",
+    config = function()
+      vim.g.VM_maps["Add Cursor Up"] = ""
+      vim.g.VM_maps["Add Cursor Down"] = ""
+    end,
+  },
   "folke/neodev.nvim",
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
+    enabled = false,
     cmd = {
       "TmuxNavigateLeft",
       "TmuxNavigateDown",

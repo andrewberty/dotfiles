@@ -1,18 +1,19 @@
 local wezterm = require("wezterm")
-local global = require("globals")
 
 function Setter(config)
-	local scheme = wezterm.color.get_builtin_schemes()[global.colorscheme]
-	-- scheme.split = "#111111"
+	local scheme = wezterm.color.get_builtin_schemes()[M.colorscheme]
 
-	if global.background then
-		scheme.background = global.background
+	if M.background then
+		scheme.background = M.background
 	end
 
 	local bg = wezterm.color.parse(scheme.background)
 	local h, s, l = bg:hsla()
 	local hsla_bg = "hsla(" .. h .. "," .. s .. "," .. l .. ",0)"
-	local darkened_hsla_bg = "hsla(" .. h .. "," .. s .. "," .. l - 0.05 .. ",0.9)"
+	local darkened_hsla_bg = "hsla(" .. h .. "," .. s .. "," .. l - 0.05 .. ",0.95)"
+	local lightened_hsla_bg = "hsla(" .. h .. "," .. s .. "," .. l + 0.1 .. ",0.95)"
+
+	scheme.split = lightened_hsla_bg
 
 	local opts = {
 		color_scheme = "CustomTheme",
@@ -24,7 +25,7 @@ function Setter(config)
 			brightness = 1,
 		},
 		window_frame = {
-			font = wezterm.font({ family = global.font.family, weight = global.font.weight }),
+			font = wezterm.font({ family = M.font.family, weight = M.font.weight }),
 			font_size = 11.0,
 			active_titlebar_bg = hsla_bg,
 			inactive_titlebar_bg = hsla_bg,

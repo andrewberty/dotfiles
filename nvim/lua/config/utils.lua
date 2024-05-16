@@ -40,4 +40,7 @@ M.imap = function(lhs, rhs, opts)
   vim.keymap.set("i", lhs, rhs, options)
 end
 
+M.active_colorscheme = function()
+  return vim.g.colors_name
+end
 return M

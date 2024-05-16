@@ -1,56 +1,51 @@
 # Start Alacritty Themes
-import = [
-  "C:\\Users\\Andrew\\AppData\\Roaming\\alacritty\\colors\\rose-pine-moon.toml",
-]
+import = ["C:\\Users\\Andrew\\AppData\\Roaming\\alacritty\\colors\\rose-pine-moon.toml"]
 # End Alacritty Themes
 
-shell = "wsl -d Ubuntu-22.04 --cd ~ tmux"
+
+# shell = "wsl -d Ubuntu-22.04 --cd ~ tmux"
 # shell = "pwsh -nologo -wd ~"
+shell = "C:/Program Files/nu/bin/nu.exe -e cd"
+
+[env]
+TERM = "xterm-256color"
 
 [window]
 decorations = "none"
-# opacity = 0.99
-
-[window.padding]
-x = 20
-y = 20
-
-[window.dimensions]
-lines = 25
-columns = 100
+dimensions = { lines = 25, columns = 100 }
+opacity = 0.8
+# padding = { x = 10, y = 10 }
 
 [font]
-size = 13.2
-offset = { y = 6 }
-bold = { style = "Regular" }
+size = 14
+offset = { y = 9 }
+normal = { family = "Hack Nerd Font", style = "Regular" }
+bold.style = "Regular"
+italic.style = "Regular"
 
-[font.normal]
-# family = "Lilex Nerd Font"
-family = "BerkeleyMono Nerd Font"
-# family = "Hack Nerd Font"
-
-[cursor.style]
-shape = "Block"
-blinking = "Always"
-
-[mouse]
-hide_when_typing = true
 
 [keyboard]
 bindings = [
-  # {key,mods,mode,action|chars}
+  # SCRIPTS
+  { key = "p", mods = "Alt", command = { program = "node", args = [
+    "D:\\code\\scripts\\alacritty-toggler.js",
+    "padding = { x = 10, y = 10 }",
+  ] } },
+  { key = "t", mods = "Alt", command = { program = "node", args = [
+    "D:\\code\\scripts\\alacritty-toggler.js",
+    "opacity = 0.8",
+  ] } },
+
   { key = "n", mods = "Control | Shift", action = "CreateNewWindow" },
-  # { key = "o", mods = "Control | Shift", command = { program = "alacritty", args = [
-  # "-e",
-  # "wsl ~/code/scripts/{somescript}.sh",
-  # ] } },
-  { key = "v", mods = "Control", action = "Paste" },
+  { key = "v", mods = "Control | Shift", action = "Paste" },
   { key = "Enter", mods = "Alt", action = "ToggleFullscreen" },
 ]
 
 [colors.primary]
 # background = "#111111"
-background = "#011628"
+# background = "#070707"
+background = "#000000"
+# background = "#001122"
+# background = "#000d17"
+# background = "#11111b"
 # background = "#0c0c15" # catppuccin override
-# background = "#07070a" # tokyonight override
-# background = "#000000"

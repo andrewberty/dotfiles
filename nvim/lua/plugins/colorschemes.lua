@@ -8,54 +8,30 @@
 
 return {
   {
-    "RRethy/base16-nvim",
-    enabled = false,
-    config = function()
-      require("base16-colorscheme").with_config({
-        telescope = false,
-        indentblankline = true,
-        notify = true,
-        ts_rainbow = true,
-        cmp = false,
-        illuminate = true,
-        dapui = true,
-      })
-    end,
-  },
-  {
-    "baliestri/aura-theme",
-    enabled = false,
-    lazy = false,
-    priority = 1000,
-    config = function(plugin)
-      vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
-      -- vim.cmd([[colorscheme aura-dark]])
-    end,
-  },
-  {
     "sainnhe/gruvbox-material",
     priority = 1000,
     config = function()
-      vim.o.background = "dark"
       for key, value in pairs({
-        gruvbox_material_background = "hard", -- soft, medium, hard
-        gruvbox_material_foreground = "original",
-        gruvbox_material_statusline_style = "original",
-        gruvbox_material_disable_italic_comment = 1,
-        -- gruvbox_material_transparent_background = 2, -- 0,1,2
+        gruvbox_material_foreground = "material",
+        gruvbox_material_transparent_background = 1, -- 0,1,2
         gruvbox_material_ui_contrast = "high", -- low, high
         gruvbox_material_float_style = "dim", -- bright, dim
-        gruvbox_material_cursor = "red", -- auto, red, orange, yellow, green, aqua, blue, purple
-        gruvbox_material_visual = "red background", -- [grey,red,green,blue] background, reverse
-        gruvbox_material_menu_selection_background = "red", --same colors as cursor
-        -- gruvbox_material_colors_override = {}
+        gruvbox_material_cursor = "orange", -- auto, red, orange, yellow, green, aqua, blue, purple
+        gruvbox_material_visual = "green background", -- [grey,red,green,blue] background, reverse
+        gruvbox_material_menu_selection_background = "orange", --same colors as cursor
       }) do
         vim.g[key] = value
       end
-      vim.cmd("autocmd ColorScheme * highlight NormalFloat guibg=NONE")
-      vim.cmd("autocmd ColorScheme * highlight FloatBorder guibg=NONE")
-      vim.cmd("autocmd ColorScheme * highlight TelescopeSelection guibg=NONE")
-      vim.cmd("autocmd ColorScheme * highlight link TelescopePromptPrefix Orange")
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "gruvbox-material",
+        callback = function()
+          vim.cmd([[hi NormalFloat guibg=none]])
+          vim.cmd([[hi FloatBorder guibg=none guifg='#292929']])
+          vim.cmd([[hi TelescopeSelection guibg=none]])
+          vim.cmd([[hi link TelescopeBorder FloatBorder]])
+        end,
+      })
     end,
   },
   {
@@ -63,22 +39,22 @@ return {
     name = "rose-pine",
     priority = 1000,
     opts = {
-      --- @usage 'auto'|'main'|'moon'|'dawn'
       variant = "auto",
       extend_background_behind_borders = true,
+      dim_inactive_windows = false,
       dark_variant = "moon",
       bold_vert_split = false,
-      dim_inactive_background = false,
       styles = {
         bold = false,
-        italic = false,
         transparency = true,
       },
-      groups = {},
       highlight_groups = {
         WinSeparator = { fg = "overlay" },
-        TelescopeSelection = { bg = "none" },
-        TelescopeSelectionCaret = { bg = "none" },
+        TelescopeNormal = { bg = "Normal" },
+        FloatBorder = { fg = "overlay" },
+        TelescopeBorder = { fg = "overlay", bg = "none" },
+        TelescopeSelection = { bg = "Normal" },
+        TelescopeSelectionCaret = { bg = "Normal" },
       },
     },
   },
@@ -98,15 +74,15 @@ return {
       require("tokyonight").setup({
         transparent = true,
         styles = {
-          comments = { italic = false },
-          keywords = { italic = false },
           functions = {},
           variables = {},
           -- Background styles. Can be "dark", "transparent" or "normal"
           sidebars = "transparent", -- style for sidebars, see below
           floats = "transparent", -- style for floating windows
         },
-        -- on_highlights = function(highlights, colors) end,
+        on_highlights = function(highlights, colors)
+          highlights.TelescopeSelection = { bg = colors.none }
+        end,
 
         on_colors = function(colors)
           colors.bg_statusline = colors.none
@@ -134,10 +110,9 @@ return {
         light = "latte",
         dark = "mocha",
       },
-      no_italic = true,
       no_bold = true,
       no_underline = true,
-      transparent_background = true,
+      transparent_background = false,
       show_end_of_buffer = false,
       color_overrides = {
         mocha = {
@@ -170,21 +145,11 @@ return {
     name = "nightfly",
     priority = 1000,
     config = function()
-      local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        pattern = "nightfly",
-        callback = function()
-          vim.cmd("hi clear VertSplit")
-        end,
-        group = custom_highlight,
-      })
-
       for key, value in pairs({
         nightflyCursorColor = true,
-        nightflyItalics = false,
         nightflyNormalFloat = true,
         nightlflyTerminalColors = true,
-        -- nightflyTransparent = true,
+        nightflyTransparent = true,
         nightflyUnderCurls = true,
         nightflyUnderlineMatchParen = true,
         nightflyVirtualTextColor = false,
@@ -192,6 +157,14 @@ return {
       }) do
         vim.g[key] = value
       end
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "nightfly",
+        callback = function()
+          vim.cmd([[hi VertSplit guibg=none]])
+          vim.cmd([[hi TelescopeSelection guibg=none]])
+        end,
+      })
     end,
   },
   {
@@ -201,9 +174,22 @@ return {
     opts = {
       bold_vert_split = false, -- use bold vertical separators
       dim_nc_background = false, -- dim 'non-current' window backgrounds
-      -- disable_background = true, -- disable background
-      -- disable_float_background = true, -- disable background for floats
-      disable_italics = true, -- disable italics
+      disable_background = true, -- disable background
+      disable_float_background = true, -- disable background for floats
     },
+  },
+  {
+    "embark-theme/vim",
+    as = "embark",
+    config = function()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "embark",
+        callback = function()
+          vim.cmd([[hi Normal guibg=none]])
+          vim.cmd([[hi NormalFloat guibg=none]])
+          vim.cmd([[hi FloatBorder guibg=none]])
+        end,
+      })
+    end,
   },
 }
