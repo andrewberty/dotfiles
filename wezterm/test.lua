@@ -1,1 +1,0 @@
-Colorscheme = "hieen"

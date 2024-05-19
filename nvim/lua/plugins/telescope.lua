@@ -7,7 +7,7 @@
 --
 --
 return {
-  { dir = "D:\\code\\telescope-themes" },
+  { dir = "~/code/telescope-themes" },
   {
     "nvim-telescope/telescope.nvim",
     lazy = false,
@@ -25,6 +25,7 @@ return {
       local telescope = require("telescope")
       local nvmap = require("config.utils").nvmap
       local builtin_schemes = require("telescope._extensions.themes").builtin_schemes
+
       local ignored_schemes = vim.tbl_deep_extend("force", builtin_schemes, {
         "default",
         "catppuccin",
@@ -93,7 +94,7 @@ return {
       nvmap("<leader>sr", ":Telescope resume<cr>", { desc = "Resume last search" })
       nvmap("<leader>sz", ":Telescope zoxide list<cr>", { desc = "Zoxide" })
       nvmap("<leader>f", ":Telescope find_files<cr>", { desc = "Find Files" })
-      nvmap("<C-f>", ":Telescope current_buffer_fuzzy_find<cr>", { desc = "Search in Buffer" })
+      nvmap("<leader>sf", ":Telescope current_buffer_fuzzy_find<cr>", { desc = "Search in Buffer" })
       nvmap("<leader>th", ":Telescope themes<cr>", { desc = "Theme switcher" })
 
       telescope.load_extension("ui-select")

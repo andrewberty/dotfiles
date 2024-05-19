@@ -2,7 +2,9 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local features = require("features")
 
-local keys = {
+local M = {}
+
+M.keys = {
 	{ key = "f", mods = "ALT", action = act.EmitEvent("toggle-tabbar") },
 	{ key = "p", mods = "ALT", action = act.EmitEvent("toggle-padding") },
 
@@ -35,7 +37,7 @@ local keys = {
 	{ key = "F11", action = act.ToggleFullScreen },
 	{
 		key = "k",
-		mods = "CTRL|ALT",
+		mods = "CMD|ALT",
 		action = wezterm.action_callback(function(window, pane)
 			features.theme_switcher(window, pane)
 		end),
@@ -90,7 +92,7 @@ local keys = {
 	},
 }
 
-local mouse_bindings = {
+M.mouse_bindings = {
 	{
 		event = { Down = { streak = 1, button = { WheelUp = 1 } } },
 		mods = "CTRL|SHIFT",
@@ -103,8 +105,8 @@ local mouse_bindings = {
 	},
 }
 
-function Setter(config)
-	config.keys = keys
-	config.mouse_bindings = mouse_bindings
+M.setup = function(config)
+	config.keys = M.keys
+	config.mouse_bindings = M.mouse_bindings
 end
-return Setter
+return M

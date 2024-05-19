@@ -7,8 +7,7 @@ M.theme_switcher = function(window, pane)
 	-- get builtin color schemes
 	local schemes = wezterm.get_builtin_color_schemes()
 	local choices = {}
-	local config_path = "C:\\Users\\Andrew\\.config\\wezterm\\wezterm.lua"
-	-- local config_path = "~\\.config\\wezterm\\globals.lua"
+	local config_path = "~/dotfiles/wezterm/wezterm.lua"
 
 	-- populate theme names in choices list
 	for key, _ in pairs(schemes) do
@@ -31,7 +30,7 @@ M.theme_switcher = function(window, pane)
 				inner_window:perform_action(
 					act.SpawnCommandInNewTab({
 						args = {
-							"sed",
+							"gsed",
 							"-i",
 							'/^M.colorscheme/c\\M.colorscheme = "' .. label .. '"',
 							config_path,

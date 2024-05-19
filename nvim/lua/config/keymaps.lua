@@ -38,8 +38,8 @@ nmap("-", ":resize -1<CR>", { desc = "Decrease Split Height" })
 nmap("<C-d>", "<C-d>zz", { desc = "Keep Cursor Centered While Scrolling" })
 nmap("<C-u>", "<C-u>zz", { desc = "Keep Cursor Centered While Scrolling" })
 
-vmap("<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move Selected Line Up" })
-vmap("<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move Selected Line Down" })
+vmap("<C-Up>", ":m '<-2<CR>gv=gv", { desc = "Move Selected Line Up" })
+vmap("<C-Down>", ":m '>+1<CR>gv=gv", { desc = "Move Selected Line Down" })
 
 vmap("p", '"_dp', { desc = "Paste Without Yanking" })
 nvmap("d", '"_d', { desc = "Delete Without Yanking" })

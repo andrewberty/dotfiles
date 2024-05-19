@@ -1,10 +1,12 @@
 local wezterm = require("wezterm")
 
-function Setter(config)
-	local scheme = wezterm.color.get_builtin_schemes()[M.colorscheme]
+local M = {}
 
-	if M.background then
-		scheme.background = M.background
+M.setup = function(config)
+	local scheme = wezterm.color.get_builtin_schemes()[Global.colorscheme]
+
+	if Global.background then
+		scheme.background = Global.background
 	end
 
 	local bg = wezterm.color.parse(scheme.background)
@@ -25,14 +27,14 @@ function Setter(config)
 			brightness = 1,
 		},
 		window_frame = {
-			font = wezterm.font({ family = M.font.family, weight = M.font.weight }),
+			font = wezterm.font({ family = Global.font.family, weight = Global.font.weight }),
 			font_size = 11.0,
 			active_titlebar_bg = hsla_bg,
 			inactive_titlebar_bg = hsla_bg,
 		},
 		command_palette_bg_color = darkened_hsla_bg,
 		command_palette_fg_color = scheme.foreground,
-		command_palette_font_size = 13,
+		command_palette_font_size = Global.font.font_size,
 		colors = {
 			tab_bar = {
 				background = hsla_bg,
@@ -77,4 +79,4 @@ function Setter(config)
 	end
 end
 
-return Setter
+return M

@@ -1,57 +1,51 @@
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH
-
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
-
-export EDITOR="/usr/local/bin/nvim"
-plugins=(git nvm zsh-autosuggestions zsh-syntax-highlighting)
-
-
-source $ZSH/oh-my-zsh.sh
+export EDITOR="/opt/homebrew/bin/nvim"
 
 # User configuration
 alias cl=clear
 alias gst="git status"
 alias x=exit
-# alias z=zoxide
 alias tn="tmux new -s $*"
-# alias v="kitty @ set-spacing padding=0 && nvim $* && kitty @ set-spacing padding=default"
 alias v="nvim $*"
-alias ls="exa --icons -a -l"
+alias ls="eza --icons -la"
 alias so="source ~/.zshrc"
-alias zj="zellij"
-alias zjc="zellij -l compact"
-alias clock="tty-clock -s -c -t -D"
-alias myfiglet="figlet -f ANSI-SHADOW"
+# alias zj="zellij"
+# alias zjc="zellij -l compact"
+# alias clock="tty-clock -s -c -t -D"
+# alias myfiglet="figlet -f ANSI-SHADOW"
 
 # navigation aliases
-alias alacrittyconf="cd /mnt/c/Users/Andrew/AppData/Roaming/alacritty && nvim alacritty.toml"
-alias wezconf="cd /mnt/c/Users/Andrew/.config/wezterm && nvim wezterm.lua"
-alias terminalconf="nvim /mnt/c/Users/Andrew/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
-alias hyperconf="nvim /mnt/c/Users/Andrew/AppData/Roaming/Hyper/.hyper.js"
+alias alacrittyconf="cd ~/dotfiles/alacritty && nvim alacritty.toml"
+alias kittyconf="cd ~/dotfiles/kitty && nvim kitty.conf"
+alias wezconf="cd ~/dotfiles/wezterm && nvim wezterm.lua"
 
-alias zjconf="cd ~/.config/zellij && nvim config.kdl"
-alias zconf="nvim ~/.zshrc"
-alias tmuxconf="cd ~/.config/tmux && nvim tmux.conf"
+# alias zjconf="cd ~/.config/zellij && nvim config.kdl"
+alias zconf="nvim ~/dotfiles/.zshrc"
+alias tmuxconf="cd ~/dotfiles/tmux && nvim tmux.conf"
 alias starshipconf="starship config"
 
 # scripts
-alias weztheme="cd ~/code/scripts && node weztheme.js $1"
-alias at="alacritty-themes"
+# alias weztheme="cd ~/code/scripts && node weztheme.js $1"
+# alias at="alacritty-themes"
 
 
-eval "$(starship init zsh)"
-eval "$(zoxide init --cmd cd zsh)"
-# eval "$(zellij setup --generate-auto-start zsh)"
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
-# if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-#     tmux attach -t new-session || tmux new -s new-session
-# fi
 
-# Shopify Hydrogen alias to local projects
-alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
+
+# eval "$(zellij setup --generate-auto-start zsh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(starship init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux attach -t new-session || tmux new -s new-session
+fi

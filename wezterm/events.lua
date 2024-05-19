@@ -15,10 +15,10 @@ wezterm.on("toggle-padding", function(window)
 	local overrides = window:get_config_overrides() or {}
 	if not overrides.window_padding then
 		overrides.window_padding = {
-			top = 20,
-			bottom = 20,
-			left = 20,
-			right = 20,
+			top = 0,
+			bottom = 0,
+			left = 0,
+			right = 0,
 		}
 	else
 		overrides.window_padding = nil
@@ -46,28 +46,3 @@ wezterm.on("decrease-opacity", function(window)
 	end
 	window:set_config_overrides(overrides)
 end)
-
-wezterm.on("format-tab-title", function(tab)
-	return wezterm.format({
-		{ Text = "  " },
-		{ Attribute = { Intensity = "Half" } },
-		{ Text = string.format("%s", tab.tab_index + 1) },
-		{ Text = " " },
-		{ Text = tab.active_pane.title },
-		-- { Text = string.gsub(tab.active_pane.title, "(.*[/\\])(.*)", "%2") },
-	})
-end)
-
--- NAVIGATION
--- wezterm.on("ActivatePaneDirection-right", function(window, pane)
--- 	features.conditionalActivatePane(window, pane, "Right", "l")
--- end)
--- wezterm.on("ActivatePaneDirection-left", function(window, pane)
--- 	features.conditionalActivatePane(window, pane, "Left", "h")
--- end)
--- wezterm.on("ActivatePaneDirection-up", function(window, pane)
--- 	features.conditionalActivatePane(window, pane, "Up", "k")
--- end)
--- wezterm.on("ActivatePaneDirection-down", function(window, pane)
--- 	features.conditionalActivatePane(window, pane, "Down", "j")
--- end)
