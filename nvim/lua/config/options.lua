@@ -40,12 +40,13 @@ local options = {
   sidescrolloff = 8,
   showcmd = false, -- Don't show the command in the last line
   ruler = false,
-  title = true,
+  title = false,
   confirm = true, -- confirm to save changes before exiting modified buffer
   fillchars = { eob = " " }, -- change the character at the end of buffer
   cursorlineopt = "number", -- set the cursorline
   background = "dark",
-  shell = "nu",
+  laststatus = 0, -- disable neovim status bar
+  fixeol = false,
 }
 
 -- go to previous/next line with h,l,left arrow and right arrow
@@ -58,7 +59,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-vim.o.shell = "nu"
+
 for k, v in pairs(options) do
   vim.opt[k] = v
 end

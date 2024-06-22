@@ -18,7 +18,8 @@ return {
       "jvgrootveld/telescope-zoxide",
       "nvim-tree/nvim-web-devicons",
       "nvim-telescope/telescope-ui-select.nvim",
-      -- "andrew-george/telescope-themes",
+      "nvim-telescope/telescope-file-browser.nvim",
+      -- "andrewberty/telescope-themes",
       "sharkdp/fd",
     },
     config = function()
@@ -26,8 +27,7 @@ return {
       local nvmap = require("config.utils").nvmap
       local builtin_schemes = require("telescope._extensions.themes").builtin_schemes
 
-      local ignored_schemes = vim.tbl_deep_extend("force", builtin_schemes, {
-        "default",
+      local ignored_schemes = vim.list_extend(builtin_schemes, {
         "catppuccin",
         "catppuccin-frappe",
         "catppuccin-latte",
@@ -76,6 +76,19 @@ return {
               enabled = true,
             },
           },
+          file_browser = {
+            -- theme = "ivy",
+            -- disables netrw and use telescope-file-browser in its place
+            hijack_netrw = true,
+            mappings = {
+              ["i"] = {
+                -- your custom insert mode mappings
+              },
+              ["n"] = {
+                -- your custom normal mode mappings
+              },
+            },
+          },
         },
         mappings = {
           i = {
@@ -88,7 +101,6 @@ return {
       nvmap("<leader>sH", ":Telescope highlights<cr>", { desc = "Find highlight groups" })
       nvmap("<leader>so", ":Telescope oldfiles<cr>", { desc = "Open Recent File" })
       nvmap("<leader>st", ":Telescope live_grep<cr>", { desc = "Live Grep" })
-      nvmap("<leader>sT", ":Telescope grep_string<cr>", { desc = "Grep String" })
       nvmap("<leader>sk", ":Telescope keymaps<cr>", { desc = "Keymaps" })
       nvmap("<leader>sC", ":Telescope commands<cr>", { desc = "Commands" })
       nvmap("<leader>sr", ":Telescope resume<cr>", { desc = "Resume last search" })
@@ -100,6 +112,7 @@ return {
       telescope.load_extension("ui-select")
       telescope.load_extension("zoxide")
       telescope.load_extension("themes")
+      telescope.load_extension("file_browser")
     end,
   },
 }

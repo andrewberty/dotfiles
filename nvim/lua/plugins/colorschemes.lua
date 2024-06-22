@@ -112,7 +112,7 @@ return {
       },
       no_bold = true,
       no_underline = true,
-      transparent_background = false,
+      transparent_background = true,
       show_end_of_buffer = false,
       color_overrides = {
         mocha = {
@@ -177,19 +177,5 @@ return {
       disable_background = true, -- disable background
       disable_float_background = true, -- disable background for floats
     },
-  },
-  {
-    "embark-theme/vim",
-    as = "embark",
-    config = function()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        pattern = "embark",
-        callback = function()
-          vim.cmd([[hi Normal guibg=none]])
-          vim.cmd([[hi NormalFloat guibg=none]])
-          vim.cmd([[hi FloatBorder guibg=none]])
-        end,
-      })
-    end,
   },
 }

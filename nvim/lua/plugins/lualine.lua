@@ -8,15 +8,15 @@
 --
 
 local sections = {
-  lualine_a = {},
-  lualine_b = { "branch" },
-  lualine_c = {
+  lualine_a = { "branch" },
+  lualine_b = {
     {
       "buffers",
       symbols = { alternate_file = "" },
     },
     { "diagnostics", sources = { "nvim_lsp" }, symbols = { error = " ", warn = " ", info = " " } },
   },
+  lualine_c = {},
   lualine_x = {},
   lualine_y = {},
   lualine_z = {
@@ -28,7 +28,7 @@ local sections = {
 }
 
 local template = {
-  a = "Normal",
+  a = "Title",
   b = "Normal",
   c = "Normal",
 }
@@ -45,9 +45,17 @@ local custom_theme = {
     c = "NonText",
   },
 }
+local ignored = {
+  "help",
+  "NvimTree",
+  "neo-tree",
+  "alpha",
+  "lazy",
+}
 
 return {
   "nvim-lualine/lualine.nvim",
+  -- enabled = false,
   event = { "BufReadPost", "BufNewFile", "VeryLazy" },
   config = function()
     require("lualine").setup({
@@ -57,17 +65,16 @@ return {
         section_separators = "",
         component_separators = "",
         disabled_filetypes = {
-          statusline = {
-            "help",
-            "NvimTree",
-            "NvimTree",
-            "alpha",
-          },
+          statusline = ignored,
+          winbar = ignored,
         },
       },
-      sections = sections,
-      inactive_sections = sections,
-      extensions = { "nvim-tree", "lazy" },
+      winbar = sections,
+      inactive_winbar = sections,
+      -- sections = sections,
+      -- inactive_sections = sections,
+      sections = {},
+      inactive_sections = {},
     })
   end,
 }

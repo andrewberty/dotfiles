@@ -15,11 +15,12 @@ return {
   },
   config = function()
     local nvmap = require("config.utils").nvmap
+    local icons = require("config.icons")
 
     nvmap("<leader>e", ":NvimTreeToggle<CR>", { desc = "Nvim Tree Toggle" })
 
     require("nvim-tree").setup({
-      sync_root_with_cwd = true,
+      -- sync_root_with_cwd = true,
       filters = {
         git_ignored = false,
       },
@@ -41,23 +42,26 @@ return {
 
       renderer = {
         root_folder_label = false,
-        indent_width = 1,
+        indent_width = 2,
         highlight_git = false,
+        indent_markers = {
+          enable = true,
+        },
         icons = {
           glyphs = {
             folder = {
-              -- arrow_closed = icons.ui.TriangleShortArrowRight, -- arrow when folder is closed
-              arrow_closed = "", -- arrow when folder is closed
-              -- arrow_open = icons.ui.TriangleShortArrowDown,    -- arrow when folder is open
-              arrow_open = "", -- arrow when folder is open
+              arrow_closed = icons.ui.TriangleShortArrowRight, -- arrow when folder is closed
+              -- arrow_closed = "", -- arrow when folder is closed
+              arrow_open = icons.ui.TriangleShortArrowDown, -- arrow when folder is open
+              -- arrow_open = "", -- arrow when folder is open
             },
           },
         },
       },
-      -- disable window_picker for
-      -- explorer to work well with
-      -- window splits
       actions = {
+        change_dir = {
+          enable = true,
+        },
         open_file = {
           quit_on_open = true,
           window_picker = {

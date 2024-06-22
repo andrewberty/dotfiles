@@ -20,10 +20,36 @@ return {
     end,
   },
   {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup()
-    end,
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+    -- enabled = false,
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+    },
+    keys = {
+      { "<A-Left>", "<cmd>TmuxNavigateLeft<cr>" },
+      { "<A-Down>", "<cmd>TmuxNavigateDown<cr>" },
+      { "<A-Up>", "<cmd>TmuxNavigateUp<cr>" },
+      { "<A-Right>", "<cmd>TmuxNavigateRight<cr>" },
+    },
+  },
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {
+      user_default_options = {
+        tailwind = true,
+        RRGGBBAA = true, -- #RRGGBBAA hex codes
+        AARRGGBB = true, -- 0xAARRGGBB hex codes
+        css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB,
+        css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        mode = "background", -- Set the display mode.
+        virtualtext = "■",
+        always_update = false,
+      },
+    },
   },
   {
     "moll/vim-bbye",
@@ -46,29 +72,41 @@ return {
   },
   "folke/neodev.nvim",
   {
-    "christoomey/vim-tmux-navigator",
-    lazy = false,
-    enabled = false,
-    cmd = {
-      "TmuxNavigateLeft",
-      "TmuxNavigateDown",
-      "TmuxNavigateUp",
-      "TmuxNavigateRight",
-    },
-    keys = {
-      { "<C-Left>", "<cmd>TmuxNavigateLeft<cr>" },
-      { "<C-Down>", "<cmd>TmuxNavigateDown<cr>" },
-      { "<C-Up>", "<cmd>TmuxNavigateUp<cr>" },
-      { "<C-Right>", "<cmd>TmuxNavigateRight<cr>" },
-    },
-  },
-  {
     "kylechui/nvim-surround",
     version = "*",
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup()
     end,
+  },
+  { "echasnovski/mini.ai", version = "*" },
+  {
+    "echasnovski/mini.move",
+    enabled = false,
+    version = "*",
+    -- No need to copy this inside `setup()`. Will be used automatically.
+    opts = {
+      -- Module mappings. Use `''` (empty string) to disable one.
+      mappings = {
+        -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+        left = "<M-h>",
+        right = "<M-l>",
+        down = "<M-j>",
+        up = "<M-k>",
+
+        -- Move current line in Normal mode
+        line_left = "<M-h>",
+        line_right = "<M-l>",
+        line_down = "<M-j>",
+        line_up = "<M-k>",
+      },
+
+      -- Options which control moving behavior
+      options = {
+        -- Automatically reindent selection during linewise vertical move
+        reindent_linewise = true,
+      },
+    },
   },
   -- {
   --   "folke/persistence.nvim",

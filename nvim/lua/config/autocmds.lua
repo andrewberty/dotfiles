@@ -12,6 +12,22 @@ api.nvim_create_autocmd("BufEnter", {
   command = [[set formatoptions-=cro]],
 })
 
+-- Change the working directory to the parent directory of the opened file
+vim.api.nvim_create_autocmd("VimEnter", {
+  pattern = "*",
+  command = "silent! lcd %:p:h",
+})
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  pattern = "*",
+  callback = function()
+    local cwd = vim.fn.getcwd()
+    if string.find(cwd, "/more") then
+      vim.cmd([[FormatDisable]])
+    end
+  end,
+})
+
 -- Highlight on yank
 api.nvim_create_autocmd("TextYankPost", {
   callback = function()

@@ -7,29 +7,60 @@
 --
 
 return {
+  { "imsnif/kdl.vim" },
   {
     "stevearc/conform.nvim",
     -- enabled = false,
-    opts = {
-      formatters_by_ft = {
-        lua = { "stylua" },
-        vue = { "prettier" },
-        javascript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescript = { "prettier" },
-        typescriptreact = { "prettier" },
-        graphql = { "prettier" },
-        html = { "prettier" },
-        css = { "prettier" },
-        json = { "prettier" },
-        markdown = { "prettier" },
-        toml = { "taplo" },
-      },
-      format_on_save = {
-        timeout_ms = 1000,
-        lsp_fallback = false,
-      },
-    },
+    config = function()
+      local conform = require("conform")
+      local nvmap = require("config.utils").nvmap
+
+      conform.setup({
+        formatters_by_ft = {
+          lua = { "stylua" },
+          vue = { "prettier" },
+          javascript = { "prettier" },
+          javascriptreact = { "prettier" },
+          typescript = { "prettier" },
+          typescriptreact = { "prettier" },
+          graphql = { "prettier" },
+          html = { "prettier" },
+          css = { "prettier" },
+          json = { "prettier" },
+          markdown = { "prettier" },
+          toml = { "taplo" },
+          sh = { "beautysh" },
+          zsh = { "beautysh" },
+        },
+        format_on_save = function(bufnr)
+          -- Disable with a global or buffer-local variable
+          if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+            return
+          end
+          return { timeout_ms = 500, lsp_fallback = true }
+        end,
+      })
+
+      nvmap("<leader>lf", conform.format, { desc = "LSP Format" })
+
+      vim.api.nvim_create_user_command("FormatDisable", function(args)
+        if args.bang then
+          -- FormatDisable! will disable formatting just for this buffer
+          vim.b.disable_autoformat = true
+        else
+          vim.g.disable_autoformat = true
+        end
+      end, {
+        desc = "Disable autoformat-on-save",
+        bang = true,
+      })
+      vim.api.nvim_create_user_command("FormatEnable", function()
+        vim.b.disable_autoformat = false
+        vim.g.disable_autoformat = false
+      end, {
+        desc = "Re-enable autoformat-on-save",
+      })
+    end,
   },
   {
     "mfussenegger/nvim-lint",
@@ -103,7 +134,6 @@ return {
       local on_attach = function(client, bufnr)
         nvmap("<leader>rs", ":LspRestart<CR>", { desc = "Restart LSP", buffer = bufnr })
         nvmap("<leader>ls", vim.lsp.buf.signature_help, { desc = "Display Signature Information" })
-        nvmap("<leader>lf", vim.lsp.buf.format, { desc = "LSP Format" })
         nvmap("<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename", buffer = bufnr })
         nvmap("<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions", buffer = bufnr })
         nvmap("K", vim.lsp.buf.hover, { desc = "Show Documentation", buffer = bufnr })
@@ -147,6 +177,30 @@ return {
                   },
                 },
               },
+            },
+          })
+        end,
+        ["tailwindcss"] = function()
+          lspconfig["tailwindcss"].setup({
+            settings = {
+              tailwindCSS = {
+                classAttributes = { "class", "className", "class:list", "classList", "ngClass", "pt" },
+              },
+            },
+          })
+        end,
+        ["emmet_ls"] = function()
+          lspconfig["emmet_ls"].setup({
+            filetypes = {
+              "html",
+              "css",
+              "sass",
+              "scss",
+              "vue",
+              "javascriptreact",
+              "typescriptreact",
+              "javascript",
+              "typescript",
             },
           })
         end,

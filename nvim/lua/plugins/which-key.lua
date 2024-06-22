@@ -8,6 +8,7 @@
 --
 return {
   "folke/which-key.nvim",
+  -- enabled = false,
   event = "VeryLazy",
   lazy = true,
   opts = {

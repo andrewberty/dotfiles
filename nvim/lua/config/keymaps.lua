@@ -15,6 +15,9 @@ imap("jj", "<ESC>", { desc = "Exit Insert Mode" })
 imap("jk", "<ESC>", { desc = "Exit Insert Mode" })
 
 nvmap("<C-s>", ":w!<CR>", { desc = "Save" })
+nvmap("<leader>v", ":vsp<CR>", { desc = "Vertical Split" })
+
+vmap("w", "E", { desc = "Move to end of the word w/o whitespace" })
 
 nvmap("H", "^", { desc = "To Start of Line" })
 nvmap("L", "$", { desc = "To End of Line" })
@@ -26,6 +29,7 @@ nmap("<leader>nh", ":nohl<CR>", { desc = "Clear Highlighting" })
 
 nmap("<leader>i", ":IBLToggle<CR>", { desc = "Toggle Indentation" })
 nmap("<leader>l", ":set number!<CR>", { desc = "Toggle Line Numbers" })
+nmap("<leader>z", ":IBLToggle | set number!<CR>", { desc = "Toggle Zen Mode" })
 
 nmap("q", ":q<CR>", { desc = "Quit window" })
 nmap("<leader>a", "ggVG", { desc = "Select All" })
@@ -41,11 +45,8 @@ nmap("<C-u>", "<C-u>zz", { desc = "Keep Cursor Centered While Scrolling" })
 vmap("<C-Up>", ":m '<-2<CR>gv=gv", { desc = "Move Selected Line Up" })
 vmap("<C-Down>", ":m '>+1<CR>gv=gv", { desc = "Move Selected Line Down" })
 
+vmap("y", "y`]", { desc = "Place Cursor at End After Yanking" })
 vmap("p", '"_dp', { desc = "Paste Without Yanking" })
 nvmap("d", '"_d', { desc = "Delete Without Yanking" })
 nvmap("c", '"_c', { desc = "Change Without Yanking" })
 nvmap("X", "Vx", { desc = "Cut Current Line" })
-
--- nvmap("<leader>tr", function()
---   vim.cmd("highlight Normal guibg=NONE")
--- end, { desc = "Transparent" })

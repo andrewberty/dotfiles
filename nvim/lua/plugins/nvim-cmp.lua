@@ -8,11 +8,15 @@
 --
 return {
   "hrsh7th/nvim-cmp",
+  -- enabled = false,
+  lazy = false,
   event = "InsertEnter",
   dependencies = {
     "hrsh7th/cmp-buffer", -- source for text in buffer
     "hrsh7th/cmp-path", -- source for file system paths
     "hrsh7th/cmp-nvim-lsp", -- lsp autocompletion
+
+    -- "mlaursen/vim-react-snippets",
 
     "L3MON4D3/LuaSnip", -- snippet engine
     "saadparwaiz1/cmp_luasnip", -- for autocompletion
@@ -26,6 +30,9 @@ return {
     local lspkind = require("lspkind")
 
     require("luasnip.loaders.from_vscode").lazy_load()
+    -- require("vim-react-snippets").lazy_load()
+    luasnip.filetype_extend("javascript", { "javascriptreact" })
+    luasnip.filetype_extend("javascript", { "html" })
 
     cmp.setup({
       completion = {
