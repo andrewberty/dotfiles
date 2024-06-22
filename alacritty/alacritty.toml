@@ -1,5 +1,5 @@
 # Start Alacritty Themes
-import = ["~/.config/alacritty/colors/rose-pine.toml"]
+import = ["/Users/andrew/.config/alacritty/colors/base16-rose-pine-moon.toml"]
 # End Alacritty Themes
 
 [env]
@@ -9,13 +9,13 @@ TERM = "xterm-256color"
 decorations = "buttonless"
 blur = true
 dimensions = { lines = 30, columns = 120 }
-opacity = 0.90
+# opacity = 0.98
 # padding = { x = 10, y = 10 }
 
 [font]
-size = 18.2
-offset = { y = 9 }
-normal = { family = "OperatorMono Nerd Font", style = "Book" }
+size = 17
+# offset = { y = 10 }
+normal = { family = "MesloLGM Nerd Font", style = "Regular" }
 # normal = { family = "Hack Nerd Font", style = "Regular" }
 bold.style = "Regular"
 italic.style = "Regular"
@@ -23,28 +23,11 @@ italic.style = "Regular"
 
 [keyboard]
 bindings = [
-  # SCRIPTS
-  { key = "p", mods = "Alt", command = { program = "node", args = [
-    "~/scripts/alacritty-toggler.js",
-    "padding = { x = 10, y = 10 }",
-  ] } },
-
-  { key = "t", mods = "Alt", command = { program = "node", args = [
-    "D:\\code\\scripts\\alacritty-toggler.js",
-    "opacity = 0.8",
-  ] } },
-
   { key = "n", mods = "Control | Shift", action = "CreateNewWindow" },
-  { key = "v", mods = "Control | Shift", action = "Paste" },
   { key = "Enter", mods = "Alt", action = "ToggleFullscreen" },
 ]
 
 
 [colors.primary]
-# background = "#111111"
-# background = "#070707"
-background = "#000000"
-# background = "#001122"
-# background = "#000d17"
-# background = "#11111b"
-# background = "#0c0c15" # catppuccin override
+# background = "#0A0A12"
+# background = "#1a1c26"
