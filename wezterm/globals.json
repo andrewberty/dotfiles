@@ -1,0 +1,67 @@
+{
+  "colorscheme": "rose-pine-moon",
+  "font": {
+    "family": "SF Mono",
+    "font_size": 16,
+    "weight": 400
+  },
+  "fonts": {
+    "CommitMono": {
+      "family": "CommitMono",
+      "font_size": 16,
+      "weight": 400
+    },
+    "Default": {
+      "family": "Default",
+      "font_size": 16,
+      "weight": 400
+    },
+    "Fira Code": {
+      "family": "Fira Code",
+      "font_size": 16,
+      "weight": 400
+    },
+    "Geist Mono": {
+      "family": "Geist Mono",
+      "font_size": 16,
+      "weight": 400
+    },
+    "Hack": {
+      "family": "Hack",
+      "font_size": 16,
+      "weight": 400
+    },
+    "IBM Plex Mono": {
+      "family": "IBM Plex Mono",
+      "font_size": 16,
+      "weight": 400
+    },
+    "Lilex": {
+      "family": "Lilex",
+      "font_size": 16,
+      "weight": 400
+    },
+    "Menlo": {
+      "family": "Menlo",
+      "font_size": 16,
+      "weight": 400
+    },
+    "Roboto Mono": {
+      "family": "Roboto Mono",
+      "font_size": 16,
+      "weight": 400
+    },
+    "SF Mono": {
+      "family": "SF Mono",
+      "font_size": 16,
+      "weight": 400
+    }
+  },
+  "opacity": 0.93,
+  "padding": {
+    "bottom": 20,
+    "left": 20,
+    "right": 20,
+    "top": 20
+  }
+}

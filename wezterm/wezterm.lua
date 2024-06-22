@@ -1,62 +1,90 @@
-require("events")
 local wezterm = require("wezterm")
-local colors = require("colors")
-local keymaps = require("keymaps")
-local tabbar = require("tabbar")
+local features = require("features")
+local act = wezterm.action
+local config = wezterm.config_builder()
+local G = features.getLuaFromJSON()
 
-Global = {
-	-- background = "#0c0c15",
-	-- background = "#11111b",
-	-- background = "#001122",
-	background = "#000000",
+-- FONTS
+local font
+if G.font.family == "Default" then
+	font = wezterm.font_with_fallback({})
+else
+	font = wezterm.font_with_fallback({
+		{ family = G.font.family, weight = G.font.weight, italic = false },
+	})
+end
 
-	font = { family = "Hack", weight = 400, font_size = 17.2, line_height = 1.40 },
-	-- font = { family = "BerkeleyMono Nerd Font", weight = 400, font_size = 18, line_height = 1.30 },
+G.background = "#12101A"
 
-	enable_tab_bar = false,
-	colorscheme = "rose-pine-moon",
-	opacity = 0.9,
+config.font_rules = { { intensity = "Bold", font = font }, { intensity = "Normal", font = font } }
+config.font_size = G.font.font_size
+
+-- COLORS
+local scheme = wezterm.color.get_builtin_schemes()[G.colorscheme]
+scheme.background = G.background or scheme.background
+
+config.color_scheme = "CustomTheme"
+config.color_schemes = { ["CustomTheme"] = scheme }
+config.inactive_pane_hsb = { saturation = 1, brightness = 1 }
+config.command_palette_bg_color = scheme.background
+config.command_palette_fg_color = scheme.foreground
+
+-- WINDOW
+config.enable_tab_bar = false
+config.window_padding = G.padding
+config.window_close_confirmation = "NeverPrompt"
+config.macos_window_background_blur = 50
+config.window_background_opacity = G.opacity
+config.window_decorations = "RESIZE"
+config.adjust_window_size_when_changing_font_size = false
+config.initial_cols = 140
+config.initial_rows = 40
+config.enable_scroll_bar = false
+config.window_frame = { font = wezterm.font({ family = G.font.family, weight = G.font.weight }) }
+config.command_palette_font_size = G.font.font_size - 1
+config.front_end = "WebGpu"
+
+-- CURSOR
+config.default_cursor_style = "BlinkingBlock"
+config.cursor_blink_ease_in = "Linear"
+config.cursor_blink_ease_out = "Linear"
+config.hide_mouse_cursor_when_typing = true
+config.animation_fps = 60
+
+-- ENV
+config.set_environment_variables = { PATH = "/opt/homebrew/bin:" .. os.getenv("PATH") }
+
+config.disable_default_key_bindings = true
+config.keys = {
+	features.cmd_to_tmux_prefix("k", "K"),
+	{ key = "p", mods = "CMD|CTRL", action = wezterm.action_callback(features.togglePadding) },
+	{ key = "z", mods = "CMD|CTRL", action = wezterm.action_callback(features.decreaseOpacity) },
+	{ key = "c", mods = "CMD|CTRL", action = wezterm.action_callback(features.increaseOpacity) },
+	{ key = "x", mods = "CMD|CTRL", action = wezterm.action_callback(features.resetOpacity) },
+	{ key = "k", mods = "CMD|CTRL", action = wezterm.action_callback(features.theme_switcher) },
+	{ key = "f", mods = "CMD|CTRL", action = wezterm.action_callback(features.font_switcher) },
+
+	{ key = "c", mods = "CMD", action = act.CopyTo("ClipboardAndPrimarySelection") },
+	{ key = "v", mods = "CMD", action = act.PasteFrom("Clipboard") },
+	{ key = "=", mods = "CMD", action = act.IncreaseFontSize },
+	{ key = "-", mods = "CMD", action = act.DecreaseFontSize },
+	{ key = "0", mods = "CMD", action = act.ResetFontSize },
+	{ key = "L", mods = "CMD", action = act.ShowDebugOverlay },
+	{ key = "P", mods = "CMD", action = act.ActivateCommandPalette },
+	{ key = "w", mods = "CMD", action = act.CloseCurrentPane({ confirm = true }) },
+	{ key = "q", mods = "CMD", action = act.CloseCurrentTab({ confirm = false }) },
 }
-
-local config = {
-	-- FONT
-	font = wezterm.font(Global.font.family, { weight = Global.font.weight }),
-	font_rules = {
-		{ intensity = "Bold", font = wezterm.font(Global.font.family, { weight = Global.font.weight }) },
-		{
-			intensity = "Normal",
-			font = wezterm.font(Global.font.family, { weight = Global.font.weight, italic = false }),
-		},
+config.mouse_bindings = {
+	{
+		event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+		mods = "CMD|CTRL",
+		action = wezterm.action_callback(features.increaseOpacity),
 	},
-	font_size = Global.font.font_size,
-	line_height = Global.font.line_height,
-
-	-- WINDOW
-	window_padding = {
-		top = 20,
-		bottom = 20,
-		left = 20,
-		right = 20,
+	{
+		event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+		mods = "CMD|CTRL",
+		action = wezterm.action_callback(features.decreaseOpacity),
 	},
-	window_close_confirmation = "NeverPrompt",
-	macos_window_background_blur = 50,
-	window_background_opacity = Global.opacity,
-	window_decorations = "RESIZE",
-	adjust_window_size_when_changing_font_size = false,
-	initial_cols = 90,
-	initial_rows = 30,
-	enable_scroll_bar = false,
-
-	-- CURSOR
-	default_cursor_style = "BlinkingBlock",
-	cursor_blink_ease_in = "Linear",
-	cursor_blink_ease_out = "Linear",
-	hide_mouse_cursor_when_typing = true,
-	animation_fps = 60,
 }
-
-colors.setup(config)
-keymaps.setup(config)
-tabbar.setup(config)
 
 return config
