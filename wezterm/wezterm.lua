@@ -15,6 +15,7 @@ else
 end
 
 G.background = "#12101A"
+G.background = "#0A0E19"
 
 config.font_rules = { { intensity = "Bold", font = font }, { intensity = "Normal", font = font } }
 config.font_size = G.font.font_size
@@ -64,6 +65,7 @@ config.keys = {
 	{ key = "k", mods = "CMD|CTRL", action = wezterm.action_callback(features.theme_switcher) },
 	{ key = "f", mods = "CMD|CTRL", action = wezterm.action_callback(features.font_switcher) },
 
+	{ key = "m", mods = "CMD", action = wezterm.action.Hide },
 	{ key = "c", mods = "CMD", action = act.CopyTo("ClipboardAndPrimarySelection") },
 	{ key = "v", mods = "CMD", action = act.PasteFrom("Clipboard") },
 	{ key = "=", mods = "CMD", action = act.IncreaseFontSize },

@@ -6,22 +6,9 @@
 -- ╚═╝     ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝
 --
 
-local nvmap = require("config.utils").nvmap
 return {
   {
-    "numToStr/Navigator.nvim",
-    config = function()
-      vim.keymap.set({ "n", "t" }, "<A-Left>", "<CMD>NavigatorLeft<CR>")
-      vim.keymap.set({ "n", "t" }, "<A-Right>", "<CMD>NavigatorRight<CR>")
-      vim.keymap.set({ "n", "t" }, "<A-Up>", "<CMD>NavigatorUp<CR>")
-      vim.keymap.set({ "n", "t" }, "<A-Down>", "<CMD>NavigatorDown<CR>")
-
-      require("Navigator").setup()
-    end,
-  },
-  {
     "christoomey/vim-tmux-navigator",
-    lazy = false,
     -- enabled = false,
     cmd = {
       "TmuxNavigateLeft",
@@ -54,13 +41,7 @@ return {
   {
     "moll/vim-bbye",
     config = function()
-      nvmap("<leader>x", "<cmd>Bdelete<cr>", { desc = "Close Buffer" })
-    end,
-  },
-  {
-    "mbbill/undotree",
-    config = function()
-      nvmap("<leader>U", "<cmd>UndotreeToggle<cr>", { desc = "Toggle Undotree" })
+      vim.keymap.set({ "n", "v" }, "<leader>x", "<cmd>Bdelete<cr>", { desc = "Close Buffer" })
     end,
   },
   {
@@ -70,6 +51,7 @@ return {
       vim.g.VM_maps["Add Cursor Down"] = ""
     end,
   },
+  "mbbill/undotree",
   "folke/neodev.nvim",
   {
     "kylechui/nvim-surround",
@@ -108,10 +90,6 @@ return {
       },
     },
   },
-  -- {
-  --   "folke/persistence.nvim",
-  --   event = "BufReadPre", -- this will only start session saving when an actual file was opened
-  -- },
   {
     "echasnovski/mini.pairs",
     event = "VeryLazy",
@@ -120,10 +98,14 @@ return {
     end,
   },
   {
+    "folke/ts-comments.nvim",
+    opts = {},
+    event = "VeryLazy",
+    enabled = vim.fn.has("nvim-0.10.0") == 1,
+  },
+  {
     "echasnovski/mini.comment",
-    dependencies = {
-      { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
-    },
+    dependencies = { { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true } },
     event = "VeryLazy",
     config = function()
       require("mini.comment").setup({
@@ -138,15 +120,25 @@ return {
   {
     "nvim-pack/nvim-spectre",
     config = function()
-      nvmap("<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
+      vim.keymap.set("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
         desc = "Toggle Spectre",
       })
-      nvmap("<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+      vim.keymap.set("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
         desc = "Search current word",
       })
-      nvmap("<leader>sp", '<cmd>lua require("spectre").open_file_search()<CR>', {
+      vim.keymap.set("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search()<CR>', {
         desc = "Search on current file",
       })
+    end,
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    -- enabled = false,
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+
+    build = function()
+      vim.fn["mkdp#util#install"]()
     end,
   },
 }

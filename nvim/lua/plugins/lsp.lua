@@ -1,65 +1,10 @@
--- ██╗     ███████╗██████╗
--- ██║     ██╔════╝██╔══██╗
--- ██║     ███████╗██████╔╝
--- ██║     ╚════██║██╔═══╝
--- ███████╗███████║██║
--- ╚══════╝╚══════╝╚═╝
---
-
 return {
   { "imsnif/kdl.vim" },
   {
     "stevearc/conform.nvim",
     -- enabled = false,
     config = function()
-      local conform = require("conform")
-      local nvmap = require("config.utils").nvmap
-
-      conform.setup({
-        formatters_by_ft = {
-          lua = { "stylua" },
-          vue = { "prettier" },
-          javascript = { "prettier" },
-          javascriptreact = { "prettier" },
-          typescript = { "prettier" },
-          typescriptreact = { "prettier" },
-          graphql = { "prettier" },
-          html = { "prettier" },
-          css = { "prettier" },
-          json = { "prettier" },
-          markdown = { "prettier" },
-          toml = { "taplo" },
-          sh = { "beautysh" },
-          zsh = { "beautysh" },
-        },
-        format_on_save = function(bufnr)
-          -- Disable with a global or buffer-local variable
-          if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-            return
-          end
-          return { timeout_ms = 500, lsp_fallback = true }
-        end,
-      })
-
-      nvmap("<leader>lf", conform.format, { desc = "LSP Format" })
-
-      vim.api.nvim_create_user_command("FormatDisable", function(args)
-        if args.bang then
-          -- FormatDisable! will disable formatting just for this buffer
-          vim.b.disable_autoformat = true
-        else
-          vim.g.disable_autoformat = true
-        end
-      end, {
-        desc = "Disable autoformat-on-save",
-        bang = true,
-      })
-      vim.api.nvim_create_user_command("FormatEnable", function()
-        vim.b.disable_autoformat = false
-        vim.g.disable_autoformat = false
-      end, {
-        desc = "Re-enable autoformat-on-save",
-      })
+      require("plugins.configs.formatting")
     end,
   },
   {
@@ -83,10 +28,6 @@ return {
           lint.try_lint()
         end,
       })
-
-      -- vim.keymap.set("n", "<leader>l", function()
-      --   lint.try_lint()
-      -- end, { desc = "Trigger linting for current file" })
     end,
   },
   {
@@ -98,113 +39,110 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
+      "luckasRanarison/tailwind-tools.nvim",
       { "antosha417/nvim-lsp-file-operations", config = true },
     },
     config = function()
-      local lspconfig = require("lspconfig")
-      local cmp_nvim_lsp = require("cmp_nvim_lsp")
-      local mason = require("mason")
-      local mason_lspconfig = require("mason-lspconfig")
-      local mason_tool_installer = require("mason-tool-installer")
-      local nvmap = require("config.utils").nvmap
+      require("plugins.configs.lsp")
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    -- version = false,
+    -- enabled = false,
+    build = ":TSUpdate",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      {
+        "windwp/nvim-ts-autotag",
+        config = function()
+          require("nvim-ts-autotag").setup({
+            opts = {
+              -- Defaults
+              enable_close = true, -- Auto close tags
+              enable_rename = true, -- Auto rename pairs of tags
+              enable_close_on_slash = false, -- Auto close on trailing </
+            },
+            -- per_filetype = {
+            --   ["html"] = {
+            --     enable_close = false,
+            --   },
+            -- },
+          })
+        end,
+      },
+    },
+    opts = {
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
+      indent = { enable = true },
+      auto_install = true,
+      ignore_install = { "tmux" },
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
 
-      mason.setup({
-        ui = {
-          icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗",
+          keymaps = {
+            -- You can use the capture groups defined in textobjects.scm
+            ["af"] = { query = "@function.outer", desc = "around a function" },
+            ["if"] = { query = "@function.inner", desc = "inner part of a function" },
+            ["ac"] = { query = "@class.outer", desc = "around a class" },
+            ["ic"] = { query = "@class.inner", desc = "inner part of a class" },
+            ["ai"] = { query = "@conditional.outer", desc = "around an if statement" },
+            ["ii"] = { query = "@conditional.inner", desc = "inner part of an if statement" },
+            ["al"] = { query = "@loop.outer", desc = "around a loop" },
+            ["il"] = { query = "@loop.inner", desc = "inner part of a loop" },
+            ["ap"] = { query = "@parameter.outer", desc = "around parameter" },
+            ["ip"] = { query = "@parameter.inner", desc = "inside a parameter" },
+          },
+          include_surrounding_whitespace = false,
+        },
+        move = {
+          enable = true,
+          set_jumps = true, -- whether to set jumps in the jumplist
+          goto_previous_start = {
+            ["[f"] = { query = "@function.outer", desc = "Previous function" },
+            ["[c"] = { query = "@class.outer", desc = "Previous class" },
+            ["[p"] = { query = "@parameter.inner", desc = "Previous parameter" },
+          },
+          goto_next_start = {
+            ["]f"] = { query = "@function.outer", desc = "Next function" },
+            ["]c"] = { query = "@class.outer", desc = "Next class" },
+            ["]p"] = { query = "@parameter.inner", desc = "Next parameter" },
           },
         },
-      })
-
-      mason_lspconfig.setup({
-        automatic_installation = true,
-        ensure_installed = { "html", "cssls", "tailwindcss", "emmet_ls", "tsserver", "lua_ls", "taplo" },
-      })
-
-      mason_tool_installer.setup({
-        ensure_installed = {
-          "prettier",
-          "stylua",
-          "eslint_d",
+        swap = {
+          enable = false,
         },
-      })
+      },
+    },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    -- enabled = false,
+    lazy = false,
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-buffer", -- source for text in buffer
+      "hrsh7th/cmp-path", -- source for file system paths
+      "hrsh7th/cmp-nvim-lsp", -- lsp autocompletion
 
-      local on_attach = function(client, bufnr)
-        nvmap("<leader>rs", ":LspRestart<CR>", { desc = "Restart LSP", buffer = bufnr })
-        nvmap("<leader>ls", vim.lsp.buf.signature_help, { desc = "Display Signature Information" })
-        nvmap("<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename", buffer = bufnr })
-        nvmap("<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions", buffer = bufnr })
-        nvmap("K", vim.lsp.buf.hover, { desc = "Show Documentation", buffer = bufnr })
-        nvmap("gr", "<cmd>Telescope lsp_references<CR>", { desc = "Show LSP references", buffer = bufnr })
-        nvmap("gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Show LSP definitions", buffer = bufnr })
-        nvmap("gD", vim.lsp.buf.declaration, { desc = "Go to Declaration", buffer = bufnr })
-        nvmap("<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Buffer Diagnostics", buffer = bufnr })
-      end
+      -- "mlaursen/vim-react-snippets",
 
-      local capabilities =
-        vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), cmp_nvim_lsp.default_capabilities())
+      "L3MON4D3/LuaSnip", -- snippet engine
+      "saadparwaiz1/cmp_luasnip", -- for autocompletion
 
-      local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-      end
-
-      mason_lspconfig.setup_handlers({
-        -- default handler
-        function(server_name)
-          lspconfig[server_name].setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-          })
-        end,
-        -- overrides
-        ["lua_ls"] = function()
-          lspconfig["lua_ls"].setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = {
-              Lua = {
-                diagnostics = {
-                  globals = { "vim" },
-                },
-                workspace = {
-                  library = {
-                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                    [vim.fn.stdpath("config") .. "/lua"] = true,
-                  },
-                },
-              },
-            },
-          })
-        end,
-        ["tailwindcss"] = function()
-          lspconfig["tailwindcss"].setup({
-            settings = {
-              tailwindCSS = {
-                classAttributes = { "class", "className", "class:list", "classList", "ngClass", "pt" },
-              },
-            },
-          })
-        end,
-        ["emmet_ls"] = function()
-          lspconfig["emmet_ls"].setup({
-            filetypes = {
-              "html",
-              "css",
-              "sass",
-              "scss",
-              "vue",
-              "javascriptreact",
-              "typescriptreact",
-              "javascript",
-              "typescript",
-            },
-          })
-        end,
-      })
+      "rafamadriz/friendly-snippets", -- useful snippets
+      "onsails/lspkind.nvim", -- vs-code like pictograms
+    },
+    config = function()
+      require("plugins.configs.nvim-cmp")
     end,
   },
 }

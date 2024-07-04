@@ -1,10 +1,3 @@
---  █████╗ ██╗   ██╗████████╗ ██████╗  ██████╗███╗   ███╗██████╗ ███████╗
--- ██╔══██╗██║   ██║╚══██╔══╝██╔═══██╗██╔════╝████╗ ████║██╔══██╗██╔════╝
--- ███████║██║   ██║   ██║   ██║   ██║██║     ██╔████╔██║██║  ██║███████╗
--- ██╔══██║██║   ██║   ██║   ██║   ██║██║     ██║╚██╔╝██║██║  ██║╚════██║
--- ██║  ██║╚██████╔╝   ██║   ╚██████╔╝╚██████╗██║ ╚═╝ ██║██████╔╝███████║
--- ╚═╝  ╚═╝ ╚═════╝    ╚═╝    ╚═════╝  ╚═════╝╚═╝     ╚═╝╚═════╝ ╚══════╝
-
 local api = vim.api
 
 -- don't auto comment new line
@@ -18,15 +11,15 @@ vim.api.nvim_create_autocmd("VimEnter", {
   command = "silent! lcd %:p:h",
 })
 
-vim.api.nvim_create_autocmd("VimEnter", {
-  pattern = "*",
-  callback = function()
-    local cwd = vim.fn.getcwd()
-    if string.find(cwd, "/more") then
-      vim.cmd([[FormatDisable]])
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   pattern = "*",
+--   callback = function()
+--     local cwd = vim.fn.getcwd()
+--     if string.find(cwd, "/more") then
+--       vim.cmd([[FormatDisable]])
+--     end
+--   end,
+-- })
 
 -- Highlight on yank
 api.nvim_create_autocmd("TextYankPost", {

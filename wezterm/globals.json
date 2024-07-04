@@ -1,7 +1,7 @@
 {
-  "colorscheme": "rose-pine-moon",
+  "colorscheme": "rose-pine",
   "font": {
-    "family": "SF Mono",
+    "family": "MD IO Trial",
     "font_size": 16,
     "weight": 400
   },
@@ -41,6 +41,11 @@
       "font_size": 16,
       "weight": 400
     },
+    "MD IO Trial": {
+      "family": "MD IO Trial",
+      "font_size": 16,
+      "weight": 400
+    },
     "Menlo": {
       "family": "Menlo",
       "font_size": 16,
@@ -57,7 +62,7 @@
       "weight": 400
     }
   },
-  "opacity": 0.93,
+  "opacity": 0.95,
   "padding": {
     "bottom": 20,
     "left": 20,
