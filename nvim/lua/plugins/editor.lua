@@ -18,6 +18,22 @@ return {
     end,
   },
   {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    keys = {
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+    },
+  },
+  {
     "folke/todo-comments.nvim",
     -- enabled = false,
     dependencies = "nvim-lua/plenary.nvim",
@@ -82,6 +98,9 @@ return {
     event = "VeryLazy",
     lazy = true,
     opts = {
+      modes = {
+        x = false,
+      },
       plugins = {
         presets = {
           operators = false, -- adds help for operators like d, y, ...
@@ -109,13 +128,13 @@ return {
     config = function(_, opts)
       local which_key = require("which-key")
       which_key.setup(opts)
-      which_key.register({
-        ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-        ["<leader>n"] = { name = "[N]o Highlight", _ = "which_key_ignore" },
-        ["<leader>G"] = { name = "[G]it", _ = "which_key_ignore" },
-        ["<leader>t"] = { name = "[T]odo", _ = "which_key_ignore" },
-        ["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-        ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
+      which_key.add({
+        { "<leader>c", group = "[C]ode" },
+        { "<leader>n", group = "[N]o Highlight" },
+        { "<leader>G", group = "[G]it" },
+        { "<leader>t", group = "[T]odo" },
+        { "<leader>r", group = "[R]ename" },
+        { "<leader>s", group = "[S]earch" },
       })
     end,
   },

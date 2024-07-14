@@ -31,6 +31,8 @@ vim.keymap.set({ "n", "v" }, "c", '"_c', { desc = "Change Without Yanking", sile
 
 vim.keymap.set({ "n", "v" }, "<down>", "gj", { desc = "Move down to visible line", silent = true })
 vim.keymap.set({ "n", "v" }, "<up>", "gk", { desc = "Move up to visible line", silent = true })
+vim.keymap.set("i", "<down>", "<ESC>gji", { desc = "Move down to visible line", silent = true })
+vim.keymap.set("i", "<up>", "<ESC>gki", { desc = "Move up to visible line", silent = true })
 
 vim.keymap.set({ "n", "v" }, "X", "Vx", { desc = "Cut Current Line", silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>so", ":so %<CR>", { desc = "Source current file", silent = true })

@@ -30,8 +30,8 @@ cmp.setup({
   }),
   -- sources for autocompletion
   sources = {
-    { name = "nvim_lsp" },
     { name = "luasnip" }, -- snippets
+    { name = "nvim_lsp" },
     { name = "buffer" }, -- text within current buffer
     { name = "path" }, -- file system paths
   },

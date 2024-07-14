@@ -1,5 +1,33 @@
 return {
   {
+    "oxfist/night-owl.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      local night_owl = require("night-owl")
+
+      --@param options Config|nil
+      night_owl.setup({
+        bold = false,
+        italics = false,
+        underline = true,
+        undercurl = true,
+        transparent_background = true,
+      })
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "night-owl",
+        callback = function()
+          vim.cmd([[hi SignColumn guibg=none]])
+          vim.cmd([[hi NormalFloat guibg=none]])
+          vim.cmd([[hi FloatBorder guibg=none]])
+          vim.cmd([[hi TelescopeSelection guibg=none]])
+          vim.cmd([[hi link TelescopeBorder FloatBorder]])
+        end,
+      })
+    end,
+  },
+  {
     "sainnhe/gruvbox-material",
     priority = 1000,
     config = function()

@@ -14,7 +14,7 @@ local ignored_schemes = vim.list_extend(builtin_schemes, {
 
 telescope.setup({
   defaults = {
-    file_ignore_patterns = { "node_modules", "dist", ".git" },
+    file_ignore_patterns = { "node_modules", "dist", ".git", ".next" },
     path_display = { "filename_first" },
     sorting_strategy = "ascending",
     layout_config = {
