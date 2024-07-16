@@ -16,7 +16,6 @@ end
 
 G.background = "#12101A"
 G.background = "#0A0E19"
-G.background = "#0D0D0D"
 
 config.font_rules = { { intensity = "Bold", font = font }, { intensity = "Normal", font = font } }
 config.font_size = G.font.font_size

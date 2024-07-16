@@ -115,10 +115,9 @@ return {
       icons = {
         group = "", -- symbol prepended to a group
       },
-      window = {
+      win = {
         border = "rounded", -- none, single, double, shadow, rounded
-        margin = { 2, 0, 2, 0 }, -- extra window margin [top, right, bottom, left]
-        padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+        padding = { 2, 2 }, -- extra window padding [top, right, bottom, left]
       },
       disable = {
         buftypes = {},
