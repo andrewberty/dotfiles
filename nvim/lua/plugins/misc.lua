@@ -61,7 +61,13 @@ return {
       require("nvim-surround").setup()
     end,
   },
-  { "echasnovski/mini.ai", version = "*" },
+  {
+    "echasnovski/mini.ai",
+    version = "*",
+    config = function()
+      require("mini.ai").setup()
+    end,
+  },
   {
     "echasnovski/mini.move",
     enabled = false,

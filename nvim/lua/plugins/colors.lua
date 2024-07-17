@@ -1,6 +1,7 @@
 return {
   {
     "oxfist/night-owl.nvim",
+    enabled = false,
     lazy = false,
     priority = 1000,
     config = function()
@@ -29,6 +30,7 @@ return {
   },
   {
     "sainnhe/gruvbox-material",
+    enabled = false,
     priority = 1000,
     config = function()
       for key, value in pairs({
@@ -123,6 +125,7 @@ return {
   },
   {
     "catppuccin/nvim",
+    enabled = false,
     priority = 1000,
     name = "catppuccin",
     opts = {
@@ -162,6 +165,7 @@ return {
   },
   {
     "bluz71/vim-nightfly-colors",
+    enabled = false,
     name = "nightfly",
     priority = 1000,
     config = function()
@@ -189,6 +193,7 @@ return {
   },
   {
     "olivercederborg/poimandres.nvim",
+    enabled = false,
     lazy = false,
     priority = 1000,
     opts = {
