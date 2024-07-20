@@ -1,5 +1,5 @@
 {
-  "colorscheme": "rose-pine-moon",
+  "colorscheme": "rose-pine",
   "font": {
     "family": "Hack",
     "font_size": 16,
@@ -62,7 +62,7 @@
       "weight": 400
     }
   },
-  "opacity": 0.97,
+  "opacity": 1,
   "padding": {
     "bottom": 20,
     "left": 20,
