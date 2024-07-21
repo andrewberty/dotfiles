@@ -42,6 +42,7 @@ local ignored = {
 	"neo-tree",
 	"alpha",
 	"lazy",
+	"starter",
 }
 
 require("lualine").setup({

@@ -111,7 +111,12 @@ require("lazy").setup({
 		},
 	},
 	{ "echasnovski/mini.pairs", event = "VeryLazy", config = function() require("mini.pairs").setup() end },
-	{ "folke/ts-comments.nvim", event = "VeryLazy" },
+	{
+		"folke/ts-comments.nvim",
+		opts = {},
+		event = "VeryLazy",
+		enabled = vim.fn.has("nvim-0.10.0") == 1,
+	},
 	{
 		"echasnovski/mini.comment",
 		dependencies = { { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true } },
