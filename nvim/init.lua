@@ -62,13 +62,7 @@ require("lazy").setup({
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPost", "BufNewFile", "VeryLazy" },
 		config = function()
-			local i = require("utils").icons.ui
 			require("gitsigns").setup({
-				signs = {
-					delete = { text = i.Triangle },
-					topdelete = { text = i.Triangle },
-					changedelete = { text = i.BoldLineLeft },
-				},
 				attach_to_untracked = true,
 				current_line_blame = true,
 			})
@@ -94,13 +88,7 @@ require("lazy").setup({
 		opts = { user_default_options = { tailwind = true, RRGGBBAA = true, css = true, css_fn = true } },
 	},
 	{ "moll/vim-bbye", keys = { { "<leader>x", "<cmd>Bdelete<cr>", { desc = "Close Buffer" } } } },
-	{
-		"mg979/vim-visual-multi",
-		config = function()
-			vim.g.VM_maps["Add Cursor Up"] = ""
-			vim.g.VM_maps["Add Cursor Down"] = ""
-		end,
-	},
+	"mg979/vim-visual-multi",
 	"mbbill/undotree",
 	"folke/neodev.nvim",
 	{
@@ -150,18 +138,28 @@ require("lazy").setup({
 		build = function() vim.fn["mkdp#util#install"]() end,
 	},
 	"imsnif/kdl.vim",
-	{ "stevearc/conform.nvim", config = function() require("configs.formatting") end },
-	{ "mfussenegger/nvim-lint", config = function() require("configs.lint") end },
 	{
-		"neovim/nvim-lspconfig",
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v3.x",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
+			"neovim/nvim-lspconfig",
 			"hrsh7th/cmp-nvim-lsp",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			"luckasRanarison/tailwind-tools.nvim",
 			{ "antosha417/nvim-lsp-file-operations", config = true },
+			"hrsh7th/nvim-cmp",
+			"hrsh7th/cmp-buffer", -- source for text in buffer
+			"hrsh7th/cmp-path", -- source for file system paths
+			"hrsh7th/cmp-nvim-lsp", -- lsp autocompletion
+			"L3MON4D3/LuaSnip", -- snippet engine
+			"saadparwaiz1/cmp_luasnip", -- for autocompletion
+			"rafamadriz/friendly-snippets", -- useful snippets
+			"onsails/lspkind.nvim", -- vs-code like pictograms
+			"stevearc/conform.nvim",
+			"mfussenegger/nvim-lint",
 		},
 		config = function() require("configs.lsp") end,
 	},
@@ -173,21 +171,6 @@ require("lazy").setup({
 			"windwp/nvim-ts-autotag",
 		},
 		config = function() require("configs.treesitter") end,
-	},
-	{
-		"hrsh7th/nvim-cmp",
-		lazy = false,
-		event = "InsertEnter",
-		dependencies = {
-			"hrsh7th/cmp-buffer", -- source for text in buffer
-			"hrsh7th/cmp-path", -- source for file system paths
-			"hrsh7th/cmp-nvim-lsp", -- lsp autocompletion
-			"L3MON4D3/LuaSnip", -- snippet engine
-			"saadparwaiz1/cmp_luasnip", -- for autocompletion
-			"rafamadriz/friendly-snippets", -- useful snippets
-			"onsails/lspkind.nvim", -- vs-code like pictograms
-		},
-		config = function() require("configs.nvim-cmp") end,
 	},
 	{
 		"nvim-telescope/telescope.nvim",
