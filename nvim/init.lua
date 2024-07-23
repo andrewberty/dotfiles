@@ -21,7 +21,15 @@ require("lazy").setup({
 	-- BASICS
 	{ import = "colorschemes" },
 	"nvim-lua/plenary.nvim",
-	"nvim-tree/nvim-web-devicons",
+	-- "nvim-tree/nvim-web-devicons",
+	{
+		"echasnovski/mini.icons",
+		version = false,
+		config = function()
+			require("mini.icons").setup()
+			require("mini.icons").mock_nvim_web_devicons()
+		end,
+	},
 
 	-- PLUGINS
 	{
