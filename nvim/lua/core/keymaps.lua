@@ -22,10 +22,13 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Keep Cursor Centered While Scr
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Keep Cursor Centered While Scrolling", silent = true })
 
 vim.keymap.set("v", "y", "y`]", { desc = "Place Cursor at End After Yanking", silent = true })
+vim.keymap.set("n", "yy", "yy`]", { desc = "Place Cursor at End After Yanking", silent = true })
 vim.keymap.set("v", "p", '"_dp`]', { desc = "Paste Without Yaning", silent = true })
-vim.keymap.set("n", "p", 'v"_dp`]', { desc = "Paste Without Yanking", silent = true })
+vim.keymap.set("n", "p", "o<ESC>gP", { desc = "Paste Without Yanking", silent = true })
+-- vim.keymap.set("v", "p", "gP", { desc = "Paste Without Yanking", silent = true })
 vim.keymap.set({ "n", "v" }, "d", '"_d', { desc = "Delete Without Yanking", silent = true })
 vim.keymap.set({ "n", "v" }, "c", '"_c', { desc = "Change Without Yanking", silent = true })
+vim.keymap.set("n", "<CR>", "ciw", { desc = "Change Word on Enter", silent = true })
 
 vim.keymap.set({ "n", "v" }, "<down>", "gj", { desc = "Move down to visible line", silent = true })
 vim.keymap.set({ "n", "v" }, "<up>", "gk", { desc = "Move up to visible line", silent = true })
