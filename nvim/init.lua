@@ -25,10 +25,7 @@ require("lazy").setup({
 	{
 		"echasnovski/mini.icons",
 		version = false,
-		config = function()
-			require("mini.icons").setup()
-			require("mini.icons").mock_nvim_web_devicons()
-		end,
+		config = function() require("mini.icons").setup() end,
 	},
 
 	-- PLUGINS
@@ -96,7 +93,16 @@ require("lazy").setup({
 		opts = { user_default_options = { tailwind = true, RRGGBBAA = true, css = true, css_fn = true } },
 	},
 	{ "moll/vim-bbye", keys = { { "<leader>x", "<cmd>Bdelete<cr>", { desc = "Close Buffer" } } } },
-	"mg979/vim-visual-multi",
+	{
+		"mg979/vim-visual-multi",
+		init = function()
+			vim.g.VM_default_mappings = 0
+			vim.g.VM_maps = {
+				["Select All"] = "\\\\a",
+				["Add Cursor At Pos"] = "\\\\\\",
+			}
+		end,
+	},
 	"mbbill/undotree",
 	"folke/neodev.nvim",
 	{
@@ -111,10 +117,10 @@ require("lazy").setup({
 		version = "*",
 		opts = {
 			mappings = {
-				down = "<M-down>",
-				up = "<M-up>",
-				line_down = "<M-down>",
-				line_up = "<M-up>",
+				down = "<C-down>",
+				up = "<C-up>",
+				line_down = "<C-down>",
+				line_up = "<C-up>",
 			},
 		},
 	},
@@ -150,7 +156,6 @@ require("lazy").setup({
 		ft = { "markdown" },
 		build = function() vim.fn["mkdp#util#install"]() end,
 	},
-	"imsnif/kdl.vim",
 	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v3.x",
