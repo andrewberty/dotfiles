@@ -1,4 +1,5 @@
 vim.keymap.set({ "n", "v" }, "<leader>e", ":NvimTreeToggle<CR>", { desc = "Nvim Tree Toggle", silent = true })
+require("mini.icons").mock_nvim_web_devicons()
 
 require("nvim-tree").setup({
 	filters = {
