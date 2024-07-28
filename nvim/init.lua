@@ -19,32 +19,23 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	-- BASICS
-	{ import = "colorschemes" },
+	{ import = "plugins.colorschemes" },
+	{ import = "plugins.mini" },
 	"nvim-lua/plenary.nvim",
-	-- "nvim-tree/nvim-web-devicons",
-	{
-		"echasnovski/mini.icons",
-		version = false,
-		config = function() require("mini.icons").setup() end,
-	},
 
 	-- PLUGINS
-	{
-		"echasnovski/mini.starter",
-		event = "VimEnter",
-		version = "*",
-		config = function() require("configs.mini-starter") end,
-	},
+	"mbbill/undotree",
+	"folke/neodev.nvim",
 	{
 		"nvim-lualine/lualine.nvim",
 		event = { "BufReadPost", "BufNewFile", "VeryLazy" },
-		config = function() require("configs.lualine") end,
+		config = function() require("plugins.configs.lualine") end,
 	},
 	{
 		"goolord/alpha-nvim",
 		enabled = false,
 		event = "VimEnter",
-		config = function() require("configs.alpha-nvim") end,
+		config = function() require("plugins.configs.alpha-nvim") end,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -61,17 +52,11 @@ require("lazy").setup({
 		"folke/noice.nvim",
 		dependencies = { "MunifTanjim/nui.nvim" },
 		event = "VeryLazy",
-		config = function() require("configs.noice") end,
+		config = function() require("plugins.configs.noice") end,
 	},
 	{
 		"lewis6991/gitsigns.nvim",
-		event = { "BufReadPost", "BufNewFile", "VeryLazy" },
-		config = function()
-			require("gitsigns").setup({
-				attach_to_untracked = true,
-				current_line_blame = true,
-			})
-		end,
+		config = function() require("gitsigns").setup({ attach_to_untracked = true, current_line_blame = true }) end,
 	},
 	{
 		"christoomey/vim-tmux-navigator",
@@ -92,7 +77,6 @@ require("lazy").setup({
 		"NvChad/nvim-colorizer.lua",
 		opts = { user_default_options = { tailwind = true, RRGGBBAA = true, css = true, css_fn = true } },
 	},
-	{ "moll/vim-bbye", keys = { { "<leader>x", "<cmd>Bdelete<cr>", { desc = "Close Buffer" } } } },
 	{
 		"mg979/vim-visual-multi",
 		init = function()
@@ -103,45 +87,11 @@ require("lazy").setup({
 			}
 		end,
 	},
-	"mbbill/undotree",
-	"folke/neodev.nvim",
-	{
-		"kylechui/nvim-surround",
-		version = "*",
-		event = "VeryLazy",
-		config = function() require("nvim-surround").setup() end,
-	},
-	{ "echasnovski/mini.ai", version = "*", config = function() require("mini.ai").setup() end },
-	{
-		"echasnovski/mini.move",
-		version = "*",
-		opts = {
-			mappings = {
-				down = "<C-down>",
-				up = "<C-up>",
-				line_down = "<C-down>",
-				line_up = "<C-up>",
-			},
-		},
-	},
-	{ "echasnovski/mini.pairs", event = "VeryLazy", config = function() require("mini.pairs").setup() end },
 	{
 		"folke/ts-comments.nvim",
 		opts = {},
 		event = "VeryLazy",
 		enabled = vim.fn.has("nvim-0.10.0") == 1,
-	},
-	{
-		"echasnovski/mini.comment",
-		dependencies = { { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true } },
-		event = "VeryLazy",
-		config = function()
-			require("mini.comment").setup({
-				hooks = {
-					pre = function() require("ts_context_commentstring.internal").update_commentstring({}) end,
-				},
-			})
-		end,
 	},
 	{
 		"nvim-pack/nvim-spectre",
@@ -179,7 +129,7 @@ require("lazy").setup({
 			"stevearc/conform.nvim",
 			"mfussenegger/nvim-lint",
 		},
-		config = function() require("configs.lsp") end,
+		config = function() require("plugins.configs.lsp") end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -188,7 +138,7 @@ require("lazy").setup({
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			{ "windwp/nvim-ts-autotag", config = function() require("nvim-ts-autotag").setup() end },
 		},
-		config = function() require("configs.treesitter") end,
+		config = function() require("plugins.configs.treesitter") end,
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -201,7 +151,7 @@ require("lazy").setup({
 			"sharkdp/fd",
 			{ dir = "~/code/telescope-themes" },
 		},
-		config = function() require("configs.telescope") end,
+		config = function() require("plugins.configs.telescope") end,
 	},
 	{
 		"kdheepak/lazygit.nvim",
@@ -220,11 +170,11 @@ require("lazy").setup({
 		event = { "BufReadPost", "BufNewFile" },
 		keys = { { "<leader>td", "<cmd>TodoTelescope<cr>", { desc = "Todo Comments" } } },
 	},
-	{ "nvim-tree/nvim-tree.lua", config = function() require("configs.nvim-tree") end },
+	{ "nvim-tree/nvim-tree.lua", config = function() require("plugins.configs.nvim-tree") end },
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
-		config = function() require("configs.whickey") end,
+		config = function() require("plugins.configs.whichkey") end,
 	},
 	-- LAZY OPTYIONS
 }, {
