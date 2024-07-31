@@ -1,11 +1,16 @@
 {
-  "colorscheme": "rose-pine",
+  "colorscheme": "rose-pine-moon",
   "font": {
-    "family": "Hack",
+    "family": "BerkeleyMono Nerd Font",
     "font_size": 16,
     "weight": 400
   },
   "fonts": {
+    "Berkeley Mono Nerd font": {
+      "family": "BerkeleyMono Nerd Font",
+      "font_size": 16,
+      "weight": 400
+    },
     "CommitMono": {
       "family": "CommitMono",
       "font_size": 16,
@@ -48,6 +53,11 @@
     },
     "Menlo": {
       "family": "Menlo",
+      "font_size": 16,
+      "weight": 400
+    },
+    "Rec Mono": {
+      "family": "Rec Mono Duotone",
       "font_size": 16,
       "weight": 400
     },

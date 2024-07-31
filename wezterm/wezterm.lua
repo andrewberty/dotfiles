@@ -24,6 +24,19 @@ config.font_size = G.font.font_size
 local scheme = wezterm.color.get_builtin_schemes()[G.colorscheme]
 scheme.background = G.background or scheme.background
 
+-- rose pine overrides
+if G.colorscheme == "rose-pine" or G.colorscheme == "rose-pine-moon" then
+	scheme.background = G.background or "#12101A"
+end
+
+if G.colorscheme == "catppuccin-mocha" then
+	scheme.background = G.background or "#12101A"
+end
+
+if G.colorscheme == "tokyonight_moon" then
+	scheme.background = G.background or "#0A0E19" --deep blue
+end
+
 config.color_scheme = "CustomTheme"
 config.color_schemes = { ["CustomTheme"] = scheme }
 config.inactive_pane_hsb = { saturation = 1, brightness = 1 }
