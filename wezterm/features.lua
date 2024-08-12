@@ -3,19 +3,19 @@ local act = wezterm.action
 
 local M = {}
 
-M.globals_dir = wezterm.config_dir .. "/globals.json"
+M.globals_path = wezterm.config_dir .. "/globals.toml"
 
-M.getLuaFromJSON = function()
-	local file = assert(io.open(M.globals_dir, "r"))
-	local json = file:read("a")
+M.getLuaFromTOML = function()
+	local file = assert(io.open(M.globals_path, "r"))
+	local toml = file:read("a")
 	file:close()
-	return wezterm.serde.json_decode(json)
+	return wezterm.serde.toml_decode(toml)
 end
 
-M.writeLuaToJSON = function(lua)
-	local json = wezterm.serde.json_encode_pretty(lua)
-	local file = assert(io.open(M.globals_dir, "w"))
-	file:write(json)
+M.writeLuaToTOML = function(lua)
+	local toml = wezterm.serde.toml_encode_pretty(lua)
+	local file = assert(io.open(M.globals_path, "w"))
+	file:write(toml)
 	file:close()
 end
 
@@ -45,12 +45,12 @@ M.switcher = function(window, pane, title, data, action)
 end
 
 M.font_switcher = function(window, pane)
-	local fonts = M.getLuaFromJSON().fonts
+	local fonts = M.getLuaFromTOML().fonts
 	local action = wezterm.action_callback(function(_, _, _, label)
 		if label then
-			local lua = M.getLuaFromJSON()
+			local lua = M.getLuaFromTOML()
 			lua.font = fonts[label]
-			M.writeLuaToJSON(lua)
+			M.writeLuaToTOML(lua)
 		end
 	end)
 
@@ -61,9 +61,9 @@ M.theme_switcher = function(window, pane)
 	local schemes = wezterm.get_builtin_color_schemes()
 	local action = wezterm.action_callback(function(_, _, _, label)
 		if label then
-			local lua = M.getLuaFromJSON()
+			local lua = M.getLuaFromTOML()
 			lua.colorscheme = label
-			M.writeLuaToJSON(lua)
+			M.writeLuaToTOML(lua)
 		end
 	end)
 
@@ -71,69 +71,39 @@ M.theme_switcher = function(window, pane)
 end
 
 M.togglePadding = function()
-	local lua = M.getLuaFromJSON()
+	local lua = M.getLuaFromTOML()
 	if lua.padding.top == 0 then
 		lua.padding = { top = 20, bottom = 20, left = 20, right = 20 }
 	else
 		lua.padding = { top = 0, bottom = 0, left = 0, right = 0 }
 	end
-	M.writeLuaToJSON(lua)
+	M.writeLuaToTOML(lua)
 end
 
 M.increaseOpacity = function()
-	local lua = M.getLuaFromJSON()
+	local lua = M.getLuaFromTOML()
 	if lua.opacity <= 1 then
 		lua.opacity = lua.opacity + 0.01
-		M.writeLuaToJSON(lua)
+		M.writeLuaToTOML(lua)
 	end
 end
 M.decreaseOpacity = function()
-	local lua = M.getLuaFromJSON()
+	local lua = M.getLuaFromTOML()
 	if lua.opacity >= 0.5 then
 		lua.opacity = lua.opacity - 0.01
-		M.writeLuaToJSON(lua)
+		M.writeLuaToTOML(lua)
 	end
 end
 M.resetOpacity = function()
-	local lua = M.getLuaFromJSON()
+	local lua = M.getLuaFromTOML()
 	lua.opacity = 1
-	M.writeLuaToJSON(lua)
+	M.writeLuaToTOML(lua)
 end
 
--- CENTER AUTOMATICALLY
--- wezterm.on("gui-startup", function()
--- 	local screen = wezterm.gui.screens().main
--- 	local ratio = 0.7
--- 	local width, height = 1800, 1169
--- 	-- local width, height = screen.width * ratio, screen.height * ratio
--- 	local tab, pane, window = wezterm.mux.spawn_window({
--- 		position = { x = (screen.width - width) / 2, y = (screen.height - height) / 2 },
--- 	})
--- 	print(screen.width, screen.height)
--- 	-- window:gui_window():maximize()
--- 	window:gui_window():set_inner_size(width, height)
--- end)
-
--- NAVIGATOR
-M.conditionalActivatePane = function(window, pane, pane_direction, vim_direction)
-	if pane:get_foreground_process_name():find("n?vim") ~= nil then
-		window:perform_action(act.SendKey({ key = vim_direction, mods = "ALT" }), pane)
-	else
-		window:perform_action(act.ActivatePaneDirection(pane_direction), pane)
-	end
+M.toggleOLED = function()
+	local lua = M.getLuaFromTOML()
+	lua.OLED = not lua.OLED
+	M.writeLuaToTOML(lua)
 end
-
-wezterm.on("ActivatePaneDirection-right", function(window, pane)
-	M.conditionalActivatePane(window, pane, "Right", "RightArrow")
-end)
-wezterm.on("ActivatePaneDirection-left", function(window, pane)
-	M.conditionalActivatePane(window, pane, "Left", "LeftArrow")
-end)
-wezterm.on("ActivatePaneDirection-up", function(window, pane)
-	M.conditionalActivatePane(window, pane, "Up", "UpArrow")
-end)
-wezterm.on("ActivatePaneDirection-down", function(window, pane)
-	M.conditionalActivatePane(window, pane, "Down", "DownArrow")
-end)
 
 return M

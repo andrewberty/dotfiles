@@ -5,7 +5,7 @@ alias cl=clear
 alias gst="git status"
 alias lg="lazygit"
 alias x=exit
-alias tn="tmux new -s $*"
+alias t="tmux"
 alias v="nvim $*"
 alias lazyvim="NVIM_APPNAME=nvim-lazyvim nvim"
 alias ls="eza --icons -la"

@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 local features = require("features")
 local act = wezterm.action
 local config = wezterm.config_builder()
-local G = features.getLuaFromJSON()
+local G = features.getLuaFromTOML()
 
 -- FONTS
 local font
@@ -10,21 +10,24 @@ if G.font.family == "Default" then
 	font = wezterm.font_with_fallback({})
 else
 	font = wezterm.font_with_fallback({
-		{ family = G.font.family, weight = G.font.weight, italic = false },
+		{ family = G.font.family, weight = G.font.weight or 400, italic = false },
 	})
+end
+
+if G.OLED then
+	G.background = "#000000"
 end
 
 -- G.background = "#12101A"
 -- G.background = "#0A0E19"
 
 config.font_rules = { { intensity = "Bold", font = font }, { intensity = "Normal", font = font } }
-config.font_size = G.font.font_size
+config.font_size = G.font.font_size or 16
 
 -- COLORS
 local scheme = wezterm.color.get_builtin_schemes()[G.colorscheme]
 scheme.background = G.background or scheme.background
 
--- rose pine overrides
 if G.colorscheme == "rose-pine" or G.colorscheme == "rose-pine-moon" then
 	scheme.background = G.background or "#12101A"
 end
@@ -55,7 +58,7 @@ config.initial_cols = 140
 config.initial_rows = 40
 config.enable_scroll_bar = false
 config.window_frame = { font = wezterm.font({ family = G.font.family, weight = G.font.weight }) }
-config.command_palette_font_size = G.font.font_size - 1
+config.command_palette_font_size = G.font.font_size or 16
 config.front_end = "WebGpu"
 
 -- CURSOR
@@ -77,6 +80,7 @@ config.keys = {
 	{ key = "x", mods = "CMD|CTRL", action = wezterm.action_callback(features.resetOpacity) },
 	{ key = "k", mods = "CMD|CTRL", action = wezterm.action_callback(features.theme_switcher) },
 	{ key = "f", mods = "CMD|CTRL", action = wezterm.action_callback(features.font_switcher) },
+	{ key = "o", mods = "CMD|CTRL", action = wezterm.action_callback(features.toggleOLED) },
 
 	{ key = "m", mods = "CMD", action = wezterm.action.Hide },
 	{ key = "c", mods = "CMD", action = act.CopyTo("ClipboardAndPrimarySelection") },

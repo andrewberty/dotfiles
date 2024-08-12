@@ -1,0 +1,51 @@
+OLED = true
+colorscheme = "rose-pine-moon"
+opacity = 0.87
+
+[font]
+family = "Menlo"
+
+[fonts."Berkeley Mono Nerd font"]
+family = "BerkeleyMono Nerd Font"
+
+[fonts.CommitMono]
+family = "CommitMono"
+
+[fonts.Default]
+family = "Default"
+
+[fonts."Fira Code"]
+family = "Fira Code"
+
+[fonts."Geist Mono"]
+family = "Geist Mono"
+
+[fonts.Hack]
+family = "Hack"
+
+[fonts."IBM Plex Mono"]
+family = "IBM Plex Mono"
+
+[fonts.Lilex]
+family = "Lilex"
+
+[fonts."MD IO Trial"]
+family = "MD IO Trial"
+
+[fonts.Menlo]
+family = "Menlo"
+
+[fonts."Rec Mono"]
+family = "Rec Mono Duotone"
+
+[fonts."Roboto Mono"]
+family = "Roboto Mono"
+
+[fonts."SF Mono"]
+family = "SF Mono"
+
+[padding]
+bottom = 20
+left = 20
+right = 20
+top = 20
