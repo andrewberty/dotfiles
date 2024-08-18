@@ -2,7 +2,6 @@ local lsp_zero = require("lsp-zero")
 local lspconfig = require("lspconfig")
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
-local mason_tool_installer = require("mason-tool-installer")
 local tailwind_tools = require("tailwind-tools")
 
 local conform = require("conform")
@@ -22,13 +21,12 @@ end)
 
 lsp_zero.set_sign_icons({ error = "✘", warn = "▲", hint = "⚑", info = "»" })
 
-mason_tool_installer.setup({ ensure_installed = { "prettier", "stylua", "eslint_d" } })
 tailwind_tools.setup({})
 
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.filetype_extend("javascript", { "html", "javascriptreact" })
 
-mason.setup()
+mason.setup({ ensure_installed = { "prettier", "stylua", "eslint_d", "beautysh" } })
 
 mason_lspconfig.setup({
 	automatic_installation = true,

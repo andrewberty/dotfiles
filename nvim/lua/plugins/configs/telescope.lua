@@ -17,10 +17,16 @@ telescope.setup({
 		file_ignore_patterns = { "node_modules", "dist", ".git", ".next" },
 		path_display = { "filename_first" },
 		sorting_strategy = "ascending",
+		layout_strategy = "flex",
 		layout_config = {
 			horizontal = {
-				width = 0.85,
-				preview_width = 0.7,
+				width = 0.9,
+				height = 0.9,
+				preview_width = 0.5,
+			},
+			vertical = {
+				width = 0.9,
+				height = 0.9,
 			},
 		},
 	},

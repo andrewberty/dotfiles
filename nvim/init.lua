@@ -82,8 +82,8 @@ require("lazy").setup({
 		init = function()
 			vim.g.VM_default_mappings = 0
 			vim.g.VM_maps = {
-				["Select All"] = "\\\\a",
-				["Add Cursor At Pos"] = "\\\\\\",
+				["Select All"] = "\\a",
+				["Add Cursor At Pos"] = "\\\\",
 			}
 		end,
 	},
@@ -115,7 +115,6 @@ require("lazy").setup({
 			"hrsh7th/cmp-nvim-lsp",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			"luckasRanarison/tailwind-tools.nvim",
 			{ "antosha417/nvim-lsp-file-operations", config = true },
 			"hrsh7th/nvim-cmp",
