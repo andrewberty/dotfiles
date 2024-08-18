@@ -1,4 +1,4 @@
-OLED = true
+OLED = false
 colorscheme = "rose-pine-moon"
 opacity = 0.87
 

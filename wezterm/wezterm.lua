@@ -14,12 +14,12 @@ else
 	})
 end
 
+-- G.background = "#12101A"
+G.background = "#080B13"
+
 if G.OLED then
 	G.background = "#000000"
 end
-
--- G.background = "#12101A"
--- G.background = "#0A0E19"
 
 config.font_rules = { { intensity = "Bold", font = font }, { intensity = "Normal", font = font } }
 config.font_size = G.font.font_size or 16
@@ -60,6 +60,7 @@ config.enable_scroll_bar = false
 config.window_frame = { font = wezterm.font({ family = G.font.family, weight = G.font.weight }) }
 config.command_palette_font_size = G.font.font_size or 16
 config.front_end = "WebGpu"
+config.bidi_enabled = true
 
 -- CURSOR
 config.default_cursor_style = "BlinkingBlock"
