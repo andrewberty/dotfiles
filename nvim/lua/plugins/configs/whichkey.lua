@@ -1,6 +1,7 @@
 local which_key = require("which-key")
 which_key.setup({
 	plugins = {
+		registers = false,
 		presets = {
 			operators = false, -- adds help for operators like d, y, ...
 			motions = false, -- adds help for motions

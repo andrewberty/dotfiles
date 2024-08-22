@@ -1,16 +1,4 @@
 local telescope = require("telescope")
-local builtin_schemes = require("telescope._extensions.themes").builtin_schemes
-
-local ignored_schemes = vim.list_extend(builtin_schemes, {
-	"catppuccin",
-	"catppuccin-frappe",
-	"catppuccin-latte",
-	"catppuccin-macchiato",
-	"rose-pine",
-	"rose-pine-dawn",
-	"tokyonight",
-	"tokyonight-day",
-})
 
 telescope.setup({
 	defaults = {
@@ -50,25 +38,15 @@ telescope.setup({
 					height = 0.7,
 				},
 			},
-			ignore = ignored_schemes,
+			light_themes = {
+				ignore = true,
+				keywords = { "light", "day", "frappe" },
+			},
 			enable_previewer = false,
 			enable_live_preview = true,
 			persist = {
 				enabled = true,
 				path = vim.fn.stdpath("config") .. "/lua/core/theme.lua",
-			},
-		},
-		file_browser = {
-			-- theme = "ivy",
-			-- disables netrw and use telescope-file-browser in its place
-			hijack_netrw = true,
-			mappings = {
-				["i"] = {
-					-- your custom insert mode mappings
-				},
-				["n"] = {
-					-- your custom normal mode mappings
-				},
 			},
 		},
 	},

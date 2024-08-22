@@ -1,5 +1,31 @@
 return {
 	{
+		"RRethy/base16-nvim",
+		priority = 1000,
+		config = function()
+			require("base16-colorscheme").with_config({
+				telescope = false,
+				indentblankline = true,
+				notify = true,
+				ts_rainbow = true,
+				cmp = false,
+				illuminate = true,
+				dapui = true,
+			})
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				pattern = "base16-*",
+				callback = function()
+					vim.cmd([[hi Normal guibg=none]])
+					vim.cmd([[hi NormalFloat guibg=none]])
+					vim.cmd([[hi FloatBorder guifg=#cccccc]])
+					vim.cmd([[hi NormalNC guibg=none]])
+					vim.cmd([[hi FloatBorder guibg=none]])
+					vim.cmd([[hi SignColumn guibg=none]])
+				end,
+			})
+		end,
+	},
+	{
 		"rose-pine/neovim",
 		name = "rose-pine",
 		priority = 1000,
