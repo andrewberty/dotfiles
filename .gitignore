@@ -2,4 +2,5 @@
 /tmux/plugins/
 /tmux/resurrect/
 /alacritty/colors/
-nvim/lazy-lock.json
+/nvim/lazy-lock.json
+/wezterm/globals.toml
