@@ -4,17 +4,18 @@ local act = wezterm.action
 local M = {}
 
 M.globals_path = wezterm.config_dir .. "/globals.toml"
+M.fonts_path = wezterm.config_dir .. "/fonts.toml"
 
-M.getLuaFromTOML = function()
-	local file = assert(io.open(M.globals_path, "r"))
+M.getLuaFromTOML = function(path)
+	local file = assert(io.open(path or M.globals_path, "r"))
 	local toml = file:read("a")
 	file:close()
 	return wezterm.serde.toml_decode(toml)
 end
 
-M.writeLuaToTOML = function(lua)
+M.writeLuaToTOML = function(lua, path)
 	local toml = wezterm.serde.toml_encode_pretty(lua)
-	local file = assert(io.open(M.globals_path, "w"))
+	local file = assert(io.open(path or M.globals_path, "w"))
 	file:write(toml)
 	file:close()
 end
@@ -45,7 +46,7 @@ M.switcher = function(window, pane, title, data, action)
 end
 
 M.font_switcher = function(window, pane)
-	local fonts = M.getLuaFromTOML().fonts
+	local fonts = M.getLuaFromTOML(M.fonts_path).fonts
 	local action = wezterm.action_callback(function(_, _, _, label)
 		if label then
 			local lua = M.getLuaFromTOML()

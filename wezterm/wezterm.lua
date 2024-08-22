@@ -15,7 +15,7 @@ else
 end
 
 -- G.background = "#12101A"
-G.background = "#080B13"
+-- G.background = "#080B13"
 
 if G.OLED then
 	G.background = "#000000"
