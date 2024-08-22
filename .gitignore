@@ -3,4 +3,5 @@
 /tmux/resurrect/
 /alacritty/colors/
 /nvim/lazy-lock.json
+/nvim/lua/core/theme.lua
 /wezterm/globals.toml
