@@ -109,13 +109,13 @@ require("lazy").setup({
 		event = "VeryLazy",
 		enabled = vim.fn.has("nvim-0.10.0") == 1,
 	},
-	{
-		"nvim-pack/nvim-spectre",
-		keys = {
-			{ "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" } },
-			{ "<leader>S.", '<cmd>lua require("spectre").open_file_search()<CR>', { desc = "Search on current file" } },
-		},
-	},
+	-- {
+	-- 	"nvim-pack/nvim-spectre",
+	-- 	keys = {
+	-- 		{ "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" } },
+	-- 		{ "<leader>S.", '<cmd>lua require("spectre").open_file_search()<CR>', { desc = "Search on current file" } },
+	-- 	},
+	-- },
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -173,6 +173,18 @@ require("lazy").setup({
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		config = function() require("plugins.configs.whichkey") end,
+	},
+	{
+		"MagicDuck/grug-far.nvim",
+		config = function() require("grug-far").setup({}) end,
+		keys = {
+			{ "<leader>sg", ":lua require('grug-far').grug_far()<CR>", { desc = "Search and replace" } },
+			{
+				"<leader>s.",
+				":lua require('grug-far').grug_far({ prefills = { paths = vim.fn.expand('%') } })<CR>",
+				{ desc = "Search and replace current file" },
+			},
+		},
 	},
 	-- LAZY OPTYIONS
 }, {
