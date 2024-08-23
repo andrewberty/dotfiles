@@ -36,8 +36,8 @@ if G.colorscheme == "catppuccin-mocha" then
 	scheme.background = G.background or "#12101A"
 end
 
-if G.colorscheme == "tokyonight_moon" then
-	scheme.background = G.background or "#0A0E19" --deep blue
+if G.colorscheme == "tokyonight" or G.colorscheme == "tokyonight_moon" then
+	scheme.background = G.background or "#15161F"
 end
 
 config.color_scheme = "CustomTheme"
