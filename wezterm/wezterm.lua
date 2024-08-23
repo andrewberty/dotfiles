@@ -63,7 +63,7 @@ config.front_end = "WebGpu"
 config.bidi_enabled = true
 
 -- CURSOR
-config.default_cursor_style = "BlinkingBlock"
+config.default_cursor_style = "BlinkingBar"
 config.cursor_blink_ease_in = "Linear"
 config.cursor_blink_ease_out = "Linear"
 config.hide_mouse_cursor_when_typing = true
