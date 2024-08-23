@@ -1,4 +1,12 @@
 export EDITOR="/opt/homebrew/bin/nvim"
+# export PATH=/Applications/XAMPP/bin/:$PATH
+# append
+path+=('/Applications/XAMPP/bin/')
+# or prepend
+# path=('/home/david/pear/bin' $path)
+# export to sub-processes (make it inherited by child processes)
+export PATH
+
 
 # ALIASES
 alias cl=clear
