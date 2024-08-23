@@ -4,7 +4,6 @@ require("core.autocmds")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
----@diagnostic disable-next-line: undefined-field
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
@@ -20,23 +19,50 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	-- BASICS
 	{ import = "plugins.colorschemes" },
-	{ import = "plugins.mini" },
 	"nvim-lua/plenary.nvim",
 
 	-- PLUGINS
 	"mbbill/undotree",
 	"folke/neodev.nvim",
+	"mg979/vim-visual-multi",
+	{
+		"echasnovski/mini.icons",
+		version = false,
+		config = function() require("mini.icons").setup() end,
+	},
+	{
+		"echasnovski/mini.starter",
+		event = "VimEnter",
+		version = "*",
+		config = function() require("plugins.configs.mini-starter") end,
+	},
+	{
+		"echasnovski/mini.bufremove",
+		version = false,
+		config = function() require("mini.bufremove").setup() end,
+		keys = { { "<leader>x", "<cmd>lua require('mini.bufremove').delete()<cr>", { desc = "Close Buffer" } } },
+	},
+	{
+		"echasnovski/mini.surround",
+		version = false,
+		config = function()
+			vim.keymap.set({ "n", "x" }, "s", "<Nop>")
+			require("mini.surround").setup({ mappings = { add = "s" } })
+		end,
+	},
+	{ "echasnovski/mini.ai", version = "*", config = function() require("mini.ai").setup() end },
+	{ "echasnovski/mini.pairs", event = "VeryLazy", config = function() require("mini.pairs").setup() end },
 	{
 		"nvim-lualine/lualine.nvim",
 		event = { "BufReadPost", "BufNewFile", "VeryLazy" },
 		config = function() require("plugins.configs.lualine") end,
 	},
-	{
-		"goolord/alpha-nvim",
-		enabled = false,
-		event = "VimEnter",
-		config = function() require("plugins.configs.alpha-nvim") end,
-	},
+	-- {
+	-- 	"goolord/alpha-nvim",
+	-- 	enabled = false,
+	-- 	event = "VimEnter",
+	-- 	config = function() require("plugins.configs.alpha-nvim") end,
+	-- },
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
@@ -76,16 +102,6 @@ require("lazy").setup({
 	{
 		"NvChad/nvim-colorizer.lua",
 		opts = { user_default_options = { tailwind = true, RRGGBBAA = true, css = true, css_fn = true } },
-	},
-	{
-		"mg979/vim-visual-multi",
-		init = function()
-			vim.g.VM_default_mappings = 0
-			vim.g.VM_maps = {
-				["Select All"] = "\\a",
-				["Add Cursor At Pos"] = "\\\\",
-			}
-		end,
 	},
 	{
 		"folke/ts-comments.nvim",
@@ -151,23 +167,6 @@ require("lazy").setup({
 			{ dir = "~/code/telescope-themes" },
 		},
 		config = function() require("plugins.configs.telescope") end,
-	},
-	{
-		"kdheepak/lazygit.nvim",
-		cmd = {
-			"LazyGit",
-			"LazyGitConfig",
-			"LazyGitCurrentFile",
-			"LazyGitFilter",
-			"LazyGitFilterCurrentFile",
-		},
-		keys = { { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" } },
-	},
-	{
-		"folke/todo-comments.nvim",
-		cmd = { "TodoTrouble", "TodoTelescope" },
-		event = { "BufReadPost", "BufNewFile" },
-		keys = { { "<leader>td", "<cmd>TodoTelescope<cr>", { desc = "Todo Comments" } } },
 	},
 	{ "nvim-tree/nvim-tree.lua", config = function() require("plugins.configs.nvim-tree") end },
 	{
