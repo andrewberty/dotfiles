@@ -36,6 +36,7 @@ mason_lspconfig.setup({
 		function(server_name) require("lspconfig")[server_name].setup({}) end,
 
 		-- custom handlers
+		["lua_ls"] = function() lspconfig["lua_ls"].setup(lsp_zero.nvim_lua_ls()) end,
 		["tailwindcss"] = function()
 			lspconfig["tailwindcss"].setup({
 				settings = {
