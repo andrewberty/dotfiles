@@ -1,9 +1,10 @@
-require("core.options")
-require("core.keymaps")
-require("core.autocmds")
+require("options")
+require("keymaps")
+require("autocmds")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
+---@diagnostic disable-next-line: undefined-field
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
@@ -57,12 +58,6 @@ require("lazy").setup({
 		event = { "BufReadPost", "BufNewFile", "VeryLazy" },
 		config = function() require("plugins.configs.lualine") end,
 	},
-	-- {
-	-- 	"goolord/alpha-nvim",
-	-- 	enabled = false,
-	-- 	event = "VimEnter",
-	-- 	config = function() require("plugins.configs.alpha-nvim") end,
-	-- },
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
@@ -109,13 +104,6 @@ require("lazy").setup({
 		event = "VeryLazy",
 		enabled = vim.fn.has("nvim-0.10.0") == 1,
 	},
-	-- {
-	-- 	"nvim-pack/nvim-spectre",
-	-- 	keys = {
-	-- 		{ "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" } },
-	-- 		{ "<leader>S.", '<cmd>lua require("spectre").open_file_search()<CR>', { desc = "Search on current file" } },
-	-- 	},
-	-- },
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -178,21 +166,20 @@ require("lazy").setup({
 		"MagicDuck/grug-far.nvim",
 		config = function() require("grug-far").setup({}) end,
 		keys = {
-			{ "<leader>sg", ":lua require('grug-far').grug_far()<CR>", { desc = "Search and replace" } },
+			{ "<leader>sg", ":lua require('grug-far').grug_far()<CR>", { desc = "Search and replace", silent = true } },
 			{
 				"<leader>s.",
 				":lua require('grug-far').grug_far({ prefills = { paths = vim.fn.expand('%') } })<CR>",
-				{ desc = "Search and replace current file" },
+				{ desc = "Search and replace current file", silent = true },
 			},
 		},
 	},
-	-- LAZY OPTYIONS
 }, {
-	install = { missing = true, colorscheme = { "rose-pine-moon" } },
+	install = { missing = true },
 	checker = { enabled = true, notify = false },
 	change_detection = { enabled = true, notify = false },
 	ui = { border = "rounded" },
 	performance = { rtp = { disabled_plugins = { "gzip", "tarPlugin", "tohtml", "tutor", "zipPlugin" } } },
 })
 
-require("core.theme")
+require("theme")

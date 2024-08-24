@@ -40,13 +40,13 @@ telescope.setup({
 			},
 			light_themes = {
 				ignore = true,
-				keywords = { "light", "day", "frappe" },
+				keywords = { "light", "day", "frappe", "latte" },
 			},
 			enable_previewer = false,
 			enable_live_preview = true,
 			persist = {
 				enabled = true,
-				path = vim.fn.stdpath("config") .. "/lua/core/theme.lua",
+				path = vim.fn.stdpath("config") .. "/lua/theme.lua",
 			},
 		},
 	},
