@@ -77,7 +77,10 @@ require("lazy").setup({
 	},
 	{
 		"lewis6991/gitsigns.nvim",
-		config = function() require("gitsigns").setup({ attach_to_untracked = true, current_line_blame = true }) end,
+		config = function()
+			vim.keymap.set("n", "<leader>r", "<cmd>lua require('gitsigns').reset_hunk()<cr>", { desc = "Reset Hunk" })
+			require("gitsigns").setup({ attach_to_untracked = true, current_line_blame = true })
+		end,
 	},
 	{
 		"christoomey/vim-tmux-navigator",
@@ -107,8 +110,21 @@ require("lazy").setup({
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		keys = {
+			{
+				"<leader>p",
+				vim.cmd.MarkdownPreview,
+				noremap = true,
+				buffer = true,
+				desc = "[P]review Markdown",
+			},
+		},
 		ft = { "markdown" },
 		build = function() vim.fn["mkdp#util#install"]() end,
+	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		opts = {},
 	},
 	{
 		"VonHeikemen/lsp-zero.nvim",

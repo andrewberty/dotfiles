@@ -1,13 +1,9 @@
 local api = vim.api
 
 -- don't auto comment new line
-api.nvim_create_autocmd("BufEnter", {
-	command = [[set formatoptions-=cro]],
-})
+api.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
 
-api.nvim_create_autocmd("TextYankPost", {
-	callback = function() vim.highlight.on_yank() end,
-})
+api.nvim_create_autocmd("TextYankPost", { callback = function() vim.highlight.on_yank() end })
 
 -- go to last loc when opening a buffer
 api.nvim_create_autocmd("BufReadPost", {
