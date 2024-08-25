@@ -64,6 +64,7 @@ require("lazy").setup({
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("ibl").setup({
+				scope = { show_start = false, show_end = false },
 				indent = { char = "┊" },
 				exclude = { filetypes = { "alpha", "dashboard", "NvimTree", "Trouble", "lazy" } },
 			})

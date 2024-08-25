@@ -35,7 +35,6 @@ alias wezconf="nvim ~/dotfiles/wezterm/wezterm.lua"
 alias zconf="nvim ~/dotfiles/.zshrc"
 alias tmuxconf="nvim ~/dotfiles/tmux/tmux.conf"
 alias starshipconf="nvim ~/.config/starship.toml"
-alias tmux="tmux a || tmux"
 
 # SCRIPTS
 # alias weztheme="cd ~/code/scripts && node weztheme.js $1"
