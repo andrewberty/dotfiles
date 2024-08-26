@@ -34,7 +34,7 @@ map("v", "p", '"_dp`]', { desc = "Paste Without Yanking", silent = true })
 map("n", "p", "p`]", { desc = "Paste Without Yanking", silent = true })
 map({ "n", "v" }, "d", '"_d', { desc = "Delete Without Yanking", silent = true })
 map({ "n", "v" }, "c", '"_c', { desc = "Change Without Yanking", silent = true })
-map("n", "<CR>", "ciw", { desc = "Change Word on Enter", silent = true })
+map("n", "<CR>", '"_ciw', { desc = "Change Word on Enter", silent = true })
 
 map({ "n", "v" }, "<down>", "gj", { desc = "Move down to visible line", silent = true })
 map({ "n", "v" }, "<up>", "gk", { desc = "Move up to visible line", silent = true })

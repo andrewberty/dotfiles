@@ -40,7 +40,7 @@ telescope.setup({
 			},
 			light_themes = {
 				ignore = true,
-				keywords = { "light", "day", "frappe", "latte" },
+				keywords = { "light", "day", "frappe", "latte", "dawn" },
 			},
 			enable_previewer = false,
 			enable_live_preview = true,

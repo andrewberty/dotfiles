@@ -1,27 +1,18 @@
 return {
 	{
-		"RRethy/base16-nvim",
+		"olivercederborg/poimandres.nvim",
+		lazy = false,
 		priority = 1000,
 		config = function()
-			require("base16-colorscheme").with_config({
-				telescope = false,
-				indentblankline = true,
-				notify = true,
-				ts_rainbow = true,
-				cmp = false,
-				illuminate = true,
-				dapui = true,
+			require("poimandres").setup({
+				disable_background = true,
+				disable_float_background = true,
+				disable_italics = true,
 			})
+
 			vim.api.nvim_create_autocmd("ColorScheme", {
-				pattern = "base16-*",
-				callback = function()
-					vim.cmd([[hi Normal guibg=none]])
-					vim.cmd([[hi NormalFloat guibg=none]])
-					vim.cmd([[hi FloatBorder guifg=#cccccc]])
-					vim.cmd([[hi NormalNC guibg=none]])
-					vim.cmd([[hi FloatBorder guibg=none]])
-					vim.cmd([[hi SignColumn guibg=none]])
-				end,
+				pattern = "poimandres",
+				callback = function() vim.cmd([[hi link WinSeparator NonText]]) end,
 			})
 		end,
 	},
@@ -60,13 +51,7 @@ return {
 
 			require("tokyonight").setup({
 				transparent = true,
-				styles = {
-					functions = {},
-					variables = {},
-					-- Background styles. Can be "dark", "transparent" or "normal"
-					sidebars = "transparent", -- style for sidebars, see below
-					floats = "transparent", -- style for floating windows
-				},
+				styles = { functions = {}, variables = {}, sidebars = "transparent", floats = "transparent" },
 				on_highlights = function(highlights, colors) highlights.TelescopeSelection = { bg = colors.none } end,
 
 				on_colors = function(colors)
@@ -85,46 +70,6 @@ return {
 				end,
 			})
 		end,
-	},
-	{
-		"catppuccin/nvim",
-		-- enabled = false,
-		priority = 1000,
-		name = "catppuccin",
-		opts = {
-			background = {
-				light = "latte",
-				dark = "mocha",
-			},
-			no_bold = true,
-			no_underline = true,
-			transparent_background = true,
-			show_end_of_buffer = false,
-			color_overrides = {
-				mocha = {
-					base = "#11111b",
-				},
-			},
-			integrations = {
-				cmp = true,
-				mason = true,
-				gitsigns = true,
-				nvimtree = true,
-				treesitter = true,
-				alpha = true,
-				notify = false,
-				noice = true,
-				telescope = {
-					enabled = true,
-					-- style = "nvchad"
-				},
-				which_key = true,
-				mini = {
-					enabled = true,
-					indentscope_color = "",
-				},
-			},
-		},
 	},
 	{
 		"bluz71/vim-nightfly-colors",
@@ -153,5 +98,27 @@ return {
 				end,
 			})
 		end,
+	},
+	{
+		"catppuccin/nvim",
+		priority = 1000,
+		name = "catppuccin",
+		opts = {
+			no_bold = true,
+			no_underline = true,
+			transparent_background = true,
+			term_colors = true,
+			integrations = {
+				grug_far = true,
+				nvim_surround = false,
+				mason = true,
+				noice = true,
+				-- telescope = {
+				-- 	enabled = true,
+				-- 	style = "nvchad",
+				-- },
+				which_key = true,
+			},
+		},
 	},
 }

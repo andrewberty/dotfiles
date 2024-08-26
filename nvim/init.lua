@@ -27,6 +27,15 @@ require("lazy").setup({
 	"folke/neodev.nvim",
 	"mg979/vim-visual-multi",
 	{
+		"axelvc/template-string.nvim",
+		config = function()
+			require("template-string").setup({
+				jsx_brackets = false,
+				remove_template_string = true,
+			})
+		end,
+	},
+	{
 		"echasnovski/mini.icons",
 		version = false,
 		config = function() require("mini.icons").setup() end,
@@ -80,6 +89,12 @@ require("lazy").setup({
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			vim.keymap.set("n", "<leader>r", "<cmd>lua require('gitsigns').reset_hunk()<cr>", { desc = "Reset Hunk" })
+			vim.keymap.set(
+				"n",
+				"<leader>gs",
+				"<cmd>lua require('gitsigns').toggle_signs()<cr>",
+				{ desc = "Toggle Git Signs" }
+			)
 			require("gitsigns").setup({ attach_to_untracked = true, current_line_blame = true })
 		end,
 	},
