@@ -14,6 +14,10 @@ else
 	})
 end
 
+config.font_rules = { { intensity = "Bold", font = font }, { intensity = "Normal", font = font } }
+config.font_size = G.font.font_size or 16
+
+-- COLORS
 -- G.background = "#12101A"
 -- G.background = "#080B13"
 
@@ -21,23 +25,15 @@ if G.OLED then
 	G.background = "#000000"
 end
 
-config.font_rules = { { intensity = "Bold", font = font }, { intensity = "Normal", font = font } }
-config.font_size = G.font.font_size or 16
-
--- COLORS
 local scheme = wezterm.color.get_builtin_schemes()[G.colorscheme]
 scheme.background = G.background or scheme.background
 
-if G.colorscheme == "rose-pine" or G.colorscheme == "rose-pine-moon" then
-	scheme.background = G.background or "#12101A"
-end
-
-if G.colorscheme == "catppuccin-mocha" then
-	scheme.background = G.background or "#12101A"
-end
-
-if G.colorscheme == "tokyonight" or G.colorscheme == "tokyonight_moon" then
-	scheme.background = G.background or "#15161F"
+for colorscheme, overrides in pairs(features.colorOverrides) do
+	if G.colorscheme == colorscheme then
+		for property, value in pairs(overrides) do
+			scheme[property] = value
+		end
+	end
 end
 
 config.color_scheme = "CustomTheme"
@@ -92,18 +88,6 @@ config.keys = {
 	{ key = "P", mods = "CMD", action = act.ActivateCommandPalette },
 	{ key = "w", mods = "CMD", action = act.CloseCurrentPane({ confirm = true }) },
 	{ key = "q", mods = "CMD", action = act.CloseCurrentTab({ confirm = false }) },
-}
-config.mouse_bindings = {
-	{
-		event = { Down = { streak = 1, button = { WheelUp = 1 } } },
-		mods = "CMD|CTRL",
-		action = wezterm.action_callback(features.increaseOpacity),
-	},
-	{
-		event = { Down = { streak = 1, button = { WheelDown = 1 } } },
-		mods = "CMD|CTRL",
-		action = wezterm.action_callback(features.decreaseOpacity),
-	},
 }
 
 return config

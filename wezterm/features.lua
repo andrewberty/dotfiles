@@ -107,4 +107,13 @@ M.toggleOLED = function()
 	M.writeLuaToTOML(lua)
 end
 
+M.colorOverrides = {
+	["Poimandres"] = { background = "#0E0F15" },
+	["catppuccin-mocha"] = { background = "#191926" },
+	["rose-pine"] = { background = "#12101A" },
+	["rose-pine-moon"] = { background = "#12101A" },
+	["tokyonight"] = { background = "#15161F" },
+	["tokyonight_moon"] = { background = "#15161F" },
+}
+
 return M
