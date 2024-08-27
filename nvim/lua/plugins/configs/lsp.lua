@@ -26,7 +26,7 @@ tailwind_tools.setup({})
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.filetype_extend("javascript", { "html", "javascriptreact" })
 
-mason.setup({ ensure_installed = { "prettier", "stylua", "eslint_d", "beautysh" } })
+mason.setup()
 
 mason_lspconfig.setup({
 	automatic_installation = true,
