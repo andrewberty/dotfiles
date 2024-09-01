@@ -26,6 +26,7 @@ require("lazy").setup({
 	"mbbill/undotree",
 	"folke/neodev.nvim",
 	"mg979/vim-visual-multi",
+	{ "Exafunction/codeium.nvim", opts = {} },
 	{
 		"axelvc/template-string.nvim",
 		config = function()

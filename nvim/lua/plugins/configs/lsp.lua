@@ -83,6 +83,7 @@ cmp.setup({
 	}),
 	sources = {
 		{ name = "luasnip" }, -- snippets
+		{ name = "codeium" }, -- codeium
 		{ name = "nvim_lsp" },
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "path" }, -- file system paths
@@ -91,6 +92,7 @@ cmp.setup({
 		format = lspkind.cmp_format({
 			before = require("tailwind-tools.cmp").lspkind_format,
 			mode = "symbol",
+			symbol_map = { Codeium = "" },
 			show_labelDetails = true,
 		}),
 	},
