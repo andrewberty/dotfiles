@@ -32,6 +32,7 @@ for colorscheme, overrides in pairs(features.colorOverrides) do
 	if G.colorscheme == colorscheme then
 		for property, value in pairs(overrides) do
 			scheme[property] = value
+			scheme.background = G.background or value
 		end
 	end
 end

@@ -114,6 +114,7 @@ M.colorOverrides = {
 	["rose-pine-moon"] = { background = "#12101A" },
 	["tokyonight"] = { background = "#15161F" },
 	["tokyonight_moon"] = { background = "#15161F" },
+	["Gruvbox Material (Gogh)"] = { background = "#0f0f0f" },
 }
 
 return M
