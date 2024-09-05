@@ -30,7 +30,7 @@ mason.setup()
 
 mason_lspconfig.setup({
 	automatic_installation = true,
-	ensure_installed = { "html", "cssls", "tailwindcss", "emmet_ls", "tsserver", "lua_ls", "taplo" },
+	ensure_installed = { "html", "cssls", "tailwindcss", "tsserver", "lua_ls", "taplo", "emmet_language_server" },
 	handlers = {
 		-- default handler
 		function(server_name) require("lspconfig")[server_name].setup({}) end,
@@ -41,21 +41,6 @@ mason_lspconfig.setup({
 			lspconfig["tailwindcss"].setup({
 				settings = {
 					tailwindCSS = { classAttributes = { "class", "className", "class:list", "classList", "ngClass", "pt" } },
-				},
-			})
-		end,
-		["emmet_ls"] = function()
-			lspconfig["emmet_ls"].setup({
-				filetypes = {
-					"html",
-					"css",
-					"sass",
-					"scss",
-					"vue",
-					"javascriptreact",
-					"typescriptreact",
-					"javascript",
-					"typescript",
 				},
 			})
 		end,
@@ -82,9 +67,9 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	}),
 	sources = {
+		{ name = "nvim_lsp" },
 		{ name = "luasnip" }, -- snippets
 		{ name = "codeium" }, -- codeium
-		{ name = "nvim_lsp" },
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "path" }, -- file system paths
 	},
