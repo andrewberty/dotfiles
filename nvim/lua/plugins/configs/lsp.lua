@@ -30,7 +30,7 @@ mason.setup()
 
 mason_lspconfig.setup({
 	automatic_installation = true,
-	ensure_installed = { "html", "cssls", "tailwindcss", "tsserver", "lua_ls", "taplo", "emmet_language_server" },
+	ensure_installed = { "html", "cssls", "tailwindcss", "ts_ls", "lua_ls", "taplo", "emmet_language_server" },
 	handlers = {
 		-- default handler
 		function(server_name) require("lspconfig")[server_name].setup({}) end,
