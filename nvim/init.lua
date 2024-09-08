@@ -4,7 +4,7 @@ require("autocmds")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
----@diagnostic disable-next-line: undefined-field
+-- @diagnostic disable-next-line: undefined-field
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
@@ -16,6 +16,10 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
+
+local function getConfig(module_name)
+	return function() require("plugins.configs." .. module_name) end
+end
 
 require("lazy").setup({
 	-- BASICS
@@ -29,23 +33,14 @@ require("lazy").setup({
 	{ "Exafunction/codeium.nvim", opts = {} },
 	{
 		"axelvc/template-string.nvim",
-		config = function()
-			require("template-string").setup({
-				jsx_brackets = false,
-				remove_template_string = true,
-			})
-		end,
+		config = function() require("template-string").setup({ jsx_brackets = false, remove_template_string = true }) end,
 	},
-	{
-		"echasnovski/mini.icons",
-		version = false,
-		config = function() require("mini.icons").setup() end,
-	},
+	{ "echasnovski/mini.icons", version = false, config = function() require("mini.icons").setup() end },
 	{
 		"echasnovski/mini.starter",
 		event = "VimEnter",
 		version = "*",
-		config = function() require("plugins.configs.mini-starter") end,
+		config = getConfig("mini-starter"),
 	},
 	{
 		"echasnovski/mini.bufremove",
@@ -63,11 +58,7 @@ require("lazy").setup({
 	},
 	{ "echasnovski/mini.ai", version = "*", config = function() require("mini.ai").setup() end },
 	{ "echasnovski/mini.pairs", event = "VeryLazy", config = function() require("mini.pairs").setup() end },
-	{
-		"nvim-lualine/lualine.nvim",
-		event = { "BufReadPost", "BufNewFile", "VeryLazy" },
-		config = function() require("plugins.configs.lualine") end,
-	},
+	{ "nvim-lualine/lualine.nvim", event = { "BufReadPost", "BufNewFile", "VeryLazy" }, config = getConfig("lualine") },
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
@@ -84,7 +75,7 @@ require("lazy").setup({
 		"folke/noice.nvim",
 		dependencies = { "MunifTanjim/nui.nvim" },
 		event = "VeryLazy",
-		config = function() require("plugins.configs.noice") end,
+		config = getConfig("noice"),
 	},
 	{
 		"lewis6991/gitsigns.nvim",
@@ -118,12 +109,7 @@ require("lazy").setup({
 		"NvChad/nvim-colorizer.lua",
 		opts = { user_default_options = { tailwind = true, RRGGBBAA = true, css = true, css_fn = true } },
 	},
-	{
-		"folke/ts-comments.nvim",
-		opts = {},
-		event = "VeryLazy",
-		enabled = vim.fn.has("nvim-0.10.0") == 1,
-	},
+	{ "folke/ts-comments.nvim", opts = {}, event = "VeryLazy" },
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -139,10 +125,7 @@ require("lazy").setup({
 		ft = { "markdown" },
 		build = function() vim.fn["mkdp#util#install"]() end,
 	},
-	{
-		"MeanderingProgrammer/render-markdown.nvim",
-		opts = {},
-	},
+	{ "MeanderingProgrammer/render-markdown.nvim", opts = {} },
 	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v3.x",
@@ -165,7 +148,7 @@ require("lazy").setup({
 			"stevearc/conform.nvim",
 			"mfussenegger/nvim-lint",
 		},
-		config = function() require("plugins.configs.lsp") end,
+		config = getConfig("lsp"),
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -174,7 +157,7 @@ require("lazy").setup({
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			{ "windwp/nvim-ts-autotag", config = function() require("nvim-ts-autotag").setup() end },
 		},
-		config = function() require("plugins.configs.treesitter") end,
+		config = getConfig("treesitter"),
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -187,14 +170,10 @@ require("lazy").setup({
 			"sharkdp/fd",
 			{ dir = "~/code/telescope-themes" },
 		},
-		config = function() require("plugins.configs.telescope") end,
+		config = getConfig("telescope"),
 	},
-	{ "nvim-tree/nvim-tree.lua", config = function() require("plugins.configs.nvim-tree") end },
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		config = function() require("plugins.configs.whichkey") end,
-	},
+	{ "nvim-tree/nvim-tree.lua", config = getConfig("nvim-tree") },
+	{ "folke/which-key.nvim", event = "VeryLazy", config = getConfig("whichkey") },
 	{
 		"MagicDuck/grug-far.nvim",
 		config = function() require("grug-far").setup({}) end,
