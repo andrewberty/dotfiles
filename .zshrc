@@ -1,12 +1,23 @@
-export EDITOR="/opt/homebrew/bin/nvim"
-# export PATH=/Applications/XAMPP/bin/:$PATH
-# append
-path+=('/Applications/XAMPP/bin/')
-# or prepend
-# path=('/home/david/pear/bin' $path)
-# export to sub-processes (make it inherited by child processes)
+path=(
+    $path
+    /Applications/XAMPP/bin
+)
+
+# Remove duplicate entries and non-existent directories
+typeset -U path
+path=($^path(N-/))
+
 export PATH
 
+export EDITOR="/opt/homebrew/bin/nvim"
+
+set -o vi
+
+setopt HIST_IGNORE_SPACE  # Don't save when prefixed with space
+setopt HIST_IGNORE_DUPS   # Don't save duplicate lines
+setopt SHARE_HISTORY      # Share history between sessions
+
+zstyle ':completion:*' menu select
 
 # ALIASES
 alias cl=clear
@@ -21,13 +32,6 @@ alias so="source ~/.zshrc"
 # alias clock="tty-clock -s -c -t -D"
 alias myfiglet="figlet -f ~/dotfiles/figlet/ANSI-SHADOW.flf $*"
 
-# function tmuxattach() {
-#   if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-#     tmux attach -t 0 || tmux new -s 0
-#   fi
-# }
-
-
 # DOTFILES
 alias alacrittyconf="nvim ~/dotfiles/alacritty/alacritty.toml"
 alias kittyconf="nvim ~/dotfiles/kitty/kitty.conf"
@@ -37,7 +41,6 @@ alias tmuxconf="nvim ~/dotfiles/tmux/tmux.conf"
 alias starshipconf="nvim ~/.config/starship.toml"
 
 # SCRIPTS
-# alias weztheme="cd ~/code/scripts && node weztheme.js $1"
 alias at="alacritty-themes"
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
@@ -70,6 +73,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-#     tmux attach -t 0 || tmux new -s 0
-# fi
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux attach || tmux new -s 0
+fi
