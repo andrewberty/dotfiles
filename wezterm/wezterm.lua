@@ -28,7 +28,15 @@ end
 local scheme = wezterm.color.get_builtin_schemes()[G.colorscheme]
 scheme.background = G.background or scheme.background
 
-for colorscheme, overrides in pairs(features.colorOverrides) do
+for colorscheme, overrides in pairs({
+	["Poimandres"] = { background = "#0E0F15" },
+	["catppuccin-mocha"] = { background = "#191926" },
+	["rose-pine"] = { background = "#12101A" },
+	["rose-pine-moon"] = { background = "#12101A" },
+	["tokyonight"] = { background = "#15161F" },
+	["tokyonight_moon"] = { background = "#15161F" },
+	["Gruvbox Material (Gogh)"] = { background = "#0f0f0f" },
+}) do
 	if G.colorscheme == colorscheme then
 		for property, value in pairs(overrides) do
 			scheme[property] = value
