@@ -31,21 +31,13 @@ require("lazy").setup({
 	"folke/neodev.nvim",
 	"mg979/vim-visual-multi",
 	{ "Exafunction/codeium.nvim", opts = {} },
-	{
-		"axelvc/template-string.nvim",
-		config = function() require("template-string").setup({ jsx_brackets = false, remove_template_string = true }) end,
-	},
-	{ "echasnovski/mini.icons", version = false, config = function() require("mini.icons").setup() end },
-	{
-		"echasnovski/mini.starter",
-		event = "VimEnter",
-		version = "*",
-		config = getConfig("mini-starter"),
-	},
+	{ "axelvc/template-string.nvim", opts = { jsx_brackets = false, remove_template_string = true } },
+	{ "echasnovski/mini.icons", version = false, opts = {} },
+	{ "echasnovski/mini.starter", event = "VimEnter", version = "*", config = getConfig("mini-starter") },
 	{
 		"echasnovski/mini.bufremove",
 		version = false,
-		config = function() require("mini.bufremove").setup() end,
+		opts = {},
 		keys = { { "<leader>x", "<cmd>lua require('mini.bufremove').delete()<cr>", { desc = "Close Buffer" } } },
 	},
 	{
@@ -56,8 +48,8 @@ require("lazy").setup({
 			require("mini.surround").setup({ mappings = { add = "s" } })
 		end,
 	},
-	{ "echasnovski/mini.ai", version = "*", config = function() require("mini.ai").setup() end },
-	{ "echasnovski/mini.pairs", event = "VeryLazy", config = function() require("mini.pairs").setup() end },
+	{ "echasnovski/mini.ai", version = "*", opts = {} },
+	{ "echasnovski/mini.pairs", event = "VeryLazy", opts = {} },
 	{ "nvim-lualine/lualine.nvim", event = { "BufReadPost", "BufNewFile", "VeryLazy" }, config = getConfig("lualine") },
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -71,12 +63,7 @@ require("lazy").setup({
 			})
 		end,
 	},
-	{
-		"folke/noice.nvim",
-		dependencies = { "MunifTanjim/nui.nvim" },
-		event = "VeryLazy",
-		config = getConfig("noice"),
-	},
+	{ "folke/noice.nvim", dependencies = { "MunifTanjim/nui.nvim" }, event = "VeryLazy", config = getConfig("noice") },
 	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
@@ -176,7 +163,7 @@ require("lazy").setup({
 	{ "folke/which-key.nvim", event = "VeryLazy", config = getConfig("whichkey") },
 	{
 		"MagicDuck/grug-far.nvim",
-		config = function() require("grug-far").setup({}) end,
+		opts = {},
 		keys = {
 			{ "<leader>sg", ":lua require('grug-far').grug_far()<CR>", { desc = "Search and replace", silent = true } },
 			{
@@ -186,7 +173,9 @@ require("lazy").setup({
 			},
 		},
 	},
+	{ "kdheepak/lazygit.nvim", keys = { { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" } } },
 }, {
+	rocks = { enabled = false, hererocks = false },
 	install = { missing = true },
 	checker = { enabled = true, notify = false },
 	change_detection = { enabled = true, notify = false },
