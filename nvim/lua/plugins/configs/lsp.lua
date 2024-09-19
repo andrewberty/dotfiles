@@ -37,10 +37,34 @@ mason_lspconfig.setup({
 
 		-- custom handlers
 		["lua_ls"] = function() lspconfig["lua_ls"].setup(lsp_zero.nvim_lua_ls()) end,
+		["eslint"] = function()
+			lspconfig.eslint.setup({
+				settings = { format = false, workingDirectory = { mode = "auto" } },
+				on_attach = function(client, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						command = "EslintFixAll",
+					})
+				end,
+			})
+		end,
 		["tailwindcss"] = function()
 			lspconfig["tailwindcss"].setup({
 				settings = {
-					tailwindCSS = { classAttributes = { "class", "className", "class:list", "classList", "ngClass", "pt" } },
+					tailwindCSS = {
+						classAttributes = {
+							"class",
+							"className",
+							"class:list",
+							"classList",
+							"ngClass",
+							"pt",
+							"imageClasses",
+							"loaderClasses",
+							"containerClasses",
+							"inputClasses",
+						},
+					},
 				},
 			})
 		end,
@@ -131,10 +155,10 @@ end, {
 })
 
 lint.linters_by_ft = {
-	javascript = { "eslint_d" },
-	typescript = { "eslint_d" },
-	javascriptreact = { "eslint_d" },
-	typescriptreact = { "eslint_d" },
+	javascript = { "eslint" },
+	typescript = { "eslint" },
+	javascriptreact = { "eslint" },
+	typescriptreact = { "eslint" },
 }
 
 local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
