@@ -4,6 +4,8 @@ local act = wezterm.action
 local config = wezterm.config_builder()
 local G = features.getLuaFromTOML()
 
+config.default_prog = { "/bin/bash", "-c", "~/code/scripts/tmux-attach.sh" }
+
 -- FONTS
 local font
 if G.font.family == "Default" then
@@ -36,6 +38,7 @@ for colorscheme, overrides in pairs({
 	["tokyonight"] = { background = "#15161F" },
 	["tokyonight_moon"] = { background = "#15161F" },
 	["Gruvbox Material (Gogh)"] = { background = "#0f0f0f" },
+	["Nightfly (Gogh)"] = { background = "#010F1A" },
 }) do
 	if G.colorscheme == colorscheme then
 		for property, value in pairs(overrides) do
