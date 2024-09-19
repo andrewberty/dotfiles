@@ -128,6 +128,7 @@ return {
 				callback = function()
 					vim.cmd([[hi VertSplit guibg=none]])
 					vim.cmd([[hi TelescopeSelection guibg=none]])
+					vim.cmd([[hi FloatTitle guibg=none]])
 				end,
 			})
 		end,
