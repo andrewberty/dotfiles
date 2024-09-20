@@ -37,17 +37,6 @@ mason_lspconfig.setup({
 
 		-- custom handlers
 		["lua_ls"] = function() lspconfig["lua_ls"].setup(lsp_zero.nvim_lua_ls()) end,
-		["eslint"] = function()
-			lspconfig.eslint.setup({
-				settings = { format = false, workingDirectory = { mode = "auto" } },
-				on_attach = function(client, bufnr)
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						buffer = bufnr,
-						command = "EslintFixAll",
-					})
-				end,
-			})
-		end,
 		["tailwindcss"] = function()
 			lspconfig["tailwindcss"].setup({
 				settings = {
@@ -72,12 +61,8 @@ mason_lspconfig.setup({
 })
 
 cmp.setup({
-	completion = {
-		completeopt = "menu,menuone,noinsert", -- auto highlight first item
-	},
-	snippet = {
-		expand = function(args) luasnip.lsp_expand(args.body) end,
-	},
+	completion = { completeopt = "menu,menuone,noinsert" }, -- auto highlight first item
+	snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
 	window = {
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
@@ -143,16 +128,12 @@ vim.api.nvim_create_user_command("FormatDisable", function(args)
 	else
 		vim.g.disable_autoformat = true
 	end
-end, {
-	desc = "Disable autoformat-on-save",
-	bang = true,
-})
+end, { desc = "Disable autoformat-on-save", bang = true })
+
 vim.api.nvim_create_user_command("FormatEnable", function()
 	vim.b.disable_autoformat = false
 	vim.g.disable_autoformat = false
-end, {
-	desc = "Re-enable autoformat-on-save",
-})
+end, { desc = "Re-enable autoformat-on-save" })
 
 lint.linters_by_ft = {
 	javascript = { "eslint" },
