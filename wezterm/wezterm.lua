@@ -4,7 +4,7 @@ local act = wezterm.action
 local config = wezterm.config_builder()
 local G = features.getLuaFromTOML()
 
-config.default_prog = { "/bin/bash", "-c", "~/code/scripts/tmux-attach.sh" }
+config.default_prog = { "/bin/bash", "-c", "~/dotfiles/scripts/tmux-attach.sh" }
 
 -- FONTS
 local font
