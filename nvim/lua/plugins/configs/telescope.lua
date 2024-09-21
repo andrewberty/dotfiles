@@ -8,13 +8,13 @@ telescope.setup({
 		layout_strategy = "flex",
 		layout_config = {
 			horizontal = {
-				width = 0.9,
-				height = 0.9,
+				width = 0.99,
+				height = 0.99,
 				preview_width = 0.5,
 			},
 			vertical = {
-				width = 0.9,
-				height = 0.9,
+				width = 0.99,
+				height = 0.99,
 			},
 		},
 	},
@@ -66,7 +66,7 @@ vim.keymap.set(
 )
 vim.keymap.set({ "n", "v" }, "<leader>st", ":Telescope live_grep<cr>", { desc = "Live Grep", silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>sk", ":Telescope keymaps<cr>", { desc = "Keymaps", silent = true })
-vim.keymap.set({ "n", "v" }, "<leader>sC", ":Telescope commands<cr>", { desc = "Commands", silent = true })
+vim.keymap.set({ "n", "v" }, "<c-k>", ":Telescope commands<cr>", { desc = "Commands", silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>sr", ":Telescope resume<cr>", { desc = "Resume last search", silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>sz", ":Telescope zoxide list<cr>", { desc = "Zoxide", silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>f", ":Telescope find_files<cr>", { desc = "Find Files", silent = true })
