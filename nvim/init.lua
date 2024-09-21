@@ -94,7 +94,7 @@ require("lazy").setup({
 	},
 	{
 		"NvChad/nvim-colorizer.lua",
-		opts = { user_default_options = { tailwind = true, RRGGBBAA = true, css = true, css_fn = true } },
+		opts = { user_default_options = { tailwind = true, css = true, css_fn = true } },
 	},
 	{ "folke/ts-comments.nvim", opts = {}, event = "VeryLazy" },
 	{
@@ -123,6 +123,7 @@ require("lazy").setup({
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"luckasRanarison/tailwind-tools.nvim",
+			"pmizio/typescript-tools.nvim",
 			{ "antosha417/nvim-lsp-file-operations", config = true },
 			"hrsh7th/nvim-cmp",
 			"hrsh7th/cmp-buffer", -- source for text in buffer
@@ -140,10 +141,7 @@ require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
-			{ "windwp/nvim-ts-autotag", config = function() require("nvim-ts-autotag").setup() end },
-		},
+		dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
 		config = getConfig("treesitter"),
 	},
 	{
@@ -163,12 +161,29 @@ require("lazy").setup({
 	{ "folke/which-key.nvim", event = "VeryLazy", config = getConfig("whichkey") },
 	{
 		"MagicDuck/grug-far.nvim",
-		opts = {},
+		config = function()
+			require("grug-far").setup({})
+
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("my-grug-far-custom-keybinds", { clear = true }),
+				pattern = { "grug-far" },
+				callback = function()
+					vim.keymap.set("n", "<localleader>w", function()
+						local state = unpack(require("grug-far").toggle_flags({ "--fixed-strings" }))
+						vim.notify("grug-far: toggled --fixed-strings " .. (state and "ON" or "OFF"))
+					end, { buffer = true })
+				end,
+			})
+		end,
 		keys = {
-			{ "<leader>sg", ":lua require('grug-far').grug_far()<CR>", { desc = "Search and replace", silent = true } },
+			{
+				"<leader>sg",
+				":lua require('grug-far').grug_far({ transient = true })<CR>",
+				{ desc = "Search and replace", silent = true },
+			},
 			{
 				"<leader>s.",
-				":lua require('grug-far').grug_far({ prefills = { paths = vim.fn.expand('%') } })<CR>",
+				":lua require('grug-far').grug_far({transient = true, prefills = { paths = vim.fn.expand('%') } })<CR>",
 				{ desc = "Search and replace current file", silent = true },
 			},
 		},

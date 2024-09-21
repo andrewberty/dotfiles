@@ -2,7 +2,7 @@ local lsp_zero = require("lsp-zero")
 local lspconfig = require("lspconfig")
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
-local tailwind_tools = require("tailwind-tools")
+local ts_tools = require("typescript-tools")
 
 local conform = require("conform")
 local lint = require("lint")
@@ -21,7 +21,15 @@ end)
 
 lsp_zero.set_sign_icons({ error = "✘", warn = "▲", hint = "⚑", info = "»" })
 
-tailwind_tools.setup({})
+ts_tools.setup({
+	settings = {
+		expose_as_code_action = "all",
+		jsx_close_tag = {
+			enable = true,
+			filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+		},
+	},
+})
 
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.filetype_extend("javascript", { "html", "javascriptreact" })
@@ -30,7 +38,7 @@ mason.setup()
 
 mason_lspconfig.setup({
 	automatic_installation = true,
-	ensure_installed = { "html", "cssls", "tailwindcss", "ts_ls", "lua_ls", "taplo", "emmet_language_server" },
+	ensure_installed = { "html", "cssls", "tailwindcss", "lua_ls", "taplo", "emmet_language_server" },
 	handlers = {
 		-- default handler
 		function(server_name) require("lspconfig")[server_name].setup({}) end,
@@ -39,22 +47,7 @@ mason_lspconfig.setup({
 		["lua_ls"] = function() lspconfig["lua_ls"].setup(lsp_zero.nvim_lua_ls()) end,
 		["tailwindcss"] = function()
 			lspconfig["tailwindcss"].setup({
-				settings = {
-					tailwindCSS = {
-						classAttributes = {
-							"class",
-							"className",
-							"class:list",
-							"classList",
-							"ngClass",
-							"pt",
-							"imageClasses",
-							"loaderClasses",
-							"containerClasses",
-							"inputClasses",
-						},
-					},
-				},
+				settings = { tailwindCSS = { experimental = { classRegex = { { "([a-zA-Z0-9\\-:]+)" } } } } },
 			})
 		end,
 	},
