@@ -126,6 +126,7 @@ require("lazy").setup({
 			"pmizio/typescript-tools.nvim",
 			{ "antosha417/nvim-lsp-file-operations", config = true },
 			"hrsh7th/nvim-cmp",
+			{ "jackieaskins/cmp-emmet", build = "npm run release" },
 			"hrsh7th/cmp-buffer", -- source for text in buffer
 			"hrsh7th/cmp-path", -- source for file system paths
 			"hrsh7th/cmp-nvim-lsp", -- lsp autocompletion
@@ -141,7 +142,10 @@ require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			{ "windwp/nvim-ts-autotag", opts = {} },
+		},
 		config = getConfig("treesitter"),
 	},
 	{

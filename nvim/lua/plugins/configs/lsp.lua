@@ -21,15 +21,7 @@ end)
 
 lsp_zero.set_sign_icons({ error = "✘", warn = "▲", hint = "⚑", info = "»" })
 
-ts_tools.setup({
-	settings = {
-		expose_as_code_action = "all",
-		jsx_close_tag = {
-			enable = true,
-			filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-		},
-	},
-})
+ts_tools.setup({ settings = { expose_as_code_action = "all" } })
 
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.filetype_extend("javascript", { "html", "javascriptreact" })
@@ -38,7 +30,7 @@ mason.setup()
 
 mason_lspconfig.setup({
 	automatic_installation = true,
-	ensure_installed = { "html", "cssls", "tailwindcss", "lua_ls", "taplo", "emmet_language_server" },
+	ensure_installed = { "html", "cssls", "tailwindcss", "lua_ls", "taplo" },
 	handlers = {
 		-- default handler
 		function(server_name) require("lspconfig")[server_name].setup({}) end,
@@ -69,6 +61,7 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	}),
 	sources = {
+		{ name = "emmet" }, -- emmet
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" }, -- snippets
 		{ name = "codeium" }, -- codeium
