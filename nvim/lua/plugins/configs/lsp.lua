@@ -1,15 +1,9 @@
 local lsp_zero = require("lsp-zero")
 local lspconfig = require("lspconfig")
-local mason = require("mason")
-local mason_lspconfig = require("mason-lspconfig")
-local ts_tools = require("typescript-tools")
-
 local conform = require("conform")
 local lint = require("lint")
-
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local lspkind = require("lspkind")
 
 lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr, exclude = { "<F2>", "<F3>", "<F4>" } })
@@ -21,21 +15,16 @@ end)
 
 lsp_zero.set_sign_icons({ error = "✘", warn = "▲", hint = "⚑", info = "»" })
 
-ts_tools.setup({ settings = { expose_as_code_action = "all" } })
+require("typescript-tools").setup({ settings = { expose_as_code_action = "all" } })
 
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.filetype_extend("javascript", { "html", "javascriptreact" })
 
-mason.setup()
-
-mason_lspconfig.setup({
+require("mason-lspconfig").setup({
 	automatic_installation = true,
-	ensure_installed = { "html", "cssls", "tailwindcss", "lua_ls", "taplo" },
 	handlers = {
-		-- default handler
-		function(server_name) require("lspconfig")[server_name].setup({}) end,
+		function(server_name) lspconfig[server_name].setup({}) end,
 
-		-- custom handlers
 		["lua_ls"] = function() lspconfig["lua_ls"].setup(lsp_zero.nvim_lua_ls()) end,
 		["tailwindcss"] = function()
 			lspconfig["tailwindcss"].setup({
@@ -52,14 +41,7 @@ cmp.setup({
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
 	},
-	mapping = cmp.mapping.preset.insert({
-		["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-		["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
-		["<C-b>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-e>"] = cmp.mapping.abort(), -- close completion window
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-	}),
+	mapping = cmp.mapping.preset.insert({ ["<CR>"] = cmp.mapping.confirm({ select = true }) }),
 	sources = {
 		{ name = "emmet" }, -- emmet
 		{ name = "nvim_lsp" },
@@ -69,7 +51,7 @@ cmp.setup({
 		{ name = "path" }, -- file system paths
 	},
 	formatting = {
-		format = lspkind.cmp_format({
+		format = require("lspkind").cmp_format({
 			before = require("tailwind-tools.cmp").lspkind_format,
 			mode = "symbol",
 			symbol_map = { Codeium = "" },
@@ -96,8 +78,7 @@ conform.setup({
 		zsh = { "beautysh" },
 	},
 	format_on_save = function(bufnr)
-		-- Disable with a global or buffer-local variable
-		if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then return end
+		if vim.g.disable_autoformat then return end
 
 		local ignore_filetypes = { "markdown" }
 		if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then return end
@@ -107,19 +88,17 @@ conform.setup({
 
 vim.keymap.set({ "n", "v" }, "<leader>lf", conform.format, { desc = "LSP Format" })
 
-vim.api.nvim_create_user_command("FormatDisable", function(args)
-	if args.bang then
-		-- FormatDisable! will disable formatting just for this buffer
-		vim.b.disable_autoformat = true
-	else
-		vim.g.disable_autoformat = true
-	end
-end, { desc = "Disable autoformat-on-save", bang = true })
+vim.api.nvim_create_user_command(
+	"FormatDisable",
+	function() vim.g.disable_autoformat = true end,
+	{ desc = "Disable autoformat-on-save", bang = true }
+)
 
-vim.api.nvim_create_user_command("FormatEnable", function()
-	vim.b.disable_autoformat = false
-	vim.g.disable_autoformat = false
-end, { desc = "Re-enable autoformat-on-save" })
+vim.api.nvim_create_user_command(
+	"FormatEnable",
+	function() vim.g.disable_autoformat = false end,
+	{ desc = "Re-enable autoformat-on-save" }
+)
 
 lint.linters_by_ft = {
 	javascript = { "eslint" },

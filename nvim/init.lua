@@ -120,7 +120,7 @@ require("lazy").setup({
 		dependencies = {
 			"neovim/nvim-lspconfig",
 			"hrsh7th/cmp-nvim-lsp",
-			"williamboman/mason.nvim",
+			{ "williamboman/mason.nvim", opts = {} },
 			"williamboman/mason-lspconfig.nvim",
 			"luckasRanarison/tailwind-tools.nvim",
 			"pmizio/typescript-tools.nvim",
