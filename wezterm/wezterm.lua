@@ -19,10 +19,6 @@ end
 config.font_rules = { { intensity = "Bold", font = font }, { intensity = "Normal", font = font } }
 config.font_size = G.font.font_size or 16
 
--- COLORS
--- G.background = "#12101A"
--- G.background = "#080B13"
-
 if G.OLED then
 	G.background = "#000000"
 end
@@ -88,6 +84,7 @@ config.keys = {
 	{ key = "x", mods = "CMD|CTRL", action = wezterm.action_callback(features.resetOpacity) },
 	{ key = "k", mods = "CMD|CTRL", action = wezterm.action_callback(features.theme_switcher) },
 	{ key = "f", mods = "CMD|CTRL", action = wezterm.action_callback(features.font_switcher) },
+	{ key = "b", mods = "CMD|CTRL", action = features.global_bg() },
 	{ key = "o", mods = "CMD|CTRL", action = wezterm.action_callback(features.toggleOLED) },
 
 	{ key = "m", mods = "CMD", action = wezterm.action.Hide },

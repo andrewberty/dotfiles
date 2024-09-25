@@ -71,6 +71,23 @@ M.theme_switcher = function(window, pane)
 	M.switcher(window, pane, "🎨 Pick a Theme!", schemes, action)
 end
 
+M.global_bg = function()
+	return act.PromptInputLine({
+		description = "Enter a global bg color! 🎨",
+		action = wezterm.action_callback(function(_, _, line)
+			if line == "" then
+				local lua = M.getLuaFromTOML()
+				lua.background = nil
+				M.writeLuaToTOML(lua)
+			elseif line then
+				local lua = M.getLuaFromTOML()
+				lua.background = line
+				M.writeLuaToTOML(lua)
+			end
+		end),
+	})
+end
+
 M.togglePadding = function()
 	local lua = M.getLuaFromTOML()
 	if lua.padding.top == 0 then
