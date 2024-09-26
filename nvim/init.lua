@@ -117,6 +117,7 @@ require("lazy").setup({
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v3.x",
 		event = { "BufReadPre", "BufNewFile" },
+		init = function() vim.g.lsp_zero_ui_float_border = 0 end,
 		dependencies = {
 			"neovim/nvim-lspconfig",
 			"hrsh7th/cmp-nvim-lsp",
