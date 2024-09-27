@@ -1,4 +1,20 @@
+local hl = function(name, opts) return vim.api.nvim_set_hl(0, name, opts) end
+
 return {
+	{
+		"tinted-theming/base16-vim",
+		config = function()
+			vim.g.base16_background_transparent = 1
+
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				pattern = "base16-*",
+				callback = function()
+					hl("NormalFloat", { bg = "" })
+					hl("TelescopeBorder", { link = "FloatBorder" })
+				end,
+			})
+		end,
+	},
 	{
 		"sainnhe/gruvbox-material",
 		lazy = false,
@@ -45,7 +61,7 @@ return {
 
 			vim.api.nvim_create_autocmd("ColorScheme", {
 				pattern = "poimandres",
-				callback = function() vim.cmd([[hi link WinSeparator NonText]]) end,
+				callback = function() hl("WinSeparator", { link = "NonText" }) end,
 			})
 		end,
 	},
@@ -126,9 +142,9 @@ return {
 			vim.api.nvim_create_autocmd("ColorScheme", {
 				pattern = "nightfly",
 				callback = function()
-					vim.cmd([[hi VertSplit guibg=none]])
-					vim.cmd([[hi TelescopeSelection guibg=none]])
-					vim.cmd([[hi FloatTitle guibg=none]])
+					hl("VertSplit", { bg = "" })
+					hl("TelescopeSelection", { bg = "" })
+					hl("FloatTitle", { bg = "" })
 				end,
 			})
 		end,
