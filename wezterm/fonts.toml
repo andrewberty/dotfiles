@@ -12,15 +12,15 @@ family = "Fira Code"
 
 [fonts."Geist Mono"]
 family = "Geist Mono"
+weight = 500
 
 [fonts.Hack]
 family = "Hack"
 
 [fonts."IBM Plex Mono"]
 family = "IBM Plex Mono"
+weight = 450
 
-[fonts.Lilex]
-family = "Lilex"
 
 [fonts."MD IO Trial"]
 family = "MD IO Trial"
@@ -33,6 +33,3 @@ family = "Rec Mono Duotone"
 
 [fonts."Roboto Mono"]
 family = "Roboto Mono"
-
-[fonts."SF Mono"]
-family = "SF Mono"
