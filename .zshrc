@@ -10,6 +10,7 @@ path=($^path(N-/))
 export PATH
 
 export EDITOR="/opt/homebrew/bin/nvim"
+export EZA_ICON_SPACING=2
 
 set -o vi
 
@@ -27,9 +28,8 @@ alias x=exit
 alias t="tmux"
 alias v="nvim $*"
 alias lazyvim="NVIM_APPNAME=nvim-lazyvim nvim"
-alias ls="eza --icons -la"
+alias ls="eza --icons -a -l --no-filesize --no-user --no-time"
 alias so="source ~/.zshrc"
-# alias clock="tty-clock -s -c -t -D"
 alias myfiglet="figlet -f ~/dotfiles/figlet/ANSI-SHADOW.flf $*"
 
 # DOTFILES
