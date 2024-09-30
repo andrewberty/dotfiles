@@ -43,6 +43,5 @@ map("i", "<up>", "<ESC>gki", { desc = "Move up to visible line", silent = true }
 
 map({ "n", "v" }, "X", "Vx", { desc = "Cut Current Line", silent = true })
 map({ "n", "v" }, "<leader>so", ":so %<CR>", { desc = "Source current file", silent = true })
-map({ "n", "v" }, "<C-k>", ":Telescope commands<CR>", { desc = "Command Palette", silent = true })
 map({ "n", "v" }, "<C-s>", ":w!<CR>", { desc = "Save", silent = true })
 map({ "n", "v" }, "<leader>v", ":vsp<CR>", { desc = "Vertical Split", silent = true })
