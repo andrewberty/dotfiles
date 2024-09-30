@@ -28,6 +28,7 @@ alias x=exit
 alias t="tmux"
 alias v="nvim $*"
 alias lazyvim="NVIM_APPNAME=nvim-lazyvim nvim"
+alias yy='yazi ~/Downloads'
 alias ls="eza --icons -a -l --no-filesize --no-user --no-time"
 alias so="source ~/.zshrc"
 alias myfiglet="figlet -f ~/dotfiles/figlet/ANSI-SHADOW.flf $*"
@@ -52,14 +53,14 @@ eval "$(fzf --zsh)"
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-function yy() {
-    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-    yazi "$@" --cwd-file="$tmp"
-    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-        cd -- "$cwd"
-    fi
-    rm -f -- "$tmp"
-}
+# function yy() {
+#     local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+#     yazi "$@" --cwd-file="$tmp"
+#     if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+#         cd -- "$cwd"
+#     fi
+#     rm -f -- "$tmp"
+# }
 
 if type brew &>/dev/null
 then
