@@ -77,7 +77,6 @@ vim.keymap.set(
 	{ desc = "Search in Buffer", silent = true }
 )
 vim.keymap.set({ "n", "v" }, "<leader>th", ":Telescope themes<cr>", { desc = "Theme switcher", silent = true })
-vim.keymap.set({ "n", "v" }, "<C-k>", ":Telescope commands<CR>", { desc = "Telescope Command Palette", silent = true })
 
 telescope.load_extension("ui-select")
 telescope.load_extension("zoxide")
