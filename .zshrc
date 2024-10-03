@@ -11,6 +11,7 @@ export PATH
 
 export EDITOR="/opt/homebrew/bin/nvim"
 export EZA_ICON_SPACING=2
+export HOMEBREW_NO_ENV_HINTS=1
 
 set -o vi
 
