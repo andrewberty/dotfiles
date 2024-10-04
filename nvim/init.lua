@@ -35,12 +35,6 @@ require("lazy").setup({
 	{ "echasnovski/mini.icons", version = false, opts = {} },
 	{ "echasnovski/mini.starter", event = "VimEnter", version = "*", config = getConfig("mini-starter") },
 	{
-		"echasnovski/mini.bufremove",
-		version = false,
-		opts = {},
-		keys = { { "<leader>x", "<cmd>lua require('mini.bufremove').delete()<cr>", { desc = "Close Buffer" } } },
-	},
-	{
 		"echasnovski/mini.surround",
 		version = false,
 		config = function()
