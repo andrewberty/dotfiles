@@ -2,7 +2,7 @@ local telescope = require("telescope")
 
 telescope.setup({
 	defaults = {
-		file_ignore_patterns = { "node_modules", "dist", ".git", ".next" },
+		file_ignore_patterns = { "node_modules", "dist", ".git", ".next", ".DS_Store" },
 		path_display = { "filename_first" },
 		sorting_strategy = "ascending",
 		layout_strategy = "flex",
