@@ -11,6 +11,7 @@ return {
 				callback = function()
 					hl("NormalFloat", { bg = "" })
 					hl("TelescopeBorder", { link = "FloatBorder" })
+					hl("IblScope", { link = "Label" })
 				end,
 			})
 		end,
