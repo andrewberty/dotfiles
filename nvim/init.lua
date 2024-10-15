@@ -188,6 +188,15 @@ require("lazy").setup({
 		},
 	},
 	{ "kdheepak/lazygit.nvim", keys = { { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" } } },
+	{
+		"OlegGulevskyy/better-ts-errors.nvim",
+		config = {
+			keymaps = {
+				toggle = "<leader>dd", -- default '<leader>dd'
+				go_to_definition = "<leader>dx", -- default '<leader>dx'
+			},
+		},
+	},
 }, {
 	rocks = { enabled = false, hererocks = false },
 	install = { missing = true },
