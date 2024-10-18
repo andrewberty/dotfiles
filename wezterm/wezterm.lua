@@ -28,7 +28,7 @@ scheme.background = G.background or scheme.background
 
 for colorscheme, overrides in pairs({
 	["Poimandres"] = { background = "#0E0F15" },
-	["catppuccin-mocha"] = { background = "#191926" },
+	["catppuccin-mocha"] = { background = "#11111b" },
 	["rose-pine"] = { background = "#12101A" },
 	["rose-pine-moon"] = { background = "#12101A" },
 	["tokyonight"] = { background = "#15161F" },
