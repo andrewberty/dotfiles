@@ -3,7 +3,7 @@ alias gst="git status"
 alias lg="lazygit"
 alias x=exit
 alias t="tmux"
-alias v="nvim $*"
+alias v='nvim "$@"'
 alias lazyvim="NVIM_APPNAME=nvim-lazyvim nvim"
 alias yy='yazi ~/Downloads'
 alias ls="eza --icons -a -l --no-filesize --no-user --no-time"
@@ -16,7 +16,7 @@ alias vpnoff="tailscale down"
 alias alacrittyconf="nvim ~/dotfiles/alacritty/alacritty.toml"
 alias kittyconf="nvim ~/dotfiles/kitty/kitty.conf"
 alias wezconf="nvim ~/dotfiles/wezterm/wezterm.lua"
-alias zconf="nvim ~/dotfiles/.zshrc"
+alias zconf="nvim ~/dotfiles/zsh/.zshrc"
 alias tmuxconf="nvim ~/dotfiles/tmux/tmux.conf"
 alias starshipconf="nvim ~/.config/starship.toml"
 

@@ -1,5 +1,5 @@
 source_if_exists() {
-    [ -s "$1" ] && source "$1"
+    [ -r "$1" ] && source "$1"
 }
 
 source_if_exists ~/dotfiles/zsh/private.zsh
