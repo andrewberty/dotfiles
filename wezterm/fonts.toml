@@ -33,3 +33,6 @@ family = "Rec Mono Duotone"
 
 [fonts."Roboto Mono"]
 family = "Roboto Mono"
+
+[fonts."Iosevka"]
+family = "Iosevka Extended"
