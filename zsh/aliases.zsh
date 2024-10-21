@@ -11,6 +11,8 @@ alias so="source ~/.zshrc"
 alias myfiglet="figlet -f ~/dotfiles/figlet/ANSI-SHADOW.flf $*"
 alias vpnon="tailscale up --exit-node=${TAILSCALE_EXIT_NODE} --accept-routes --exit-node-allow-lan-access"
 alias vpnoff="tailscale down"
+alias dev='npm run dev'
+alias build='npm run build'
 
 
 alias alacrittyconf="nvim ~/dotfiles/alacritty/alacritty.toml"
