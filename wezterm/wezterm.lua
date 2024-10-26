@@ -2,22 +2,22 @@ local wezterm = require("wezterm")
 local features = require("features")
 local act = wezterm.action
 local config = wezterm.config_builder()
-local G = features.getLuaFromTOML()
+local G = require("globals")
 
 config.default_prog = { "/bin/bash", "-c", "~/dotfiles/scripts/tmux-attach.sh" }
 
 -- FONTS
 local font
-if G.font.family == "Default" then
-	font = wezterm.font_with_fallback({})
-else
-	font = wezterm.font_with_fallback({
-		{ family = G.font.family, weight = G.font.weight or 400, italic = false },
-	})
-end
+-- if G.font.family == "Default" then
+-- 	font = wezterm.font_with_fallback({})
+-- else
+font = wezterm.font_with_fallback({
+	{ family = G.font, weight = 400, italic = false },
+})
+-- end
 
 config.font_rules = { { intensity = "Bold", font = font }, { intensity = "Normal", font = font } }
-config.font_size = G.font.font_size or 16
+config.font_size = 16
 
 if G.OLED then
 	G.background = "#000000"
@@ -61,8 +61,8 @@ config.adjust_window_size_when_changing_font_size = false
 config.initial_cols = 140
 config.initial_rows = 40
 config.enable_scroll_bar = false
-config.window_frame = { font = wezterm.font({ family = G.font.family, weight = G.font.weight }) }
-config.command_palette_font_size = G.font.font_size or 16
+config.window_frame = { font = wezterm.font({ family = G.font, weight = 400 }) }
+config.command_palette_font_size = 16
 config.front_end = "WebGpu"
 config.bidi_enabled = true
 
