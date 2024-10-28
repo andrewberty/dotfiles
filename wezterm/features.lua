@@ -20,7 +20,7 @@ end
 -- fzf switcher which opens in a right split and executes a command
 M.fzfSwitcher = function(window, pane, script, command)
 	-- execute fzf with update script on every cursor move
-	local fzfCommand = "fzf --color=gutter:-1,bg+:-1 --reverse  --preview-window=down,1 --preview='" .. script .. " {}'"
+	local fzfCommand = "fzf --color=bg+:-1 --reverse  --preview-window=down,1 --preview='" .. script .. " {}'"
 
 	window:perform_action(
 		act.SplitPane({
