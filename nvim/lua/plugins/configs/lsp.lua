@@ -79,6 +79,7 @@ conform.setup({
 		toml = { "taplo" },
 		sh = { "beautysh" },
 		zsh = { "beautysh" },
+		blade = { "blade-formatter" },
 	},
 	format_on_save = function(bufnr)
 		if vim.g.disable_autoformat then return end
