@@ -45,3 +45,20 @@ require("nvim-treesitter.configs").setup({
 		},
 	},
 })
+
+local parsers = require("nvim-treesitter.parsers").get_parser_configs()
+
+parsers.blade = {
+	install_info = {
+		url = "https://github.com/EmranMR/tree-sitter-blade",
+		files = { "src/parser.c" },
+		branch = "main",
+	},
+	filetype = "blade",
+}
+
+vim.filetype.add({
+	pattern = {
+		[".*%.blade%.php"] = "blade",
+	},
+})
