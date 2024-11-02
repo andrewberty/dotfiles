@@ -8,7 +8,13 @@ local luasnip = require("luasnip")
 lsp_zero.on_attach(function(_, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr, exclude = { "<F2>", "<F3>", "<F4>" } })
 
-	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = bufnr })
+	-- vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = bufnr })
+	vim.keymap.set(
+		"n",
+		"gr",
+		':lua require("fzf-lua").lsp_definitions({ jump_to_single_result = true })<CR>',
+		{ buffer = bufnr, silent = true }
+	)
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename", buffer = bufnr, silent = true })
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions", buffer = bufnr, silent = true })
 	vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Diagnostic Float", silent = true })

@@ -145,6 +145,7 @@ require("lazy").setup({
 	},
 	{
 		"nvim-telescope/telescope.nvim",
+		enabled = false,
 		lazy = false,
 		version = false,
 		dependencies = {
@@ -196,6 +197,10 @@ require("lazy").setup({
 				go_to_definition = "<leader>dx", -- default '<leader>dx'
 			},
 		},
+	},
+	{
+		"ibhagwan/fzf-lua",
+		config = getConfig("fzf-lua"),
 	},
 }, {
 	rocks = { enabled = false, hererocks = false },

@@ -5,7 +5,12 @@ starter.setup({
 	items = {
 		starter.sections.recent_files(5, true, false),
 		{ name = "Lazy Sync", action = "Lazy sync", section = "Commands" },
-		{ name = "Find Files", action = "Telescope find_files", section = "Commands" },
+		-- { name = "Find Files", action = "Telescope find_files", section = "Commands" },
+		{
+			name = "Find Files",
+			action = "FzfLua files",
+			section = "Commands",
+		},
 		{
 			name = "Config",
 			action = "cd " .. vim.fn.stdpath("config") .. " || lua require('mini.starter').refresh()",
