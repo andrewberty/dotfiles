@@ -31,7 +31,7 @@ fzf.setup({
 		cwd_prompt = false,
 	},
 	grep = {
-		rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -g '!.{git,node_modules,.next}' -g '*.env'",
+		rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -g '!{.git,node_modules,.next}'",
 	},
 	colorschemes = {
 		actions = {
