@@ -12,11 +12,6 @@ export EZA_ICON_SPACING=2
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
-eval "$(starship init zsh)"
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(fzf --zsh)"
-
-
 eval "$(/opt/homebrew/bin/brew shellenv)"
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -38,3 +33,7 @@ export NVM_DIR="$HOME/.nvm"
 # if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
 #     tmux attach || tmux new -s 0
 # fi
+
+eval "$(starship init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(fzf --zsh)"
