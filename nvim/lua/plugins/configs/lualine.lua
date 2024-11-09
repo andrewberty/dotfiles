@@ -1,10 +1,38 @@
 local theme = require("lualine.themes.auto")
 
+local function custom_buffer_name(buffer, context)
+	-- Get parent folder name and buffer name
+	local bufname = vim.api.nvim_buf_get_name(context.bufnr)
+	local parentFolder = vim.fn.fnamemodify(bufname, ":h:t")
+
+	-- Next.js matching patterns
+	local patterns = {
+		["page"] = "Page",
+		["layout"] = "Layout",
+		["loading"] = "Loading",
+		["not%-found"] = "Not Found",
+		["error"] = "Error",
+		["route"] = "Route",
+		["template"] = "Template",
+	}
+
+	-- Get the base filename without extension to be account for (.js,.ts,.jsx.tsx)
+	local baseName = vim.fn.fnamemodify(buffer, ":r")
+
+	-- Match against the patterns and format accordingly
+	for file, label in pairs(patterns) do
+		if baseName:match("^" .. file .. "$") and parentFolder then return parentFolder .. "/" .. label end
+	end
+
+	-- Return original buffer name if no matches found
+	return buffer
+end
+
 local position = "bottom"
 local sections = {
 	lualine_a = { "branch" },
 	lualine_b = {
-		{ "buffers", symbols = { alternate_file = "" } },
+		{ "buffers", symbols = { alternate_file = "" }, fmt = custom_buffer_name },
 		{ "diagnostics", sources = { "nvim_lsp" }, symbols = { error = " ", warn = " ", info = " " } },
 	},
 	lualine_c = {},
