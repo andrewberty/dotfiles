@@ -30,7 +30,7 @@ require("lazy").setup({
 	"mbbill/undotree",
 	"folke/neodev.nvim",
 	"mg979/vim-visual-multi",
-	{ "Exafunction/codeium.nvim", opts = {} },
+	-- { "Exafunction/codeium.nvim", opts = {} },
 	{ "axelvc/template-string.nvim", opts = { jsx_brackets = false, remove_template_string = true } },
 	{ "echasnovski/mini.icons", version = false, opts = {} },
 	{ "echasnovski/mini.starter", event = "VimEnter", version = "*", config = getConfig("mini-starter") },
@@ -202,6 +202,10 @@ require("lazy").setup({
 	{
 		"ibhagwan/fzf-lua",
 		config = getConfig("fzf-lua"),
+	},
+	{
+		"supermaven-inc/supermaven-nvim",
+		config = function() require("supermaven-nvim").setup({ color = { suggestion_color = "#555555" } }) end,
 	},
 }, {
 	rocks = { enabled = false, hererocks = false },
