@@ -59,3 +59,9 @@ vim.keymap.set({ "n", "v" }, "<leader>sr", fzf.resume, { desc = "Resume last sea
 vim.keymap.set({ "n", "v" }, "<leader>f", fzf.files, { desc = "Find Files", silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>sf", fzf.lgrep_curbuf, { desc = "Search in Buffer", silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>th", fzf.colorschemes, { desc = "Theme switcher", silent = true })
+vim.keymap.set(
+	"n",
+	"<leader>ca",
+	":FzfLua lsp_code_actions previewer=codeaction_native<CR>",
+	{ desc = "Code Actions", silent = true }
+)
