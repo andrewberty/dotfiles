@@ -1,5 +1,4 @@
 local fzf = require("fzf-lua")
-local actions = require("fzf-lua.actions")
 
 fzf.setup({
 	"Telescope",
@@ -45,7 +44,7 @@ fzf.setup({
 				file:close()
 			end,
 		},
-		winopts = { height = 0.55, width = 0.30 },
+		winopts = { height = 0.55, width = 0.33 },
 		-- ignore_patterns   = { "^delek$", "^blue$" },
 	},
 })
