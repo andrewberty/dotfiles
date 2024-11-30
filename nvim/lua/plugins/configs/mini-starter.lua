@@ -3,7 +3,7 @@ local starter = require("mini.starter")
 starter.setup({
 	evaluate_single = true,
 	items = {
-		starter.sections.recent_files(5, true, false),
+		starter.sections.recent_files(5, true, true),
 		{ name = "Lazy Sync", action = "Lazy sync", section = "Commands" },
 		-- { name = "Find Files", action = "Telescope find_files", section = "Commands" },
 		{
