@@ -1,2 +1,0 @@
-[default_session]
-startup_script = "~/dotfiles/sesh/project_startup_script.sh"
