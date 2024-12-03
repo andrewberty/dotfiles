@@ -77,7 +77,7 @@ config.set_environment_variables = { PATH = "/opt/homebrew/bin:" .. os.getenv("P
 
 config.disable_default_key_bindings = true
 config.keys = {
-	features.cmd_to_tmux_prefix("k", "K"),
+	features.cmd_to_tmux_prefix("k", "k"),
 	features.cmd_to_tmux_prefix("j", "j"),
 	{ key = "p", mods = "CMD|CTRL", action = wezterm.action_callback(features.togglePadding) },
 	{ key = "z", mods = "CMD|CTRL", action = wezterm.action_callback(features.decreaseOpacity) },
