@@ -7,6 +7,7 @@ local function custom_buffer_name(buffer, context)
 
 	-- Next.js matching patterns
 	local patterns = {
+		["index"] = "Index",
 		["page"] = "Page",
 		["layout"] = "Layout",
 		["loading"] = "Loading",
@@ -21,7 +22,7 @@ local function custom_buffer_name(buffer, context)
 
 	-- Match against the patterns and format accordingly
 	for file, label in pairs(patterns) do
-		if baseName:match("^" .. file .. "$") and parentFolder then return parentFolder .. "/" .. label end
+		if baseName:match("^" .. file .. "$") and parentFolder then return "(" .. parentFolder .. "/" .. label .. ")" end
 	end
 
 	-- Return original buffer name if no matches found
@@ -30,7 +31,7 @@ end
 
 local position = "bottom"
 local sections = {
-	lualine_a = { "branch" },
+	lualine_a = {},
 	lualine_b = {
 		{ "buffers", symbols = { alternate_file = "" }, fmt = custom_buffer_name },
 		{ "diagnostics", sources = { "nvim_lsp" }, symbols = { error = " ", warn = " ", info = " " } },
@@ -38,7 +39,7 @@ local sections = {
 	lualine_c = {},
 	lualine_x = {},
 	lualine_y = {},
-	lualine_z = { { "filename", path = 1, file_status = false, shorting_target = 60 } },
+	lualine_z = { { "filename", path = 1, file_status = false, shorting_target = 30 } },
 }
 
 local custom_theme = function()
