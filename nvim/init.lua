@@ -199,14 +199,12 @@ require("lazy").setup({
 			},
 		},
 	},
-	{
-		"ibhagwan/fzf-lua",
-		config = getConfig("fzf-lua"),
-	},
+	{ "ibhagwan/fzf-lua", config = getConfig("fzf-lua") },
 	{
 		"supermaven-inc/supermaven-nvim",
 		config = function() require("supermaven-nvim").setup({ color = { suggestion_color = "#555555" } }) end,
 	},
+	{ "mikavilpas/yazi.nvim", event = "VeryLazy", config = getConfig("yazi") },
 }, {
 	rocks = { enabled = false, hererocks = false },
 	install = { missing = true },

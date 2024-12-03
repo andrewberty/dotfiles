@@ -6,7 +6,7 @@ fzf.setup({
 	winopts = {
 		height = 0.95,
 		width = 0.90,
-		preview = { default = "bat", wrap = "wrap", winopts = { number = false, cursorline = false } },
+		-- preview = { default = "bat", wrap = "wrap", winopts = { number = false, cursorline = false } },
 	},
 	fzf_opts = {
 		["--pointer"] = ">",
@@ -18,7 +18,7 @@ fzf.setup({
 		["--highlight-line"] = true,
 	},
 	previewers = {
-		bat = { theme = "base16" },
+		-- bat = { theme = "base16" },
 		builtin = {
 			extensions = { ["png"] = { "viu" }, ["jpg"] = { "viu" } },
 		},
