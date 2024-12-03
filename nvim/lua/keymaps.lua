@@ -50,3 +50,7 @@ map({ "n", "v" }, "<leader>v", ":vsp<CR>", { desc = "Vertical Split", silent = t
 
 map("v", "<", "<gv", { desc = "Better Indent", silent = true })
 map("v", ">", ">gv", { desc = "Better Indent", silent = true })
+
+map("n", "<leader>z", "za", { desc = "Toggle Current Folding", silent = true })
+map("n", "<leader>zu", "zR", { desc = "Unfold All", silent = true })
+map("n", "<leader>zf", "zM", { desc = "Fold All", silent = true })

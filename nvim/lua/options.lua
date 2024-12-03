@@ -43,6 +43,14 @@ o.background = "dark"
 o.laststatus = 0
 o.fixeol = false
 o.whichwrap:append("<>[]hl")
+o.foldenable = true
+o.foldmethod = "expr"
+o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+o.foldcolumn = "0"
+o.foldtext = ""
+o.foldlevel = 99
+-- o.foldlevelstart = 1
+o.foldnestmax = 4
 
 g.mapleader = " "
 g.maplocalleader = " "
