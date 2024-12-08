@@ -26,7 +26,7 @@ fzf.setup({
 	defaults = { header = false, prompt = "❯ ", git_icons = false },
 	files = {
 		formatter = "path.filename_first",
-		fd_opts = [[--color=never --type f -H -I --follow -E .git -E node_modules -E .next]],
+		fd_opts = [[--color=never --type f -H -I --follow -E .git -E node_modules -E .next -E .DS_Store]],
 		cwd_prompt = false,
 	},
 	grep = {
