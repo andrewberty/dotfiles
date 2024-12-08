@@ -32,6 +32,10 @@ map("n", "<C-u>", "<C-u>zz", { desc = "Keep Cursor Centered While Scrolling", si
 
 map("v", "y", "y`]", { desc = "Place Cursor at End After Yanking", silent = true })
 map("n", "yy", "yy`]", { desc = "Place Cursor at End After Yanking", silent = true })
+
+map("v", "yc", "ygvgc`>p", { remap = true, desc = "[C]opy to a comment above", silent = true })
+map("n", "yc", "yygccp", { remap = true, desc = "[C]opy to a comment above", silent = true })
+
 map("v", "p", '"_dp`]', { desc = "Paste Without Yanking", silent = true })
 map("n", "p", "p`]", { desc = "Paste Without Yanking", silent = true })
 map({ "n", "v" }, "d", '"_d', { desc = "Delete Without Yanking", silent = true })
