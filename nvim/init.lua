@@ -205,6 +205,10 @@ require("lazy").setup({
 		config = function() require("supermaven-nvim").setup({ color = { suggestion_color = "#555555" } }) end,
 	},
 	{ "mikavilpas/yazi.nvim", event = "VeryLazy", config = getConfig("yazi") },
+	{
+		"mistweaverco/kulala.nvim",
+		config = getConfig("kulala"),
+	},
 }, {
 	rocks = { enabled = false, hererocks = false },
 	install = { missing = true },

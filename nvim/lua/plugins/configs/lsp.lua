@@ -70,6 +70,13 @@ cmp.setup({
 })
 
 conform.setup({
+	formatters = {
+		kulala = {
+			command = "kulala-fmt",
+			args = { "$FILENAME" },
+			stdin = false,
+		},
+	},
 	formatters_by_ft = {
 		lua = { "stylua" },
 		vue = { "prettier" },
@@ -86,6 +93,7 @@ conform.setup({
 		sh = { "beautysh" },
 		zsh = { "beautysh" },
 		blade = { "blade-formatter" },
+		http = { "kulala" },
 	},
 	format_on_save = function(bufnr)
 		if vim.g.disable_autoformat then return end
