@@ -40,6 +40,13 @@ require("lazy").setup({
 		config = function()
 			vim.keymap.set({ "n", "x" }, "s", "<Nop>")
 			require("mini.surround").setup({ mappings = { add = "s" } })
+
+			vim.keymap.set(
+				{ "n", "x" },
+				"<leader>cn",
+				"saq{saq(F(icnjkf)i,{}jk",
+				{ remap = true, silent = true, desc = "Surround around quotes with cn()" }
+			)
 		end,
 	},
 	{ "echasnovski/mini.ai", version = "*", opts = {} },
@@ -192,12 +199,7 @@ require("lazy").setup({
 	{ "kdheepak/lazygit.nvim", keys = { { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" } } },
 	{
 		"OlegGulevskyy/better-ts-errors.nvim",
-		config = {
-			keymaps = {
-				toggle = "<leader>dd", -- default '<leader>dd'
-				go_to_definition = "<leader>dx", -- default '<leader>dx'
-			},
-		},
+		config = { keymaps = { toggle = "<leader>dd", go_to_definition = "<leader>dx" } },
 	},
 	{ "ibhagwan/fzf-lua", config = getConfig("fzf-lua") },
 	{
@@ -205,10 +207,7 @@ require("lazy").setup({
 		config = function() require("supermaven-nvim").setup({ color = { suggestion_color = "#555555" } }) end,
 	},
 	{ "mikavilpas/yazi.nvim", event = "VeryLazy", config = getConfig("yazi") },
-	{
-		"mistweaverco/kulala.nvim",
-		config = getConfig("kulala"),
-	},
+	{ "mistweaverco/kulala.nvim", config = getConfig("kulala") },
 }, {
 	rocks = { enabled = false, hererocks = false },
 	install = { missing = true },
