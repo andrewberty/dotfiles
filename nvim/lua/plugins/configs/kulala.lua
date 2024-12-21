@@ -1,7 +1,7 @@
 local fzf = require("fzf-lua")
 local kulala = require("kulala")
 
-kulala.setup({ winbar = true })
+kulala.setup({})
 
 vim.filetype.add({ extension = { ["http"] = "http" } })
 
@@ -39,6 +39,7 @@ local function kulala_fzf_global_search()
 	-- Use fzf-lua for fuzzy finding
 	fzf.fzf_exec(requests, {
 		prompt = "Requests > ",
+		sort = true,
 		winopts = {
 			height = 0.5,
 			width = 0.5,
