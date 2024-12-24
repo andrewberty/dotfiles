@@ -143,9 +143,10 @@ return {
 			vim.api.nvim_create_autocmd("ColorScheme", {
 				pattern = "nightfly",
 				callback = function()
-					hl("VertSplit", { bg = "" })
+					hl("VertSplit", { bg = "", fg = "#03253F" })
 					hl("TelescopeSelection", { bg = "" })
 					hl("FloatTitle", { bg = "" })
+					hl("FloatBorder", { bg = "", fg = "#03253F" })
 				end,
 			})
 		end,
