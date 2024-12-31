@@ -65,6 +65,7 @@ config.window_frame = { font = wezterm.font({ family = G.font, weight = 400 }) }
 config.command_palette_font_size = 16
 config.front_end = "WebGpu"
 config.bidi_enabled = true
+config.max_fps = 120
 
 -- CURSOR
 config.cursor_blink_ease_in = "Linear"
