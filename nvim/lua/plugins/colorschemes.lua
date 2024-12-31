@@ -3,6 +3,7 @@ local hl = function(name, opts) return vim.api.nvim_set_hl(0, name, opts) end
 return {
 	{
 		"tinted-theming/base16-vim",
+		enabled = false,
 		config = function()
 			vim.g.base16_background_transparent = 1
 
