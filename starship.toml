@@ -4,11 +4,10 @@
 add_newline = false
 command_timeout = 10000
 
-format = '''$directory$git_branch$git_status$nodejs$character'''
+format = '''$character $directory$git_branch$git_status$nodejs'''
 
-# [character]
-# success_symbol = '[▲](bold green)'
-# success_symbol = '[➜](bold green)'
+[character]
+success_symbol = '[󰆧](bold green)'
 
 [directory]
 truncation_length = 1
