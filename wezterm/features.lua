@@ -2,6 +2,20 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local u = dofile(os.getenv("HOME") .. "/dotfiles/wezterm/utils.lua")
 
+wezterm.on("gui-startup", function()
+	local screen = wezterm.gui.screens().active
+	local ratio = 0.8
+	local width, height = screen.width * ratio, screen.height * ratio
+
+	local _, _, window = wezterm.mux.spawn_window({
+		position = {
+			x = screen.width - width,
+			y = screen.height - height,
+		},
+	})
+	window:gui_window():set_inner_size(width, height)
+end)
+
 local M = {}
 
 M.scriptsPath = os.getenv("HOME") .. "/dotfiles/wezterm/scripts"
@@ -109,7 +123,7 @@ M.decreaseOpacity = function()
 end
 M.resetOpacity = function()
 	local lua = u.readLuaObject(u.globalsPath)
-	lua.opacity = 1
+	lua.opacity = 0.999
 	u.writeLuaObject(u.globalsPath, lua)
 end
 
