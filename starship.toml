@@ -8,6 +8,7 @@ format = '''$character $directory$git_branch$git_status$nodejs'''
 
 [character]
 success_symbol = '[󰆧](bold green)'
+error_symbol = '[󰆧](bold red)'
 
 [directory]
 truncation_length = 1
