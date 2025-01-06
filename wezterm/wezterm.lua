@@ -52,7 +52,6 @@ config.command_palette_fg_color = scheme.foreground
 
 -- WINDOW
 config.enable_tab_bar = false
-config.window_padding = G.padding
 config.window_close_confirmation = "NeverPrompt"
 config.macos_window_background_blur = 50
 config.window_background_opacity = G.opacity
@@ -80,7 +79,6 @@ config.disable_default_key_bindings = true
 config.keys = {
 	features.cmd_to_tmux_prefix("k", "k"),
 	features.cmd_to_tmux_prefix("j", "j"),
-	{ key = "p", mods = "CMD|CTRL", action = wezterm.action_callback(features.togglePadding) },
 	{ key = "z", mods = "CMD|CTRL", action = wezterm.action_callback(features.decreaseOpacity) },
 	{ key = "c", mods = "CMD|CTRL", action = wezterm.action_callback(features.increaseOpacity) },
 	{ key = "x", mods = "CMD|CTRL", action = wezterm.action_callback(features.resetOpacity) },

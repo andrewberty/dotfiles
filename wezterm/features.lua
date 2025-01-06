@@ -97,16 +97,6 @@ M.global_bg = function()
 	})
 end
 
-M.togglePadding = function()
-	local lua = u.readLuaObject(u.globalsPath)
-	if lua.padding.top == 0 then
-		lua.padding = { top = 20, bottom = 20, left = 20, right = 20 }
-	else
-		lua.padding = { top = 0, bottom = 0, left = 0, right = 0 }
-	end
-	u.writeLuaObject(u.globalsPath, lua)
-end
-
 M.increaseOpacity = function()
 	local lua = u.readLuaObject(u.globalsPath)
 	if lua.opacity <= 1 then
