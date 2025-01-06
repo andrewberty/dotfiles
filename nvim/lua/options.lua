@@ -49,8 +49,8 @@ o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 o.foldcolumn = "0"
 o.foldtext = ""
 o.foldlevel = 99
--- o.foldlevelstart = 1
 o.foldnestmax = 4
+o.guicursor = "i:ver25,i:blinkon1"
 
 g.mapleader = " "
 g.maplocalleader = " "

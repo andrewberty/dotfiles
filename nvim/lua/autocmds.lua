@@ -59,3 +59,9 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 	desc = "load view (folds), when opening file",
 	command = "silent! loadview",
 })
+
+-- reset guicursor when leaving nvim to blinking bar
+vim.api.nvim_create_autocmd("VimLeave", {
+	pattern = "*",
+	command = "set guicursor=a:ver25,a:blinkon1",
+})
