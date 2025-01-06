@@ -4,42 +4,35 @@ local act = wezterm.action
 local config = wezterm.config_builder()
 local G = require("globals")
 
-config.default_prog = { "/bin/bash", "-c", "~/dotfiles/scripts/tmux-attach.sh" }
+-- ENV
+config.set_environment_variables = { PATH = "/opt/homebrew/bin:" .. os.getenv("PATH") }
+config.default_prog = { "/bin/zsh", "-c", "~/dotfiles/scripts/tmux-attach.zsh" }
 
 -- FONTS
-local font
--- if G.font.family == "Default" then
--- 	font = wezterm.font_with_fallback({})
--- else
-font = wezterm.font_with_fallback({
-	{ family = G.font, weight = 400, italic = false },
-})
--- end
+local fontSettings = G.font and { { family = G.font, weight = 400, italic = false } } or {}
+local font = wezterm.font_with_fallback(fontSettings)
 
 config.font_rules = { { intensity = "Bold", font = font }, { intensity = "Normal", font = font } }
 config.font_size = 16
+config.window_frame = { font = font }
+config.command_palette_font_size = 16
 
-if G.OLED then
-	G.background = "#000000"
-end
-
+-- COLORS
 local scheme = wezterm.color.get_builtin_schemes()[G.colorscheme]
-scheme.background = G.background or scheme.background
 
-for colorscheme, overrides in pairs({
-	["Poimandres"] = { background = "#0E0F15" },
-	["catppuccin-mocha"] = { background = "#11111b" },
+local oled = G.OLED and "#000000" or G.background
+scheme.background = oled or scheme.background
+
+local overrides = {
 	["rose-pine"] = { background = "#12101A" },
 	["rose-pine-moon"] = { background = "#12101A" },
-	["tokyonight"] = { background = "#15161F" },
-	["tokyonight_moon"] = { background = "#15161F" },
-	["Gruvbox Material (Gogh)"] = { background = "#0f0f0f" },
-	["Nightfly (Gogh)"] = { background = "#010F1A" },
-}) do
+}
+
+for colorscheme, override in pairs(overrides) do
 	if G.colorscheme == colorscheme then
-		for property, value in pairs(overrides) do
+		for property, value in pairs(override) do
 			scheme[property] = value
-			scheme.background = G.background or value
+			scheme.background = oled or value
 		end
 	end
 end
@@ -57,11 +50,7 @@ config.macos_window_background_blur = 50
 config.window_background_opacity = G.opacity
 config.window_decorations = "RESIZE | MACOS_FORCE_DISABLE_SHADOW"
 config.adjust_window_size_when_changing_font_size = false
-config.initial_cols = 140
-config.initial_rows = 40
 config.enable_scroll_bar = false
-config.window_frame = { font = wezterm.font({ family = G.font, weight = 400 }) }
-config.command_palette_font_size = 16
 config.front_end = "WebGpu"
 config.bidi_enabled = true
 config.max_fps = 120
@@ -70,11 +59,9 @@ config.max_fps = 120
 config.cursor_blink_ease_in = "Linear"
 config.cursor_blink_ease_out = "Linear"
 config.hide_mouse_cursor_when_typing = true
-config.animation_fps = 60
+config.animation_fps = 120
 
--- ENV
-config.set_environment_variables = { PATH = "/opt/homebrew/bin:" .. os.getenv("PATH") }
-
+-- KEYBINDINGS
 config.disable_default_key_bindings = true
 config.keys = {
 	features.cmd_to_tmux_prefix("k", "k"),

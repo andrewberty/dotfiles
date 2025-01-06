@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Check if there are any tmux sessions
 if tmux ls 2>/dev/null; then
