@@ -33,7 +33,10 @@ for colorscheme, override in pairs(overrides) do
 	if G.colorscheme == colorscheme then
 		for property, value in pairs(override) do
 			scheme[property] = value
-			scheme.background = oled or value
+
+			if property == "background" then
+				scheme.background = oled or value
+			end
 		end
 	end
 end
