@@ -204,7 +204,12 @@ require("lazy").setup({
 	{ "ibhagwan/fzf-lua", config = getConfig("fzf-lua") },
 	{
 		"supermaven-inc/supermaven-nvim",
-		config = function() require("supermaven-nvim").setup({ color = { suggestion_color = "#555555" } }) end,
+		config = function()
+			require("supermaven-nvim").setup({
+				keymaps = { accept_suggestion = "<Tab>", accept_word = "<C-Tab>" },
+				color = { suggestion_color = "#666666", cterm = 244 },
+			})
+		end,
 	},
 	{ "mikavilpas/yazi.nvim", event = "VeryLazy", config = getConfig("yazi") },
 	{ "mistweaverco/kulala.nvim", config = getConfig("kulala") },
