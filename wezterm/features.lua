@@ -4,7 +4,7 @@ local u = dofile(os.getenv("HOME") .. "/dotfiles/wezterm/utils.lua")
 
 wezterm.on("gui-startup", function()
 	local screen = wezterm.gui.screens().active
-	local ratio = 0.8
+	local ratio = 0.85
 	local width, height = screen.width * ratio, screen.height * ratio
 
 	local _, _, window = wezterm.mux.spawn_window({

@@ -14,6 +14,7 @@ local font = wezterm.font_with_fallback(fontSettings)
 
 config.font_rules = { { intensity = "Bold", font = font }, { intensity = "Normal", font = font } }
 config.font_size = 16
+config.line_height = 1.2
 config.window_frame = { font = font }
 config.command_palette_font_size = 16
 
