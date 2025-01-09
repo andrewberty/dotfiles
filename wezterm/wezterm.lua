@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 local features = require("features")
 local act = wezterm.action
 local config = wezterm.config_builder()
-local G = require("globals")
+local G = features.getGlobals()
 
 -- ENV
 config.set_environment_variables = { PATH = "/opt/homebrew/bin:" .. os.getenv("PATH") }
