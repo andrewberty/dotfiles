@@ -1,4 +1,5 @@
 path=(
+    /opt/homebrew/opt/trash/bin
     $path
     /Applications/XAMPP/bin
 )
