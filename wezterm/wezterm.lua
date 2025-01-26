@@ -20,6 +20,7 @@ config.command_palette_font_size = 16
 
 -- COLORS
 local scheme = wezterm.color.get_builtin_schemes()[G.colorscheme]
+	or wezterm.color.load_scheme(os.getenv("HOME") .. "/dotfiles/wezterm/colors/" .. G.colorscheme .. ".toml")
 
 local oled = G.OLED and "#000000" or G.background
 scheme.background = oled or scheme.background
