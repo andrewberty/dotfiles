@@ -148,6 +148,10 @@ require("lazy").setup({
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"nvim-treesitter/nvim-treesitter-context",
 			{ "windwp/nvim-ts-autotag", opts = {} },
+			{
+				"bezhermoso/tree-sitter-ghostty",
+				build = "make nvim_install",
+			},
 		},
 		config = getConfig("treesitter"),
 	},
