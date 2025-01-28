@@ -18,7 +18,7 @@ end)
 local M = {}
 
 M.globalsPath = os.getenv("HOME") .. "/dotfiles/wezterm/globals.toml"
-M.scriptsPath = os.getenv("HOME") .. "/dotfiles/wezterm/scripts/"
+M.scriptsPath = os.getenv("HOME") .. "/dotfiles/scripts/"
 
 M.runScript = function(script, args)
 	wezterm.background_child_process({ M.scriptsPath .. script, args and args })
@@ -42,14 +42,6 @@ M.cmd_to_tmux_prefix = function(key, tmux_key)
 	}
 end
 
-M.font_switcher = function()
-	M.runScript("font-switcher.zsh")
-end
-
-M.theme_switcher = function()
-	M.runScript("theme-switcher.zsh")
-end
-
 M.global_bg = function()
 	return act.PromptInputLine({
 		description = "Enter a global bg color! 🎨",
@@ -61,16 +53,6 @@ M.global_bg = function()
 			end
 		end),
 	})
-end
-
-M.increaseOpacity = function()
-	M.runScript("inc-opacity.zsh")
-end
-M.decreaseOpacity = function()
-	M.runScript("dec-opacity.zsh")
-end
-M.resetOpacity = function()
-	M.runScript("reset-opacity.zsh")
 end
 
 M.toggleOLED = function()

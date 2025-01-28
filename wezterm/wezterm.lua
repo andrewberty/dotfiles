@@ -52,7 +52,7 @@ config.command_palette_fg_color = scheme.foreground
 config.enable_tab_bar = false
 config.window_close_confirmation = "NeverPrompt"
 config.macos_window_background_blur = 50
-config.window_background_opacity = G.opacity
+config.window_background_opacity = 0.999
 config.window_decorations = "RESIZE | MACOS_FORCE_DISABLE_SHADOW"
 config.adjust_window_size_when_changing_font_size = false
 config.enable_scroll_bar = false
@@ -71,11 +71,6 @@ config.disable_default_key_bindings = true
 config.keys = {
 	features.cmd_to_tmux_prefix("k", "k"),
 	features.cmd_to_tmux_prefix("j", "j"),
-	{ key = "z", mods = "CMD|CTRL", action = wezterm.action_callback(features.decreaseOpacity) },
-	{ key = "c", mods = "CMD|CTRL", action = wezterm.action_callback(features.increaseOpacity) },
-	{ key = "x", mods = "CMD|CTRL", action = wezterm.action_callback(features.resetOpacity) },
-	{ key = "k", mods = "CMD|CTRL", action = wezterm.action_callback(features.theme_switcher) },
-	{ key = "f", mods = "CMD|CTRL", action = wezterm.action_callback(features.font_switcher) },
 	{ key = "b", mods = "CMD|CTRL", action = features.global_bg() },
 	{ key = "o", mods = "CMD|CTRL", action = wezterm.action_callback(features.toggleOLED) },
 
