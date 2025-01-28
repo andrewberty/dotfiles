@@ -169,7 +169,7 @@ require("lazy").setup({
 		},
 		config = getConfig("telescope"),
 	},
-	{ "nvim-tree/nvim-tree.lua", config = getConfig("nvim-tree") },
+	{ "nvim-tree/nvim-tree.lua", config = getConfig("nvim-tree"), enabled = false },
 	{ "folke/which-key.nvim", event = "VeryLazy", config = getConfig("whichkey") },
 	{
 		"MagicDuck/grug-far.nvim",
@@ -217,6 +217,7 @@ require("lazy").setup({
 	},
 	{ "mikavilpas/yazi.nvim", event = "VeryLazy", config = getConfig("yazi") },
 	{ "mistweaverco/kulala.nvim", config = getConfig("kulala") },
+	{ "stevearc/oil.nvim", config = getConfig("oil"), lazy = false },
 }, {
 	rocks = { enabled = false, hererocks = false },
 	install = { missing = true },
