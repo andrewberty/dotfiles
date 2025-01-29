@@ -5,7 +5,7 @@ mouse-hide-while-typing = true
 quit-after-last-window-closed = true
 
 # appearance
-theme = "vesper "
+theme = "custom-vesper"
 background = #0d0d0d
 cursor-color = #DBB799
 

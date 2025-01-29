@@ -17,13 +17,13 @@ else
   config_key="theme"
 
   /opt/homebrew/bin/tmux popup -E \
-  "ghostty +list-themes | sed -E 's/\s*\(resources\)//g' | fzf --color=bg+:-1 --reverse --preview-window=down,1 \
+  "ghostty +list-themes | sed -E 's/\s*\((resources|user)\)//g' | fzf --color=bg+:-1 --reverse --preview-window=down,1 \
   --preview='source ~/dotfiles/scripts/theme-switcher.zsh && write_colorscheme {}'"
 fi
 
 function write_colorscheme() {
-  value="$1"
-  echo $value
+  value="$(echo "$1" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')" # trim whitespace
+  echo "Selected scheme: '$value'"
   gawk -i inplace -v new_scheme="$value" -v config_key="$config_key" \
   "/^($config_key) = / { \$0 = \"$config_key = \\\"\" new_scheme \"\\\"\" } { print }" "$config_path"
 }
