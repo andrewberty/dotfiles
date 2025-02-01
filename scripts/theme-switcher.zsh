@@ -13,7 +13,7 @@ if [[ "$SSH_AUTH_SOCK" == *wez* ]]; then
   --preview='source ~/dotfiles/scripts/theme-switcher.zsh && write_colorscheme {}'"
 
 else
-  config_path=~/dotfiles/ghostty/config
+  config_path=~/dotfiles/ghostty/dynamic-config
   config_key="theme"
 
   /opt/homebrew/bin/tmux popup -E \

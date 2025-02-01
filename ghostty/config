@@ -1,15 +1,13 @@
+# dynamic config (theme, font, etc.)
+config-file = "?~/dotfiles/ghostty/dynamic-config"
+
 # behavior
 command = env PATH="/opt/homebrew/bin:$PATH" ~/dotfiles/scripts/tmux-attach.zsh
 confirm-close-surface = false
 mouse-hide-while-typing = true
 quit-after-last-window-closed = true
 
-# appearance
-theme = "custom-vesper"
-background = #0d0d0d
-
 # font
-font-family = "BerkeleyMono Nerd Font"
 font-style-bold = false
 font-style-italic = false
 font-style-bold-italic = false

@@ -7,3 +7,4 @@
 /nvim/lua/core/theme.lua
 /wezterm/globals.*
 /zsh/private.zsh
+/ghostty/dynamic-config

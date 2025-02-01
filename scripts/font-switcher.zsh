@@ -7,7 +7,7 @@ if [[ "$SSH_AUTH_SOCK" == *wez* ]]; then
   config_path=~/dotfiles/wezterm/globals.toml
   config_key="font"
 else
-  config_path=~/dotfiles/ghostty/config
+  config_path=~/dotfiles/ghostty/dynamic-config
   config_key="font-family"
 fi
 
