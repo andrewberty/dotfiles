@@ -30,9 +30,15 @@ require("lazy").setup({
 	"mbbill/undotree",
 	"folke/neodev.nvim",
 	"mg979/vim-visual-multi",
-	-- { "Exafunction/codeium.nvim", opts = {} },
 	{ "axelvc/template-string.nvim", opts = { jsx_brackets = false, remove_template_string = true } },
-	{ "echasnovski/mini.icons", version = false, opts = {} },
+	{
+		"echasnovski/mini.icons",
+		version = false,
+		config = function()
+			require("mini.icons").setup()
+			require("mini.icons").mock_nvim_web_devicons()
+		end,
+	},
 	{ "echasnovski/mini.starter", event = "VimEnter", version = "*", config = getConfig("mini-starter") },
 	{
 		"echasnovski/mini.surround",
