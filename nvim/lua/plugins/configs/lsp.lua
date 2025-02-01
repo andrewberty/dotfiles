@@ -22,7 +22,12 @@ end)
 
 lsp_zero.set_sign_icons({ error = "✘", warn = "▲", hint = "⚑", info = "»" })
 
-require("typescript-tools").setup({ settings = { expose_as_code_action = "all" } })
+require("typescript-tools").setup({
+	settings = {
+		tsserver_file_preferences = { importModuleSpecifierPreference = "non-relative" },
+		expose_as_code_action = "all",
+	},
+})
 
 vim.diagnostic.config({ float = { border = "rounded" } })
 
