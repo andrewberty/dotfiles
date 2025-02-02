@@ -24,7 +24,6 @@ function write_font() {
   echo $value
 
   gawk -i inplace -v new_font="$value" -v config_key="$config_key" \
-  "/^($config_key) = / { \$0 = \"$config_key = \\\"\" new_font \"\\\"\" } { print }" "$config_path" \
-  && osascript -e 'tell application "System Events" to keystroke "," using {command down, shift down}'
+  "/^($config_key) = / { \$0 = \"$config_key = \\\"\" new_font \"\\\"\" } { print }" "$config_path"
 }
 
