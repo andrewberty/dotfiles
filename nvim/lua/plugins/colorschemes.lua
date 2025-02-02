@@ -13,6 +13,7 @@ return {
 					NormalFloat = { bg = "none" },
 					Cursor = { bg = "#ffcfa8", fg = "black" },
 					MatchParen = { link = "Cursor" },
+					Normal = { fg = "white" },
 				},
 				palette_overrides = {},
 			})
