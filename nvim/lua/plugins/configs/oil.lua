@@ -16,11 +16,15 @@ oil.setup({
 		["<C-v>"] = { "actions.select", opts = { vertical = true } },
 		["<left>"] = { "actions.parent", mode = "n" },
 		["<right>"] = { "actions.select", mode = "n" },
-		["p"] = { "actions.preview", mode = "n" },
 		["<ESC>"] = { "actions.close", mode = "n" },
 		["<leader>e"] = { "actions.close", mode = "n" },
 	},
 })
 
 vim.keymap.set("n", "-", function() oil.open_float(vim.fn.getcwd(), { preview = {} }) end, { desc = "Open oil in cwd" })
-vim.keymap.set("n", "<leader>e", function() oil.open_float(nil, { preview = {} }) end, { desc = "Open oil in cwd" })
+vim.keymap.set(
+	"n",
+	"<leader>e",
+	function() oil.open_float(nil, { preview = {} }) end,
+	{ desc = "Open oil in current directory" }
+)
