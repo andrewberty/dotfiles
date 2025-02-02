@@ -11,6 +11,8 @@ return {
 					FloatBorder = { link = "VertSplit" },
 					FzfLuaBorder = { link = "FloatBorder" },
 					NormalFloat = { bg = "none" },
+					Cursor = { bg = "#ffcfa8", fg = "black" },
+					MatchParen = { link = "Cursor" },
 				},
 				palette_overrides = {},
 			})
