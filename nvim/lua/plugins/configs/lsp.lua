@@ -99,6 +99,7 @@ conform.setup({
 		zsh = { "beautysh" },
 		blade = { "blade-formatter" },
 		http = { "kulala" },
+		go = { "gofmt" },
 	},
 	format_on_save = function(bufnr)
 		if vim.g.disable_autoformat then return end
