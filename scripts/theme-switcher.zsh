@@ -23,7 +23,8 @@ fi
 
 function write_colorscheme() {
   value="$(echo "$1" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')" # trim whitespace
-  echo "Selected scheme: '$value'"
+  echo $value
   gawk -i inplace -v new_scheme="$value" -v config_key="$config_key" \
-  "/^($config_key) = / { \$0 = \"$config_key = \\\"\" new_scheme \"\\\"\" } { print }" "$config_path"
+  "/^($config_key) = / { \$0 = \"$config_key = \\\"\" new_scheme \"\\\"\" } { print }" "$config_path" \
+  && osascript -e 'tell application "System Events" to keystroke "," using {command down, shift down}'
 }
