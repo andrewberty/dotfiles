@@ -12,7 +12,7 @@ return {
 					FzfLuaBorder = { link = "FloatBorder" },
 					NormalFloat = { bg = "none" },
 					Cursor = { bg = "#ffcfa8", fg = "black" },
-					MatchParen = { link = "Cursor" },
+					MatchParen = { fg = "#ffcfa8", bg = "#343434" },
 					Normal = { fg = "white" },
 				},
 				palette_overrides = {},
