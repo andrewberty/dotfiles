@@ -1,4 +1,4 @@
-local fzf = require("fzf-lua")
+-- local fzf = require("fzf-lua")
 local kulala = require("kulala")
 
 kulala.setup({})
@@ -29,39 +29,39 @@ local function extract_requests_from_file()
 end
 
 -- Function to integrate Kulala search with fzf-lua
-local function kulala_fzf_global_search()
-	local requests = extract_requests_from_file()
-	if not requests or vim.tbl_isempty(requests) then
-		vim.notify("No HTTP requests found in the .http file", vim.log.levels.WARN)
-		return
-	end
-
-	-- Use fzf-lua for fuzzy finding
-	fzf.fzf_exec(requests, {
-		prompt = "Requests > ",
-		sort = true,
-		winopts = {
-			height = 0.5,
-			width = 0.5,
-			border = "rounded",
-		},
-		actions = {
-			["default"] = function(selected)
-				if selected then
-					local request_name = selected[1]
-					for line_num, line in ipairs(vim.fn.readfile(http_file)) do
-						if line:match("^# @name%s*" .. vim.pesc(request_name)) then
-							vim.cmd("e " .. http_file) -- Open the .http file
-							vim.api.nvim_win_set_cursor(0, { line_num, 0 }) -- Jump to the request
-							kulala.run() -- Execute the request
-							break
-						end
-					end
-				end
-			end,
-		},
-	})
-end
+-- local function kulala_fzf_global_search()
+-- 	local requests = extract_requests_from_file()
+-- 	if not requests or vim.tbl_isempty(requests) then
+-- 		vim.notify("No HTTP requests found in the .http file", vim.log.levels.WARN)
+-- 		return
+-- 	end
+--
+-- 	-- Use fzf-lua for fuzzy finding
+-- 	fzf.fzf_exec(requests, {
+-- 		prompt = "Requests > ",
+-- 		sort = true,
+-- 		winopts = {
+-- 			height = 0.5,
+-- 			width = 0.5,
+-- 			border = "rounded",
+-- 		},
+-- 		actions = {
+-- 			["default"] = function(selected)
+-- 				if selected then
+-- 					local request_name = selected[1]
+-- 					for line_num, line in ipairs(vim.fn.readfile(http_file)) do
+-- 						if line:match("^# @name%s*" .. vim.pesc(request_name)) then
+-- 							vim.cmd("e " .. http_file) -- Open the .http file
+-- 							vim.api.nvim_win_set_cursor(0, { line_num, 0 }) -- Jump to the request
+-- 							kulala.run() -- Execute the request
+-- 							break
+-- 						end
+-- 					end
+-- 				end
+-- 			end,
+-- 		},
+-- 	})
+-- end
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "http",
@@ -75,9 +75,9 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.keymap.set(
-	"n",
-	"<leader>hs",
-	function() kulala_fzf_global_search() end,
-	{ noremap = true, silent = true, desc = "Search HTTP requests" }
-)
+-- vim.keymap.set(
+-- 	"n",
+-- 	"<leader>hs",
+-- 	function() kulala_fzf_global_search() end,
+-- 	{ noremap = true, silent = true, desc = "Search HTTP requests" }
+-- )

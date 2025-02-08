@@ -4,7 +4,7 @@ require("autocmds")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
--- @diagnostic disable-next-line: undefined-field
+---@diagnostic disable-next-line: undefined-field
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
@@ -23,12 +23,16 @@ end
 
 require("lazy").setup({
 	-- BASICS
-	{ import = "plugins.colorschemes" },
+	{
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = { library = { { path = "${3rd}/luv/library", words = { "vim%.uv" } } } },
+	},
+	{ import = "plugins" },
 	"nvim-lua/plenary.nvim",
 
 	-- PLUGINS
 	"mbbill/undotree",
-	"folke/neodev.nvim",
 	"mg979/vim-visual-multi",
 	{ "axelvc/template-string.nvim", opts = { jsx_brackets = false, remove_template_string = true } },
 	{
@@ -39,7 +43,6 @@ require("lazy").setup({
 			require("mini.icons").mock_nvim_web_devicons()
 		end,
 	},
-	{ "echasnovski/mini.starter", event = "VimEnter", version = "*", config = getConfig("mini-starter") },
 	{
 		"echasnovski/mini.surround",
 		version = false,
@@ -58,30 +61,14 @@ require("lazy").setup({
 	{ "echasnovski/mini.ai", version = "*", opts = {} },
 	{ "echasnovski/mini.pairs", event = "VeryLazy", opts = {} },
 	{ "nvim-lualine/lualine.nvim", event = { "BufReadPost", "BufNewFile", "VeryLazy" }, config = getConfig("lualine") },
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			require("ibl").setup({
-				scope = { show_start = false, show_end = false },
-				indent = { char = "┊" },
-				exclude = { filetypes = { "alpha", "dashboard", "NvimTree", "Trouble", "lazy" } },
-			})
-		end,
-	},
 	{ "folke/noice.nvim", dependencies = { "MunifTanjim/nui.nvim" }, event = "VeryLazy", config = getConfig("noice") },
 	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
-			vim.keymap.set("n", "<leader>r", "<cmd>lua require('gitsigns').reset_hunk()<cr>", { desc = "Reset Hunk" })
-			vim.keymap.set(
-				"n",
-				"<leader>gs",
-				"<cmd>lua require('gitsigns').toggle_signs()<cr>",
-				{ desc = "Toggle Git Signs" }
-			)
-			require("gitsigns").setup({ attach_to_untracked = true, current_line_blame = true })
+			local gs = require("gitsigns")
+			vim.keymap.set("n", "<leader>r", gs.reset_hunk, { desc = "Reset Hunk" })
+			vim.keymap.set("n", "<leader>gp", gs.preview_hunk, { desc = "Preview Hunk" })
+			gs.setup({ attach_to_untracked = true, current_line_blame = true })
 		end,
 	},
 	{
@@ -206,12 +193,7 @@ require("lazy").setup({
 			},
 		},
 	},
-	{ "kdheepak/lazygit.nvim", keys = { { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" } } },
-	{
-		"OlegGulevskyy/better-ts-errors.nvim",
-		config = { keymaps = { toggle = "<leader>dd", go_to_definition = "<leader>dx" } },
-	},
-	{ "ibhagwan/fzf-lua", config = getConfig("fzf-lua") },
+	{ "ibhagwan/fzf-lua", config = getConfig("fzf-lua"), enabled = false },
 	{
 		"supermaven-inc/supermaven-nvim",
 		config = function()
@@ -223,7 +205,7 @@ require("lazy").setup({
 	},
 	{ "mikavilpas/yazi.nvim", event = "VeryLazy", config = getConfig("yazi") },
 	{ "mistweaverco/kulala.nvim", config = getConfig("kulala") },
-	{ "stevearc/oil.nvim", config = getConfig("oil"), lazy = false },
+	{ "stevearc/oil.nvim", config = getConfig("oil"), lazy = false, enabled = false },
 }, {
 	rocks = { enabled = false, hererocks = false },
 	install = { missing = true },
