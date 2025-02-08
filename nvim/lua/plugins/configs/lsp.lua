@@ -8,15 +8,8 @@ local luasnip = require("luasnip")
 lsp_zero.on_attach(function(_, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr, exclude = { "<F2>", "<F3>", "<F4>" } })
 
-	-- vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = bufnr })
-	vim.keymap.set(
-		"n",
-		"gr",
-		':lua require("fzf-lua").lsp_definitions({ jump_to_single_result = true })<CR>',
-		{ buffer = bufnr, silent = true }
-	)
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename", buffer = bufnr, silent = true })
-	-- vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions", buffer = bufnr, silent = true })
+	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions", buffer = bufnr, silent = true })
 	vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Diagnostic Float", silent = true })
 end)
 
@@ -34,12 +27,12 @@ vim.diagnostic.config({ float = { border = "rounded" } })
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.filetype_extend("javascript", { "html", "javascriptreact" })
 
+---@diagnostic disable-next-line: missing-fields
 require("mason-lspconfig").setup({
 	automatic_installation = true,
 	handlers = {
 		function(server_name) lspconfig[server_name].setup({}) end,
 
-		["lua_ls"] = function() lspconfig["lua_ls"].setup(lsp_zero.nvim_lua_ls()) end,
 		["tailwindcss"] = function()
 			lspconfig["tailwindcss"].setup({
 				settings = { tailwindCSS = { experimental = { classRegex = { { "([a-zA-Z0-9\\-:]+)" } } } } },
@@ -60,7 +53,6 @@ cmp.setup({
 		{ name = "emmet" }, -- emmet
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" }, -- snippets
-		-- { name = "codeium" }, -- codeium
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "path" }, -- file system paths
 	},

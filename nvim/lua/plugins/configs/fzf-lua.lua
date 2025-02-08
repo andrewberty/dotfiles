@@ -91,3 +91,9 @@ vim.keymap.set(
 	":FzfLua lsp_code_actions previewer=codeaction_native<CR>",
 	{ desc = "Code Actions", silent = true }
 )
+vim.keymap.set(
+	"n",
+	"gr",
+	':lua require("fzf-lua").lsp_definitions({ jump_to_single_result = true })<CR>',
+	{ buffer = bufnr, silent = true }
+)

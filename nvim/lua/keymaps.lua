@@ -8,16 +8,12 @@ map("v", "w", "E", { desc = "Move to end of the word w/o whitespace", silent = t
 map("n", "<tab>", ":bnext<CR>", { desc = "Next Buffer", silent = true })
 map("n", "<S-tab>", ":bprevious<CR>", { desc = "Previous Buffer", silent = true })
 
-map("n", "<leader>x", ":bp|bd #<CR>", { desc = "Delete Buffer", silent = true })
-
 map("n", "<S-down>", ":m .+1<CR>==", { desc = "Move Line Down", silent = true })
 map("n", "<S-up>", ":m .-2<CR>==", { desc = "Move Line Up", silent = true })
 map("v", "<S-down>", ":m '>+1<CR>gv=gv", { desc = "Move Line Down", silent = true })
 map("v", "<S-up>", ":m '<-2<CR>gv=gv", { desc = "Move Line Up", silent = true })
 
 map("n", "<leader>nh", ":nohl<CR>", { desc = "Clear Highlighting", silent = true })
-map("n", "<leader>i", ":IBLToggle<CR>", { desc = "Toggle Indentation", silent = true })
-map("n", "<leader>l", ":set number!<CR>", { desc = "Toggle Line Numbers", silent = true })
 
 map("n", "q", ":q<CR>", { desc = "Quit window", silent = true })
 map("n", "<leader>a", "ggVG", { desc = "Select All", silent = true })
