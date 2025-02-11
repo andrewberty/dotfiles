@@ -9,6 +9,7 @@ source_if_exists ~/dotfiles/zsh/options.zsh
 
 export EDITOR="/opt/homebrew/bin/nvim"
 export EZA_ICON_SPACING=2
+export CONFIG_DIR="$HOME/.config/lazygit"
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
