@@ -1,0 +1,16 @@
+gui:
+  scrollHeight: 5
+  sidePanelWidth: 0.2
+  expandFocusedSidePanel: true
+  enlargedSideViewLocation: top
+  showListFooter: false
+  showCommandLog: false
+  showPanelJumps: false
+  showFileIcons: false
+
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never --syntax-theme base16-256 -s --true-color always
+
+notARepository: skip
