@@ -1,5 +1,34 @@
 local M = {}
 
+M.ignored_colors = {
+	"default",
+	"vim",
+	"retrobox",
+	"sorbet",
+	"wildcharm",
+	"zaibatsu",
+	"desert",
+	"evening",
+	"industry",
+	"koehler",
+	"morning",
+	"murphy",
+	"pablo",
+	"peachpuff",
+	"ron",
+	"shine",
+	"slate",
+	"torte",
+	"zellner",
+	"blue",
+	"darkblue",
+	"delek",
+	"quiet",
+	"elflord",
+	"habamax",
+	"lunaperche",
+}
+
 M.logos = {
 	[[
 	                                  __
