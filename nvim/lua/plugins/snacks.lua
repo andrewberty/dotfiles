@@ -21,7 +21,6 @@ return {
 		},
 		---@class snacks.picker.Config
 		picker = {
-			ignored = true,
 			hidden = true,
 			formatters = { file = { filename_first = true } },
 			win = { input = { border = "none", keys = { ["<Esc>"] = { "close", mode = { "n", "i" } } } } },
@@ -88,7 +87,6 @@ return {
 	},
 	keys = {
 		{ "<leader>th", function() Snacks.picker.colorschemes() end, desc = "Custom Colorscheme" },
-		-- { "<leader>f", function() Snacks.picker.files() end, desc = "Find Files" },
 		{ "<leader>f", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
 		{ "<leader>st", function() Snacks.picker.grep() end, desc = "Grep" },
 		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },

@@ -54,7 +54,7 @@ local custom_theme = function()
 	return t
 end
 
-local ignored = { "help", "NvimTree", "lazy", "starter" }
+local ignored = { "help", "lazy", "snacks_dashboard" }
 
 local options = {
 	options = {
