@@ -11,6 +11,24 @@ gui:
 git:
   paging:
     colorArg: always
-    pager: delta --dark --paging=never --syntax-theme base16-256 -s --true-color always
+    pager: >
+      delta 
+      -s
+      --dark
+      --true-color always 
+      --paging=never
+      --syntax-theme base16-256
+      --hunk-header-style=omit 
+      --file-style=omit
+      --line-numbers-right-format={np:^4}
+      --line-numbers-left-format={nm:^4}
+      --minus-style="red #340F0F"
+      --minus-emph-style="red #340F0F"
+      --minus-non-emph-style="red #340F0F"
+      --plus-style="green #172617"
+      --plus-emph-style="green #172617"
+      --plus-non-emph-style="green #172617"
+      --line-numbers-minus-style="red"
+      --line-numbers-plus-style="green"
 
 notARepository: skip
