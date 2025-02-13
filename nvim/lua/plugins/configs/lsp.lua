@@ -106,7 +106,7 @@ conform.setup({
 	end,
 })
 
-vim.keymap.set({ "n", "v" }, "<leader>lf", conform.format, { desc = "LSP Format" })
+vim.keymap.set({ "n", "v" }, "<leader>lf", vim.lsp.buf.format, { desc = "LSP Format" })
 
 vim.api.nvim_create_user_command(
 	"FormatDisable",

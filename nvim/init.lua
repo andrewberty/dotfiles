@@ -162,7 +162,7 @@ require("lazy").setup({
 		},
 		config = getConfig("telescope"),
 	},
-	{ "nvim-tree/nvim-tree.lua", config = getConfig("nvim-tree"), enabled = false },
+	{ "nvim-tree/nvim-tree.lua", config = getConfig("nvim-tree"), enabled = true },
 	{ "folke/which-key.nvim", event = "VeryLazy", config = getConfig("whichkey") },
 	{
 		"MagicDuck/grug-far.nvim",

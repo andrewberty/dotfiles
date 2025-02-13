@@ -24,6 +24,7 @@ return {
 			hidden = true,
 			formatters = { file = { filename_first = true } },
 			win = { input = { border = "none", keys = { ["<Esc>"] = { "close", mode = { "n", "i" } } } } },
+			matcher = { frecency = true },
 			layouts = {
 				default = { layout = { width = 0.9, height = 0.9 } },
 				sidebar = {
@@ -43,7 +44,6 @@ return {
 				},
 			},
 			sources = {
-				explorer = { focus = "list", win = { input = { keys = { ["<Esc>"] = false } } } },
 				colorschemes = {
 					layout = {
 						layout = {
@@ -87,10 +87,9 @@ return {
 	},
 	keys = {
 		{ "<leader>th", function() Snacks.picker.colorschemes() end, desc = "Custom Colorscheme" },
-		{ "<leader>f", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+		{ "<leader>f", function() Snacks.picker.files() end, desc = "Smart Find Files" },
 		{ "<leader>st", function() Snacks.picker.grep() end, desc = "Grep" },
 		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
-		{ "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
 
 		{ "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff" },
 
