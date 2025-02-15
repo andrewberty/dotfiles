@@ -22,11 +22,11 @@ return {
 		---@class snacks.picker.Config
 		picker = {
 			hidden = true,
-			formatters = { file = { filename_first = true } },
+			ignored = true,
 			win = { input = { border = "none", keys = { ["<Esc>"] = { "close", mode = { "n", "i" } } } } },
 			matcher = { frecency = true },
 			layouts = {
-				default = { layout = { width = 0.9, height = 0.9 } },
+				default = { layout = { width = 0.95, height = 0.95 } },
 				sidebar = {
 					auto_hide = { "input" },
 					layout = {
@@ -44,6 +44,39 @@ return {
 				},
 			},
 			sources = {
+				grep = {
+					cmd = "rg",
+					args = {
+						"--column",
+						"--line-number",
+						"--no-heading",
+						"--color=always",
+						"--smart-case",
+						"--max-columns=4096",
+						"-g",
+						"!{.git,node_modules,.next}",
+					},
+				},
+				files = {
+					formatters = { file = { filename_first = true } },
+					cmd = "fd",
+					args = {
+						"--color=never",
+						"--type",
+						"f",
+						"-H",
+						"-I",
+						"--follow",
+						"-E",
+						".git",
+						"-E",
+						"node_modules",
+						"-E",
+						".next",
+						"-E",
+						".DS_Store",
+					},
+				},
 				colorschemes = {
 					layout = {
 						layout = {
