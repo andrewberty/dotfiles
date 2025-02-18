@@ -8,6 +8,8 @@ local custom_on_attach = function(bufnr)
 		return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
 	end
 
+	vim.api.nvim_set_hl(0, "NvimTreeFolderIcon", { fg = "#555555" })
+
 	api.config.mappings.default_on_attach(bufnr)
 	vim.keymap.set("n", "d", api.fs.trash, opts("Trash"))
 end

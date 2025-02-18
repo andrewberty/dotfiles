@@ -23,6 +23,7 @@ return {
 				transparent = true,
 				italics = {},
 				overrides = {
+					VertSplit = { fg = "#222222" },
 					FloatBorder = { link = "VertSplit" },
 					FzfLuaBorder = { link = "FloatBorder" },
 					NormalFloat = { bg = "none" },

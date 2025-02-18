@@ -7,10 +7,6 @@ return {
 	priority = 1000,
 	lazy = false,
 	opts = {
-		terminal = {
-			auto_close = true,
-			win = { style = { border = "rounded", width = 0.7, height = 0.5 } },
-		},
 		bigfile = { size = 1024 * 1024 },
 		indent = {
 			indent = { char = "┊", only_scope = true, only_current = true, hl = "Comment" },
@@ -146,8 +142,6 @@ return {
 
 		{ "<leader>x", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
 		{ "<leader>lg", function() Snacks.lazygit() end, desc = "Lazygit" },
-		{ "<leader>jd", function() Snacks.terminal.toggle("npm run dev") end, desc = "Toggle npm dev server" },
-		{ "<leader>j", function() Snacks.terminal.toggle() end, desc = "Toggle Terminal" },
 	},
 	init = function()
 		vim.api.nvim_create_autocmd("User", {
