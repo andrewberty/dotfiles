@@ -8,7 +8,7 @@ local custom_on_attach = function(bufnr)
 		return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
 	end
 
-	vim.api.nvim_set_hl(0, "NvimTreeFolderIcon", { fg = "#555555" })
+	vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { fg = "#333333" })
 
 	api.config.mappings.default_on_attach(bufnr)
 	vim.keymap.set("n", "d", api.fs.trash, opts("Trash"))
@@ -16,48 +16,18 @@ end
 
 require("nvim-tree").setup({
 	on_attach = custom_on_attach,
-	filters = {
-		git_ignored = false,
-		custom = { ".DS_Store" },
-	},
-	view = {
-		centralize_selection = false,
-		cursorline = true,
-		debounce_delay = 15,
-		width = {
-			min = 20,
-			max = -1,
-		},
-		side = "left",
-		preserve_window_proportions = false,
-		number = false,
-		relativenumber = false,
-		signcolumn = "yes",
-	},
+	filters = { git_ignored = false, custom = { ".DS_Store" } },
+	view = { width = { min = 20, max = -1 }, side = "left" },
 	trash = { cmd = "trash" },
 	renderer = {
 		root_folder_label = ":t",
-		indent_width = 2,
 		highlight_git = false,
-		indent_markers = {
-			enable = true,
-		},
+		indent_markers = { enable = true },
 	},
+	update_focused_file = { enable = true },
 	actions = {
-		change_dir = {
-			enable = true,
-			global = true,
-		},
-		open_file = {
-			quit_on_open = false,
-			window_picker = {
-				enable = false,
-			},
-		},
+		change_dir = { global = true },
+		open_file = { window_picker = { enable = false } },
 	},
-	ui = {
-		confirm = {
-			default_yes = true,
-		},
-	},
+	ui = { confirm = { default_yes = true } },
 })
