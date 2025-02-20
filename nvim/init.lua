@@ -53,7 +53,7 @@ require("lazy").setup({
 			vim.keymap.set(
 				{ "n", "x" },
 				"<leader>cn",
-				"saq{saq(F(icnjkf)i,{}jk",
+				"saq{saq(F(icnjkf)i,classNamejkF(",
 				{ remap = true, silent = true, desc = "Surround around quotes with cn()" }
 			)
 		end,
@@ -73,12 +73,7 @@ require("lazy").setup({
 	},
 	{
 		"christoomey/vim-tmux-navigator",
-		cmd = {
-			"TmuxNavigateLeft",
-			"TmuxNavigateDown",
-			"TmuxNavigateUp",
-			"TmuxNavigateRight",
-		},
+		cmd = { "TmuxNavigateLeft", "TmuxNavigateDown", "TmuxNavigateUp", "TmuxNavigateRight" },
 		keys = {
 			{ "<A-Left>", "<cmd>TmuxNavigateLeft<cr>" },
 			{ "<A-Down>", "<cmd>TmuxNavigateDown<cr>" },
@@ -205,7 +200,6 @@ require("lazy").setup({
 	},
 	{ "mikavilpas/yazi.nvim", event = "VeryLazy", config = getConfig("yazi") },
 	{ "mistweaverco/kulala.nvim", config = getConfig("kulala") },
-	{ "stevearc/oil.nvim", config = getConfig("oil"), lazy = false, enabled = false },
 }, {
 	rocks = { enabled = false, hererocks = false },
 	install = { missing = true },
