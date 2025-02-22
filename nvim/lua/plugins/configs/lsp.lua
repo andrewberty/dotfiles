@@ -1,19 +1,36 @@
-local lsp_zero = require("lsp-zero")
 local lspconfig = require("lspconfig")
 local conform = require("conform")
 local lint = require("lint")
 local cmp = require("cmp")
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local luasnip = require("luasnip")
 
-lsp_zero.on_attach(function(_, bufnr)
-	lsp_zero.default_keymaps({ buffer = bufnr, exclude = { "<F2>", "<F3>", "<F4>" } })
+local lspconfig_defaults = lspconfig.util.default_config
+lspconfig_defaults.capabilities =
+	vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, cmp_nvim_lsp.default_capabilities())
 
-	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename", buffer = bufnr, silent = true })
-	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions", buffer = bufnr, silent = true })
-	vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Diagnostic Float", silent = true })
-end)
+vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "LSP actions",
+	callback = function(event)
+		local opts = { buffer = event.buf, silent = true }
 
-lsp_zero.set_sign_icons({ error = "✘", warn = "▲", hint = "⚑", info = "»" })
+		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+		vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
+	end,
+})
+
+vim.diagnostic.config({
+	float = { border = "rounded" },
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.INFO] = "",
+		},
+	},
+})
 
 require("typescript-tools").setup({
 	settings = {
@@ -22,14 +39,13 @@ require("typescript-tools").setup({
 	},
 })
 
-vim.diagnostic.config({ float = { border = "rounded" } })
-
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.filetype_extend("javascript", { "html", "javascriptreact" })
 
 ---@diagnostic disable-next-line: missing-fields
 require("mason-lspconfig").setup({
 	automatic_installation = true,
+	ensure_installed = { "lua_ls", "gopls", "tailwindcss", "cssls", "html", "typescript-tools", "taplo" },
 	handlers = {
 		function(server_name) lspconfig[server_name].setup({}) end,
 
@@ -59,6 +75,7 @@ cmp.setup({
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "path" }, -- file system paths
 	},
+	---@diagnostic disable-next-line: missing-fields
 	formatting = {
 		format = require("lspkind").cmp_format({
 			before = require("tailwind-tools.cmp").lspkind_format,
@@ -121,10 +138,10 @@ vim.api.nvim_create_user_command(
 )
 
 lint.linters_by_ft = {
-	javascript = { "eslint" },
-	typescript = { "eslint" },
-	javascriptreact = { "eslint" },
-	typescriptreact = { "eslint" },
+	javascript = { "eslint_d" },
+	typescript = { "eslint_d" },
+	javascriptreact = { "eslint_d" },
+	typescriptreact = { "eslint_d" },
 }
 
 local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

@@ -102,33 +102,23 @@ require("lazy").setup({
 		build = function() vim.fn["mkdp#util#install"]() end,
 	},
 	{ "MeanderingProgrammer/render-markdown.nvim", opts = {} },
-	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v3.x",
-		event = { "BufReadPre", "BufNewFile" },
-		init = function() vim.g.lsp_zero_ui_float_border = 0 end,
-		dependencies = {
-			"neovim/nvim-lspconfig",
-			"hrsh7th/cmp-nvim-lsp",
-			{ "williamboman/mason.nvim", opts = {} },
-			"williamboman/mason-lspconfig.nvim",
-			"luckasRanarison/tailwind-tools.nvim",
-			"pmizio/typescript-tools.nvim",
-			{ "antosha417/nvim-lsp-file-operations", config = true },
-			"hrsh7th/nvim-cmp",
-			{ "jackieaskins/cmp-emmet", build = "npm run release" },
-			"hrsh7th/cmp-buffer", -- source for text in buffer
-			"hrsh7th/cmp-path", -- source for file system paths
-			"hrsh7th/cmp-nvim-lsp", -- lsp autocompletion
-			"L3MON4D3/LuaSnip", -- snippet engine
-			"saadparwaiz1/cmp_luasnip", -- for autocompletion
-			"rafamadriz/friendly-snippets", -- useful snippets
-			"onsails/lspkind.nvim", -- vs-code like pictograms
-			"stevearc/conform.nvim",
-			"mfussenegger/nvim-lint",
-		},
-		config = getConfig("lsp"),
-	},
+	"neovim/nvim-lspconfig",
+	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/nvim-cmp",
+	{ "williamboman/mason.nvim", opts = {} },
+	"williamboman/mason-lspconfig.nvim",
+	"stevearc/conform.nvim",
+	"mfussenegger/nvim-lint",
+	"pmizio/typescript-tools.nvim",
+	"luckasRanarison/tailwind-tools.nvim",
+	{ "antosha417/nvim-lsp-file-operations", config = true },
+	{ "jackieaskins/cmp-emmet", build = "npm run release" },
+	"hrsh7th/cmp-buffer", -- source for text in buffer
+	"hrsh7th/cmp-path", -- source for file system paths
+	"L3MON4D3/LuaSnip", -- snippet engine
+	"saadparwaiz1/cmp_luasnip", -- for autocompletion
+	"rafamadriz/friendly-snippets", -- useful snippets
+	"onsails/lspkind.nvim", -- vs-code like pictograms
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
@@ -210,3 +200,4 @@ require("lazy").setup({
 })
 
 require("theme")
+require("plugins.configs.lsp")
