@@ -1,13 +1,8 @@
 local lspconfig = require("lspconfig")
 local conform = require("conform")
 local lint = require("lint")
-local cmp = require("cmp")
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local luasnip = require("luasnip")
-
-local lspconfig_defaults = lspconfig.util.default_config
-lspconfig_defaults.capabilities =
-	vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, cmp_nvim_lsp.default_capabilities())
+local blink = require("blink.cmp")
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP actions",
@@ -41,13 +36,14 @@ require("typescript-tools").setup({
 
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.filetype_extend("javascript", { "html", "javascriptreact" })
+luasnip.filetype_extend("javascriptreact", { "html" })
+luasnip.filetype_extend("typescriptreact", { "html" })
 
 ---@diagnostic disable-next-line: missing-fields
 require("mason-lspconfig").setup({
 	automatic_installation = true,
-	ensure_installed = { "lua_ls", "gopls", "tailwindcss", "cssls", "html", "typescript-tools", "taplo" },
 	handlers = {
-		function(server_name) lspconfig[server_name].setup({}) end,
+		function(server_name) lspconfig[server_name].setup({ capabilities = blink.get_lsp_capabilities() }) end,
 
 		["tailwindcss"] = function()
 			lspconfig["tailwindcss"].setup({
@@ -57,32 +53,35 @@ require("mason-lspconfig").setup({
 	},
 })
 
-cmp.setup({
-	completion = { completeopt = "menu,menuone,noinsert" }, -- auto highlight first item
-	snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
-	window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered(),
+blink.setup({
+	completion = {
+		menu = {
+			border = "rounded",
+			winhighlight = "FloatBorder:FloatBorder",
+			scrollbar = false,
+			draw = { columns = { { "label", "label_description", gap = 1 }, { "kind_icon" } } },
+		},
+
+		documentation = {
+			window = { winhighlight = "FloatBorder:FloatBorder", border = "rounded" },
+			auto_show = true,
+			treesitter_highlighting = true,
+		},
+
+		list = { selection = { preselect = true, auto_insert = false } },
 	},
-	mapping = cmp.mapping.preset.insert({
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<C-Space>"] = cmp.mapping.complete(),
-	}),
+	fuzzy = { use_frecency = false },
+	keymap = { preset = "enter" },
+	snippets = { preset = "luasnip" },
 	sources = {
-		{ name = "emmet" }, -- emmet
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" }, -- snippets
-		{ name = "buffer" }, -- text within current buffer
-		{ name = "path" }, -- file system paths
-	},
-	---@diagnostic disable-next-line: missing-fields
-	formatting = {
-		format = require("lspkind").cmp_format({
-			before = require("tailwind-tools.cmp").lspkind_format,
-			mode = "symbol",
-			symbol_map = { Codeium = "" },
-			show_labelDetails = true,
-		}),
+		default = { "lsp", "path", "snippets", "buffer", "lazydev" },
+		providers = {
+			lazydev = {
+				name = "LazyDev",
+				module = "lazydev.integrations.blink",
+				score_offset = 100,
+			},
+		},
 	},
 })
 
