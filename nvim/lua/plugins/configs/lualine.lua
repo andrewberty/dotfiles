@@ -31,7 +31,7 @@ end
 
 local position = "bottom"
 local sections = {
-	lualine_a = {},
+	lualine_a = { "branch" },
 	lualine_b = {
 		{ "buffers", symbols = { alternate_file = "" }, fmt = custom_buffer_name },
 		{ "diagnostics", sources = { "nvim_lsp" }, symbols = { error = " ", warn = " ", info = " " } },
