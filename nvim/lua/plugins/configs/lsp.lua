@@ -73,6 +73,7 @@ blink.setup({
 	fuzzy = { use_frecency = false },
 	keymap = { preset = "enter" },
 	snippets = { preset = "luasnip" },
+	cmdline = { enabled = false },
 	sources = {
 		default = { "lsp", "path", "snippets", "buffer", "lazydev" },
 		providers = {
