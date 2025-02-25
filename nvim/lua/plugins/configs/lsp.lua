@@ -71,7 +71,7 @@ blink.setup({
 		list = { selection = { preselect = true, auto_insert = false } },
 	},
 	fuzzy = { use_frecency = false },
-	keymap = { preset = "enter" },
+	keymap = { preset = "enter", ["<tab>"] = {} },
 	snippets = { preset = "luasnip" },
 	cmdline = { enabled = false },
 	sources = {
