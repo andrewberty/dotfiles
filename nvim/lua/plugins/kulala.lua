@@ -1,88 +1,86 @@
 return {
 	"mistweaverco/kulala.nvim",
 	config = function()
-		-- local fzf = require("fzf-lua")
 		local kulala = require("kulala")
 
-		kulala.setup({})
+		local http_file = vim.fs.find(
+			function(name) return name:match("%.http$") or name:match("%.rest$") end,
+			{ path = vim.fn.getcwd(), upward = true }
+		)[1]
 
-		vim.filetype.add({ extension = { ["http"] = "http" } })
-
-		local http_file = vim.fn.getcwd() .. "/.http"
-
-		-- Function to extract HTTP requests from the .http file
-		local function extract_requests_from_file()
-			local requests = {}
-
-			-- Read the .http file line by line
-			local file = io.open(http_file, "r")
-			if not file then
-				vim.notify(".http file not found in the current working directory", vim.log.levels.WARN)
-				return nil
+		local function search_requests()
+			-- Check if we found a file
+			if not http_file then
+				vim.notify("No .http file found in the current working directory", vim.log.levels.WARN)
+				return
 			end
 
-			for line in file:lines() do
-				if line:match("^# @name") then -- Extract request name
-					table.insert(requests, line:match("^# @name%s*(.-)%s*$"))
+			local requests = {}
+			-- Read the .http file
+			local file_content = vim.fn.readfile(http_file)
+			if not file_content or #file_content == 0 then
+				vim.notify("Failed to read HTTP file or file is empty", vim.log.levels.WARN)
+				return
+			end
+
+			-- Extract requests with line numbers
+			for line_num, line in ipairs(file_content) do
+				if line:match("^# @name") then
+					local name = line:match("^# @name%s*(.-)%s*$")
+					table.insert(requests, {
+						text = name,
+						line_num = line_num,
+						file_path = http_file,
+					})
 				end
 			end
 
-			file:close()
-			return requests
+			if vim.tbl_isempty(requests) then
+				vim.notify("No HTTP requests found in the file", vim.log.levels.WARN)
+				return
+			end
+
+			Snacks.picker({
+				title = "HTTP Requests",
+				items = requests,
+				format = "text",
+				layout = {
+					preset = "select",
+				},
+				confirm = function(picker, item)
+					local absolute_path = vim.fn.fnamemodify(item.file_path, ":p")
+
+					local bufnr = vim.fn.bufadd(absolute_path)
+					vim.fn.bufload(bufnr)
+					vim.cmd("buffer " .. bufnr)
+
+					vim.api.nvim_win_set_cursor(0, { item.line_num, 0 })
+					vim.cmd("normal! zz")
+
+					picker:close()
+
+					vim.defer_fn(function() kulala.run() end, 100) -- Small delay to ensure buffer is ready
+				end,
+			})
 		end
 
-		-- Function to integrate Kulala search with fzf-lua
-		-- local function kulala_fzf_global_search()
-		-- 	local requests = extract_requests_from_file()
-		-- 	if not requests or vim.tbl_isempty(requests) then
-		-- 		vim.notify("No HTTP requests found in the .http file", vim.log.levels.WARN)
-		-- 		return
-		-- 	end
-		--
-		-- 	-- Use fzf-lua for fuzzy finding
-		-- 	fzf.fzf_exec(requests, {
-		-- 		prompt = "Requests > ",
-		-- 		sort = true,
-		-- 		winopts = {
-		-- 			height = 0.5,
-		-- 			width = 0.5,
-		-- 			border = "rounded",
-		-- 		},
-		-- 		actions = {
-		-- 			["default"] = function(selected)
-		-- 				if selected then
-		-- 					local request_name = selected[1]
-		-- 					for line_num, line in ipairs(vim.fn.readfile(http_file)) do
-		-- 						if line:match("^# @name%s*" .. vim.pesc(request_name)) then
-		-- 							vim.cmd("e " .. http_file) -- Open the .http file
-		-- 							vim.api.nvim_win_set_cursor(0, { line_num, 0 }) -- Jump to the request
-		-- 							kulala.run() -- Execute the request
-		-- 							break
-		-- 						end
-		-- 					end
-		-- 				end
-		-- 			end,
-		-- 		},
-		-- 	})
-		-- end
-
-		vim.api.nvim_create_autocmd("FileType", {
-			pattern = "http",
-			callback = function()
-				vim.keymap.set(
-					"n",
+		kulala.setup({
+			global_keymaps = {
+				["Send request"] = {
+					"<leader>hs",
+					search_requests,
+					mode = { "n", "v" },
+					desc = "Search HTTP requests",
+				},
+				["Run current request"] = {
 					"<leader><CR>",
-					"<cmd>lua require('kulala').run()<cr>",
-					{ noremap = true, silent = true, desc = "Execute current request" }
-				)
-			end,
+					kulala.run,
+					mode = { "n", "v" },
+					ft = { "http" },
+					desc = "Run current request",
+				},
+			},
 		})
-
-		-- vim.keymap.set(
-		-- 	"n",
-		-- 	"<leader>hs",
-		-- 	function() kulala_fzf_global_search() end,
-		-- 	{ noremap = true, silent = true, desc = "Search HTTP requests" }
-		-- )
+		vim.filetype.add({ extension = { ["http"] = "http" } })
 	end,
 }
