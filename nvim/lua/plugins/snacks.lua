@@ -53,6 +53,8 @@ return {
 					args = {
 						"--column",
 						"--line-number",
+						"--fixed-strings",
+						"--sortr=path",
 						"--no-heading",
 						"--smart-case",
 						"--max-columns=4096",
