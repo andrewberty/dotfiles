@@ -4,6 +4,9 @@ local ignored = require("utils").ignored_colors
 
 return {
 	"folke/snacks.nvim",
+	dependencies = {
+		{ "folke/todo-comments.nvim", opts = {} },
+	},
 	priority = 1000,
 	lazy = false,
 	opts = {
@@ -44,6 +47,7 @@ return {
 				},
 			},
 			sources = {
+				todo_comments = { ignored = false },
 				grep = {
 					cmd = "rg",
 					args = {
@@ -120,7 +124,6 @@ return {
 	keys = {
 		{ "<leader>th", function() Snacks.picker.colorschemes() end, desc = "Custom Colorscheme" },
 		{ "<leader>f", function() Snacks.picker.files() end, desc = "Smart Find Files" },
-		{ "<leader>st", function() Snacks.picker.grep() end, desc = "Grep" },
 		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
 
 		{ "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff" },
@@ -129,13 +132,18 @@ return {
 		{ "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
 		{ "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
 		{ "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
-		{ "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
 		{ "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
 		{ "<leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
 		{ "<leader>si", function() Snacks.picker.icons() end, desc = "Icons" },
 		{ "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
 		{ "<leader>sm", function() Snacks.picker.man() end, desc = "Man Pages" },
 		{ "<leader>sr", function() Snacks.picker.resume() end, desc = "Resume" },
+		{ "<leader>st", function() Snacks.picker.grep() end, desc = "Grep" },
+		{
+			"<leader>td",
+			function() Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME", "BUG" } }) end,
+			desc = "Todo/Fix/Fixme",
+		},
 
 		{ "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
 		{ "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },

@@ -3,7 +3,7 @@ local hl = function(name, opts) return vim.api.nvim_set_hl(0, name, opts) end
 return {
 	{
 		"tinted-theming/tinted-vim",
-		-- enabled = false,
+		enabled = false,
 		config = function()
 			vim.g.tinted_background_transparent = 1
 			vim.g.tinted_colorspace = 256
@@ -30,6 +30,7 @@ return {
 					Cursor = { bg = "#ffcfa8", fg = "black" },
 					MatchParen = { fg = "#ffcfa8", bg = "#343434" },
 					Normal = { fg = "white" },
+					NonText = { fg = "#555555" },
 				},
 				palette_overrides = {},
 			})

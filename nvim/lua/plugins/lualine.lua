@@ -35,8 +35,7 @@ return {
 			return buffer
 		end
 
-		local position = "bottom"
-		local sections = {
+		local status_sections = {
 			lualine_a = { "branch" },
 			lualine_b = {
 				{ "buffers", symbols = { alternate_file = "" }, fmt = custom_buffer_name },
@@ -45,7 +44,24 @@ return {
 			lualine_c = {},
 			lualine_x = {},
 			lualine_y = {},
-			lualine_z = { { "filename", path = 1, file_status = false, shorting_target = 30 } },
+			lualine_z = {},
+		}
+
+		local winbar_sections = {
+			lualine_a = {
+				{
+					"filetype",
+					colored = false,
+					icon_only = true,
+					padding = { left = 0, right = 0 },
+				},
+				{ "filename", path = 0, file_status = false },
+			},
+			lualine_b = { { "filename", path = 1, file_status = false, color = { fg = "#555555" } } },
+			lualine_c = {},
+			lualine_x = {},
+			lualine_y = {},
+			lualine_z = {},
 		}
 
 		local custom_theme = function()
@@ -62,7 +78,7 @@ return {
 
 		local ignored = { "help", "lazy", "snacks_dashboard", "NvimTree" }
 
-		local options = {
+		require("lualine").setup({
 			options = {
 				theme = custom_theme(),
 				icons_enabled = true,
@@ -70,24 +86,10 @@ return {
 				component_separators = "",
 				disabled_filetypes = { statusline = ignored, winbar = ignored },
 			},
-		}
-
-		if position == "top" then
-			require("lualine").setup(
-				vim.tbl_deep_extend(
-					"force",
-					options,
-					{ winbar = sections, inactive_winbar = sections, sections = {}, inactive_sections = {} }
-				)
-			)
-		elseif position == "bottom" then
-			require("lualine").setup(
-				vim.tbl_deep_extend(
-					"force",
-					options,
-					{ winbar = {}, inactive_winbar = {}, sections = sections, inactive_sections = sections }
-				)
-			)
-		end
+			winbar = winbar_sections,
+			inactive_winbar = winbar_sections,
+			sections = status_sections,
+			inactive_sections = status_sections,
+		})
 	end,
 }
