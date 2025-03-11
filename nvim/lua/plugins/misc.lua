@@ -22,8 +22,8 @@ return {
 				-- ["I BS"] = "",
 				-- ["I CtrlB"] = "<M-b>",
 				-- ["I CtrlF"] = "<M-f>",
-				-- ["I Down Arrow"] = "",
-				-- ["I Up Arrow"] = "",
+				["I Down Arrow"] = "",
+				["I Up Arrow"] = "",
 			}
 		end,
 	},
