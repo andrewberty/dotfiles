@@ -3,7 +3,7 @@ return {
 	build = ":TSUpdate",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		"nvim-treesitter/nvim-treesitter-context",
+		{ "nvim-treesitter/nvim-treesitter-context", enabled = false },
 		{ "windwp/nvim-ts-autotag", opts = {} },
 		{ "bezhermoso/tree-sitter-ghostty", build = "make nvim_install" },
 	},

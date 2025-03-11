@@ -48,15 +48,16 @@ return {
 		}
 
 		local winbar_sections = {
-			lualine_a = {
-				{
-					"filetype",
-					colored = false,
-					icon_only = true,
-					padding = { left = 0, right = 0 },
-				},
-				{ "filename", path = 0, file_status = false },
-			},
+			lualine_a = {},
+			-- lualine_a = {
+			-- 	{
+			-- 		"filetype",
+			-- 		colored = false,
+			-- 		icon_only = true,
+			-- 		padding = { left = 0, right = 0 },
+			-- 	},
+			-- 	{ "filename", path = 0, file_status = false },
+			-- },
 			lualine_b = { { "filename", path = 1, file_status = false, color = { fg = "#555555" } } },
 			lualine_c = {},
 			lualine_x = {},
