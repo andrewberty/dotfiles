@@ -1,10 +1,15 @@
 return {
 	"saghen/blink.cmp",
 	event = { "InsertEnter" },
-	dependencies = { "rafamadriz/friendly-snippets", { "L3MON4D3/LuaSnip", version = "v2.*" } },
+	dependencies = {
+		{ "L3MON4D3/LuaSnip", version = "v2.*" },
+	},
 	version = "*",
 	config = function()
 		local blink = require("blink.cmp")
+
+		require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+
 		blink.setup({
 			completion = {
 				menu = {
@@ -15,6 +20,7 @@ return {
 				},
 
 				documentation = {
+					auto_show_delay_ms = 0,
 					window = { winhighlight = "FloatBorder:FloatBorder", border = "rounded" },
 					auto_show = true,
 					treesitter_highlighting = true,

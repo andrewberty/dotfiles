@@ -8,7 +8,6 @@ return {
 		},
 		config = function()
 			local lspconfig = require("lspconfig")
-			local luasnip = require("luasnip")
 			local blink = require("blink.cmp")
 
 			vim.api.nvim_create_autocmd("LspAttach", {
@@ -34,22 +33,17 @@ return {
 				},
 			})
 
-			require("luasnip.loaders.from_vscode").lazy_load()
-			luasnip.filetype_extend("javascript", { "html", "javascriptreact" })
-			luasnip.filetype_extend("javascriptreact", { "html" })
-			luasnip.filetype_extend("typescriptreact", { "html" })
-
 			---@diagnostic disable-next-line: missing-fields
 			require("mason-lspconfig").setup({
 				automatic_installation = true,
 				handlers = {
 					function(server_name) lspconfig[server_name].setup({ capabilities = blink.get_lsp_capabilities() }) end,
 
-					["tailwindcss"] = function()
-						lspconfig["tailwindcss"].setup({
-							settings = { tailwindCSS = { experimental = { classRegex = { { "([a-zA-Z0-9\\-:]+)" } } } } },
-						})
-					end,
+					-- ["tailwindcss"] = function()
+					-- 	lspconfig["tailwindcss"].setup({
+					-- 		settings = { tailwindCSS = { experimental = { classRegex = { { "([a-zA-Z0-9\\-:]+)" } } } } },
+					-- 	})
+					-- end,
 				},
 			})
 		end,

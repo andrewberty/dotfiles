@@ -1,0 +1,146 @@
+{
+  "name": "my-snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "plaintext",
+          "markdown",
+          "tex",
+          "html",
+          "global",
+          "all"
+        ],
+        "path": "./snippets/global.json"
+      },
+      {
+        "language": "editorconfig",
+        "path": "./snippets/editorconfig.json"
+      },
+      {
+        "language": [
+          "gitcommit",
+          "NeogitCommitMessage"
+        ],
+        "path": "./snippets/gitcommit.json"
+      },
+      {
+        "language": "lua",
+        "path": "./snippets/lua/lua.json"
+      },
+      {
+        "language": "go",
+        "path": "./snippets/go.json"
+      },
+      {
+        "language": "sql",
+        "path": "./snippets/sql.json"
+      },
+      {
+        "language": [
+          "shellscript",
+          "shell",
+          "sh",
+          "zsh"
+        ],
+        "path": "./snippets/shell/shell.json"
+      },
+      {
+        "language": "shelldoc",
+        "path": "./snippets/shell/shelldoc.json"
+      },
+      {
+        "language": [
+          "markdown",
+          "rmd"
+        ],
+        "path": "./snippets/markdown.json"
+      },
+      {
+        "language": [
+          "html",
+          "jade",
+          "pug",
+          "eruby",
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "htmldjango",
+          "astro",
+          "blade"
+        ],
+        "path": "./snippets/html.json"
+      },
+      {
+        "language": [
+          "css",
+          "scss",
+          "sass",
+          "less",
+          "stylus"
+        ],
+        "path": "./snippets/css.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "svelte"
+        ],
+        "path": "./snippets/javascript/js-ts.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "typescript",
+          "javascriptreact",
+          "typescriptreact"
+        ],
+        "path": "./snippets/javascript/react.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/frameworks/vue/html.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/frameworks/vue/nuxt-html.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/frameworks/vue/nuxt-script.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/frameworks/vue/script.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/frameworks/vue/vue.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/frameworks/vue/style.json"
+      },
+      {
+        "language": "yaml",
+        "path": "./snippets/docker/docker-compose.json"
+      },
+      {
+        "language": "dockerfile",
+        "path": "./snippets/docker/docker_file.json"
+      },
+      {
+        "language": "loremipsum",
+        "path": "./snippets/loremipsum.json"
+      }
+    ]
+  }
+}
