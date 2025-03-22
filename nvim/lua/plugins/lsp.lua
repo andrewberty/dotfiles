@@ -39,11 +39,21 @@ return {
 				handlers = {
 					function(server_name) lspconfig[server_name].setup({ capabilities = blink.get_lsp_capabilities() }) end,
 
-					-- ["tailwindcss"] = function()
-					-- 	lspconfig["tailwindcss"].setup({
-					-- 		settings = { tailwindCSS = { experimental = { classRegex = { { "([a-zA-Z0-9\\-:]+)" } } } } },
-					-- 	})
-					-- end,
+					["tailwindcss"] = function()
+						lspconfig["tailwindcss"].setup({
+							settings = {
+								tailwindCSS = {
+									emmetCompletions = true,
+									experimental = {
+										classRegex = {
+											-- { "([a-zA-Z0-9\\-:]+)" }, -- matches anywhere (useful for emmet expansion)
+											{ "[\"`']([^\"'`]*)[\"`']" }, -- matches inside of quotes or backticks
+										},
+									},
+								},
+							},
+						})
+					end,
 				},
 			})
 		end,
@@ -53,7 +63,10 @@ return {
 		"pmizio/typescript-tools.nvim",
 		opts = {
 			settings = {
-				tsserver_file_preferences = { importModuleSpecifierPreference = "non-relative" },
+				tsserver_file_preferences = {
+					importModuleSpecifierPreference = "non-relative",
+					autoImportFileExcludePatterns = { "lucide-react", "react-icons" },
+				},
 				expose_as_code_action = "all",
 			},
 		},
