@@ -3,6 +3,7 @@ return {
 	enabled = true,
 	config = function()
 		vim.keymap.set({ "n", "v" }, "<leader>e", ":NvimTreeToggle<CR>", { desc = "Nvim Tree Toggle", silent = true })
+		vim.keymap.set({ "n", "v" }, "<leader>E", ":NvimTreeFindFile<CR>", { desc = "Nvim Tree Find File", silent = true })
 		require("mini.icons").mock_nvim_web_devicons()
 
 		local custom_on_attach = function(bufnr)
@@ -28,7 +29,7 @@ return {
 				highlight_git = false,
 				indent_markers = { enable = true },
 			},
-			update_focused_file = { enable = true },
+			-- update_focused_file = { enable = true },
 			actions = {
 				change_dir = { global = true },
 				open_file = { window_picker = { enable = false } },
