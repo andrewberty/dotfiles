@@ -56,34 +56,4 @@ return {
 			},
 		},
 	},
-	{
-		"bluz71/vim-nightfly-colors",
-		-- enabled = false,
-		name = "nightfly",
-		priority = 1000,
-		config = function()
-			for key, value in pairs({
-				nightflyCursorColor = true,
-				nightflyNormalFloat = true,
-				nightlflyTerminalColors = true,
-				nightflyTransparent = true,
-				nightflyUnderCurls = true,
-				nightflyUnderlineMatchParen = true,
-				nightflyVirtualTextColor = false,
-				nightflyWinSeparator = 0, -- 0 no separators, 1 block separators (default), 2 line separators
-			}) do
-				vim.g[key] = value
-			end
-
-			vim.api.nvim_create_autocmd("ColorScheme", {
-				pattern = "nightfly",
-				callback = function()
-					hl("VertSplit", { bg = "", fg = "#03253F" })
-					hl("TelescopeSelection", { bg = "" })
-					hl("FloatTitle", { bg = "" })
-					hl("FloatBorder", { bg = "", fg = "#03253F" })
-				end,
-			})
-		end,
-	},
 }
