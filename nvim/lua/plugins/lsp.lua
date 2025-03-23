@@ -38,22 +38,6 @@ return {
 				automatic_installation = true,
 				handlers = {
 					function(server_name) lspconfig[server_name].setup({ capabilities = blink.get_lsp_capabilities() }) end,
-
-					["tailwindcss"] = function()
-						lspconfig["tailwindcss"].setup({
-							settings = {
-								tailwindCSS = {
-									emmetCompletions = true,
-									experimental = {
-										classRegex = {
-											-- { "([a-zA-Z0-9\\-:]+)" }, -- matches anywhere (useful for emmet expansion)
-											{ "[\"`']([^\"'`]*)[\"`']" }, -- matches inside of quotes or backticks
-										},
-									},
-								},
-							},
-						})
-					end,
 				},
 			})
 		end,
