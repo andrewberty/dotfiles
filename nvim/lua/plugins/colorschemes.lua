@@ -53,6 +53,7 @@ return {
 				TelescopeBorder = { fg = "overlay", bg = "none" },
 				TelescopeSelection = { bg = "Normal" },
 				TelescopeSelectionCaret = { bg = "Normal" },
+				VertSplit = { fg = "overlay" },
 			},
 		},
 	},
