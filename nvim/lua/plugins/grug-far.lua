@@ -17,12 +17,12 @@ return {
 	keys = {
 		{
 			"<leader>sg",
-			":lua require('grug-far').grug_far({ transient = true })<CR>",
+			":lua require('grug-far').open({ transient = true })<CR>",
 			{ desc = "Search and replace", silent = true },
 		},
 		{
 			"<leader>s.",
-			":lua require('grug-far').grug_far({transient = true, prefills = { paths = vim.fn.expand('%') } })<CR>",
+			":lua require('grug-far').open({ transient = true, prefills = { paths = vim.fn.expand('%') } })<CR>",
 			{ desc = "Search and replace current file", silent = true },
 		},
 	},
