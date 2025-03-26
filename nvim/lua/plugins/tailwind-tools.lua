@@ -16,7 +16,11 @@ return {
 					},
 				},
 			},
-			document_color = { enabled = false },
+			document_color = {
+				enabled = true,
+				kind = "background",
+				debounce = 100,
+			},
 			extension = {
 				patterns = {
 					javascript = { "cn%(([^)]+)%)" },
