@@ -12,9 +12,7 @@ font-style-bold = false
 font-style-italic = false
 font-style-bold-italic = false
 font-synthetic-style = false
-font-size = 15
 font-thicken = true
-adjust-cell-height = 40%
 
 # window
 window-colorspace = display-p3
