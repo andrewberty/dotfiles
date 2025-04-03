@@ -1,4 +1,5 @@
 return {
+	{ "echasnovski/mini.splitjoin", version = "*", opts = {} },
 	{
 		"echasnovski/mini.icons",
 		version = false,
