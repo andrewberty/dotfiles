@@ -23,7 +23,7 @@ return {
 			-- 	char = { corner_top = "╭", corner_bottom = "╰", horizontal = "─", vertical = "│", arrow = ">" },
 			-- },
 		},
-		---@class snacks.picker.Config
+		lazygit = { win = { width = 0.99, height = 0.99 } },
 		picker = {
 			hidden = true,
 			ignored = true,
