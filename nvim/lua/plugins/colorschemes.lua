@@ -1,23 +1,6 @@
 local hl = function(name, opts) return vim.api.nvim_set_hl(0, name, opts) end
 
 return {
-	-- {
-	-- 	"datsfilipe/vesper.nvim",
-	-- 	config = function()
-	-- 		require("vesper").setup({
-	-- 			transparent = true,
-	-- 			italics = {},
-	-- 			overrides = {
-	-- 				FloatBorder = { link = "VertSplit" },
-	-- 				MatchParen = { fg = "#ffcfa8", bg = "#343434" },
-	-- 			},
-	-- 			palette_overrides = {
-	-- 				border = "#222222",
-	-- 				bgFloat = "none",
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
 	{
 		"rose-pine/neovim",
 		name = "rose-pine",

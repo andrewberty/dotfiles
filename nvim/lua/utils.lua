@@ -1,5 +1,7 @@
 local M = {}
 
+M.hl = function(name, opts) return vim.api.nvim_set_hl(0, name, opts) end
+
 M.ignored_colors = {
 	"default",
 	"vim",
