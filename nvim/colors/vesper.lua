@@ -74,6 +74,7 @@ local function set_groups()
 		MoreMsg = { fg = colors.green },
 		NonText = { fg = colors.fgAlt },
 		NormalFloat = { bg = colors.bg0 },
+		NvimTreeIndentMarker = { fg = colors.fgAlt },
 		FloatBorder = { fg = colors.bg2 },
 		NormalNC = { link = "Normal" },
 		Pmenu = { link = "NormalFloat" },
