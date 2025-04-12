@@ -83,6 +83,7 @@ return {
 			options = {
 				theme = custom_theme(),
 				icons_enabled = true,
+				globalstatus = true,
 				section_separators = "",
 				component_separators = "",
 				disabled_filetypes = { statusline = ignored, winbar = ignored },

@@ -29,6 +29,7 @@ M.ignored_colors = {
 	"elflord",
 	"habamax",
 	"lunaperche",
+	"unokai",
 }
 
 M.logos = {

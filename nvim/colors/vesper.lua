@@ -60,6 +60,8 @@ local function set_groups()
 		TermCursorNC = { link = "Cursor" },
 		ErrorMsg = { fg = colors.red },
 		VertSplit = { fg = colors.bg2, bg = colors.bg0 },
+		Winbar = { fg = colors.bg2, bg = colors.bg0 },
+		WinbarNC = { fg = colors.bg2, bg = colors.bg0 },
 		Winseparator = { link = "VertSplit" },
 		SignColumn = { link = "Normal" },
 		Folded = { fg = colors.fg, bg = colors.bg1 },
