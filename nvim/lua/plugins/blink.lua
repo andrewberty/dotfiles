@@ -1,16 +1,10 @@
 return {
 	"saghen/blink.cmp",
 	event = { "InsertEnter" },
-	dependencies = {
-		{ "L3MON4D3/LuaSnip", version = "v2.*" },
-	},
+	dependencies = { "L3MON4D3/LuaSnip" },
 	version = "*",
 	config = function()
-		local blink = require("blink.cmp")
-
-		require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
-
-		blink.setup({
+		require("blink.cmp").setup({
 			completion = {
 				menu = {
 					border = "rounded",
@@ -29,7 +23,10 @@ return {
 				list = { selection = { preselect = true, auto_insert = false } },
 			},
 			fuzzy = { use_frecency = false },
-			keymap = { preset = "enter", ["<tab>"] = {} },
+			keymap = {
+				preset = "enter",
+				-- ["<tab>"] = {}
+			},
 			snippets = { preset = "luasnip" },
 			cmdline = { enabled = false },
 			sources = {
