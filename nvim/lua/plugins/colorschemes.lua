@@ -1,6 +1,27 @@
-local hl = function(name, opts) return vim.api.nvim_set_hl(0, name, opts) end
-
 return {
+	{
+		"gbprod/nord.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("nord").setup({
+				transparent = true,
+				styles = {},
+
+				---@param colors Nord.Palette
+				on_colors = function(colors) end,
+
+				on_highlights = function(hls, c)
+					hls.StatusLine.bg = c.none
+					hls.StatusLineNC.bg = c.none
+					hls.WinBar.bg = c.none
+					hls.WinBarNC.bg = c.none
+					hls.NormalFloat.bg = c.none
+					hls.FloatBorder.bg = c.none
+				end,
+			})
+		end,
+	},
 	{
 		"rose-pine/neovim",
 		name = "rose-pine",
@@ -19,6 +40,10 @@ return {
 				TelescopeSelection = { bg = "Normal" },
 				TelescopeSelectionCaret = { bg = "Normal" },
 				VertSplit = { fg = "overlay" },
+				WinBar = { bg = "none" },
+				WinBarNC = { bg = "none" },
+				StatusLine = { bg = "none" },
+				StatusLineNC = { bg = "none" },
 			},
 		},
 	},

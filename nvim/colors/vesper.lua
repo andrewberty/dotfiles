@@ -1,5 +1,10 @@
 local hsl = require("utils").hsl
 
+-- clerk-theme
+-- hsl(190, 100, 68)
+-- hsl(132, 76, 73)
+-- hsl(247, 100, 85)
+
 local colors = {
 	fg = hsl(0, 0, 100),
 	fgAlt = hsl(0, 0, 33),
@@ -87,7 +92,7 @@ local function set_groups()
 		QuickFixLine = { fg = colors.green },
 		SpecialKey = { fg = colors.symbol },
 		StatusLine = { fg = colors.fg, bg = colors.bg0 },
-		StatusLineNC = { fg = colors.grey, bg = colors.bg2 },
+		StatusLineNC = { fg = colors.grey, bg = colors.bg0 },
 		TabLine = { bg = colors.bg2, fg = colors.grey },
 		TabLineFill = { link = "TabLine" },
 		TabLineSel = { bg = colors.bg0, fg = colors.fg },
