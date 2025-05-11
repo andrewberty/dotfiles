@@ -25,7 +25,7 @@ return {
 			fuzzy = { use_frecency = false },
 			keymap = {
 				preset = "enter",
-				-- ["<tab>"] = {}
+				["<tab>"] = {},
 			},
 			snippets = { preset = "luasnip" },
 			cmdline = { enabled = false },
