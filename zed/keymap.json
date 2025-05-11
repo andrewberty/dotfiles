@@ -7,7 +7,8 @@
 			"cmd-+": ["zed::IncreaseUiFontSize", { "persist": true }],
 			"cmd-_": ["zed::DecreaseUiFontSize", { "persist": true }],
 			"cmd-)": ["zed::ResetUiFontSize", { "persist": true }],
-			"ctrl-s": "workspace::Save"
+			"ctrl-s": "workspace::Save",
+			"cmd-k": "projects::OpenRecent"
 		}
 	},
 	// Window jumps Keymaps
