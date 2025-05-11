@@ -1,0 +1,65 @@
+{
+	"Functional Component": {
+		"prefix": "rfc",
+		"body": [
+			"import * as React from 'react';",
+			"",
+			"interface ${1:ComponentName}Props {",
+			"  ${2:propName}: ${3:type};",
+			"}",
+			"",
+			"const ${1:ComponentName}: React.FC<${1:ComponentName}Props> = ({ ${2:propName} }) => {",
+			"  return (",
+			"    <div>",
+			"      $0",
+			"    </div>",
+			"  );",
+			"};",
+			"",
+			"export default ${1:ComponentName};"
+		],
+		"description": "TS: React Functional Component"
+	},
+	"useState Hook": {
+		"prefix": "state",
+		"body": [
+			"const [${1:state}, set${1:state}] = React.useState<${3:type}>(${4:initialValue});"
+		],
+		"description": "useState Hook with TypeScript"
+	},
+	"useEffect Hook run once at mount": {
+		"prefix": "eff",
+		"body": ["React.useEffect(() => {", "  $0", "}, []);"],
+		"description": "useEffect Hook runs once at mount"
+	},
+	"useMemo": {
+		"prefix": "useMemo",
+		"body": ["React.useMemo(() => {", "  $0", "}, [${1:deps}]);"],
+		"description": "useMemo Hook"
+	},
+	"useCallback": {
+		"prefix": "useCallback",
+		"body": ["React.useCallback(() => {", "  $0", "}, [${1:deps}]);"],
+		"description": "useCallback Hook"
+	},
+	"useRef": {
+		"prefix": "ref",
+		"body": ["const ${1:ref} = React.useRef<${2:type}>(${3:initialValue});"],
+		"description": "useRef Hook"
+	},
+	"Interface": {
+		"prefix": "intr",
+		"body": ["interface ${1:Name} {", "${2:prop}: ${3:type}", "  $0", "}"],
+		"description": "Interface"
+	},
+	"Type": {
+		"prefix": "type",
+		"body": ["type ${1:Name} = ${2:type};"],
+		"description": "Type"
+	},
+	"Enum": {
+		"prefix": "enum",
+		"body": ["enum ${1:Name} {", "  $0", "}"],
+		"description": "Enum"
+	}
+}

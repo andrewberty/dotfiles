@@ -1,0 +1,40 @@
+{
+	"Functional Component": {
+		"prefix": "rfc",
+		"body": [
+			"export default function ${1:ComponentName}({ ${2:propName} }) {",
+			"  return (",
+			"    <div>",
+			"      $0",
+			"    </div>",
+			"  );",
+			"};"
+		],
+		"description": "JSX: React Functional Component"
+	},
+	"useState Hook": {
+		"prefix": "state",
+		"body": ["const [${1:state}, set${1:state}] = useState();"],
+		"description": "useState Hook with Javascript"
+	},
+	"useEffect Hook run once at mount": {
+		"prefix": "eff",
+		"body": ["useEffect(() => {", "  $0", "}, []);"],
+		"description": "useEffect Hook runs once at mount"
+	},
+	"useMemo": {
+		"prefix": "useMemo",
+		"body": ["useMemo(() => {", "  $0", "}, [${1:deps}]);"],
+		"description": "useMemo Hook"
+	},
+	"useCallback": {
+		"prefix": "useCallback",
+		"body": ["useCallback(() => {", "  $0", "}, [${1:deps}]);"],
+		"description": "useCallback Hook"
+	},
+	"useRef": {
+		"prefix": "ref",
+		"body": ["const ${1:ref} = useRef(null);"],
+		"description": "useRef Hook"
+	}
+}

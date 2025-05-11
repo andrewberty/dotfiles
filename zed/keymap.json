@@ -1,0 +1,148 @@
+[
+	{
+		"bindings": {
+			"cmd-=": ["zed::IncreaseBufferFontSize", { "persist": true }],
+			"cmd--": ["zed::DecreaseBufferFontSize", { "persist": true }],
+			"cmd-0": ["zed::ResetBufferFontSize", { "persist": true }],
+			"cmd-+": ["zed::IncreaseUiFontSize", { "persist": true }],
+			"cmd-_": ["zed::DecreaseUiFontSize", { "persist": true }],
+			"cmd-)": ["zed::ResetUiFontSize", { "persist": true }],
+			"ctrl-s": "workspace::Save"
+		}
+	},
+	// Window jumps Keymaps
+	{
+		"context": "GitPanel || ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || DebugPanel || Terminal",
+		"bindings": {
+			"alt-left": "workspace::ActivatePaneLeft",
+			"alt-right": "workspace::ActivatePaneRight",
+			"alt-up": "workspace::ActivatePaneUp",
+			"alt-down": "workspace::ActivatePaneDown",
+			"alt-shift-right": "vim::ResizePaneRight",
+			"alt-shift-left": "vim::ResizePaneLeft",
+			"alt-shift-down": "vim::ResizePaneDown",
+			"alt-shift-up": "vim::ResizePaneUp",
+			"cmd-enter": "vim::MaximizePane",
+			"alt-)": "vim::ResetPaneSizes"
+		}
+	},
+	{
+		"context": "ProjectPanel && not_editing",
+		"bindings": {
+			"space": null,
+			"space e": "workspace::ToggleRightDock",
+			"shift-w": "project_panel::CollapseAllEntries",
+			"a": "project_panel::NewFile",
+			"r": "project_panel::Rename",
+			"d": "project_panel::Delete",
+			"s": "project_panel::RevealInFileManager",
+			"c": "project_panel::Copy",
+			"x": "project_panel::Cut",
+			"p": "project_panel::Paste",
+			"Y": "workspace::CopyPath"
+		}
+	},
+	// Vim insert mode
+	{
+		"context": "vim_mode == insert",
+		"bindings": {
+			"j k": "vim::NormalBefore"
+		}
+	},
+
+	// Vim when not insert mode
+	{
+		"context": "VimControl && !menu",
+		"bindings": {
+			"left": "vim::WrappingLeft",
+			"right": "vim::WrappingRight",
+			"down": ["vim::Down", { "display_lines": true }],
+			"up": ["vim::Up", { "display_lines": true }],
+			"h": "vim::WrappingLeft",
+			"l": "vim::WrappingRight",
+			"j": ["workspace::SendKeystrokes", "g j"],
+			"k": ["workspace::SendKeystrokes", "g k"],
+			"shift-down": "editor::MoveLineDown",
+			"shift-up": "editor::MoveLineUp",
+			"enter": ["workspace::SendKeystrokes", "\" _ c i w"],
+			"q": ["pane::CloseActiveItem", { "close_pinned": false }],
+			"space x": ["pane::CloseActiveItem", { "close_pinned": false }],
+			"tab": "pane::ActivateNextItem",
+			"shift-tab": "pane::ActivatePreviousItem",
+			"shift-x": ["workspace::SendKeystrokes", "V x"],
+			"c": ["workspace::SendKeystrokes", "\" _ c"],
+			"d": ["workspace::SendKeystrokes", "\" _ d"],
+			"space a": "editor::SelectAll",
+			"space e": "workspace::ToggleRightDock",
+			"space E": "pane::RevealInProjectPanel",
+			"space i": "editor::ToggleIndentGuides",
+			"space l": "editor::ToggleLineNumbers",
+			"space v": "pane::SplitVertical",
+			"ctrl-r": "vim::Redo",
+			"space s t": "workspace::NewSearch",
+			"space f": "file_finder::Toggle",
+			"space t h": "theme_selector::Toggle",
+			"space g p": "editor::ToggleSelectedDiffHunks",
+			"space r": "git::Restore",
+			"space r n": "editor::Rename",
+			"space c a": "editor::ToggleCodeActions",
+			"space space": "tab_switcher::Toggle",
+			"s": ["vim::PushAddSurrounds", {}]
+		}
+	},
+	{
+		"context": "vim_operator == s",
+		"bindings": {
+			"s": "vim::CurrentLine"
+		}
+	},
+	{
+		"context": "vim_operator == a || vim_operator == i || vim_operator == cs",
+		"bindings": {
+			"q": "vim::AnyQuotes",
+			"b": "vim::AnyBrackets"
+		}
+	},
+	// Have to write them exiplicitly to compensate overriding c d
+	{
+		"context": "vim_operator == c",
+		"bindings": {
+			"c": "vim::CurrentLine",
+			"x": "vim::Exchange",
+			"d": "editor::Rename", // zed specific
+			"s": ["vim::PushChangeSurrounds", {}]
+		}
+	},
+	{
+		"context": "vim_operator == d",
+		"bindings": {
+			"d": "vim::CurrentLine",
+			"s": "vim::PushDeleteSurrounds",
+			"v": "vim::PushForcedMotion", // "d v"
+			"o": "editor::ToggleSelectedDiffHunks", // "d o"
+			"shift-o": "git::ToggleStaged",
+			"p": "git::Restore", // "d p"
+			"u": "git::StageAndNext", // "d u"
+			"shift-u": "git::UnstageAndNext" // "d shift-u"
+		}
+	},
+	{
+		"context": "vim_operator == gc",
+		"bindings": {
+			"c": "vim::CurrentLine"
+		}
+	},
+	{
+		"context": "EmptyPane || SharedScreen",
+		"bindings": {
+			"space f": "file_finder::Toggle",
+			"space e": "workspace::ToggleRightDock"
+		}
+	},
+	{
+		"context": "Terminal",
+		"bindings": {
+			"cmd-enter": "workspace::ToggleZoom"
+		}
+	}
+]
