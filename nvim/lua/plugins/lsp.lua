@@ -3,12 +3,13 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ "antosha417/nvim-lsp-file-operations", config = true },
-			{ "williamboman/mason.nvim", opts = {} },
-			"williamboman/mason-lspconfig.nvim",
+			{ "mason-org/mason.nvim", version = "^1.0.0" }, -- explicit v1 lock
+			{ "mason-org/mason-lspconfig.nvim", version = "^1.0.0" }, -- same here
 		},
 		config = function()
 			local lspconfig = require("lspconfig")
 			local blink = require("blink.cmp")
+			require("mason").setup()
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",
