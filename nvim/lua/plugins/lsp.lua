@@ -3,18 +3,20 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ "antosha417/nvim-lsp-file-operations", config = true },
-			{ "mason-org/mason.nvim", version = "^1.0.0" }, -- explicit v1 lock
-			{ "mason-org/mason-lspconfig.nvim", version = "^1.0.0" }, -- same here
+			"mason-org/mason.nvim",
+			"mason-org/mason-lspconfig.nvim",
 		},
 		config = function()
-			local lspconfig = require("lspconfig")
-			local blink = require("blink.cmp")
 			require("mason").setup()
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",
 				callback = function(event)
 					local opts = { buffer = event.buf, silent = true }
+					local client = assert(vim.lsp.get_client_by_id(event.data.client_id), "must have valid client")
+
+					-- disable lsp semantic highlighting
+					client.server_capabilities.semanticTokensProvider = nil
 
 					vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
@@ -24,6 +26,7 @@ return {
 
 			vim.diagnostic.config({
 				float = { border = "rounded" },
+				virtual_text = true,
 				signs = {
 					text = {
 						[vim.diagnostic.severity.ERROR] = "",
@@ -35,12 +38,7 @@ return {
 			})
 
 			---@diagnostic disable-next-line: missing-fields
-			require("mason-lspconfig").setup({
-				automatic_installation = true,
-				handlers = {
-					function(server_name) lspconfig[server_name].setup({ capabilities = blink.get_lsp_capabilities() }) end,
-				},
-			})
+			require("mason-lspconfig").setup({ automatic_enable = true })
 		end,
 	},
 
