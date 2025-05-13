@@ -125,20 +125,7 @@
 			}
 		}
 	},
-	"file_scan_exclusions": [
-		"**/.git",
-		"**/.svn",
-		"**/.hg",
-		"**/.jj",
-		"**/CVS",
-		"**/.DS_Store",
-		"**/Thumbs.db",
-		"**/.classpath",
-		"**/.settings",
-		"**/.next",
-		"**/node_modules"
-	],
-
+	"file_scan_inclusions": ["**/.git"],
 	"experimental.theme_overrides": {
 		"background.appearance": "transparent",
 		// override background color
