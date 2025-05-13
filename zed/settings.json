@@ -1,10 +1,10 @@
 {
 	"icon_theme": "Zed (Default)",
 	"telemetry": { "diagnostics": false, "metrics": false },
-	"theme": "Kanso Zen (No italics)",
+	"theme": "Vesper",
 	"buffer_line_height": { "custom": 1.8 },
 	"buffer_font_family": "CommitMono",
-	"buffer_font_fallbacks": ["Symbols Nerd Font"],
+	"buffer_font_fallbacks": ["Symbols Nerd Font", "Alexandria"],
 	"ui_font_family": "CommitMono",
 	"vim_mode": true,
 	"ui_font_size": null,
@@ -125,6 +125,20 @@
 			}
 		}
 	},
+	"file_scan_exclusions": [
+		"**/.git",
+		"**/.svn",
+		"**/.hg",
+		"**/.jj",
+		"**/CVS",
+		"**/.DS_Store",
+		"**/Thumbs.db",
+		"**/.classpath",
+		"**/.settings",
+		"**/.next",
+		"**/node_modules"
+	],
+
 	"experimental.theme_overrides": {
 		"background.appearance": "transparent",
 		// override background color

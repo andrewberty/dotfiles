@@ -87,8 +87,18 @@
 			"space r": "git::Restore",
 			"space r n": "editor::Rename",
 			"space c a": "editor::ToggleCodeActions",
+			"space s d": "diagnostics::Deploy",
+			"space l f": "editor::Format",
+			"space l g": [
+				"task::Spawn",
+				{ "task_name": "lazygit", "reveal_target": "center" }
+			],
 			"space space": "tab_switcher::Toggle",
-			"s": ["vim::PushAddSurrounds", {}]
+			"s": ["vim::PushAddSurrounds", {}],
+			"space c n": [
+				"workspace::SendKeystrokes",
+				"s a q { s a q ( F ( i c n j k f ) i , c l a s s N a m e j k F ("
+			]
 		}
 	},
 	{
@@ -137,13 +147,18 @@
 		"context": "EmptyPane || SharedScreen",
 		"bindings": {
 			"space f": "file_finder::Toggle",
-			"space e": "workspace::ToggleRightDock"
+			"space e": "workspace::ToggleRightDock",
+			"space l g": [
+				"task::Spawn",
+				{ "task_name": "lazygit", "reveal_target": "center" }
+			]
 		}
 	},
 	{
 		"context": "Terminal",
 		"bindings": {
-			"cmd-enter": "workspace::ToggleZoom"
+			"cmd-enter": "workspace::ToggleZoom",
+			"cmd-\\": "pane::SplitRight"
 		}
 	}
 ]
