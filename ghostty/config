@@ -1,5 +1,6 @@
 # dynamic config (theme, font, etc.)
 config-file = "?~/dotfiles/ghostty/dynamic-config"
+config-file = "?~/dotfiles/ghostty/oled"
 
 # behavior
 command = env PATH="/opt/homebrew/bin:$PATH" ~/dotfiles/scripts/tmux-attach.zsh

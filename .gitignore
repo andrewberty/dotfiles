@@ -8,3 +8,4 @@
 /wezterm/globals.*
 /zsh/private.zsh
 /ghostty/dynamic-config
+/ghostty/oled
