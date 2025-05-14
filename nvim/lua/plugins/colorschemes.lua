@@ -1,5 +1,20 @@
 return {
 	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {
+			transparent = true,
+			styles = { sidebars = "transparent", floats = "transparent" },
+			on_highlights = function(hl, c)
+				hl.StatusLine.bg = c.none
+				hl.StatusLineNC.bg = c.none
+				hl.SnacksIndent.fg = c.bg_visual
+				hl.SnacksIndent.blend = 80
+			end,
+		},
+	},
+	{
 		"gbprod/nord.nvim",
 		lazy = false,
 		priority = 1000,

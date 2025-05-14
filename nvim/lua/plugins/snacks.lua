@@ -12,16 +12,21 @@ return {
 	opts = {
 		bigfile = { size = 1024 * 1024 },
 		indent = {
-			indent = { hl = "VertSplit" },
-			-- indent = { char = "┊", only_scope = true, only_current = true, hl = "Comment" },
+			-- indent = { hl = "VertSplit" },
+			indent = {
+				char = "┊",
+				-- only_scope = true,
+				-- only_current = true,
+				-- hl = "Comment"
+			},
 			-- scope = { only_current = true },
-			-- chunk = {
-			-- 	enabled = true,
-			-- 	only_current = true,
-			-- 	priority = 200,
-			-- 	hl = "SnacksIndentChunk",
-			-- 	char = { corner_top = "╭", corner_bottom = "╰", horizontal = "─", vertical = "│", arrow = ">" },
-			-- },
+			chunk = {
+				enabled = true,
+				only_current = true,
+				priority = 200,
+				hl = "SnacksIndentChunk",
+				char = { corner_top = "╭", corner_bottom = "╰", horizontal = "─", vertical = "│", arrow = ">" },
+			},
 		},
 		lazygit = { win = { width = 0.99, height = 0.99 } },
 		picker = {
