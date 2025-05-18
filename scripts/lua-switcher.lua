@@ -1,56 +1,65 @@
 local M = {}
 
+M.lines_store = {}
+M.config_value = arg[1]
+M.config_key = nil
+M.line_found_and_replaced = false
+
+M.populate_lines_from_file = function(path)
+	local file_read = assert(io.open(path, "r"))
+
+	for line in file_read:lines() do
+		table.insert(M.lines_store, line)
+	end
+
+	file_read:close()
+end
+
+M.write_lines_to_file = function(path)
+	local file_write = assert(io.open(path, "w"))
+
+	if not M.line_found_and_replaced then
+		table.insert(M.lines_store, M.config_key .. " = " .. M.config_value)
+	end
+
+	for _, line in ipairs(M.lines_store) do
+		file_write:write(line .. "\n")
+	end
+
+	file_write:close()
+end
+
 M.key_exists = function(line, config_key)
 	local pattern = config_key .. " = "
 	return string.find(line, pattern, 1, true)
 end
 
+M.reload_config_file = function()
+	os.execute("osascript " .. os.getenv("HOME") .. "/dotfiles/scripts/reload-ghostty.scpt")
+end
+
 function M.write_config(opts)
+	M.config_key = opts.config_key
 	local file_name = opts.config_file or "ghostty/dynamic-config"
 	local path = os.getenv("HOME") .. "/dotfiles/" .. file_name
-	local reload_script = os.getenv("HOME") .. "/dotfiles/scripts/reload-ghostty.scpt"
-
-	local value = arg[1]
-	local lines = {}
 
 	if opts.prompt then
 		io.write(opts.prompt .. " -> ")
-		value = io.read()
+		M.config_value = io.read()
 	end
 
-	local file_read = io.open(path, "r")
+	M.populate_lines_from_file(path)
 
-	if file_read then
-		for line in file_read:lines() do
-			table.insert(lines, line)
+	for i, line in ipairs(M.lines_store) do
+		if M.key_exists(line, opts.config_key) then
+			M.line_found_and_replaced = true
+			M.lines_store[i] = opts.config_key .. " = " .. M.config_value
+			break
 		end
-		file_read:close()
-
-		local line_found_and_replaced = false
-
-		for i, line in ipairs(lines) do
-			if M.key_exists(line, opts.config_key) then
-				line_found_and_replaced = true
-				lines[i] = opts.config_key .. " = " .. value
-				break
-			end
-		end
-
-		local file_write = io.open(path, "w")
-
-		if file_write then
-			if not line_found_and_replaced then
-				table.insert(lines, opts.config_key .. " = " .. value)
-			end
-
-			for _, line in ipairs(lines) do
-				file_write:write(line .. "\n")
-			end
-			file_write:close()
-		end
-
-		os.execute("osascript " .. reload_script) -- reload ghostty
 	end
+
+	M.write_lines_to_file(path)
+	M.reload_config_file()
 end
 
 return M
