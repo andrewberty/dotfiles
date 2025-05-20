@@ -53,7 +53,12 @@ function M.write_config(opts)
 	for i, line in ipairs(M.lines_store) do
 		if M.key_exists(line, opts.config_key) then
 			M.line_found_and_replaced = true
-			M.lines_store[i] = opts.config_key .. " = " .. M.config_value
+
+			if not M.config_value or M.config_value == "" then
+				table.remove(M.lines_store, i)
+			else
+				M.lines_store[i] = opts.config_key .. " = " .. M.config_value
+			end
 			break
 		end
 	end
