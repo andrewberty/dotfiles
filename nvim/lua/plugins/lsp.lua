@@ -38,7 +38,9 @@ return {
 			})
 
 			---@diagnostic disable-next-line: missing-fields
-			require("mason-lspconfig").setup({ automatic_enable = true })
+			require("mason-lspconfig").setup({ automatic_enable = {
+				exclude = { "ts_ls" },
+			} })
 		end,
 	},
 
