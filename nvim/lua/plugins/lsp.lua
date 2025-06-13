@@ -8,6 +8,7 @@ return {
 		},
 		config = function()
 			require("mason").setup()
+			require("mason-lspconfig").setup()
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",
@@ -36,11 +37,6 @@ return {
 					},
 				},
 			})
-
-			---@diagnostic disable-next-line: missing-fields
-			require("mason-lspconfig").setup({ automatic_enable = {
-				exclude = { "ts_ls" },
-			} })
 		end,
 	},
 
