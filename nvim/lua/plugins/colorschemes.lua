@@ -1,5 +1,46 @@
 return {
 	{
+		"tinted-theming/tinted-nvim",
+		config = function()
+			require("tinted-colorscheme").with_config({
+				supports = { tinty = false, tinted_shell = false, live_reload = false },
+			})
+
+			local clear_bg = function(list)
+				for _, hl in ipairs(list) do
+					vim.cmd("hi " .. hl .. " guibg=NONE")
+				end
+			end
+
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				pattern = "base16-*",
+				callback = function()
+					clear_bg({
+						"Normal",
+						"NormalNC",
+						"NormalFloat",
+						"FloatBorder",
+						"SignColumn",
+						"StatusLine",
+						"LineNr",
+						"VertSplit",
+						"StatusLineNC",
+						"WinBar",
+						"WinBarNC",
+					})
+
+					local colors = require("tinted-colorscheme").colors
+					local hl = require("utils").hl
+
+					if colors then
+						hl("FloatBorder", { fg = colors.base03 })
+						hl("SnacksIndent", { fg = colors.base01 })
+					end
+				end,
+			})
+		end,
+	},
+	{
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
