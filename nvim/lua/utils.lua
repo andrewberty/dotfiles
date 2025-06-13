@@ -1,6 +1,13 @@
 local M = {}
 
-M.hl = function(name, opts) return vim.api.nvim_set_hl(0, name, opts) end
+M.hl = function(name, opts)
+	local fg_str = opts.fg and "guifg=" .. opts.fg or ""
+	local bg_str = opts.bg and "guibg=" .. opts.bg or ""
+
+	return vim.cmd.highlight(name .. " " .. fg_str .. " " .. bg_str)
+end
+
+M.set_hl = function(name, opts) return vim.api.nvim_set_hl(0, name, opts) end
 
 M.ignored_colors = {
 	"default",
@@ -31,6 +38,8 @@ M.ignored_colors = {
 	"lunaperche",
 	"unokai",
 }
+
+M.light_keywords = { "light", "day", "white", "dawn", "latte" }
 
 M.logos = {
 	[[

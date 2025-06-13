@@ -1,6 +1,7 @@
 ---@module 'snacks'
 
 local ignored = require("utils").ignored_colors
+local light_keywords = require("utils").light_keywords
 
 return {
 	"folke/snacks.nvim",
@@ -99,6 +100,11 @@ return {
 						for _, ignored_color in ipairs(ignored) do
 							if item.text:match(ignored_color) then return false end
 						end
+
+						for _, light_theme in ipairs(light_keywords) do
+							if item.text:match(light_theme) then return false end
+						end
+
 						return true
 					end,
 					confirm = function(picker, item)
