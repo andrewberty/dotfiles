@@ -13,19 +13,13 @@ return {
 	opts = {
 		bigfile = { size = 1024 * 1024 },
 		indent = {
-			-- indent = { hl = "VertSplit" },
 			indent = {
 				char = "┊",
 				-- only_scope = true,
-				-- only_current = true,
-				-- hl = "Comment"
 			},
-			-- scope = { only_current = true },
 			chunk = {
 				enabled = true,
-				only_current = true,
 				priority = 200,
-				hl = "SnacksIndentChunk",
 				char = { corner_top = "╭", corner_bottom = "╰", horizontal = "─", vertical = "│", arrow = ">" },
 			},
 		},
@@ -37,21 +31,21 @@ return {
 			matcher = { frecency = true },
 			layouts = {
 				default = { layout = { width = 0.95, height = 0.95 } },
-				sidebar = {
-					auto_hide = { "input" },
-					layout = {
-						backdrop = false,
-						width = 40,
-						min_width = 40,
-						height = 0,
-						position = "left",
-						border = "none",
-						box = "vertical",
-						{ win = "input", height = 1, border = "none", title = "{title} {live} {flags}", title_pos = "center" },
-						{ win = "list", border = "none" },
-						{ win = "preview", title = "{preview}", height = 0.4, border = "top" },
-					},
-				},
+				-- sidebar = {
+				-- 	auto_hide = { "input" },
+				-- 	layout = {
+				-- 		backdrop = false,
+				-- 		width = 40,
+				-- 		min_width = 40,
+				-- 		height = 0,
+				-- 		position = "left",
+				-- 		border = "none",
+				-- 		box = "vertical",
+				-- 		{ win = "input", height = 1, border = "none", title = "{title} {live} {flags}", title_pos = "center" },
+				-- 		{ win = "list", border = "none" },
+				-- 		{ win = "preview", title = "{preview}", height = 0.4, border = "top" },
+				-- 	},
+				-- },
 			},
 			sources = {
 				todo_comments = { ignored = false },
