@@ -6,9 +6,11 @@ return {
 				supports = { tinty = false, tinted_shell = false, live_reload = false },
 			})
 
+			local hl = require("utils").hl
+
 			local clear_bg = function(list)
-				for _, hl in ipairs(list) do
-					vim.cmd("hi " .. hl .. " guibg=NONE")
+				for _, group in ipairs(list) do
+					vim.cmd("hi " .. group .. " guibg=NONE")
 				end
 			end
 
@@ -30,11 +32,11 @@ return {
 					})
 
 					local colors = require("tinted-colorscheme").colors
-					local hl = require("utils").hl
 
 					if colors then
-						hl("FloatBorder", { fg = colors.base03 })
-						hl("SnacksIndent", { fg = colors.base01 })
+						hl("FloatBorder", { fg = colors.base02 })
+						hl("SnacksIndent", { fg = colors.base02 })
+						hl("WinSeparator", { fg = colors.base02 })
 					end
 				end,
 			})
