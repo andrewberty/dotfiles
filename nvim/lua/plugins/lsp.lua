@@ -8,7 +8,11 @@ return {
 		},
 		config = function()
 			require("mason").setup()
-			require("mason-lspconfig").setup()
+			require("mason-lspconfig").setup({
+				automatic_enable = {
+					exclude = { "ts_ls" },
+				},
+			})
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",
