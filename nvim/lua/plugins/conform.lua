@@ -22,6 +22,7 @@ return {
 				html = { "prettier" },
 				css = { "prettier" },
 				json = { "prettier" },
+				jsonc = { "prettier" },
 				markdown = { "prettier" },
 				toml = { "taplo" },
 				sh = { "beautysh" },
