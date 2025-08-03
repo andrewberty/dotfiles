@@ -1,5 +1,30 @@
 return {
 	{
+		"olivercederborg/poimandres.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("poimandres").setup({
+				disable_background = true,
+				disable_float_background = true,
+				disable_italics = true,
+			})
+
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				pattern = "poimandres",
+				callback = function()
+					local hl = require("utils").set_hl
+					hl("WinBar", { link = "StatusLine" })
+					hl("WinBarNC", { link = "StatusLineNC" })
+					hl("FloatBorder", { link = "NonText" })
+				end,
+			})
+		end,
+
+		-- optionally set the colorscheme within lazy config
+		init = function() vim.cmd("colorscheme poimandres") end,
+	},
+	{
 		"tinted-theming/tinted-nvim",
 		config = function()
 			require("tinted-colorscheme").with_config({
