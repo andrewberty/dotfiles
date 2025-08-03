@@ -23,7 +23,21 @@ return {
 				char = { corner_top = "╭", corner_bottom = "╰", horizontal = "─", vertical = "│", arrow = ">" },
 			},
 		},
-		lazygit = { win = { width = 0.99, height = 0.99 } },
+		lazygit = {
+			theme = {
+				[241] = { fg = "Special" },
+				activeBorderColor = { fg = "NonText", bold = true },
+				cherryPickedCommitBgColor = { fg = "Identifier" },
+				cherryPickedCommitFgColor = { fg = "Function" },
+				defaultFgColor = { fg = "Normal" },
+				inactiveBorderColor = { fg = "NonText" },
+				optionsTextColor = { fg = "Function" },
+				searchingActiveBorderColor = { fg = "NonText", bold = true },
+				selectedLineBgColor = { bg = "Visual" }, -- set to `default` to have no background colour
+				unstagedChangesColor = { fg = "DiagnosticError" },
+			},
+			win = { width = 0.99, height = 0.99 },
+		},
 		picker = {
 			hidden = true,
 			ignored = true,
