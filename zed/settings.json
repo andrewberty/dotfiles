@@ -1,25 +1,24 @@
 {
 	"icon_theme": "Zed (Default)",
 	"telemetry": { "diagnostics": false, "metrics": false },
-	"theme": "Vesper",
+	"theme": "Darkmatter",
 	"buffer_line_height": { "custom": 1.8 },
-	"buffer_font_family": "CommitMono",
+	"buffer_font_family": "SF Mono",
 	"buffer_font_fallbacks": ["Symbols Nerd Font", "Alexandria"],
-	"ui_font_family": "CommitMono",
+	"ui_font_family": "SF Mono",
 	"vim_mode": true,
-	"ui_font_size": null,
-	"buffer_font_size": 14.0,
+	"ui_font_size": 14.0,
+	"buffer_font_size": 12.0,
 	"soft_wrap": "editor_width",
-	// "tab_size": 4,
+	"tab_size": 4,
 	"extend_comment_on_newline": false,
 	"format_on_save": "on",
+	"close_on_file_delete": true,
 	"cursor_blink": false,
 	"snippet_sort_order": "top",
 	"features": { "edit_prediction_provider": "supermaven" },
 	"languages": {
-		"JSONC": {
-			"show_edit_predictions": false
-		},
+		"JSONC": { "show_edit_predictions": false },
 		"Lua": {
 			"format_on_save": "on",
 			"formatter": {
@@ -47,18 +46,24 @@
 		"show_diagnostics": "all"
 	},
 	"tab_bar": {
-		"show": false,
+		// "show": false,
 		"show_tab_bar_buttons": false,
 		"show_nav_history_buttons": false
 	},
+	"title_bar": {
+		"show_onboarding_banner": false,
+		"show_user_picture": false,
+		"show_sign_in": false
+	},
 	"toolbar": {
 		"quick_actions": false,
-		"selections_menu": true
+		"breadcrumbs": true
 	},
 	"lsp_highlight_debounce": 0,
 	"use_autoclose": true,
 	"jsx_tag_auto_close": { "enabled": true },
 	"diagnostics": {
+		"button": false,
 		"include_warnings": true,
 		"inline": { "enabled": true, "update_debounce_ms": 50 }
 	},
@@ -75,13 +80,39 @@
 		"line_width": 1,
 		"active_line_width": 2
 	},
+	"file_scan_exclusions": [
+		"**/.git",
+		"**/.svn",
+		"**/.hg",
+		"**/.jj",
+		"**/.repo",
+		"**/CVS",
+		"**/.DS_Store",
+		"**/Thumbs.db",
+		"**/.classpath",
+		"**/.settings",
+		"**/.next",
+		"**/node_modules"
+	],
+
 	"preview_tabs": { "enabled": false },
+	"search": { "button": false },
+	"collaboration_panel": { "button": false },
+	"pane_split_direction_vertical": "right",
+	"git_panel": { "button": false },
+	"outline_panel": { "button": false },
+	"notification_panel": { "button": false },
+	"agent": { "button": false },
 	"hard_tabs": true,
+	"global_lsp_settings": { "button": false },
+	"debugger": { "button": false },
 	"terminal": {
 		"copy_on_select": true,
 		"option_as_meta": true,
 		"cursor_shape": "bar",
-		"toolbar": { "breadcrumbs": false }
+		"toolbar": { "breadcrumbs": false },
+		"line_height": "standard",
+		"button": false
 	},
 	"project_panel": {
 		"button": false,
@@ -92,7 +123,6 @@
 	},
 	"gutter": {
 		"line_numbers": false,
-		"code_actions": false,
 		"runnables": false,
 		"folds": false
 	},
@@ -102,7 +132,10 @@
 				"typescript": {
 					"preferences": {
 						"includePackageJsonAutoImports": "off",
-						"autoImportFileExcludePatterns": ["lucide-react", "react-icons"],
+						"autoImportFileExcludePatterns": [
+							"lucide-react",
+							"react-icons"
+						],
 						"importModuleSpecifier": "non-relative"
 					}
 				},

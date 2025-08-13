@@ -36,5 +36,41 @@
 		"prefix": "ref",
 		"body": ["const ${1:ref} = useRef(null);"],
 		"description": "useRef Hook"
+	},
+	"Next.js Image": {
+		"prefix": "nimg",
+		"body": [
+			"import Image from 'next/image';",
+			"",
+			"<Image src=\"$1\" alt=\"$2\" width={$3} height={$4} />"
+		],
+		"description": "Next.js Image component"
+	},
+	"Console Log": {
+		"prefix": "cl",
+		"body": ["console.log($1);"],
+		"description": "Console Log"
+	},
+	"React Context Template": {
+		"prefix": "context",
+		"body": [
+			"import React, { createContext, useContext, useState } from 'react';",
+			"",
+			"const $1Context = createContext();",
+			"",
+			"export function use$1() {",
+			"  return useContext($1Context);",
+			"}",
+			"",
+			"export function $1Provider({ children }) {",
+			"  const [$2, set$2] = useState($3);",
+			"  return (",
+			"    <$1Context.Provider value={{ $2, set$2 }}>",
+			"      {children}",
+			"    </$1Context.Provider>",
+			"  );",
+			"}"
+		],
+		"description": "React Context with Provider and Hook"
 	}
 }
