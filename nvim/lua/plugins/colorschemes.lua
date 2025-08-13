@@ -1,5 +1,34 @@
 return {
 	{
+		"metalelf0/black-metal-theme-neovim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("black-metal").setup({
+				plain_float = true,
+				show_eob = false,
+				transparent = true,
+				code_style = {},
+
+				diagnostics = { background = false },
+				-- colors = {},
+
+				highlights = {
+					StatusLine = { bg = "none" },
+					StatusLineNC = { bg = "none" },
+					StatusLineTerm = { bg = "none" },
+					StatusLineTermNC = { bg = "none" },
+					WinBar = { bg = "none" },
+					WinBarNC = { bg = "none" },
+					NvimTreeNormal = { bg = "none" },
+					NvimTreeNormalNC = { bg = "none" },
+					NvimTreeVertSplit = { bg = "none" },
+					NvimTreeEndOfBuffer = { bg = "none" },
+				},
+			})
+		end,
+	},
+	{
 		"olivercederborg/poimandres.nvim",
 		lazy = false,
 		priority = 1000,
