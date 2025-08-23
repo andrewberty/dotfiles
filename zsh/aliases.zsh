@@ -14,7 +14,6 @@ alias vpnoff="tailscale down"
 alias dev='npm run dev'
 alias build='npm run build'
 
-
 alias alacrittyconf="nvim ~/dotfiles/alacritty/alacritty.toml"
 alias kittyconf="nvim ~/dotfiles/kitty/kitty.conf"
 alias wezconf="nvim ~/dotfiles/wezterm/wezterm.lua"
