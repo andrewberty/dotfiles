@@ -71,8 +71,13 @@ j() {
         ~/dotfiles
     )
 
-    # Collect all subdirectories (1 level deep)
-    projects=$(find "${roots[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null)
+    # Collect roots + their immediate subdirectories
+    projects=$(
+        for r in "${roots[@]}"; do
+            echo "$r"
+            fd . "$r" --max-depth 1 --type d --hidden --exclude ".git"
+        done
+    )
 
     # Display with ~ instead of $HOME
     display=$(echo "$projects" | sed "s|^$HOME|~|")
