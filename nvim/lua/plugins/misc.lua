@@ -42,7 +42,7 @@ return {
 
 	{
 		"christoomey/vim-tmux-navigator",
-		enabled = false,
+		enabled = true,
 		cmd = { "TmuxNavigateLeft", "TmuxNavigateDown", "TmuxNavigateUp", "TmuxNavigateRight" },
 		keys = {
 			{ "<A-Left>", "<cmd>TmuxNavigateLeft<cr>" },
@@ -73,25 +73,5 @@ return {
 	{
 		"karb94/neoscroll.nvim",
 		opts = { duration_multiplier = 0.5 },
-	},
-
-	{
-		"fladson/vim-kitty",
-		ft = "kitty",
-	},
-	{
-		"MunsMan/kitty-navigator.nvim",
-		build = {
-			"cp navigate_kitty.py ~/.config/kitty",
-			"cp pass_keys.py ~/.config/kitty",
-		},
-		opts = {
-			keybindings = {
-				left = "<A-Left>",
-				down = "<A-Down>",
-				up = "<A-Up>",
-				right = "<A-Right>",
-			},
-		},
 	},
 }

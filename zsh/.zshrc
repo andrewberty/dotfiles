@@ -34,6 +34,7 @@ alias lg=lazygit
 alias x=exit
 alias v='nvim "$@"'
 alias ls="eza --icons -a -l --no-filesize --no-user --no-time"
+alias lt="eza --icons -a -l --no-filesize --no-user --no-time -T -L 2"
 alias so="source ~/.zshrc"
 alias dev='npm run dev'
 alias build='npm run build'
@@ -60,35 +61,3 @@ eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"
 eval "$(fnm env --use-on-cd --shell zsh)"
-
-j() {
-    local roots projects display selected realpath
-
-    # Directories to scan (add as many as you like)
-    roots=(
-        ~/dev
-        ~/code
-        ~/dotfiles
-    )
-
-    # Collect roots + their immediate subdirectories
-    projects=$(
-        for r in "${roots[@]}"; do
-            echo "$r"
-            fd . "$r" --max-depth 1 --type d --hidden --exclude ".git"
-        done
-    )
-
-    # Display with ~ instead of $HOME
-    display=$(echo "$projects" | sed "s|^$HOME|~|")
-
-    # Pick one with gum filter
-    selected=$(echo "$display" | gum filter --limit 1 --placeholder "Type to filter projects...")
-
-    if [[ -n "$selected" ]]; then
-        # Map ~ back to absolute path
-        realpath="${selected/#\~/$HOME}"
-        zoxide add "$realpath"
-        cd "$realpath" || return
-    fi
-}
