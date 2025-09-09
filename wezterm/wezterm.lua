@@ -13,10 +13,10 @@ local fontSettings = G.font and { { family = G.font, weight = 400, italic = fals
 local font = wezterm.font_with_fallback(fontSettings)
 
 config.font_rules = { { intensity = "Bold", font = font }, { intensity = "Normal", font = font } }
-config.font_size = 16
-config.line_height = 1.2
+config.font_size = G.font_size or 13
+config.line_height = G.line_height or 1.2
+config.command_palette_font_size = G.font_size + 1
 config.window_frame = { font = font }
-config.command_palette_font_size = 16
 
 -- COLORS
 local scheme = wezterm.color.get_builtin_schemes()[G.colorscheme]
@@ -28,6 +28,7 @@ scheme.background = oled or scheme.background
 local overrides = {
 	["rose-pine"] = { background = "#12101A" },
 	["rose-pine-moon"] = { background = "#12101A" },
+	["tokyonight"] = { background = "#161720" },
 }
 
 for colorscheme, override in pairs(overrides) do
