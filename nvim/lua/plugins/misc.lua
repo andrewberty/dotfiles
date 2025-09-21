@@ -42,7 +42,7 @@ return {
 
 	{
 		"christoomey/vim-tmux-navigator",
-		enabled = true,
+		enabled = false,
 		cmd = { "TmuxNavigateLeft", "TmuxNavigateDown", "TmuxNavigateUp", "TmuxNavigateRight" },
 		keys = {
 			{ "<A-Left>", "<cmd>TmuxNavigateLeft<cr>" },
@@ -73,5 +73,15 @@ return {
 	{
 		"karb94/neoscroll.nvim",
 		opts = { duration_multiplier = 0.5 },
+	},
+
+	{
+		"mrjones2014/smart-splits.nvim",
+		config = function()
+			vim.keymap.set("n", "<A-Left>", require("smart-splits").move_cursor_left)
+			vim.keymap.set("n", "<A-Down>", require("smart-splits").move_cursor_down)
+			vim.keymap.set("n", "<A-Up>", require("smart-splits").move_cursor_up)
+			vim.keymap.set("n", "<A-Right>", require("smart-splits").move_cursor_right)
+		end,
 	},
 }
