@@ -1,62 +1,234 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
-
-wezterm.on("gui-startup", function()
-	local screen = wezterm.gui.screens().active
-	local ratio = 0.85
-	local width, height = screen.width * ratio, screen.height * ratio
-
-	local _, _, window = wezterm.mux.spawn_window({
-		position = {
-			x = screen.width - width,
-			y = screen.height - height,
-		},
-	})
-	window:gui_window():set_inner_size(width, height)
-end)
+local picker = require("utils.picker")
+local globals = require("utils.globals")
+local utils = require("utils.general")
 
 local M = {}
 
-M.globalsPath = os.getenv("HOME") .. "/dotfiles/wezterm/globals.toml"
-M.scriptsPath = os.getenv("HOME") .. "/dotfiles/scripts/"
-
-M.runScript = function(script, args)
-	wezterm.background_child_process({ M.scriptsPath .. script, args and args })
-end
-
-M.getGlobals = function()
-	local file = assert(io.open(M.globalsPath, "r"))
-	local globals = file:read("*a")
-	file:close()
-	return wezterm.serde.toml_decode(globals)
-end
-
-M.cmd_to_tmux_prefix = function(key, tmux_key)
-	return {
-		mods = "CMD",
-		key = key,
-		action = act.Multiple({
-			act.SendKey({ mods = "CTRL", key = "a" }),
-			act.SendKey({ key = tmux_key }),
-		}),
-	}
-end
-
 M.global_bg = function()
 	return act.PromptInputLine({
-		description = "Enter a global bg color! 🎨",
+		description = wezterm.format({
+			{ Attribute = { Underline = "Single" } },
+			{ Foreground = { AnsiColor = "Green" } },
+			{ Text = "Enter a global bg color! 🎨" },
+		}),
 		action = wezterm.action_callback(function(_, _, line)
 			if line == "" then
-				M.runScript("clear-global-bg.zsh")
+				globals.setGlobals(function(G)
+					G.background = nil
+				end)
 			elseif line then
-				M.runScript("update-global-bg.zsh", line)
+				globals.setGlobals(function(G)
+					G.background = line
+				end)
 			end
 		end),
 	})
 end
 
 M.toggleOLED = function()
-	M.runScript("toggle-oled.zsh")
+	globals.setGlobals(function(G)
+		G.OLED = not G.OLED
+	end)
+end
+
+M.moreOpacity = function()
+	globals.setGlobals(function(G)
+		if G.opacity > 0.6 then
+			G.opacity = G.opacity - 0.01
+		end
+	end)
+end
+
+M.lessOpacity = function()
+	globals.setGlobals(function(G)
+		if G.opacity < 0.99 then
+			G.opacity = G.opacity + 0.01
+		end
+	end)
+end
+
+M.resetOpacity = function()
+	globals.setGlobals(function(G)
+		G.opacity = 0.999
+	end)
+end
+
+M.sesh = function()
+	return wezterm.action_callback(function(window, pane)
+		local choices = {}
+		local dirs_to_scan = { "/dev", "/code", "/dotfiles" }
+
+		-- collect active workspace names once into a set for O(1) lookup
+		local active_workspaces = wezterm.mux.get_workspace_names()
+		local active_set = {}
+		for _, ws in ipairs(active_workspaces) do
+			active_set[ws] = true
+		end
+
+		for _, dir in ipairs(dirs_to_scan) do
+			for _, path in ipairs(wezterm.glob(wezterm.home_dir .. dir .. "/*")) do
+				local relative_path = path:gsub(wezterm.home_dir, "~")
+				local basename = utils.getDirNameFromPath(path)
+
+				-- choose icon color based on active status
+				local icon_color = active_set[basename] and "Green" or "White"
+
+				local formatted_label = wezterm.format({
+					{ Foreground = { AnsiColor = icon_color } },
+					{ Text = wezterm.nerdfonts.cod_layout_panel_right },
+					{ Text = "  " },
+					{ Text = basename },
+					{ Text = "  " },
+					{ Foreground = { AnsiColor = "Grey" } },
+					{ Text = "(" .. relative_path .. ")" },
+				})
+
+				table.insert(choices, { id = path, label = formatted_label })
+			end
+		end
+
+		-- split active/inactive (same logic as before)
+		local active_choices, inactive_choices = {}, {}
+		for _, c in ipairs(choices) do
+			local basename = utils.getDirNameFromPath(c.id)
+			if active_set[basename] then
+				table.insert(active_choices, c)
+			else
+				table.insert(inactive_choices, c)
+			end
+		end
+
+		choices = {}
+		for _, c in ipairs(active_choices) do
+			table.insert(choices, c)
+		end
+		for _, c in ipairs(inactive_choices) do
+			table.insert(choices, c)
+		end
+
+		local action = wezterm.action_callback(function(_, _, id, label)
+			if label and id then
+				window:perform_action(
+					act.SwitchToWorkspace({ name = utils.getDirNameFromPath(id), spawn = { cwd = id } }),
+					pane
+				)
+			end
+		end)
+
+		local opts = {
+			window = window,
+			pane = pane,
+			choices = choices,
+			title = wezterm.format({
+				{ Attribute = { Underline = "Single" } },
+				{ Foreground = { AnsiColor = "Green" } },
+				{ Text = "Choose a session! 💻" },
+			}),
+			action = action,
+		}
+
+		picker.pick(opts)
+	end)
+end
+
+M.themes = function()
+	return wezterm.action_callback(function(window, pane)
+		local choices = {}
+
+		local schemes = wezterm.get_builtin_color_schemes()
+		local custom_schemes_path = wezterm.glob(wezterm.config_dir .. "/colors/*")
+
+		-- loop over builtin schemes
+		for scheme, _ in pairs(schemes) do
+			table.insert(choices, { label = tostring(scheme) })
+		end
+
+		-- loop over custom schemes in {config dir}/colors
+		for _, scheme in pairs(custom_schemes_path) do
+			local scheme_name = utils.getDirNameFromPath(scheme):gsub(".toml", "")
+			table.insert(choices, { label = tostring(scheme_name) })
+		end
+
+		-- sort choices list
+		table.sort(choices, function(c1, c2)
+			return c1.label < c2.label
+		end)
+
+		local action = wezterm.action_callback(function(_, _, _, label)
+			if label then
+				globals.setGlobals(function(G)
+					G.colorscheme = label
+				end)
+			end
+		end)
+
+		local opts = {
+			window = window,
+			pane = pane,
+			choices = choices,
+			title = wezterm.format({
+				{ Attribute = { Underline = "Single" } },
+				{ Foreground = { AnsiColor = "Green" } },
+				{ Text = "Choose a theme! 🎨" },
+			}),
+			action = action,
+		}
+
+		picker.pick(opts)
+	end)
+end
+
+M.fonts = function()
+	return wezterm.action_callback(function(window, pane)
+		local choices = {}
+
+		local _, stdout, _ = wezterm.run_child_process({ "zsh", "-ic", "fc-list :spacing=mono family" })
+		-- local _, stdout, _ = wezterm.run_child_process({ "fc-list :spacing=mono family" })
+
+		local list = wezterm.split_by_newlines(stdout)
+
+		-- loop over builtin schemes
+		for _, font in pairs(list) do
+			if string.sub(font, 1, 1) ~= "." then
+				if font:find(",") then
+					-- split and take first part
+					local first = font:match("([^,]+)")
+					table.insert(choices, { label = tostring(first) })
+				else
+					table.insert(choices, { label = tostring(font) })
+				end
+			end
+		end
+
+		-- sort choices list
+		table.sort(choices, function(c1, c2)
+			return c1.label < c2.label
+		end)
+
+		local action = wezterm.action_callback(function(_, _, _, label)
+			if label then
+				globals.setGlobals(function(G)
+					G.font = label
+				end)
+			end
+		end)
+
+		local opts = {
+			window = window,
+			pane = pane,
+			choices = choices,
+			title = wezterm.format({
+				{ Attribute = { Underline = "Single" } },
+				{ Foreground = { AnsiColor = "Green" } },
+				{ Text = "Choose a font! ✏️" },
+			}),
+			action = action,
+		}
+
+		picker.pick(opts)
+	end)
 end
 
 return M
