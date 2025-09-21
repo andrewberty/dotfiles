@@ -22,7 +22,7 @@ return {
 
 				list = { selection = { preselect = true, auto_insert = false } },
 			},
-			fuzzy = { use_frecency = false },
+			fuzzy = { frecency = { enabled = false } },
 			keymap = {
 				preset = "enter",
 				["<tab>"] = {},
