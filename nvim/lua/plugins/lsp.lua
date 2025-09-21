@@ -7,6 +7,9 @@ return {
 			"mason-org/mason-lspconfig.nvim",
 		},
 		config = function()
+			-- disable the annoying deprecated message till fixed
+			vim.deprecate = function() end
+
 			require("mason").setup()
 			require("mason-lspconfig").setup({
 				automatic_enable = {
