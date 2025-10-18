@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 local function centerWindow()
 	local screen = wezterm.gui.screens().active
-	local ratio = 0.98
+	local ratio = 0.982
 	local notch_height = 100
 	local width, height = screen.width * ratio, (screen.height - notch_height) * ratio
 
