@@ -28,6 +28,7 @@ config.front_end = "WebGpu"
 config.bidi_enabled = true
 config.bidi_direction = "LeftToRight"
 config.max_fps = 120
+config.default_cursor_style = "BlinkingBar"
 
 -- CURSOR
 config.cursor_blink_ease_in = "Linear"

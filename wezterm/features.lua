@@ -124,7 +124,7 @@ M.sesh = function()
 			title = wezterm.format({
 				{ Attribute = { Underline = "Single" } },
 				{ Foreground = { AnsiColor = "Green" } },
-				{ Text = "Choose a session! 💻" },
+				{ Text = "Choose a session! 💻  " },
 			}),
 			action = action,
 		}
@@ -222,7 +222,7 @@ M.fonts = function()
 			title = wezterm.format({
 				{ Attribute = { Underline = "Single" } },
 				{ Foreground = { AnsiColor = "Green" } },
-				{ Text = "Choose a font! ✏️" },
+				{ Text = "Choose a font! ✏️  " },
 			}),
 			action = action,
 		}
