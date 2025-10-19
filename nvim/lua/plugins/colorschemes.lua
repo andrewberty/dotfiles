@@ -20,10 +20,14 @@ return {
 					StatusLineTermNC = { bg = "none" },
 					WinBar = { bg = "none" },
 					WinBarNC = { bg = "none" },
+
 					NvimTreeNormal = { bg = "none" },
 					NvimTreeNormalNC = { bg = "none" },
 					NvimTreeVertSplit = { bg = "none" },
 					NvimTreeEndOfBuffer = { bg = "none" },
+
+					SnacksIndent = { fg = "#333333" },
+					CursorLine = { bg = "#333333" }, -- hack to override active item bg
 				},
 			})
 		end,
@@ -55,6 +59,7 @@ return {
 	},
 	{
 		"tinted-theming/tinted-nvim",
+		enabled = false,
 		config = function()
 			require("tinted-colorscheme").with_config({
 				supports = { tinty = false, tinted_shell = false, live_reload = false },
