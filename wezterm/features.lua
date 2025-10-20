@@ -57,23 +57,19 @@ end
 
 M.bg_darken = function()
 	globals.setGlobals(function(G)
-		if G.darken <= 1 then
-			G.darken = G.darken + 0.05
-		end
+		G.brightness = utils.clamp((G.brightness or 0) - 0.02, -1.0, 1.0)
 	end)
 end
 
 M.bg_lighten = function()
 	globals.setGlobals(function(G)
-		if G.darken >= 0 then
-			G.darken = G.darken - 0.05
-		end
+		G.brightness = utils.clamp((G.brightness or 0) + 0.02, -1.0, 1.0)
 	end)
 end
 
 M.bg_reset_brightenss = function()
 	globals.setGlobals(function(G)
-		G.darken = 0
+		G.brightness = 0
 	end)
 end
 

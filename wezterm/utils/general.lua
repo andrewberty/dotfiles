@@ -16,4 +16,14 @@ M.getDirNameFromPath = function(path)
 	return parts[#parts]
 end
 
+M.clamp = function(value, min, max)
+	if value < min then
+		return min
+	elseif value > max then
+		return max
+	else
+		return value
+	end
+end
+
 return M
