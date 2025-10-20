@@ -55,7 +55,7 @@ M.resetOpacity = function()
 	end)
 end
 
-M.moreDarken = function()
+M.bg_darken = function()
 	globals.setGlobals(function(G)
 		if G.darken <= 1 then
 			G.darken = G.darken + 0.05
@@ -63,7 +63,7 @@ M.moreDarken = function()
 	end)
 end
 
-M.lessDarken = function()
+M.bg_lighten = function()
 	globals.setGlobals(function(G)
 		if G.darken >= 0 then
 			G.darken = G.darken - 0.05
@@ -71,7 +71,7 @@ M.lessDarken = function()
 	end)
 end
 
-M.resetDarken = function()
+M.bg_reset_brightenss = function()
 	globals.setGlobals(function(G)
 		G.darken = 0
 	end)

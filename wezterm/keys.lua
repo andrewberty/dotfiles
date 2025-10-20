@@ -44,9 +44,9 @@ M.apply = function(config)
 		{ key = "x", mods = "OPT", action = wezterm.action_callback(features.resetOpacity) },
 		{ key = "c", mods = "OPT", action = wezterm.action_callback(features.lessOpacity) },
 
-		{ key = "=", mods = "OPT", action = wezterm.action_callback(features.moreDarken) },
-		{ key = "-", mods = "OPT", action = wezterm.action_callback(features.lessDarken) },
-		{ key = "0", mods = "OPT", action = wezterm.action_callback(features.resetDarken) },
+		{ key = "=", mods = "OPT", action = wezterm.action_callback(features.bg_lighten) },
+		{ key = "-", mods = "OPT", action = wezterm.action_callback(features.bg_darken) },
+		{ key = "0", mods = "OPT", action = wezterm.action_callback(features.bg_reset_brightenss) },
 
 		{ key = "m", mods = "CMD", action = wezterm.action.Hide },
 		{ key = "c", mods = "CMD", action = act.CopyTo("ClipboardAndPrimarySelection") },
