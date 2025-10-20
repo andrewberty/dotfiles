@@ -55,6 +55,28 @@ M.resetOpacity = function()
 	end)
 end
 
+M.moreDarken = function()
+	globals.setGlobals(function(G)
+		if G.darken <= 1 then
+			G.darken = G.darken + 0.05
+		end
+	end)
+end
+
+M.lessDarken = function()
+	globals.setGlobals(function(G)
+		if G.darken >= 0 then
+			G.darken = G.darken - 0.05
+		end
+	end)
+end
+
+M.resetDarken = function()
+	globals.setGlobals(function(G)
+		G.darken = 0
+	end)
+end
+
 M.sesh = function()
 	return wezterm.action_callback(function(window, pane)
 		local choices = {}

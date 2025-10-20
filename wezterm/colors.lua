@@ -4,29 +4,34 @@ local globals = require("utils.globals")
 local G = globals.readGlobals()
 local M = {}
 
-local scheme = wezterm.color.get_builtin_schemes()[G.colorscheme]
-	or wezterm.color.load_scheme(os.getenv("HOME") .. "/dotfiles/wezterm/colors/" .. G.colorscheme .. ".toml")
+local scheme_name = G.colorscheme or "rose-pine"
 
-local oled = G.OLED and "#000000" or G.background
-scheme.background = oled or scheme.background
+local scheme = wezterm.color.get_builtin_schemes()[scheme_name]
+	or wezterm.color.load_scheme(os.getenv("HOME") .. "/dotfiles/wezterm/colors/" .. scheme_name .. ".toml")
+	or "rose-pine"
 
-local overrides = {
-	["rose-pine"] = { background = "#12101A" },
-	["rose-pine-moon"] = { background = "#12101A" },
-	["tokyonight"] = { background = "#161720" },
-}
+local oled = G.OLED and "#000000"
+local derived_bg = G.background or scheme.background
+local darkened_bg = wezterm.color.parse(derived_bg):darken(G.darken or 0)
+scheme.background = oled or darkened_bg or derived_bg
 
-for colorscheme, override in pairs(overrides) do
-	if G.colorscheme == colorscheme then
-		for property, value in pairs(override) do
-			scheme[property] = value
-
-			if property == "background" then
-				scheme.background = oled or value
-			end
-		end
-	end
-end
+-- local overrides = {
+-- 	["rose-pine"] = { background = "#12101A" },
+-- 	["rose-pine-moon"] = { background = "#12101A" },
+-- 	["tokyonight"] = { background = "#161720" },
+-- }
+--
+-- for colorscheme, override in pairs(overrides) do
+-- 	if G.colorscheme == colorscheme then
+-- 		for property, value in pairs(override) do
+-- 			scheme[property] = value
+--
+-- 			if property == "background" then
+-- 				scheme.background = oled or value
+-- 			end
+-- 		end
+-- 	end
+-- end
 
 scheme.tab_bar = {
 	background = scheme.background,
