@@ -8,10 +8,25 @@ return {
 		},
 		config = function()
 			-- disable the annoying deprecated message till fixed
+			---@diagnostic disable-next-line: duplicate-set-field
 			vim.deprecate = function() end
 
 			require("mason").setup()
 			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"html",
+					"cssls",
+					"emmet_ls",
+					"eslint_d",
+					"lua_ls",
+					"prettier",
+					"shfmt",
+					"stylua",
+					"tailwindcss",
+					"taplo",
+					"ts_ls",
+					"gopls",
+				},
 				automatic_enable = {
 					exclude = { "ts_ls" },
 				},
