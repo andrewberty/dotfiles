@@ -54,8 +54,17 @@ return {
 
 	{
 		"NvChad/nvim-colorizer.lua",
-		enabled = false,
-		opts = { user_default_options = { tailwind = true, css = true, css_fn = true } },
+		enabled = true,
+		opts = {
+			user_default_options = {
+				css = true,
+				css_fn = true,
+				tailwind = "both",
+				tailwind_opts = {
+					update_names = false,
+				},
+			},
+		},
 	},
 
 	{ "folke/ts-comments.nvim", opts = {}, event = "VeryLazy" },

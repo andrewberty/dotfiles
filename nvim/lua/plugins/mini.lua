@@ -28,6 +28,7 @@ return {
 	{
 		"echasnovski/mini.hipatterns",
 		version = "*",
+		enabled = false,
 		config = function()
 			local hipatterns = require("mini.hipatterns")
 
