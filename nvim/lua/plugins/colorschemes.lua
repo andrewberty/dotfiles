@@ -1,5 +1,40 @@
 return {
 	{
+		"bluz71/vim-nightfly-colors",
+		name = "nightfly",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.g.nightflyCursorColor = true
+			vim.g.nightflyItalics = false
+			vim.g.nightflyNormalPmenu = true
+			vim.g.nightflyNormalFloat = true
+			vim.g.nightflyTransparent = true
+			vim.g.nightflyUnderlineMatchParen = true
+			vim.g.nightflyVirtualTextColor = true
+			vim.g.nightflyWinSeparator = 2
+
+			local palette = require("nightfly").palette
+
+			local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				pattern = "nightfly",
+				callback = function()
+					local hl = require("utils").hl
+
+					hl("StatusLine", { bg = "none" })
+					hl("StatusLineNC", { bg = "none" })
+					hl("StatusLineTerm", { bg = "none" })
+					hl("StatusLineTermNC", { bg = "none" })
+					hl("WinBar", { bg = "none" })
+					hl("WinBarNC", { bg = "none" })
+					hl("IblScope", { fg = palette.turquoise })
+				end,
+				group = custom_highlight,
+			})
+		end,
+	},
+	{
 		"metalelf0/black-metal-theme-neovim",
 		lazy = false,
 		priority = 1000,
@@ -53,9 +88,6 @@ return {
 				end,
 			})
 		end,
-
-		-- optionally set the colorscheme within lazy config
-		init = function() vim.cmd("colorscheme poimandres") end,
 	},
 	{
 		"tinted-theming/tinted-nvim",
