@@ -2,6 +2,7 @@ return {
 	"luckasRanarison/tailwind-tools.nvim",
 	name = "tailwind-tools",
 	build = ":UpdateRemotePlugins",
+	enabled = false,
 	config = function()
 		---@diagnostic disable-next-line: missing-fields
 		require("tailwind-tools").setup({
