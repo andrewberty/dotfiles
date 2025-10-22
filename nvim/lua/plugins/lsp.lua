@@ -16,7 +16,7 @@ return {
 				ensure_installed = {
 					"html",
 					"cssls",
-					"emmet_ls",
+					"emmet_language_server",
 					"eslint_d",
 					"lua_ls",
 					"prettier",
