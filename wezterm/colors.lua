@@ -14,10 +14,12 @@ local oled = G.OLED and "#000000"
 local derived_bg = G.background or scheme.background
 local bg_color_object = wezterm.color.parse(derived_bg)
 
-if G.brightness > 0 then
-	derived_bg = bg_color_object:lighten(G.brightness)
-elseif G.brightness < 0 then
-	derived_bg = bg_color_object:darken(-G.brightness)
+if G.brightness ~= nil then
+	if G.brightness > 0 then
+		derived_bg = bg_color_object:lighten(G.brightness)
+	elseif G.brightness < 0 then
+		derived_bg = bg_color_object:darken(-G.brightness)
+	end
 end
 
 scheme.background = oled or derived_bg
