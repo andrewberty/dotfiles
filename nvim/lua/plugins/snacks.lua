@@ -11,7 +11,7 @@ return {
 	priority = 1000,
 	lazy = false,
 	opts = {
-		bigfile = { size = 1024 * 1024 },
+		-- bigfile = { size = 1024 * 1024 },
 		indent = {
 			indent = {
 				char = "┊",
@@ -181,7 +181,7 @@ return {
 				_G.bt = function() Snacks.debug.backtrace() end
 
 				Snacks.toggle.indent():map("<leader>i")
-				Snacks.toggle.option("number", { global = true }):map("<leader>l")
+				Snacks.toggle.option("number"):map("<leader>l")
 				Snacks.toggle.diagnostics():map("<leader>ud")
 				Snacks.toggle.inlay_hints():map("<leader>uh")
 				Snacks.toggle.dim():map("<leader>uD")
