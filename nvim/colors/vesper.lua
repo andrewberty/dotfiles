@@ -6,7 +6,7 @@ local hsl = require("utils").hsl
 -- hsl(247, 100, 85)
 
 local colors = {
-	fg = hsl(0, 0, 100),
+	fg = hsl(0, 0, 90),
 	fgAlt = hsl(0, 0, 33),
 
 	bg0 = "NONE",

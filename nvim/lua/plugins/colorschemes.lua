@@ -91,7 +91,6 @@ return {
 	},
 	{
 		"tinted-theming/tinted-nvim",
-		enabled = false,
 		config = function()
 			require("tinted-colorscheme").with_config({
 				supports = { tinty = false, tinted_shell = false, live_reload = false },
