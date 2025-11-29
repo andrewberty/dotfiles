@@ -1,15 +1,15 @@
 [colors]
 ansi = [
-  "#101010", # bg (dark gray)
+  "#0d0d0d", # bg (dark gray)
   "#343434", # dark gray (minimal use for red)
   "#99ffe4", # green (mint, dominant)
   "#ffcfa8", # orange (dominant)
   "#ffcfa8", # medium gray (replaces purple/blue)
   "#a0a0a0", # light gray (used for magenta replacement)
   "#99ffe4", # green (mint, also as cyan)
-  "#ffffff", # white
+  "#e6e6e6", # white
 ]
-background = "#101010" # bg (dark gray)
+background = "#0d0d0d" # bg (dark gray)
 brights = [
   "#505050", # medium gray
   "#ffcfa8", # dark gray (replaces bright red)
@@ -18,11 +18,11 @@ brights = [
   "#ffcfa8", # gray (replaces purple)
   "#a0a0a0", # light gray
   "#99ffe4", # green (mint, used as bright cyan too)
-  "#ffffff", # white
+  "#e6e6e6", # white
 ]
 cursor_bg = "#ffcfa8" # mint (highlighted cursor background)
 cursor_border = "#ffcfa8" # mint
-cursor_fg = "#101010" # bg (contrast for cursor text)
-foreground = "#ffffff" # white (main text color for readability)
+cursor_fg = "#0d0d0d" # bg (contrast for cursor text)
+foreground = "#e6e6e6" # white (main text color for readability)
 selection_bg = "#343434" # dark gray (soft contrast for selection)
 selection_fg = "#99ffe4" # mint (highlighted selection text)
