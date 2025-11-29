@@ -3,6 +3,7 @@ export EZA_ICON_SPACING=2
 export CONFIG_DIR="$HOME/.config/lazygit"
 
 path=(
+    /Applications/Postgres.app/Contents/Versions/latest/bin
     /opt/homebrew/opt/trash/bin
     $path
     /Applications/XAMPP/bin
@@ -20,12 +21,17 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export HOMEBREW_NO_ENV_HINTS=1
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 if type brew &>/dev/null; then
     FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
     autoload -Uz compinit
     compinit
+fi
+
+if command -v ngrok &>/dev/null; then
+    eval "$(ngrok completion)"
 fi
 
 alias cl=clear
@@ -60,4 +66,3 @@ zstyle ':completion:*' menu select
 eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"
-eval "$(fnm env --use-on-cd --shell zsh)"
