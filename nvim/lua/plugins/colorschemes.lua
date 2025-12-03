@@ -1,5 +1,29 @@
 return {
 	{
+		"EdenEast/nightfox.nvim",
+		config = function()
+			require("nightfox").setup({
+				options = {
+					transparent = true,
+					inverse = { match_paren = true },
+				},
+				-- palettes = {},
+				-- specs = {},
+				groups = {
+					all = {
+						NormalFloat = { bg = "none" },
+						StatusLine = { bg = "none" },
+						StatusLineNC = { bg = "none" },
+						StatusLineTerm = { bg = "none" },
+						StatusLineTermNC = { bg = "none" },
+						WinBar = { bg = "none" },
+						WinBarNC = { bg = "none" },
+					},
+				},
+			})
+		end,
+	},
+	{
 		"bluz71/vim-nightfly-colors",
 		name = "nightfly",
 		lazy = false,
