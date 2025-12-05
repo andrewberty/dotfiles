@@ -41,18 +41,6 @@ return {
 	},
 
 	{
-		"christoomey/vim-tmux-navigator",
-		enabled = false,
-		cmd = { "TmuxNavigateLeft", "TmuxNavigateDown", "TmuxNavigateUp", "TmuxNavigateRight" },
-		keys = {
-			{ "<A-Left>", "<cmd>TmuxNavigateLeft<cr>" },
-			{ "<A-Down>", "<cmd>TmuxNavigateDown<cr>" },
-			{ "<A-Up>", "<cmd>TmuxNavigateUp<cr>" },
-			{ "<A-Right>", "<cmd>TmuxNavigateRight<cr>" },
-		},
-	},
-
-	{
 		"NvChad/nvim-colorizer.lua",
 		enabled = true,
 		opts = {
