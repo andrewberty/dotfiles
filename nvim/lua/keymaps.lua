@@ -54,3 +54,10 @@ map("v", ">", ">gv", { desc = "Better Indent", silent = true })
 map("n", "<leader>z", "za", { desc = "Toggle Current Folding", silent = true })
 map("n", "<leader>zu", "zR", { desc = "Unfold All", silent = true })
 map("n", "<leader>zf", "zM", { desc = "Fold All", silent = true })
+
+map("n", "<leader>cp", function()
+	local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+	local filepath = vim.fn.expand("%:p")
+	local relative = vim.fn.fnamemodify(filepath, ":." .. git_root)
+	vim.fn.setreg("+", relative)
+end)
