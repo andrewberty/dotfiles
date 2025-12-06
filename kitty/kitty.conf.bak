@@ -1,0 +1,215 @@
+#-------------------------------FONT---------------------------
+font_family      Hack Nerd Font 
+font_size 16
+
+adjust_line_height    150%
+
+# Nerd Fonts v2.3.3
+# symbol_map U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0 Symbols Nerd Font Mono
+#-------------------------------CURSOR---------------------------
+# cursor #cccccc
+# cursor_text_color #111111
+# block | beam | underline
+cursor_shape block
+shell_integration no-cursor
+# cursor_beam_thickness 1.5
+# cursor_underline_thickness 2.0
+# cursor_blink_interval -1
+# cursor_stop_blinking_after 15.0
+#-------------------------------SCROLLBACK---------------------------
+# scrollback_lines 2000
+# scrollback_pager less --chop-long-lines --RAW-CONTROL-CHARS +INPUT_LINE_NUMBER
+# scrollback_pager_history_size 0
+# scrollback_fill_enlarged_window no
+# wheel_scroll_multiplier 5.0
+touch_scroll_multiplier 5.0
+#-------------------------------MOUSE---------------------------
+# mouse_hide_wait 3.0
+# url_color #0087bd
+# url_style curly # none | single | double | curly
+# open_url_with default
+# url_prefixes http https file ftp gemini irc gopher mailto news git
+# detect_urls yes
+# url_excluded_characters
+# copy_on_select no
+# strip_trailing_spaces never
+# select_by_word_characters @-./_~?&=%+#
+# click_interval -1.0
+# focus_follows_mouse no
+
+# arrow | beam | hand
+# pointer_shape_when_grabbed arrow
+# default_pointer_shape beam
+# pointer_shape_when_dragging beam
+
+# mouse_map left            click ungrabbed mouse_click_url_or_select
+# mouse_map shift+left      click grabbed,ungrabbed mouse_click_url_or_select
+# mouse_map ctrl+shift+left release grabbed,ungrabbed mouse_click_url
+# mouse_map ctrl+shift+left press grabbed discard_event
+# mouse_map middle        release ungrabbed paste_from_selection
+# mouse_map left          press ungrabbed mouse_selection normal
+# mouse_map ctrl+alt+left press ungrabbed mouse_selection rectangle
+# mouse_map left          doublepress ungrabbed mouse_selection word
+# mouse_map left          triplepress ungrabbed mouse_selection line
+# mouse_map ctrl+alt+left triplepress ungrabbed mouse_selection line_from_point
+# mouse_map right               press ungrabbed mouse_selection extend
+# mouse_map shift+middle        release ungrabbed,grabbed paste_selection
+# mouse_map shift+left          press ungrabbed,grabbed mouse_selection normal
+# mouse_map shift+ctrl+alt+left press ungrabbed,grabbed mouse_selection rectangle
+# mouse_map shift+left          doublepress ungrabbed,grabbed mouse_selection word
+# mouse_map shift+left          triplepress ungrabbed,grabbed mouse_selection line
+# mouse_map shift+ctrl+alt+left triplepress ungrabbed,grabbed mouse_selection line_from_point
+# mouse_map shift+right press ungrabbed,grabbed mouse_selection extend
+#-------------------------------PERFORMANCE---------------------------
+# repaint_delay 10
+# input_delay 3
+# sync_to_monitor yes
+#-------------------------------BELL---------------------------
+enable_audio_bell false
+# visual_bell_duration 0.0
+# window_alert_on_bell yes
+# bell_on_tab yes
+# command_on_bell none
+#-------------------------------WINDOW---------------------------
+remember_window_size  no
+initial_window_width  100c
+initial_window_height 25c
+
+
+enabled_layouts splits, stack
+# window_resize_step_cells 2
+# window_resize_step_lines 2
+# draw_minimal_borders yes
+# window_margin_width 0
+# single_window_margin_width -1
+window_padding_width 10
+placement_strategy center
+window_border_width 0px
+# active_border_color #111
+# inactive_border_color #111
+# bell_border_color #ff5a00
+inactive_text_alpha 0.8
+hide_window_decorations titlebar-only
+# resize_debounce_time 0.1
+# resize_draw_strategy static
+resize_in_steps yes
+confirm_os_window_close 0
+#-------------------------------TAB-BAR---------------------------
+# tab_bar_edge bottom
+tab_bar_margin_width 0.0
+tab_bar_margin_height 0.0 0.0
+tab_bar_style separator
+#: The tab bar style, can be one of: fade, separator, powerline, or hidden.
+# tab_bar_min_tabs 2
+# tab_switch_strategy previous
+# tab_fade 0.25 0.5 0.75 1
+# tab_separator " ┇"
+tab_separator " "
+tab_powerline_style angled
+#: using powerline as the tab_bar_style, can be one of: angled, slanted, or round.
+# tab_activity_symbol none
+tab_title_template " {title} "
+
+#: A template to render the tab title. The default just renders the
+#: title. If you wish to include the tab-index as well, use something
+#: like: {index}: {title}. Useful if you have shortcuts mapped for
+#: goto_tab N. If you prefer to see the index as a superscript, use
+#: {sup.index}. In addition you can use {layout_name} for the current
+#: layout name and {num_windows} for the number of windows in the tab.
+#: Note that formatting is done by Python's string formatting
+#: machinery, so you can use, for instance, {layout_name[:2].upper()}
+#: to show only the first two letters of the layout name, upper-cased.
+#: If you want to style the text, you can use styling directives, for
+#: example: {fmt.fg.red}red{fmt.fg.default}normal{fmt.bg._00FF00}green
+#: bg{fmt.bg.normal}. Similarly, for bold and italic:
+#: {fmt.bold}bold{fmt.nobold}normal{fmt.italic}italic{fmt.noitalic}.
+
+# active_tab_title_template none
+# active_tab_foreground   #000
+# active_tab_background     background
+# active_tab_font_style   bold-italic
+# inactive_tab_foreground #444
+# inactive_tab_background #999
+# inactive_tab_font_style normal
+# tab_bar_background none
+# tab_bar_margin_color none
+#-------------------------------COLORS---------------------------
+# foreground #dddddd
+# background #000000
+background_opacity 0.95
+background_blur 50
+dynamic_background_opacity yes
+# background_image none
+# background_image_layout tiled
+# background_image_linear no
+# background_tint 0.0
+# dim_opacity 0.75
+# selection_foreground #000000
+# selection_background #fffacd
+
+
+# shell .
+# editor .
+# env
+update_check_interval 24
+
+allow_hyperlinks yes
+
+allow_remote_control yes
+
+
+
+#-------------------------------KEYMAPS---------------------------
+map Ctrl+c copy_or_interrupt
+map Ctrl+v paste_from_clipboard
+# map Ctrl+v paste_from_selection
+
+
+### SPLITS
+map Ctrl+\          launch --cwd=current --location=vsplit
+map Ctrl+Shift+\    launch --cwd=current --location=hsplit
+
+# Move the active window in the indicated direction
+map Super+shift+up move_window up
+map Super+shift+left move_window left
+map Super+shift+right move_window right
+map Super+shift+down move_window down
+
+# Switch focus to the neighboring window in the indicated direction
+map Super+left neighboring_window left
+map Super+right neighboring_window right
+map Super+up neighboring_window up
+map Super+down neighboring_window down
+
+map kitty_mod+left resize_window narrower
+map kitty_mod+right resize_window wider
+map kitty_mod+up resize_window taller
+map kitty_mod+down resize_window shorter
+
+map kitty_mod+n     new_os_window_with_cwd
+map kitty_mod+q     close_window
+map kitty_mod+]     next_window
+
+map kitty_mod+r     start_resizing_window
+map kitty_mod+t     new_tab_with_cwd
+map kitty_mod+w     close_tab
+map kitty_mod+q     close_os_window
+map kitty_mod+alt+t set_tab_title
+
+map kitty_mod+l next_layout
+
+map kitty_mod+equal     change_font_size all +1.0
+map kitty_mod+minus     change_font_size all -1.0
+map kitty_mod+0         change_font_size all 0
+
+map alt+c    set_background_opacity +0.01
+map alt+z    set_background_opacity -0.01
+map alt+x    set_background_opacity 1
+map alt+0    set_background_opacity default
+
+
+# BEGIN_KITTY_THEME
+# Adapta Nokto Maia
+include current-theme.conf
+# END_KITTY_THEME
+background #000000
