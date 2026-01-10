@@ -1,20 +1,24 @@
 {
+	"buffer_font_size": 14.0,
+	"theme": "Oscura Dusk",
+	"ui_font_size": 15.0,
 	"icon_theme": "Zed (Default)",
 	"telemetry": { "diagnostics": false, "metrics": false },
-	"theme": "Darkmatter",
 	"buffer_line_height": { "custom": 1.8 },
-	"buffer_font_family": "SF Mono",
+	"buffer_font_family": "Menlo",
+	"ui_font_family": "Menlo",
 	"buffer_font_fallbacks": ["Symbols Nerd Font", "Alexandria"],
-	"ui_font_family": "SF Mono",
 	"vim_mode": true,
-	"ui_font_size": 14.0,
-	"buffer_font_size": 12.0,
 	"soft_wrap": "editor_width",
 	"tab_size": 4,
 	"extend_comment_on_newline": false,
 	"format_on_save": "on",
 	"close_on_file_delete": true,
 	"cursor_blink": false,
+	"colorize_brackets": true,
+	"vim": {
+		"use_system_clipboard": "on_yank",
+	},
 	"snippet_sort_order": "top",
 	"features": { "edit_prediction_provider": "supermaven" },
 	"languages": {
@@ -29,35 +33,34 @@
 						"--respect-ignores",
 						"--stdin-filepath",
 						"{buffer_path}",
-						"-"
-					]
-				}
-			}
-		}
+						"-",
+					],
+				},
+			},
+		},
 	},
 	"scrollbar": {
 		"cursors": false,
 		"diagnostics": "all",
-		"axes": { "horizontal": false }
+		"axes": { "horizontal": false },
 	},
 	"tabs": {
 		"file_icons": true,
 		"show_close_button": "hidden",
-		"show_diagnostics": "all"
+		"show_diagnostics": "all",
 	},
 	"tab_bar": {
-		// "show": false,
 		"show_tab_bar_buttons": false,
-		"show_nav_history_buttons": false
+		"show_nav_history_buttons": false,
 	},
 	"title_bar": {
 		"show_onboarding_banner": false,
 		"show_user_picture": false,
-		"show_sign_in": false
+		"show_sign_in": false,
 	},
 	"toolbar": {
 		"quick_actions": false,
-		"breadcrumbs": true
+		"breadcrumbs": true,
 	},
 	"lsp_highlight_debounce": 0,
 	"use_autoclose": true,
@@ -65,20 +68,20 @@
 	"diagnostics": {
 		"button": false,
 		"include_warnings": true,
-		"inline": { "enabled": true, "update_debounce_ms": 50 }
+		"inline": { "enabled": true, "update_debounce_ms": 0 },
 	},
 	"git": {
 		"gutter_debounce": null,
 		"inline_blame": {
 			"enabled": true,
-			"show_commit_summary": true
+			"show_commit_summary": true,
 		},
-		"hunk_style": "staged_hollow"
+		"hunk_style": "staged_hollow",
 	},
 	"indent_guides": {
 		"enabled": true,
 		"line_width": 1,
-		"active_line_width": 2
+		"active_line_width": 2,
 	},
 	"file_scan_exclusions": [
 		"**/.git",
@@ -92,39 +95,39 @@
 		"**/.classpath",
 		"**/.settings",
 		"**/.next",
-		"**/node_modules"
+		"**/node_modules",
 	],
-
+	"pane_split_direction_vertical": "right",
 	"preview_tabs": { "enabled": false },
 	"search": { "button": false },
 	"collaboration_panel": { "button": false },
-	"pane_split_direction_vertical": "right",
 	"git_panel": { "button": false },
 	"outline_panel": { "button": false },
 	"notification_panel": { "button": false },
-	"agent": { "button": false },
-	"hard_tabs": true,
+	"agent": { "button": true },
 	"global_lsp_settings": { "button": false },
 	"debugger": { "button": false },
+	"hard_tabs": true,
+	"use_smartcase_search": true,
 	"terminal": {
 		"copy_on_select": true,
 		"option_as_meta": true,
 		"cursor_shape": "bar",
-		"toolbar": { "breadcrumbs": false },
-		"line_height": "standard",
-		"button": false
+		"toolbar": { "breadcrumbs": true },
+		"line_height": { "custom": 2 },
+		"button": false,
 	},
 	"project_panel": {
 		"button": false,
 		"dock": "right",
 		"auto_reveal_entries": false,
 		"auto_fold_dirs": false,
-		"show_diagnostics": "all"
+		"show_diagnostics": "all",
 	},
 	"gutter": {
 		"line_numbers": false,
 		"runnables": false,
-		"folds": false
+		"folds": false,
 	},
 	"lsp": {
 		"vtsls": {
@@ -134,45 +137,61 @@
 						"includePackageJsonAutoImports": "off",
 						"autoImportFileExcludePatterns": [
 							"lucide-react",
-							"react-icons"
+							"react-icons",
 						],
-						"importModuleSpecifier": "non-relative"
-					}
+						"importModuleSpecifier": "non-relative",
+					},
+				},
+				"javascript": {
+					"preferences": {
+						"includePackageJsonAutoImports": "off",
+						"autoImportFileExcludePatterns": [
+							"lucide-react",
+							"react-icons",
+						],
+						"importModuleSpecifier": "non-relative",
+					},
 				},
 				"experimental": {
 					"completion": {
-						"enableServerSideFuzzyMatch": true
-					}
-				}
-			}
+						"enableServerSideFuzzyMatch": true,
+					},
+				},
+			},
 		},
 		"tailwindcss-language-server": {
 			"settings": {
-				"emmetCompletions": false,
+				"emmetCompletions": true,
 				"experimental": {
 					"classRegex": [
 						// "([a-zA-Z0-9\\-:]+)" // matches anywhere (useful for emmet expansion)
-						"[\"`']([^\"'`]*)[\"`']" // matches inside of quotes or backticks
-					]
-				}
-			}
-		}
+						"[\"`']([^\"'`]*)[\"`']", // matches inside of quotes or backticks
+					],
+				},
+			},
+		},
+	},
+	"status_bar": {
+		// "experimental.show": true,
+		"active_language_button": false,
+		"cursor_position_button": false,
 	},
 	"file_scan_inclusions": ["**/.git"],
 	"experimental.theme_overrides": {
-		"background.appearance": "transparent",
 		// override background color
-		// "background": "#0d0d0d",
-		// "editor.background": "#0d0d0d",
-		// "panel.background": "#0d0d0d",
-		// "terminal.background": "#0d0d0d",
-		// "tab_bar.background": "#0d0d0d",
-		// "toolbar.background": "#0d0d0d",
-		// "title_bar.background": "#0d0d0d",
-		// "tab.inactive_background": "#0d0d0d",
-		// "editor.gutter.background": "#0d0d0d",
-		// "status_bar.background": "#0d0d0d",
-		// "tab.active_background": "#0d0d0d",
+		// "background": "#111",
+		// "title_bar.background": "#111",
+		// "status_bar.background": "#111",
+
+		// setting backgrounds to transparent to inherit base background
+		// "editor.background": "#00000000",
+		// "panel.background": "#00000000",
+		// "terminal.background": "#00000000",
+		// "tab_bar.background": "#00000000",
+		// "toolbar.background": "#00000000",
+		// "tab.inactive_background": "#00000000",
+		// "tab.active_background": "#00000000",
+		// "editor.gutter.background": "#00000000",
 
 		// remove some borders color
 		// "border": "#00000000",
@@ -181,6 +200,6 @@
 		"border.focused": "#00000000",
 		"border.selected": "#00000000",
 		"info.border": "#00000000",
-		"scrollbar.thumb.border": "#00000000"
-	}
+		"scrollbar.thumb.border": "#00000000",
+	},
 }

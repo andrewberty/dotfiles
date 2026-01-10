@@ -13,18 +13,18 @@
 	},
 	// Window jumps Keymaps
 	{
-		"context": "GitPanel || ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || DebugPanel || Terminal",
+		"context": "Dock || Editor || Terminal",
 		"bindings": {
 			"alt-left": "workspace::ActivatePaneLeft",
 			"alt-right": "workspace::ActivatePaneRight",
 			"alt-up": "workspace::ActivatePaneUp",
 			"alt-down": "workspace::ActivatePaneDown",
-			"alt-shift-right": "vim::ResizePaneRight",
 			"alt-shift-left": "vim::ResizePaneLeft",
+			"alt-shift-right": "vim::ResizePaneRight",
 			"alt-shift-down": "vim::ResizePaneDown",
 			"alt-shift-up": "vim::ResizePaneUp",
-			"cmd-enter": "vim::MaximizePane",
-			"alt-)": "vim::ResetPaneSizes"
+			"cmd-enter": "workspace::ToggleZoom",
+			"cmd-\\": "pane::SplitRight"
 		}
 	},
 	{
@@ -50,6 +50,12 @@
 			"j k": "vim::NormalBefore"
 		}
 	},
+	{
+		"context": "vim_mode == visual",
+		"bindings": {
+			"shift-s": "vim::PushAddSurrounds"
+		}
+	},
 
 	// Vim when not insert mode
 	{
@@ -57,22 +63,19 @@
 		"bindings": {
 			"left": "vim::WrappingLeft",
 			"right": "vim::WrappingRight",
-			"down": ["vim::Down", { "display_lines": true }],
-			"up": ["vim::Up", { "display_lines": true }],
 			"h": "vim::WrappingLeft",
 			"l": "vim::WrappingRight",
+			"down": ["vim::Down", { "display_lines": true }],
+			"up": ["vim::Up", { "display_lines": true }],
 			"j": ["workspace::SendKeystrokes", "g j"],
 			"k": ["workspace::SendKeystrokes", "g k"],
 			"shift-down": "editor::MoveLineDown",
 			"shift-up": "editor::MoveLineUp",
-			"enter": ["workspace::SendKeystrokes", "\" _ c i w"],
-			"q": ["pane::CloseActiveItem", { "close_pinned": false }],
 			"space x": ["pane::CloseActiveItem", { "close_pinned": false }],
 			"tab": "pane::ActivateNextItem",
 			"shift-tab": "pane::ActivatePreviousItem",
-			"shift-x": ["workspace::SendKeystrokes", "V x"],
-			"c": ["workspace::SendKeystrokes", "\" _ c"],
-			"d": ["workspace::SendKeystrokes", "\" _ d"],
+			"shift-x": ["workspace::SendKeystrokes", "d d"],
+			"enter": ["workspace::SendKeystrokes", "c i w"],
 			"space a": "editor::SelectAll",
 			"space e": "workspace::ToggleRightDock",
 			"space E": "pane::RevealInProjectPanel",
@@ -93,54 +96,11 @@
 				"task::Spawn",
 				{ "task_name": "lazygit", "reveal_target": "center" }
 			],
-			"space space": "tab_switcher::Toggle",
-			"s": ["vim::PushAddSurrounds", {}],
+			"s": "vim::PushAddSurrounds",
 			"space c n": [
 				"workspace::SendKeystrokes",
 				"s a q { s a q ( F ( i c n j k f ) i , c l a s s N a m e j k F ("
 			]
-		}
-	},
-	{
-		"context": "vim_operator == s",
-		"bindings": {
-			"s": "vim::CurrentLine"
-		}
-	},
-	{
-		"context": "vim_operator == a || vim_operator == i || vim_operator == cs",
-		"bindings": {
-			"q": "vim::AnyQuotes",
-			"b": "vim::AnyBrackets"
-		}
-	},
-	// Have to write them exiplicitly to compensate overriding c d
-	{
-		"context": "vim_operator == c",
-		"bindings": {
-			"c": "vim::CurrentLine",
-			"x": "vim::Exchange",
-			"d": "editor::Rename", // zed specific
-			"s": ["vim::PushChangeSurrounds", {}]
-		}
-	},
-	{
-		"context": "vim_operator == d",
-		"bindings": {
-			"d": "vim::CurrentLine",
-			"s": "vim::PushDeleteSurrounds",
-			"v": "vim::PushForcedMotion", // "d v"
-			"o": "editor::ToggleSelectedDiffHunks", // "d o"
-			"shift-o": "git::ToggleStaged",
-			"p": "git::Restore", // "d p"
-			"u": "git::StageAndNext", // "d u"
-			"shift-u": "git::UnstageAndNext" // "d shift-u"
-		}
-	},
-	{
-		"context": "vim_operator == gc",
-		"bindings": {
-			"c": "vim::CurrentLine"
 		}
 	},
 	{
@@ -155,10 +115,15 @@
 		}
 	},
 	{
-		"context": "Terminal",
+		"context": "((vim_mode == helix_normal || vim_mode == helix_select) && !menu)",
 		"bindings": {
-			"cmd-enter": "workspace::ToggleZoom",
-			"cmd-\\": "pane::SplitRight"
+			"g r": null
+		}
+	},
+	{
+		"context": "(VimControl && !menu)",
+		"bindings": {
+			"g r": "editor::FindAllReferences"
 		}
 	}
 ]
