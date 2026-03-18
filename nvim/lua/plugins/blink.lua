@@ -8,7 +8,7 @@ return {
 			completion = {
 				menu = {
 					border = "rounded",
-					winhighlight = "FloatBorder:FloatBorder",
+					winhighlight = "FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection",
 					scrollbar = false,
 					draw = { columns = { { "label", "label_description", gap = 1 }, { "kind_icon" } } },
 				},

@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
 	{
 		"EdenEast/nightfox.nvim",
@@ -115,45 +116,63 @@ return {
 	},
 	{
 		"tinted-theming/tinted-nvim",
+		priority = 1000,
+		lazy = false,
 		config = function()
-			require("tinted-colorscheme").with_config({
-				supports = { tinty = false, tinted_shell = false, live_reload = false },
+			require("tinted-nvim").setup({
+				compile = false,
+				capabilities = { undercurl = true },
+				ui = { transparent = true },
+				styles = {
+					comments = { italic = false },
+					keywords = {},
+					functions = {},
+					variables = {},
+					types = {},
+				},
+				highlights = {
+					overrides = function(palette)
+						return {
+							StatusLine = { bg = "none" },
+						}
+					end,
+				},
 			})
 
-			local hl = require("utils").hl
+			-- local hl = require("utils").hl
 
-			local clear_bg = function(list)
-				for _, group in ipairs(list) do
-					vim.cmd("hi " .. group .. " guibg=NONE")
-				end
-			end
+			-- local clear_bg = function(list)
+			-- 	for _, group in ipairs(list) do
+			-- 		vim.cmd("hi " .. group .. " guibg=NONE")
+			-- 	end
+			-- end
 
-			vim.api.nvim_create_autocmd("ColorScheme", {
-				pattern = "base16-*",
-				callback = function()
-					clear_bg({
-						"Normal",
-						"NormalNC",
-						"NormalFloat",
-						"FloatBorder",
-						"SignColumn",
-						"StatusLine",
-						"LineNr",
-						"VertSplit",
-						"StatusLineNC",
-						"WinBar",
-						"WinBarNC",
-					})
-
-					local colors = require("tinted-colorscheme").colors
-
-					if colors then
-						hl("FloatBorder", { fg = colors.base02 })
-						hl("SnacksIndent", { fg = colors.base02 })
-						hl("WinSeparator", { fg = colors.base02 })
-					end
-				end,
-			})
+			-- vim.api.nvim_create_autocmd("ColorScheme", {
+			-- 	pattern = "base16-*",
+			-- 	callback = function()
+			-- 		clear_bg({
+			-- 			"Normal",
+			-- 			"NormalNC",
+			-- 			"NormalFloat",
+			-- 			"FloatBorder",
+			-- 			"SignColumn",
+			-- 			"StatusLine",
+			-- 			"LineNr",
+			-- 			"VertSplit",
+			-- 			"StatusLineNC",
+			-- 			"WinBar",
+			-- 			"WinBarNC",
+			-- 		})
+			--
+			-- 		local colors = require("tinted-colorscheme").colors
+			--
+			-- 		if colors then
+			-- 			hl("FloatBorder", { fg = colors.base02 })
+			-- 			hl("SnacksIndent", { fg = colors.base02 })
+			-- 			hl("WinSeparator", { fg = colors.base02 })
+			-- 		end
+			-- 	end,
+			-- })
 		end,
 	},
 	{
