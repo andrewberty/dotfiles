@@ -20,7 +20,7 @@ return {
 		require("nvim-tree").setup({
 			on_attach = custom_on_attach,
 			filters = { git_ignored = false, custom = { ".DS_Store" } },
-			view = { width = { min = 30, max = -1 }, side = "right" },
+			view = { width = { min = 30, max = -1 }, side = "left" },
 			trash = { cmd = "trash" },
 			renderer = {
 				root_folder_label = ":t",

@@ -61,3 +61,5 @@ map("n", "<leader>cp", function()
 	local relative = vim.fn.fnamemodify(filepath, ":." .. git_root)
 	vim.fn.setreg("+", relative)
 end)
+
+vim.keymap.set("t", "jk", [[<C-\><C-n>]], { noremap = true })
