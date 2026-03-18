@@ -1,12 +1,24 @@
 {
 	"buffer_font_size": 14.0,
-	"theme": "Oscura Dusk",
-	"ui_font_size": 15.0,
+	"agent_servers": {
+		"claude-acp": {
+			"type": "registry",
+		},
+	},
+	"git_panel": {
+		"tree_view": true,
+	},
+	"edit_predictions": {
+		"provider": "zed",
+		"mode": "subtle",
+	},
+	"theme": "Base16 Rosé Pine",
 	"icon_theme": "Zed (Default)",
 	"telemetry": { "diagnostics": false, "metrics": false },
-	"buffer_line_height": { "custom": 1.8 },
-	"buffer_font_family": "Menlo",
-	"ui_font_family": "Menlo",
+	"agent_buffer_font_size": 14,
+	"buffer_line_height": { "custom": 2 },
+	"buffer_font_family": "SF Mono",
+	"ui_font_family": "SF Mono",
 	"buffer_font_fallbacks": ["Symbols Nerd Font", "Alexandria"],
 	"vim_mode": true,
 	"soft_wrap": "editor_width",
@@ -16,11 +28,11 @@
 	"close_on_file_delete": true,
 	"cursor_blink": false,
 	"colorize_brackets": true,
+	"diff_view_style": "unified",
 	"vim": {
 		"use_system_clipboard": "on_yank",
 	},
 	"snippet_sort_order": "top",
-	"features": { "edit_prediction_provider": "supermaven" },
 	"languages": {
 		"JSONC": { "show_edit_predictions": false },
 		"Lua": {
@@ -84,7 +96,6 @@
 		"active_line_width": 2,
 	},
 	"file_scan_exclusions": [
-		"**/.git",
 		"**/.svn",
 		"**/.hg",
 		"**/.jj",
@@ -94,14 +105,15 @@
 		"**/Thumbs.db",
 		"**/.classpath",
 		"**/.settings",
-		"**/.next",
-		"**/node_modules",
+		// "**/.git",
+		// "**/.next",
+		// "**/node_modules",
 	],
 	"pane_split_direction_vertical": "right",
 	"preview_tabs": { "enabled": false },
 	"search": { "button": false },
 	"collaboration_panel": { "button": false },
-	"git_panel": { "button": false },
+	// "git_panel": { "button": false },
 	"outline_panel": { "button": false },
 	"notification_panel": { "button": false },
 	"agent": { "button": true },
@@ -114,18 +126,20 @@
 		"option_as_meta": true,
 		"cursor_shape": "bar",
 		"toolbar": { "breadcrumbs": true },
-		"line_height": { "custom": 2 },
 		"button": false,
+		"font_size": 13,
+		"line_height": "comfortable",
 	},
 	"project_panel": {
+		"hide_hidden": false,
 		"button": false,
-		"dock": "right",
+		"dock": "left",
 		"auto_reveal_entries": false,
 		"auto_fold_dirs": false,
 		"show_diagnostics": "all",
 	},
 	"gutter": {
-		"line_numbers": false,
+		// "line_numbers": false,
 		"runnables": false,
 		"folds": false,
 	},
@@ -133,6 +147,9 @@
 		"vtsls": {
 			"settings": {
 				"typescript": {
+					"updateImportsOnFileMove": {
+						"enabled": "always",
+					},
 					"preferences": {
 						"includePackageJsonAutoImports": "off",
 						"autoImportFileExcludePatterns": [
@@ -143,6 +160,9 @@
 					},
 				},
 				"javascript": {
+					"updateImportsOnFileMove": {
+						"enabled": "always",
+					},
 					"preferences": {
 						"includePackageJsonAutoImports": "off",
 						"autoImportFileExcludePatterns": [
@@ -162,6 +182,10 @@
 		"tailwindcss-language-server": {
 			"settings": {
 				"emmetCompletions": true,
+				"lint": {
+					"suggestCanonicalClasses": "ignore",
+				},
+
 				"experimental": {
 					"classRegex": [
 						// "([a-zA-Z0-9\\-:]+)" // matches anywhere (useful for emmet expansion)
@@ -177,22 +201,29 @@
 		"cursor_position_button": false,
 	},
 	"file_scan_inclusions": ["**/.git"],
+	"theme_overrides": {
+		"Night Owl No Italics": {
+			"border": "#00000000",
+			"border.variant": "#00000000",
+		},
+	},
 	"experimental.theme_overrides": {
 		// override background color
-		// "background": "#111",
-		// "title_bar.background": "#111",
-		// "status_bar.background": "#111",
+		// "background": "#151D29",
+		// "title_bar.background": "#151D29",
+		// "status_bar.background": "#151D29",
+		// "elevated_surface.background": "#151D29",
 
 		// setting backgrounds to transparent to inherit base background
-		// "editor.background": "#00000000",
-		// "panel.background": "#00000000",
-		// "terminal.background": "#00000000",
-		// "tab_bar.background": "#00000000",
-		// "toolbar.background": "#00000000",
-		// "tab.inactive_background": "#00000000",
-		// "tab.active_background": "#00000000",
-		// "editor.gutter.background": "#00000000",
-
+		"editor.background": "#00000000",
+		"panel.overlay_background": "#00000000",
+		"panel.background": "#00000000",
+		"terminal.background": "#00000000",
+		"tab_bar.background": "#00000000",
+		"toolbar.background": "#00000000",
+		"tab.inactive_background": "#00000000",
+		"tab.active_background": "#00000000",
+		"editor.gutter.background": "#00000000",
 		// remove some borders color
 		// "border": "#00000000",
 		"border.variant": "#00000000",

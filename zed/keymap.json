@@ -8,10 +8,10 @@
 			"cmd-_": ["zed::DecreaseUiFontSize", { "persist": true }],
 			"cmd-)": ["zed::ResetUiFontSize", { "persist": true }],
 			"ctrl-s": "workspace::Save",
-			"cmd-k": "projects::OpenRecent"
-		}
+			"cmd-k": "projects::OpenRecent",
+		},
 	},
-	// Window jumps Keymaps
+	// Window jumps Keymap
 	{
 		"context": "Dock || Editor || Terminal",
 		"bindings": {
@@ -24,14 +24,14 @@
 			"alt-shift-down": "vim::ResizePaneDown",
 			"alt-shift-up": "vim::ResizePaneUp",
 			"cmd-enter": "workspace::ToggleZoom",
-			"cmd-\\": "pane::SplitRight"
-		}
+			"cmd-\\": "pane::SplitRight",
+		},
 	},
 	{
 		"context": "ProjectPanel && not_editing",
 		"bindings": {
 			"space": null,
-			"space e": "workspace::ToggleRightDock",
+			"space e": "workspace::ToggleLeftDock",
 			"shift-w": "project_panel::CollapseAllEntries",
 			"a": "project_panel::NewFile",
 			"r": "project_panel::Rename",
@@ -40,21 +40,21 @@
 			"c": "project_panel::Copy",
 			"x": "project_panel::Cut",
 			"p": "project_panel::Paste",
-			"Y": "workspace::CopyPath"
-		}
+			"Y": "workspace::CopyPath",
+		},
 	},
 	// Vim insert mode
 	{
 		"context": "vim_mode == insert",
 		"bindings": {
-			"j k": "vim::NormalBefore"
-		}
+			"j k": "vim::NormalBefore",
+		},
 	},
 	{
 		"context": "vim_mode == visual",
 		"bindings": {
-			"shift-s": "vim::PushAddSurrounds"
-		}
+			"shift-s": "vim::PushAddSurrounds",
+		},
 	},
 
 	// Vim when not insert mode
@@ -77,7 +77,7 @@
 			"shift-x": ["workspace::SendKeystrokes", "d d"],
 			"enter": ["workspace::SendKeystrokes", "c i w"],
 			"space a": "editor::SelectAll",
-			"space e": "workspace::ToggleRightDock",
+			"space e": "workspace::ToggleLeftDock",
 			"space E": "pane::RevealInProjectPanel",
 			"space i": "editor::ToggleIndentGuides",
 			"space l": "editor::ToggleLineNumbers",
@@ -92,38 +92,55 @@
 			"space c a": "editor::ToggleCodeActions",
 			"space s d": "diagnostics::Deploy",
 			"space l f": "editor::Format",
-			"space l g": [
-				"task::Spawn",
-				{ "task_name": "lazygit", "reveal_target": "center" }
-			],
+			"space l g": ["task::Spawn", { "task_name": "lazygit", "reveal_target": "center" }],
 			"s": "vim::PushAddSurrounds",
 			"space c n": [
 				"workspace::SendKeystrokes",
-				"s a q { s a q ( F ( i c n j k f ) i , c l a s s N a m e j k F ("
-			]
-		}
+				"s a q { s a q ( F ( i c n j k f ) i , c l a s s N a m e j k F (",
+			],
+		},
 	},
 	{
 		"context": "EmptyPane || SharedScreen",
 		"bindings": {
 			"space f": "file_finder::Toggle",
-			"space e": "workspace::ToggleRightDock",
-			"space l g": [
-				"task::Spawn",
-				{ "task_name": "lazygit", "reveal_target": "center" }
-			]
-		}
+			"space e": "workspace::ToggleLeftDock",
+			"space l g": ["task::Spawn", { "task_name": "lazygit", "reveal_target": "center" }],
+		},
 	},
 	{
 		"context": "((vim_mode == helix_normal || vim_mode == helix_select) && !menu)",
 		"bindings": {
-			"g r": null
-		}
+			"g r": null,
+		},
 	},
 	{
 		"context": "(VimControl && !menu)",
 		"bindings": {
-			"g r": "editor::FindAllReferences"
-		}
-	}
+			"g r": "editor::FindAllReferences",
+		},
+	},
+	{
+		"context": "(Editor && extension == md)",
+		"bindings": {
+			"space m d": "markdown::OpenPreview",
+		},
+	},
+	{
+		"context": "(GitPanel && ChangesList)",
+		"bindings": {
+			"d": [
+				"git::RestoreFile",
+				{
+					"skip_prompt": false,
+				},
+			],
+		},
+	},
+	{
+		"context": "Workspace",
+		"bindings": {
+			"cmd-shift-g": "git_panel::ToggleFocus",
+		},
+	},
 ]
