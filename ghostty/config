@@ -3,10 +3,20 @@ config-file = "?~/dotfiles/ghostty/dynamic-config"
 config-file = "?~/dotfiles/ghostty/oled"
 
 # behavior
-command = env PATH="/opt/homebrew/bin:$PATH" ~/dotfiles/scripts/tmux-attach.zsh
+# initial-command = env PATH="/opt/homebrew/bin:$PATH" ~/dotfiles/scripts/tmux-attach.zsh
 confirm-close-surface = false
 mouse-hide-while-typing = true
 quit-after-last-window-closed = true
+copy-on-select = clipboard
+selection-clear-on-copy = true
+window-colorspace = display-p3
+window-height = 40
+window-width = 204
+macos-option-as-alt = true
+macos-titlebar-style = tabs
+macos-window-shadow = false
+window-padding-balance = true
+window-save-state = always
 
 # font
 font-style-bold = false
@@ -14,18 +24,6 @@ font-style-italic = false
 font-style-bold-italic = false
 font-synthetic-style = false
 font-thicken = true
-
-# window
-window-colorspace = display-p3
-window-height = 35
-window-width = 170
-macos-option-as-alt = true
-macos-titlebar-style = hidden
-macos-window-shadow = false
-window-padding-y = 15
-window-padding-x = 15
-window-padding-balance = true
-window-save-state = always
 
 # keybinds
 keybind = alt+left=unbind
