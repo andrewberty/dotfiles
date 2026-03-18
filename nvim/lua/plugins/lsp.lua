@@ -38,6 +38,9 @@ return {
 							"cn",
 							"tw\\.[a-z-]+",
 						},
+						lint = {
+							suggestCanonicalClasses = "ignore",
+						},
 					},
 				},
 			})
