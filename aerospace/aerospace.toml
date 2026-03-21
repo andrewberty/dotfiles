@@ -1,0 +1,126 @@
+config-version = 2
+
+after-startup-command = [
+  'exec-and-forget borders active_color=0xFFDA8B45 inactive_color=0xff494d64 width=2.0 hidpi=on blacklist="Stats"',
+]
+
+start-at-login = true
+accordion-padding = 30
+
+# Possible values: tiles|accordion
+# default-root-container-layout = 'tiles'
+
+# Possible values: horizontal|vertical|auto
+# default-root-container-orientation = 'auto'
+
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# List of workspaces that should stay alive even when they contain no windows,
+# even when they are invisible.
+persistent-workspaces = ["d"]
+
+# A callback that runs every time binding mode changes
+on-mode-changed = []
+
+[gaps]
+inner.horizontal = 20
+inner.vertical = 20
+outer.left = 20
+outer.bottom = 20
+outer.top = 20
+outer.right = 20
+
+# 'main' binding mode declaration
+[mode.main.binding]
+# Disable macOS "hide application" feature
+cmd-h = []
+cmd-alt-h = []
+
+# layout
+alt-slash = 'layout tiles horizontal vertical'
+alt-comma = 'layout accordion horizontal vertical'
+
+# focus
+alt-cmd-ctrl-shift-left = 'focus left --boundaries-action wrap-around-the-workspace'
+alt-cmd-ctrl-shift-right = 'focus right --boundaries-action wrap-around-the-workspace'
+alt-cmd-ctrl-shift-down = 'focus down --boundaries-action wrap-around-the-workspace'
+alt-cmd-ctrl-shift-up = 'focus up --boundaries-action wrap-around-the-workspace'
+
+# move
+alt-shift-left = 'move left'
+alt-shift-right = 'move right'
+alt-shift-down = 'move down'
+alt-shift-up = 'move up'
+
+# resize
+alt-minus = 'resize smart -50'
+alt-equal = 'resize smart +50'
+alt-0 = 'balance-sizes'
+
+# workspace
+# alt-d = 'workspace d'
+# alt-w = 'workspace w'
+# alt-p = 'workspace p'
+# alt-m = 'workspace m'
+
+# move-node-to-workspace
+alt-shift-d = 'move-node-to-workspace d'
+alt-shift-w = 'move-node-to-workspace w'
+alt-shift-p = 'move-node-to-workspace p'
+alt-shift-m = 'move-node-to-workspace m'
+
+# workspace-back-and-forth
+alt-tab = 'workspace next --wrap-around'
+
+cmd-alt-ctrl-shift-enter = 'fullscreen'
+
+# mode
+cmd-ctrl-alt-shift-semicolon = 'mode manage'
+
+# 'service' binding mode declaration.
+[mode.manage.binding]
+esc = ['reload-config', 'mode main']
+r = ['flatten-workspace-tree', 'mode main'] # reset layout
+f = [
+  'layout floating tiling',
+  'mode main',
+] # Toggle between floating and tiling layout
+
+cmd-ctrl-alt-shift-left = ['join-with left', 'mode main']
+cmd-ctrl-alt-shift-down = ['join-with down', 'mode main']
+cmd-ctrl-alt-shift-up = ['join-with up', 'mode main']
+cmd-ctrl-alt-shift-right = ['join-with right', 'mode main']
+
+# check-further-callbacks = true # to be able to use the callbacks after first match
+[[on-window-detected]]
+if.app-name-regex-substring = "Google Chat"
+run = "move-node-to-workspace w"
+
+[[on-window-detected]]
+if.app-name-regex-substring = "T-BRAIN"
+run = "move-node-to-workspace w"
+
+[[on-window-detected]]
+if.app-name-regex-substring = "Figma"
+run = "move-node-to-workspace w"
+
+[[on-window-detected]]
+if.app-name-regex-substring = "Spotify"
+run = "move-node-to-workspace m"
+
+[[on-window-detected]]
+if.app-name-regex-substring = "yaak"
+run = "move-node-to-workspace m"
+
+[[on-window-detected]]
+if.app-name-regex-substring = "Google Chrome"
+run = "move-node-to-workspace w"
+
+[[on-window-detected]]
+if.app-name-regex-substring = "Helium"
+run = "move-node-to-workspace p"
+
+# runs on all windows
+# [[on-window-detected]]
+# check-further-callbacks = true
+# run = 'layout floating'
