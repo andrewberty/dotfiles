@@ -1,120 +1,6 @@
 ---@diagnostic disable: missing-fields
 return {
 	{
-		"EdenEast/nightfox.nvim",
-		config = function()
-			require("nightfox").setup({
-				options = {
-					transparent = true,
-					inverse = { match_paren = true },
-				},
-				-- palettes = {},
-				-- specs = {},
-				groups = {
-					all = {
-						NormalFloat = { bg = "none" },
-						StatusLine = { bg = "none" },
-						StatusLineNC = { bg = "none" },
-						StatusLineTerm = { bg = "none" },
-						StatusLineTermNC = { bg = "none" },
-						WinBar = { bg = "none" },
-						WinBarNC = { bg = "none" },
-					},
-				},
-			})
-		end,
-	},
-	{
-		"bluz71/vim-nightfly-colors",
-		name = "nightfly",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.g.nightflyCursorColor = true
-			vim.g.nightflyItalics = false
-			vim.g.nightflyNormalPmenu = true
-			vim.g.nightflyNormalFloat = true
-			vim.g.nightflyTransparent = true
-			vim.g.nightflyUnderlineMatchParen = true
-			vim.g.nightflyVirtualTextColor = true
-			vim.g.nightflyWinSeparator = 2
-
-			local palette = require("nightfly").palette
-
-			local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
-			vim.api.nvim_create_autocmd("ColorScheme", {
-				pattern = "nightfly",
-				callback = function()
-					local hl = require("utils").hl
-
-					hl("StatusLine", { bg = "none" })
-					hl("StatusLineNC", { bg = "none" })
-					hl("StatusLineTerm", { bg = "none" })
-					hl("StatusLineTermNC", { bg = "none" })
-					hl("WinBar", { bg = "none" })
-					hl("WinBarNC", { bg = "none" })
-					hl("IblScope", { fg = palette.turquoise })
-				end,
-				group = custom_highlight,
-			})
-		end,
-	},
-	{
-		"metalelf0/black-metal-theme-neovim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("black-metal").setup({
-				plain_float = true,
-				show_eob = false,
-				transparent = true,
-				code_style = {},
-
-				diagnostics = { background = false },
-				-- colors = {},
-
-				highlights = {
-					StatusLine = { bg = "none" },
-					StatusLineNC = { bg = "none" },
-					StatusLineTerm = { bg = "none" },
-					StatusLineTermNC = { bg = "none" },
-					WinBar = { bg = "none" },
-					WinBarNC = { bg = "none" },
-
-					NvimTreeNormal = { bg = "none" },
-					NvimTreeNormalNC = { bg = "none" },
-					NvimTreeVertSplit = { bg = "none" },
-					NvimTreeEndOfBuffer = { bg = "none" },
-
-					SnacksIndent = { fg = "#333333" },
-					CursorLine = { bg = "#333333" }, -- hack to override active item bg
-				},
-			})
-		end,
-	},
-	{
-		"olivercederborg/poimandres.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("poimandres").setup({
-				disable_background = true,
-				disable_float_background = true,
-				disable_italics = true,
-			})
-
-			vim.api.nvim_create_autocmd("ColorScheme", {
-				pattern = "poimandres",
-				callback = function()
-					local hl = require("utils").set_hl
-					hl("WinBar", { link = "StatusLine" })
-					hl("WinBarNC", { link = "StatusLineNC" })
-					hl("FloatBorder", { link = "NonText" })
-				end,
-			})
-		end,
-	},
-	{
 		"tinted-theming/tinted-nvim",
 		priority = 1000,
 		lazy = false,
@@ -138,41 +24,6 @@ return {
 					end,
 				},
 			})
-
-			-- local hl = require("utils").hl
-
-			-- local clear_bg = function(list)
-			-- 	for _, group in ipairs(list) do
-			-- 		vim.cmd("hi " .. group .. " guibg=NONE")
-			-- 	end
-			-- end
-
-			-- vim.api.nvim_create_autocmd("ColorScheme", {
-			-- 	pattern = "base16-*",
-			-- 	callback = function()
-			-- 		clear_bg({
-			-- 			"Normal",
-			-- 			"NormalNC",
-			-- 			"NormalFloat",
-			-- 			"FloatBorder",
-			-- 			"SignColumn",
-			-- 			"StatusLine",
-			-- 			"LineNr",
-			-- 			"VertSplit",
-			-- 			"StatusLineNC",
-			-- 			"WinBar",
-			-- 			"WinBarNC",
-			-- 		})
-			--
-			-- 		local colors = require("tinted-colorscheme").colors
-			--
-			-- 		if colors then
-			-- 			hl("FloatBorder", { fg = colors.base02 })
-			-- 			hl("SnacksIndent", { fg = colors.base02 })
-			-- 			hl("WinSeparator", { fg = colors.base02 })
-			-- 		end
-			-- 	end,
-			-- })
 		end,
 	},
 	{
@@ -189,29 +40,6 @@ return {
 				hl.SnacksIndent.blend = 80
 			end,
 		},
-	},
-	{
-		"gbprod/nord.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("nord").setup({
-				transparent = true,
-				styles = {},
-
-				---@param colors Nord.Palette
-				on_colors = function(colors) end,
-
-				on_highlights = function(hls, c)
-					hls.StatusLine.bg = c.none
-					hls.StatusLineNC.bg = c.none
-					hls.WinBar.bg = c.none
-					hls.WinBarNC.bg = c.none
-					hls.NormalFloat.bg = c.none
-					hls.FloatBorder.bg = c.none
-				end,
-			})
-		end,
 	},
 	{
 		"rose-pine/neovim",
