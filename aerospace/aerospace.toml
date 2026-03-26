@@ -4,7 +4,7 @@ after-startup-command = [
   'exec-and-forget borders active_color=0xFFDA8B45 inactive_color=0xff494d64 width=2.0 hidpi=on blacklist="Stats"',
 ]
 
-start-at-login = true
+start-at-login = false
 accordion-padding = 30
 
 # Possible values: tiles|accordion
