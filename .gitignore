@@ -21,4 +21,5 @@
 /kitty/neighboring_window.py
 /kitty/split_window.py
 /kitty/relative_resize.py
-/kitty/sessions
+/kitty/sessions/*
+!/kitty/sessions/startup.session
