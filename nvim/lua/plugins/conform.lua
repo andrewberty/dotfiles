@@ -27,7 +27,6 @@ return {
 				toml = { "taplo" },
 				sh = { "shfmt" },
 				zsh = { "shfmt" },
-				blade = { "blade-formatter" },
 				http = { "kulala" },
 				go = { "gofmt" },
 				yaml = { "prettier" },

@@ -8,7 +8,7 @@ return {
 		{ "bezhermoso/tree-sitter-ghostty", build = "make nvim_install" },
 	},
 	config = function()
-		require("nvim-treesitter.configs").setup({
+		require("nvim-treesitter").setup({
 			highlight = {
 				enable = true,
 				additional_vim_regex_highlighting = false,
@@ -53,23 +53,6 @@ return {
 				swap = {
 					enable = false,
 				},
-			},
-		})
-
-		local parsers = require("nvim-treesitter.parsers").get_parser_configs()
-
-		parsers.blade = {
-			install_info = {
-				url = "https://github.com/EmranMR/tree-sitter-blade",
-				files = { "src/parser.c" },
-				branch = "main",
-			},
-			filetype = "blade",
-		}
-
-		vim.filetype.add({
-			pattern = {
-				[".*%.blade%.php"] = "blade",
 			},
 		})
 	end,
