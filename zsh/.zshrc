@@ -63,8 +63,7 @@ zstyle ':completion:*' menu select
 eval "$(starship init zsh)"
 eval "$(zoxide init --no-cmd zsh)"
 # eval "$(zoxide init --cmd cd zsh)"
-export FZF_ALT_C_COMMAND='echo ~/dotfiles && find ~/dev ~/dev/internal ~/code ~/dotfiles -mindepth 1 -maxdepth 1 -type d'
-export FZF_ALT_C_OPTS="--height=100% --preview 'tree -C -L 1 {}'"
+export FZF_ALT_C_COMMAND='echo ~/dotfiles && for dir in ~/dotfiles ~/dev ~/dev/internal ~/code; do [ -d "$dir" ] && find "$dir" -mindepth 1 -maxdepth 1 -type d; done'
 eval "$(fzf --zsh)"
 export PATH="$HOME/.local/bin:$PATH"
 
