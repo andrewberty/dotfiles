@@ -1,4 +1,5 @@
 {
+	"ui_font_size": 15.0,
 	"buffer_font_size": 14.0,
 	"agent_servers": {
 		"claude-acp": {
@@ -17,8 +18,8 @@
 	"telemetry": { "diagnostics": false, "metrics": false },
 	"agent_buffer_font_size": 14,
 	"buffer_line_height": { "custom": 2 },
-	"buffer_font_family": "Hack",
-	"ui_font_family": "Hack",
+	"buffer_font_family": "BerkeleyMono Nerd Font",
+	"ui_font_family": "BerkeleyMono Nerd Font",
 	"buffer_font_fallbacks": ["Symbols Nerd Font", "Alexandria"],
 	"vim_mode": true,
 	"soft_wrap": "editor_width",
@@ -152,10 +153,7 @@
 					},
 					"preferences": {
 						"includePackageJsonAutoImports": "off",
-						"autoImportFileExcludePatterns": [
-							"lucide-react",
-							"react-icons",
-						],
+						"autoImportFileExcludePatterns": ["lucide-react", "react-icons"],
 						"importModuleSpecifier": "non-relative",
 					},
 				},
@@ -165,10 +163,7 @@
 					},
 					"preferences": {
 						"includePackageJsonAutoImports": "off",
-						"autoImportFileExcludePatterns": [
-							"lucide-react",
-							"react-icons",
-						],
+						"autoImportFileExcludePatterns": ["lucide-react", "react-icons"],
 						"importModuleSpecifier": "non-relative",
 					},
 				},
