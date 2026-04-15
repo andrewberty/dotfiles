@@ -13,6 +13,10 @@ local colors = {
 	orange = hsl(27, 70, 56),
 	orangeLight = hsl(27, 70, 66),
 
+	-- diff colors (muted to match aesthetic)
+	red = hsl(0, 40, 55),
+	green = hsl(130, 30, 45),
+
 	-- everything else is grey
 	primary = hsl(0, 0, 56),
 	dim = hsl(0, 0, 40),
@@ -21,16 +25,16 @@ local colors = {
 
 local function set_terminal_colors()
 	vim.g.terminal_color_0 = colors.bg1
-	vim.g.terminal_color_1 = colors.orange
-	vim.g.terminal_color_2 = colors.dim
+	vim.g.terminal_color_1 = colors.red
+	vim.g.terminal_color_2 = colors.green
 	vim.g.terminal_color_3 = colors.orange
 	vim.g.terminal_color_4 = colors.primary
 	vim.g.terminal_color_5 = colors.dim
 	vim.g.terminal_color_6 = colors.primary
 	vim.g.terminal_color_7 = colors.fg
 	vim.g.terminal_color_8 = colors.grey
-	vim.g.terminal_color_9 = colors.orangeLight
-	vim.g.terminal_color_10 = colors.dim
+	vim.g.terminal_color_9 = colors.red
+	vim.g.terminal_color_10 = colors.green
 	vim.g.terminal_color_11 = colors.orangeLight
 	vim.g.terminal_color_12 = colors.primary
 	vim.g.terminal_color_13 = colors.dim
@@ -53,10 +57,10 @@ local function set_groups()
 		CursorLine = { bg = colors.bg2 },
 		CursorColumn = { link = "CursorLine" },
 		Directory = { fg = colors.primary },
-		DiffAdd = { bg = colors.bg0, fg = colors.dim },
+		DiffAdd = { bg = colors.bg0, fg = colors.green },
 		DiffChange = { bg = colors.bg0, fg = colors.orange },
-		DiffDelete = { bg = colors.bg0, fg = colors.orange },
-		DiffText = { bg = colors.bg0, fg = colors.symbol },
+		DiffDelete = { bg = colors.bg0, fg = colors.red },
+		DiffText = { bg = colors.bg0, fg = colors.orange, bold = true },
 		EndOfBuffer = { fg = colors.grey },
 		TermCursor = { link = "Cursor" },
 		TermCursorNC = { link = "Cursor" },
@@ -183,8 +187,18 @@ local function set_groups()
 		["@punctuation.delimiter"] = { link = "Delimiter" },
 		["@punctuation.separator.keyvalue"] = { fg = colors.primary },
 
-		["@texcolors.diff.add"] = { fg = colors.dim },
-		["@texcolors.diff.delete"] = { fg = colors.orange },
+		["@texcolors.diff.add"] = { fg = colors.green },
+		["@texcolors.diff.delete"] = { fg = colors.red },
+
+		-- diff syntax (used by fugitive, diff buffers)
+		diffAdded = { fg = colors.green },
+		diffRemoved = { fg = colors.red },
+		diffChanged = { fg = colors.orange },
+
+		-- gitsigns
+		GitSignsAdd = { fg = colors.green },
+		GitSignsChange = { fg = colors.orange },
+		GitSignsDelete = { fg = colors.red },
 
 		["@constant"] = { link = "Constant" },
 		["@constant.builtin"] = { link = "Constant" },
