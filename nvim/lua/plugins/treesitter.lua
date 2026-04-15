@@ -9,20 +9,13 @@ return {
 	},
 	config = function()
 		require("nvim-treesitter").setup({
-			highlight = {
-				enable = true,
-				additional_vim_regex_highlighting = false,
-			},
-			indent = { enable = true },
 			auto_install = true,
 			ignore_install = { "tmux" },
 			textobjects = {
 				select = {
 					enable = true,
 					lookahead = true,
-
 					keymaps = {
-						-- You can use the capture groups defined in textobjects.scm
 						["af"] = { query = "@function.outer", desc = "around a function" },
 						["if"] = { query = "@function.inner", desc = "inner part of a function" },
 						["ac"] = { query = "@class.outer", desc = "around a class" },
@@ -38,7 +31,7 @@ return {
 				},
 				move = {
 					enable = true,
-					set_jumps = true, -- whether to set jumps in the jumplist
+					set_jumps = true,
 					goto_previous_start = {
 						["[f"] = { query = "@function.outer", desc = "Previous function" },
 						["[c"] = { query = "@class.outer", desc = "Previous class" },
@@ -54,6 +47,12 @@ return {
 					enable = false,
 				},
 			},
+		})
+
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function(args)
+				pcall(vim.treesitter.start, args.buf)
+			end,
 		})
 	end,
 }
