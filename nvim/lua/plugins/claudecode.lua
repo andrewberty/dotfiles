@@ -23,7 +23,7 @@ return {
 			-- Diff Integration
 			diff_opts = {
 				layout = "horizontal", -- "vertical" or "horizontal"
-				open_in_new_tab = true,
+				open_in_new_tab = false,
 				keep_terminal_focus = false, -- If true, moves focus back to terminal after diff opens
 				hide_terminal_in_new_tab = false,
 				-- on_new_file_reject = "keep_empty", -- "keep_empty" or "close_window"
