@@ -24,7 +24,11 @@ config.adjust_window_size_when_changing_font_size = false
 config.enable_scroll_bar = false
 config.bidi_enabled = true
 config.bidi_direction = "LeftToRight"
+config.freetype_load_target = "Light"
+config.freetype_render_target = "HorizontalLcd"
 
+config.max_fps = 120
+config.animation_fps = 25
 config.front_end = "WebGpu"
 config.default_cursor_style = "SteadyBar"
 config.hide_mouse_cursor_when_typing = true
