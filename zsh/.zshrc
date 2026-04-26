@@ -95,9 +95,3 @@ load-nvmrc() {
 
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
-
-_set_title_to_cwd() {
-    printf '\033]2;%s\007' "${PWD/#$HOME/~}"
-}
-add-zsh-hook chpwd _set_title_to_cwd
-_set_title_to_cwd
