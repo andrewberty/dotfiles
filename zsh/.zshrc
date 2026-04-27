@@ -3,8 +3,11 @@ export EZA_ICON_SPACING=2
 export CONFIG_DIR="$HOME/.config/lazygit"
 
 path=(
+    $HOME/.local/bin
+    $HOME/.bun/bin
     /Applications/Postgres.app/Contents/Versions/latest/bin
     /opt/homebrew/opt/trash/bin
+    $HOME/.cargo/bin
     $path
     /Applications/XAMPP/bin
     /Applications/Docker.app/Contents/Resources/bin
@@ -34,6 +37,8 @@ fi
 
 alias cl=clear
 alias cc=claude
+alias oc=opencode
+alias gp="gitpane --root ."
 alias lg=lazygit
 alias x=exit
 alias v='nvim "$@"'
@@ -46,10 +51,6 @@ alias ssh-staging='ssh -i ~/.ssh/staging-instances.pem'
 
 # bun completions
 [ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -65,33 +66,18 @@ eval "$(zoxide init --no-cmd zsh)"
 # eval "$(zoxide init --cmd cd zsh)"
 export FZF_ALT_C_COMMAND='echo ~/dotfiles && for dir in ~/dotfiles ~/dev ~/dev/internal ~/code; do [ -d "$dir" ] && find "$dir" -mindepth 1 -maxdepth 1 -type d; done'
 eval "$(fzf --zsh)"
-export PATH="$HOME/.local/bin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+eval "$(fnm env --use-on-cd --shell zsh)"
 
-# detect nvmrc and automatically use the right node version
-autoload -U add-zsh-hook
-
-load-nvmrc() {
-    local nvmrc_path
-    nvmrc_path="$(nvm_find_nvmrc)"
-
-    if [ -n "$nvmrc_path" ]; then
-        local nvmrc_node_version
-        nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-        if [ "$nvmrc_node_version" = "N/A" ]; then
-            nvm install
-        elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
-            nvm use
-        fi
-    elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
-        echo "Reverting to nvm default version"
-        nvm use default
-    fi
+# Revert to default node when cd'ing somewhere with no .nvmrc/.node-version up the tree.
+_fnm_revert_to_default() {
+    local dir=$PWD
+    while [[ -n $dir ]]; do
+        [[ -f $dir/.nvmrc || -f $dir/.node-version ]] && return
+        [[ $dir == / ]] && break
+        dir=${dir:h}
+    done
+    fnm use default --silent-if-unchanged >/dev/null 2>&1
 }
-
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+autoload -U add-zsh-hook
+add-zsh-hook chpwd _fnm_revert_to_default
