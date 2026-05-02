@@ -172,6 +172,53 @@ return {
 
 		{ "<leader>x", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
 		{ "<leader>lg", function() Snacks.lazygit() end, desc = "Lazygit" },
+		{
+			"<leader>yi",
+			function()
+				Snacks.input.input({
+					prompt = "Drop file/folder from Finder into CWD",
+					win = { backdrop = 1 },
+				}, function(input)
+					local source
+					if not input or input:gsub("^%s+", ""):gsub("%s+$", "") == "" then
+						local downloads = os.getenv("HOME") .. "/Downloads"
+						local latest = vim.fn.systemlist("ls -t " .. downloads .. " | head -n 1")
+						if #latest == 0 or latest[1] == "" then
+							Snacks.notifier.notify("No files in Downloads.", "warn", { timeout = 3000 })
+							return
+						end
+						source = downloads .. "/" .. latest[1]
+					else
+						source = input:gsub("^%s+", ""):gsub("%s+$", ""):gsub("/$", "")
+					end
+
+					local filename = vim.fn.fnamemodify(source, ":t")
+					local target = vim.fn.getcwd() .. "/" .. filename
+
+					local cmd
+					if vim.fn.isdirectory(source) == 1 then
+						-- copy the folder itself, not its contents
+						cmd = "cp -r " .. vim.fn.shellescape(source) .. " " .. vim.fn.shellescape(target)
+					else
+						cmd = "cp " .. vim.fn.shellescape(source) .. " " .. vim.fn.shellescape(target)
+					end
+
+					local result = os.execute(cmd)
+					local msg, level
+
+					if result == 0 then
+						msg = "Copied: " .. filename .. " → " .. vim.fn.getcwd()
+						level = "info"
+					else
+						msg = "Failed to copy: " .. source
+						level = "error"
+					end
+
+					Snacks.notifier.notify(msg, level, { timeout = 5000 })
+				end)
+			end,
+			desc = "Copy file/folder from Finder into CWD",
+		},
 	},
 	init = function()
 		vim.api.nvim_create_autocmd("User", {
