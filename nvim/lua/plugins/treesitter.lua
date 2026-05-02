@@ -5,7 +5,6 @@ return {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		{ "nvim-treesitter/nvim-treesitter-context", enabled = false },
 		{ "windwp/nvim-ts-autotag", opts = {} },
-		{ "bezhermoso/tree-sitter-ghostty", build = "make nvim_install" },
 	},
 	config = function()
 		require("nvim-treesitter").setup({
@@ -50,9 +49,7 @@ return {
 		})
 
 		vim.api.nvim_create_autocmd("FileType", {
-			callback = function(args)
-				pcall(vim.treesitter.start, args.buf)
-			end,
+			callback = function(args) pcall(vim.treesitter.start, args.buf) end,
 		})
 	end,
 }
