@@ -1,34 +1,23 @@
 return {
 	"nvim-lua/plenary.nvim",
-
-	"mbbill/undotree",
-
-	{
-		"folke/lazydev.nvim",
-		ft = "lua",
-		opts = { library = { { path = "${3rd}/luv/library", words = { "vim%.uv" } } } },
-	},
+	{ "folke/ts-comments.nvim", opts = {}, event = "VeryLazy" },
+	{ "karb94/neoscroll.nvim", opts = { duration_multiplier = 0.5 } },
+	{ "fladson/vim-kitty", ft = "kitty" },
+	{ "axelvc/template-string.nvim", opts = { jsx_brackets = false, remove_template_string = true } },
 
 	{
 		"mg979/vim-visual-multi",
 		init = function()
 			vim.g.VM_theme = "purplegray"
-			-- vim.g.VM_mouse_mappings = 1
 			vim.g.VM_maps = {
 				["Goto Prev"] = "",
 				["Goto Next"] = "",
 				["I Return"] = "",
-				-- ["I Return"] = "<S-CR>",
-				-- ["I BS"] = "",
-				-- ["I CtrlB"] = "<M-b>",
-				-- ["I CtrlF"] = "<M-f>",
 				["I Down Arrow"] = "",
 				["I Up Arrow"] = "",
 			}
 		end,
 	},
-
-	{ "axelvc/template-string.nvim", opts = { jsx_brackets = false, remove_template_string = true } },
 
 	{
 		"lewis6991/gitsigns.nvim",
@@ -55,8 +44,6 @@ return {
 		},
 	},
 
-	{ "folke/ts-comments.nvim", opts = {}, event = "VeryLazy" },
-
 	{
 		"supermaven-inc/supermaven-nvim",
 		config = function()
@@ -65,11 +52,6 @@ return {
 				color = { suggestion_color = "#666666", cterm = 244 },
 			})
 		end,
-	},
-
-	{
-		"karb94/neoscroll.nvim",
-		opts = { duration_multiplier = 0.5 },
 	},
 
 	{
@@ -82,10 +64,5 @@ return {
 			vim.keymap.set({ "n", "t" }, "<A-Up>", require("smart-splits").move_cursor_up)
 			vim.keymap.set({ "n", "t" }, "<A-Right>", require("smart-splits").move_cursor_right)
 		end,
-	},
-
-	{
-		"fladson/vim-kitty",
-		ft = "kitty",
 	},
 }

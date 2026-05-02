@@ -7,10 +7,6 @@ return {
 			"mason-org/mason-lspconfig.nvim",
 		},
 		config = function()
-			-- disable the annoying deprecated message till fixed
-			---@diagnostic disable-next-line: duplicate-set-field
-			vim.deprecate = function() end
-
 			require("mason").setup()
 			require("mason-lspconfig").setup({
 				ensure_installed = {

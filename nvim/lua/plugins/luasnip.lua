@@ -1,6 +1,6 @@
 local function kebabToPascalCase(str)
 	local result = ""
-	for part in string.gmatch(str, "[^-]+") do
+	for part in string.gmatch(str, "[^-_%.%s]+") do
 		result = result .. part:sub(1, 1):upper() .. part:sub(2)
 	end
 

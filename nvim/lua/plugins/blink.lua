@@ -2,7 +2,7 @@ return {
 	"saghen/blink.cmp",
 	event = { "InsertEnter" },
 	dependencies = { "L3MON4D3/LuaSnip" },
-	version = "*",
+	version = "v1",
 	config = function()
 		require("blink.cmp").setup({
 			completion = {
@@ -30,14 +30,7 @@ return {
 			snippets = { preset = "luasnip" },
 			cmdline = { enabled = false },
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "lazydev" },
-				providers = {
-					lazydev = {
-						name = "LazyDev",
-						module = "lazydev.integrations.blink",
-						score_offset = 100,
-					},
-				},
+				default = { "lsp", "path", "snippets", "buffer" },
 			},
 		})
 	end,

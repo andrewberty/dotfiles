@@ -4,27 +4,28 @@ return {
 	config = function()
 		vim.keymap.set({ "n", "v" }, "<leader>e", ":NvimTreeToggle<CR>", { desc = "Nvim Tree Toggle", silent = true })
 		vim.keymap.set({ "n", "v" }, "<leader>E", ":NvimTreeFindFile<CR>", { desc = "Nvim Tree Find File", silent = true })
+
 		require("mini.icons").mock_nvim_web_devicons()
+		local nvim_tree = require("nvim-tree")
 
-		local custom_on_attach = function(bufnr)
-			local api = require("nvim-tree.api")
+		nvim_tree.setup({
+			on_attach = function(bufnr)
+				local api = require("nvim-tree.api")
 
-			local function opts(desc)
-				return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-			end
+				local function opts(desc)
+					return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+				end
 
-			api.config.mappings.default_on_attach(bufnr)
-			vim.keymap.set("n", "d", api.fs.trash, opts("Trash"))
-		end
-
-		require("nvim-tree").setup({
-			on_attach = custom_on_attach,
+				api.map.on_attach.default(bufnr)
+				vim.keymap.set("n", "d", api.fs.trash, opts("Trash"))
+			end,
 			filters = { git_ignored = false, custom = { ".DS_Store" } },
 			view = { width = { min = 30, max = -1 }, side = "left" },
 			trash = { cmd = "trash" },
 			renderer = {
-				root_folder_label = ":t",
-				highlight_git = false,
+				root_folder_label = false,
+				-- root_folder_label = ":t",
+				highlight_git = "none",
 				indent_markers = { enable = true },
 			},
 			actions = {
