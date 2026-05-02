@@ -9,7 +9,6 @@ path=(
     /opt/homebrew/opt/trash/bin
     $HOME/.cargo/bin
     $path
-    /Applications/XAMPP/bin
     /Applications/Docker.app/Contents/Resources/bin
 )
 
