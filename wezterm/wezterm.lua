@@ -6,8 +6,6 @@ local fonts = require("fonts")
 local keys = require("keys")
 local globals = require("utils.globals")
 
-local G = globals.readGlobals()
-
 local config = wezterm.config_builder()
 
 -- ENV
@@ -18,7 +16,7 @@ config.enable_tab_bar = true
 config.use_fancy_tab_bar = false
 config.show_new_tab_button_in_tab_bar = false
 config.window_close_confirmation = "NeverPrompt"
-config.window_background_opacity = G.opacity or 1.0
+config.window_background_opacity = globals.get("opacity")
 config.window_decorations = "RESIZE | MACOS_FORCE_DISABLE_SHADOW"
 config.adjust_window_size_when_changing_font_size = false
 config.enable_scroll_bar = false

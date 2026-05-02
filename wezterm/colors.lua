@@ -1,24 +1,24 @@
 local wezterm = require("wezterm")
 local globals = require("utils.globals")
 
-local G = globals.readGlobals()
 local M = {}
 
-local scheme_name = G.colorscheme or "rose-pine"
+local scheme_name = globals.get("colorscheme")
 
 local scheme = wezterm.color.get_builtin_schemes()[scheme_name]
 	or wezterm.color.load_scheme(os.getenv("HOME") .. "/dotfiles/wezterm/colors/" .. scheme_name .. ".toml")
 	or "rose-pine"
 
-local oled = G.OLED and "#000000"
-local derived_bg = G.background or scheme.background
+local oled = globals.get("OLED") and "#000000"
+local derived_bg = globals.get("background") or scheme.background
 local bg_color_object = wezterm.color.parse(derived_bg)
 
-if G.brightness ~= nil then
-	if G.brightness > 0 then
-		derived_bg = bg_color_object:lighten(G.brightness)
-	elseif G.brightness < 0 then
-		derived_bg = bg_color_object:darken(-G.brightness)
+if globals.get("brightness") ~= 0 then
+	local brightness = globals.get("brightness")
+	if brightness > 0 then
+		derived_bg = bg_color_object:lighten(brightness)
+	elseif brightness < 0 then
+		derived_bg = bg_color_object:darken(-brightness)
 	end
 end
 

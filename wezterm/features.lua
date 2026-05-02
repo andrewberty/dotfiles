@@ -51,7 +51,7 @@ end
 
 M.resetOpacity = function()
 	globals.setGlobals(function(G)
-		G.opacity = 0.999
+		G.opacity = 1
 	end)
 end
 
@@ -76,7 +76,11 @@ end
 M.sesh = function()
 	return wezterm.action_callback(function(window, pane)
 		local choices = {}
-		local dirs_to_scan = { "/dev", "/code", "/dotfiles" }
+		local dirs_to_scan = {
+			"/dotfiles",
+			"/dev/*",
+			"/code/*",
+		}
 
 		-- collect active workspace names once into a set for O(1) lookup
 		local active_workspaces = wezterm.mux.get_workspace_names()
@@ -86,7 +90,7 @@ M.sesh = function()
 		end
 
 		for _, dir in ipairs(dirs_to_scan) do
-			for _, path in ipairs(wezterm.glob(wezterm.home_dir .. dir .. "/*")) do
+			for _, path in ipairs(wezterm.glob(wezterm.home_dir .. dir)) do
 				local relative_path = path:gsub(wezterm.home_dir, "~")
 				local basename = utils.getDirNameFromPath(path)
 
@@ -246,6 +250,116 @@ M.fonts = function()
 		}
 
 		picker.pick(opts)
+	end)
+end
+
+M.fontSizeUp = function()
+	globals.setGlobals(function(G)
+		local current = G.font_size or globals.DEFAULTS.font_size
+		G.font_size = current + 0.5
+	end)
+end
+
+M.fontSizeDown = function()
+	globals.setGlobals(function(G)
+		local current = G.font_size or globals.DEFAULTS.font_size
+		if current > 0.5 then
+			G.font_size = current - 0.5
+		end
+	end)
+end
+
+M.fontSizeReset = function()
+	globals.setGlobals(function(G)
+		G.font_size = globals.DEFAULTS.font_size
+	end)
+end
+
+M.lineHeightUp = function()
+	globals.setGlobals(function(G)
+		local current = G.line_height or globals.DEFAULTS.line_height
+		G.line_height = current + 0.1
+	end)
+end
+
+M.lineHeightDown = function()
+	globals.setGlobals(function(G)
+		local current = G.line_height or globals.DEFAULTS.line_height
+		if current > 0.5 then
+			G.line_height = current - 0.1
+		end
+	end)
+end
+
+M.lineHeightReset = function()
+	globals.setGlobals(function(G)
+		G.line_height = globals.DEFAULTS.line_height
+	end)
+end
+
+M.cellWidthUp = function()
+	globals.setGlobals(function(G)
+		local current = G.cell_width or globals.DEFAULTS.cell_width
+		G.cell_width = current + 0.05
+	end)
+end
+
+M.cellWidthDown = function()
+	globals.setGlobals(function(G)
+		local current = G.cell_width or globals.DEFAULTS.cell_width
+		if current > 0.5 then
+			G.cell_width = current - 0.05
+		end
+	end)
+end
+
+M.cellWidthReset = function()
+	globals.setGlobals(function(G)
+		G.cell_width = globals.DEFAULTS.cell_width
+	end)
+end
+
+M.lineHeightUp = function()
+	globals.setGlobals(function(G)
+		local current = G.line_height or globals.DEFAULTS.line_height
+		G.line_height = current + 0.1
+	end)
+end
+
+M.lineHeightDown = function()
+	globals.setGlobals(function(G)
+		local current = G.line_height or globals.DEFAULTS.line_height
+		if current > 0.5 then
+			G.line_height = current - 0.1
+		end
+	end)
+end
+
+M.lineHeightReset = function()
+	globals.setGlobals(function(G)
+		G.line_height = globals.DEFAULTS.line_height
+	end)
+end
+
+M.cellWidthUp = function()
+	globals.setGlobals(function(G)
+		local current = G.cell_width or globals.DEFAULTS.cell_width
+		G.cell_width = current + 0.1
+	end)
+end
+
+M.cellWidthDown = function()
+	globals.setGlobals(function(G)
+		local current = G.cell_width or globals.DEFAULTS.cell_width
+		if current > 0.5 then
+			G.cell_width = current - 0.1
+		end
+	end)
+end
+
+M.cellWidthReset = function()
+	globals.setGlobals(function(G)
+		G.cell_width = globals.DEFAULTS.cell_width
 	end)
 end
 

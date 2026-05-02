@@ -8,14 +8,7 @@ local function is_vim(pane)
 	return pane:get_user_vars().IS_NVIM == "true"
 end
 
-local direction_keys = {
-	LeftArrow = "Left",
-	RightArrow = "Right",
-	UpArrow = "Up",
-	DownArrow = "Down",
-}
-
-local function handle_wezterm_nvim_splits(key)
+local function handle_wezterm_nvim_splits(key, direction)
 	return {
 		key = key,
 		mods = "ALT",
@@ -25,7 +18,7 @@ local function handle_wezterm_nvim_splits(key)
 					SendKey = { key = key, mods = "ALT" },
 				}, pane)
 			else
-				win:perform_action({ ActivatePaneDirection = direction_keys[key] }, pane)
+				win:perform_action({ ActivatePaneDirection = direction }, pane)
 			end
 		end),
 	}
@@ -51,22 +44,32 @@ M.apply = function(config)
 		{ key = "m", mods = "CMD", action = wezterm.action.Hide },
 		{ key = "c", mods = "CMD", action = act.CopyTo("ClipboardAndPrimarySelection") },
 		{ key = "v", mods = "CMD", action = act.PasteFrom("Clipboard") },
-		{ key = "=", mods = "CMD", action = act.IncreaseFontSize },
-		{ key = "-", mods = "CMD", action = act.DecreaseFontSize },
-		{ key = "0", mods = "CMD", action = act.ResetFontSize },
+		{ key = "=", mods = "CMD", action = wezterm.action_callback(features.fontSizeUp) },
+		{ key = "-", mods = "CMD", action = wezterm.action_callback(features.fontSizeDown) },
+		{ key = "0", mods = "CMD", action = wezterm.action_callback(features.fontSizeReset) },
+
+		{ key = "]", mods = "CMD", action = wezterm.action_callback(features.lineHeightUp) },
+		{ key = "[", mods = "CMD", action = wezterm.action_callback(features.lineHeightDown) },
+		{ key = ";", mods = "CMD", action = wezterm.action_callback(features.lineHeightReset) },
+
+		{ key = ".", mods = "CMD", action = wezterm.action_callback(features.cellWidthUp) },
+		{ key = ",", mods = "CMD", action = wezterm.action_callback(features.cellWidthDown) },
+		{ key = "/", mods = "CMD", action = wezterm.action_callback(features.cellWidthReset) },
+
 		{ key = "L", mods = "CMD", action = act.ShowDebugOverlay },
 		{ key = "P", mods = "CMD", action = act.ActivateCommandPalette },
 		{ key = "w", mods = "CMD", action = act.CloseCurrentPane({ confirm = true }) },
 		{ key = "q", mods = "CMD", action = act.CloseCurrentTab({ confirm = false }) },
 
 		{ key = "\\", mods = "CMD", action = act.SplitHorizontal },
+		{ key = "\\", mods = "CMD|SHIFT", action = act.SplitVertical },
 		{ key = "j", mods = "CMD", action = act.SplitPane({ direction = "Down", size = { Percent = 25 } }) },
-		{ key = "Z", mods = "CMD|SHIFT", action = act.TogglePaneZoomState },
+		{ key = "Enter", mods = "CMD", action = act.TogglePaneZoomState },
 
-		handle_wezterm_nvim_splits("LeftArrow"),
-		handle_wezterm_nvim_splits("RightArrow"),
-		handle_wezterm_nvim_splits("UpArrow"),
-		handle_wezterm_nvim_splits("DownArrow"),
+		handle_wezterm_nvim_splits("LeftArrow", "Left"),
+		handle_wezterm_nvim_splits("RightArrow", "Right"),
+		handle_wezterm_nvim_splits("UpArrow", "Up"),
+		handle_wezterm_nvim_splits("DownArrow", "Down"),
 	}
 end
 
