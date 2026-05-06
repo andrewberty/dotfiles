@@ -24,7 +24,7 @@ def handle_result(args: list[str], answer: str, target_window_id: int, boss: Bos
 
     conf = os.path.expanduser("~/.config/kitty/local.conf")
 
-    current_value = 12.0
+    current_value = 13.0
     if os.path.exists(conf):
         with open(conf) as f:
             content = f.read()
