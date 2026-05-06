@@ -58,7 +58,7 @@ return {
 			-- 	},
 			-- 	{ "filename", path = 0, file_status = false },
 			-- },
-			lualine_b = { { "filename", path = 1, file_status = false, color = { fg = "#555555" } } },
+			lualine_b = { { "filename", path = 3, file_status = false, color = "NonText" } },
 			lualine_c = {},
 			lualine_x = {},
 			lualine_y = {},
