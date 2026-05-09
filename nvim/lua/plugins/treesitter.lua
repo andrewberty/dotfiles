@@ -1,6 +1,8 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
+	branch = "main",
+	lazy = false,
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		{ "nvim-treesitter/nvim-treesitter-context", enabled = false },
@@ -8,6 +10,7 @@ return {
 	},
 	config = function()
 		require("nvim-treesitter").setup({
+			install_dir = vim.fn.stdpath("data") .. "/site",
 			auto_install = true,
 			ignore_install = { "tmux" },
 			textobjects = {
