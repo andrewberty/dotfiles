@@ -1,6 +1,25 @@
 ---@diagnostic disable: missing-fields
 return {
 	{
+		"wtfox/jellybeans.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {
+			transparent = true,
+			italics = false,
+			bold = false,
+			flat_ui = false,
+			on_highlights = function(hl, c)
+				hl.FloatBorder.bg = c.none
+				hl.WinBar.bg = c.none
+				hl.WinBarNC.bg = c.none
+				hl.StatusLine.bg = c.none
+				hl.StatusLineNC.bg = c.none
+			end,
+			-- on_colors = function(colors) end,
+		},
+	},
+	{
 		"vague-theme/vague.nvim",
 		priority = 1000,
 		lazy = false,
