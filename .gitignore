@@ -23,3 +23,5 @@
 /kitty/relative_resize.py
 /kitty/sessions/*
 !/kitty/sessions/startup.session
+
+.hammerspoon/local.lua
