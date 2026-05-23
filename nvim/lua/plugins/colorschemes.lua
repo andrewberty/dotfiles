@@ -80,6 +80,7 @@ return {
 					overrides = function(palette)
 						return {
 							StatusLine = { bg = "none" },
+							NonText = { fg = palette.base03 },
 						}
 					end,
 				},
