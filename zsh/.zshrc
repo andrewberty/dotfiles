@@ -35,7 +35,7 @@ if command -v ngrok &>/dev/null; then
 fi
 
 alias cl=clear
-alias cc=claude
+alias cc="claude --allow-dangerously-skip-permissions"
 alias oc=opencode
 alias gp="gitpane --root ."
 alias lg=lazygit
