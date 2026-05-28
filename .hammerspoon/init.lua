@@ -8,7 +8,7 @@ if hs.fs.attributes(hs.configdir .. "/local.lua") then
 end
 
 leader.setup({
-	key = "f20",
+	key = "f18",
 	idleTimeout = 5,
 	keymaps = {
 		-- apps
