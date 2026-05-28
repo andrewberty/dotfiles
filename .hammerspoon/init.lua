@@ -13,7 +13,7 @@ leader.setup({
 	keymaps = {
 		-- apps
 		t = leader.launch("Kitty"),
-		a = leader.launch("Arc"),
+		a = leader.launch(localConfig.browser),
 		o = leader.launch("Obsidian"),
 		f = leader.launch("Figma"),
 		s = leader.launch("Spotify"),
@@ -22,14 +22,14 @@ leader.setup({
 		-- finder
 		d = leader.finder("~/Downloads"),
 
-		-- arc pinned tabs
+		-- browser pinned tabs
 		g = leader.fn(function()
-			utils.launchThenSendKeys("Arc", "cmd+1")
-		end, "arc tab 1"),
+			utils.launchThenSendKeys(localConfig.browser, "cmd+1")
+		end, "browser tab 1"),
 
 		b = leader.fn(function()
-			utils.launchThenSendKeys("Arc", "cmd+2")
-		end, "arc tab 2"),
+			utils.launchThenSendKeys(localConfig.browser, "cmd+2")
+		end, "browser tab 2"),
 
 		-- raycast utils
 		v = leader.url("raycast://extensions/raycast/clipboard-history/clipboard-history", "Clipboard History"),
