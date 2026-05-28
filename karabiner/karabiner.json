@@ -1,0 +1,17 @@
+{
+    "global": { "show_in_menu_bar": false },
+    "machine_specific": { "krbn-7acce1aa-bab5-43a5-be37-5a080d747bb6": { "external_editor_path": "/Applications/Zed Preview.app" } },
+    "profiles": [
+        {
+            "name": "Default profile",
+            "selected": true,
+            "simple_modifications": [
+                {
+                    "from": { "key_code": "caps_lock" },
+                    "to": [{ "key_code": "f18" }]
+                }
+            ],
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        }
+    ]
+}
