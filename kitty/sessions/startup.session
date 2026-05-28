@@ -1,1 +1,1 @@
-launch zsh -c ~/dotfiles/kitty/scripts/project-picker.zsh
+launch --hold zsh -ilc ~/dotfiles/scripts/tmux-attach.zsh
