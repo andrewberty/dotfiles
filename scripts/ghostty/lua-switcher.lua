@@ -35,7 +35,7 @@ M.key_exists = function(line, config_key)
 end
 
 M.reload_config_file = function()
-	os.execute("osascript " .. os.getenv("HOME") .. "/dotfiles/scripts/reload-ghostty.scpt")
+	os.execute("osascript " .. os.getenv("HOME") .. "/dotfiles/scripts/ghostty/reload-ghostty.scpt")
 end
 
 function M.write_config(opts)
