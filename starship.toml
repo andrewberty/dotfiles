@@ -4,7 +4,7 @@
 add_newline = false
 command_timeout = 10000
 
-format = '''$character $directory$git_branch$git_status$nodejs'''
+format = '''$character $directory$git_branch$git_status$git_metrics$nodejs'''
 
 [character]
 success_symbol = '[󰆧](bold green)'
@@ -18,3 +18,7 @@ format = "[$symbol$branch(:$remote_branch)]($style) "
 
 [nodejs]
 format = "[$symbol($version )]($style)"
+
+[git_metrics]
+disabled = false
+format = ' ([  $added]($added_style)  [  $deleted]($deleted_style) )'
