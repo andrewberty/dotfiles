@@ -38,6 +38,7 @@ alias cl=clear
 alias cc="claude --allow-dangerously-skip-permissions"
 alias oc=opencode
 alias gp="gitpane --root ."
+alias ssh='kitten ssh'
 alias lg=lazygit
 alias x=exit
 alias v='nvim "$@"'
