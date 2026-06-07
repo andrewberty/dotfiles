@@ -1,6 +1,36 @@
 ---@diagnostic disable: missing-fields
 return {
 	{
+		"dybdeskarphet/gruvbox-minimal.nvim",
+		config = function()
+			require("gruvbox-minimal").setup({
+				transparent = true,
+				italic_comments = false,
+				italic_functions = false,
+				contrast = "low",
+				-- Changes the definition (functions, structs etc.) colors. Available values: "red", "orange", "yellow", "green", "cyan", "blue", "magenta"
+				accent = "red",
+				overrides = {
+					WinBar = { bg = "none" },
+				},
+			})
+		end,
+	},
+	{
+		"metalelf0/kintsugi-nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("kintsugi").setup({
+				variant = "dark", -- "dark" | "flared"
+				transparent = true,
+				terminal_colors = true,
+				bold_keywords = false,
+				italic_comments = false,
+			})
+		end,
+	},
+	{
 		"wtfox/jellybeans.nvim",
 		lazy = false,
 		priority = 1000,
