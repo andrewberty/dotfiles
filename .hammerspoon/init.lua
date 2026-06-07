@@ -65,6 +65,10 @@ leader.setup({
 			label = "Maximize",
 			background = true,
 		}),
+		m = leader.url(
+			"raycast://extensions/raycast/window-management/almost-maximize",
+			{ label = "Almost Maximize", background = true }
+		),
 
 		-- window quarters under q layer
 		q = leader.layer("window-quarters", {
