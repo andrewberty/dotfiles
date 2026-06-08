@@ -60,6 +60,18 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 	command = "silent! loadview",
 })
 
+-- recompute treesitter folds after parser finishes on first open
+vim.api.nvim_create_autocmd("BufReadPost", {
+	callback = function(args)
+		if not pcall(vim.treesitter.get_parser, args.buf) then return end
+		vim.schedule(function()
+			if not vim.api.nvim_buf_is_valid(args.buf) then return end
+			local win = vim.fn.bufwinid(args.buf)
+			if win ~= -1 then vim.api.nvim_win_call(win, function() vim.cmd("normal! zx") end) end
+		end)
+	end,
+})
+
 -- reset guicursor when leaving nvim to blinking bar
 vim.api.nvim_create_autocmd("VimLeave", {
 	pattern = "*",
