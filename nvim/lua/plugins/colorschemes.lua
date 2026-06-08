@@ -1,6 +1,32 @@
 ---@diagnostic disable: missing-fields
 return {
 	{
+		"zitrocode/carvion.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("carvion").setup({
+				transparent = true,
+				styles = { comments = { italic = false } },
+			})
+
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				pattern = "*",
+				callback = function()
+					local hl = require("utils").hl
+
+					hl("NormalFloat", { bg = "none" })
+					hl("FloatBorder", { bg = "none" })
+					hl("WinBar", { bg = "none" })
+					hl("WinBarNC", { bg = "none" })
+					hl("StatusLine", { bg = "none" })
+					hl("StatusLineNC", { bg = "none" })
+				end,
+			})
+		end,
+	},
+
+	{
 		"dybdeskarphet/gruvbox-minimal.nvim",
 		config = function()
 			require("gruvbox-minimal").setup({
