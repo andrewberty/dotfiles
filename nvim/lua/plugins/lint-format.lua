@@ -50,6 +50,7 @@ return {
 					http = { "kulala" },
 					go = { "gofmt" },
 					yaml = { "prettier" },
+					yml = { "prettier" },
 				},
 				format_on_save = function(bufnr)
 					if vim.g.disable_autoformat then return end
