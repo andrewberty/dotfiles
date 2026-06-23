@@ -2,7 +2,7 @@ return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		keys = {
-			{ "<leader>md", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Render Markdown" },
+			-- { "<leader>md", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Render Markdown" },
 		},
 		opts = {
 			enabled = false,
@@ -34,5 +34,18 @@ return {
 				inline_pad = 1,
 			},
 		},
+	},
+
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		build = "cd app && npm install",
+		init = function() vim.g.mkdp_filetypes = { "markdown" } end,
+		ft = { "markdown" },
+		config = function()
+			local map = vim.keymap.set
+
+			map("n", "<leader>md", ":MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview", silent = true })
+		end,
 	},
 }
