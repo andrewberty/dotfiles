@@ -18,6 +18,7 @@ leader.setup({
 		f = leader.launch("Figma"),
 		s = leader.launch("Spotify"),
 		y = leader.launch("Yaak"),
+		w = leader.launch("WhatsApp"),
 
 		-- finder
 		d = leader.finder("~/Downloads"),
