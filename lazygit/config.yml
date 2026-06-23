@@ -1,6 +1,6 @@
 gui:
   scrollHeight: 5
-  sidePanelWidth: 0.15
+  sidePanelWidth: 0.2
   expandFocusedSidePanel: true
   enlargedSideViewLocation: top
   showListFooter: false
