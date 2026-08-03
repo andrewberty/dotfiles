@@ -14,7 +14,8 @@ leader.setup({
 		-- apps
 		t = leader.launch("Kitty"),
 		a = leader.launch(localConfig.browser),
-		o = leader.launch("Obsidian"),
+		o = leader.launch("ZenNotes"),
+		-- o = leader.launch("Obsidian"),
 		f = leader.launch("Figma"),
 		s = leader.launch("Spotify"),
 		y = leader.launch("Yaak"),
