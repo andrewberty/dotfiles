@@ -3,6 +3,18 @@
     "machine_specific": { "krbn-7acce1aa-bab5-43a5-be37-5a080d747bb6": { "external_editor_path": "/Applications/Zed Preview.app" } },
     "profiles": [
         {
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 63491,
+                        "vendor_id": 13652
+                    },
+                    "ignore": false,
+                    "treat_as_built_in_keyboard": true
+                }
+            ],
             "name": "Default profile",
             "selected": true,
             "simple_modifications": [
