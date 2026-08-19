@@ -1,6 +1,22 @@
 ---@diagnostic disable: missing-fields
 return {
 	{
+		"bluz71/vim-nightfly-colors",
+		name = "nightfly",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.g.nightflyCursorColor = true
+			vim.g.nightflyNormalPmenu = true
+			vim.g.nightflyNormalFloat = true
+			vim.g.nightflyItalics = false
+			vim.g.nightflyTransparent = true
+			vim.g.nightflyUnderlineMatchParen = true
+			vim.g.nightflyVirtualTextColor = true
+			vim.g.nightflyWinSeparator = 2
+		end,
+	},
+	{
 		"zitrocode/carvion.nvim",
 		lazy = false,
 		priority = 1000,
@@ -137,6 +153,7 @@ return {
 						return {
 							StatusLine = { bg = "none" },
 							NonText = { fg = palette.base03 },
+							Visual = { bg = palette.base02 },
 						}
 					end,
 				},
