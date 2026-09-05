@@ -20,6 +20,7 @@ leader.setup({
 		s = leader.launch("Spotify"),
 		y = leader.launch("Yaak"),
 		w = leader.launch("WhatsApp"),
+		c = leader.launch("ChatGPT"),
 
 		-- finder
 		d = leader.finder("~/Downloads"),
@@ -35,10 +36,10 @@ leader.setup({
 
 		-- raycast utils
 		v = leader.url("raycast://extensions/raycast/clipboard-history/clipboard-history", "Clipboard History"),
-		c = leader.url("raycast://extensions/raycast/raycast/confetti", {
-			label = "confetti",
-			background = true,
-		}),
+		-- c = leader.url("raycast://extensions/raycast/raycast/confetti", {
+		-- 	label = "confetti",
+		-- 	background = true,
+		-- }),
 		e = leader.url("raycast://extensions/raycast/emoji-symbols/search-emoji-symbols", {
 			label = "emoji",
 			background = true,
