@@ -1,6 +1,19 @@
 ---@diagnostic disable: missing-fields
 return {
 	{
+		"mellow-theme/mellow.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.g.mellow_transparent = true
+
+			-- vim.g.mellow_highlight_overrides = {
+			-- 	["NormalNC"] = { link = "Normal" },
+			-- }
+		end,
+	},
+
+	{
 		"bluz71/vim-nightfly-colors",
 		name = "nightfly",
 		lazy = false,
